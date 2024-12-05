@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "wempe-dev",
+			"path": "..",
+		},
+		{
+			"name": "www",
+			"path": "../apps/www",
+		},
+	],
+	"settings": {
+		"[javascript]": {
+			"editor.formatOnSave": true,
+		},
+		"[typescript]": {
+			"editor.formatOnSave": true,
+		},
+		"[astro]": {
+			"editor.formatOnSave": true,
+		},
+	},
+}
