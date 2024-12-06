@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import { twMerge } from 'tailwind-merge';
+
+interface RoleWithLink {
+	text: string;
+	companyName: string;
+	companyUrl: string;
+}
+
+interface Endorsement {
+	text: string;
+	author: {
+		name: string;
+		social?: string;
+	};
+	relation: string;
+	role: string | RoleWithLink;
+	imageUrl: string;
+}
+
+interface Props {
+	endorsements: Endorsement[];
+	class?: string;
+}
+
+const { endorsements, class: className } = Astro.props;
+
+const endorsementsImages = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/images/endorsements/*.{jpeg,jpg,png,gif}',
+);
+---
+
+<div class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2', className)}>
+	{
+		endorsements.map((endorsement) => (
+			<div class="rounded-lg bg-white p-8 shadow-md shadow-indigo-50 transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-100">
+				<p class="text-sm font-semibold uppercase tracking-wide text-indigo-800">{endorsement.relation}</p>
+				<blockquote>
+					<p class="text-lg leading-relaxed text-slate-700">"{endorsement.text}"</p>
+				</blockquote>
+
+				<div class="mt-6 flex items-center gap-4">
+					{endorsement.imageUrl.startsWith('/src') ? (
+						<Image
+							src={endorsementsImages[endorsement.imageUrl]()}
+							alt={endorsement.author.name}
+							class="h-12 w-12 rounded-full object-cover"
+						/>
+					) : (
+						<img src={endorsement.imageUrl} alt={endorsement.author.name} class="h-12 w-12 rounded-full object-cover" />
+					)}
+					<div>
+						<div class="font-semibold text-gray-900">
+							{endorsement.author.social ? (
+								<a href={endorsement.author.social} class="text-blue-600 hover:underline">
+									{endorsement.author.name}
+								</a>
+							) : (
+								endorsement.author.name
+							)}
+						</div>
+						<p class="text-sm text-gray-600">
+							{typeof endorsement.role === 'string' ? (
+								endorsement.role
+							) : (
+								<>
+									{endorsement.role.text} at{' '}
+									<a href={endorsement.role.companyUrl} class="text-blue-600 hover:underline">
+										{endorsement.role.companyName}
+									</a>
+								</>
+							)}
+						</p>
+					</div>
+				</div>
+			</div>
+		))
+	}
+</div>

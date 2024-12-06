@@ -1,4 +1,6 @@
-// @ts-check
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import { defineConfig } from 'astro/config';
 
 import sst from 'astro-sst';
@@ -6,13 +8,38 @@ import sst from 'astro-sst';
 import tailwind from '@astrojs/tailwind';
 
 import sitemap from '@astrojs/sitemap';
+import { config } from './src/constants/metadata';
+
+import icon from 'astro-icon';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://www.wempe.dev',
+	site: config.site.site,
+	base: config.site.base,
+	trailingSlash: config.site.trailingSlash ? 'always' : 'never',
+
 	server: { host: true },
 	adapter: sst(),
 	output: 'server',
-	integrations: [tailwind(), sitemap()],
+	integrations: [
+		tailwind(),
+		sitemap(),
+		icon({
+			iconDir: path.resolve(__dirname, './src/assets/icons'),
+			include: {
+				// TODO: only list the icons that are actually used
+				lucide: ['*'],
+			},
+		}),
+	],
 	redirects: { '/cal': 'https://cal.com/jannikwempe/30min' },
+	vite: {
+		resolve: {
+			alias: {
+				'~': path.resolve(__dirname, './src'),
+			},
+		},
+	},
 });
