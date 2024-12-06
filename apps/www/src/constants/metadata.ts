@@ -38,4 +38,12 @@ export const config = {
 	i18n: {
 		language: 'en',
 	},
+
+	social: {
+		x: 'https://x.com/JannikWempe',
+		linkedin: 'https://www.linkedin.com/in/jannik-wempe',
+		github: 'https://github.com/jannikwempe',
+		hashnode: 'https://hashnode.com/@jannikwempe',
+		email: 'jannik@wempe.dev',
+	},
 } as const;

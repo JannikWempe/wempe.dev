@@ -34,7 +34,7 @@ const endorsementsImages = import.meta.glob<{ default: ImageMetadata }>(
 <div class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2', className)}>
 	{
 		endorsements.map((endorsement) => (
-			<div class="rounded-lg bg-white p-8 shadow-md shadow-indigo-50 transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-100">
+			<div class="rounded-lg bg-white p-8 shadow-md shadow-indigo-200">
 				<p class="text-sm font-semibold uppercase tracking-wide text-indigo-800">{endorsement.relation}</p>
 				<blockquote>
 					<p class="text-lg leading-relaxed text-slate-700">"{endorsement.text}"</p>

@@ -1,15 +1,22 @@
 ---
+import type { HTMLTag, Polymorphic } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-interface Props {
+type Props<T extends HTMLTag = 'button'> = Polymorphic<{ as: T }> & {
 	variant?: 'solid' | 'outline' | 'ghost';
 	size?: 'sm' | 'md' | 'lg' | 'xl';
 	color?: 'primary' | 'secondary';
-	href?: string;
 	class?: string;
-}
+};
 
-const { variant = 'solid', size = 'md', color = 'primary', href, class: className = '', ...rest } = Astro.props;
+const {
+	as: Tag = 'button' as any,
+	variant = 'solid',
+	size = 'md',
+	color = 'primary',
+	class: className = '',
+	...rest
+} = Astro.props;
 
 const baseStyles =
 	'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
@@ -35,12 +42,10 @@ const sizes = {
 };
 
 const classes = twMerge(baseStyles, variants[color][variant], sizes[size], className);
-
-const Element = href ? 'a' : 'button';
 ---
 
-<Element {href} class={classes} {...rest}>
+<Tag class={classes} {...rest}>
 	<slot name="icon-left" />
 	<slot />
 	<slot name="icon-right" />
-</Element>
+</Tag>

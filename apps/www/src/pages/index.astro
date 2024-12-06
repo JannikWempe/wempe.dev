@@ -64,7 +64,7 @@ const endorsements = [
 							stay at the forefront of technological innovation.
 						</p>
 						<Button color="primary" variant="solid" size="lg" class="group mt-8">
-							Reach Out
+							Reach out
 							<Icon
 								name="lucide:mail"
 								slot="icon-right"
@@ -85,13 +85,32 @@ const endorsements = [
 		</div>
 
 		<section class="container mx-auto px-32 py-16">
+			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">Don't take my word for it</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">What Others Say</h2>
 			<Endorsements {endorsements} class="mt-8" />
 		</section>
 
-		<section class="container mx-auto px-32 py-16">
+		<section class="container mx-auto flex flex-col items-center px-32 py-16">
+			<p class="text-sm font-bold uppercase tracking-wide text-blue-600">Things I write about</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Latest Blog Posts</h2>
-			<BlogPosts server:defer limit={3} class="mt-8" />
+			<BlogPosts server:defer class="mt-8" />
+			<!-- TODO: add signup to blog newsletter here? -->
+			<Button
+				as="a"
+				color="primary"
+				variant="solid"
+				size="lg"
+				href="https://blog.jannikwempe.com"
+				target="_blank"
+				class="group mx-auto mt-8"
+			>
+				Visit my blog
+				<Icon
+					name="lucide:external-link"
+					slot="icon-right"
+					class="transition-transform group-hover:rotate-12 group-hover:scale-125"
+				/>
+			</Button>
 		</section>
 	</main>
 </Layout>
