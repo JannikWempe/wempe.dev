@@ -1,5 +1,4 @@
 /// <reference path="./.sst/platform/config.d.ts" />
-
 export default $config({
 	app(input) {
 		return {
@@ -11,6 +10,7 @@ export default $config({
 					region: 'eu-central-1',
 					profile: 'private',
 				},
+				cloudflare: '5.44.0',
 			},
 		};
 	},
@@ -19,9 +19,8 @@ export default $config({
 			args.architecture ??= 'arm64';
 			args.runtime ??= 'nodejs22.x';
 		});
-
+		await import('./infra/storage');
 		const wwww = await import('./infra/www');
-
 		return {
 			url: wwww.astro.url,
 		};

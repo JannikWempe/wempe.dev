@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
+import { config } from '~/constants/metadata';
 
 interface RoleWithLink {
 	text: string;
@@ -25,10 +26,6 @@ interface Props {
 }
 
 const { endorsements, class: className } = Astro.props;
-
-const endorsementsImages = import.meta.glob<{ default: ImageMetadata }>(
-	'/src/assets/images/endorsements/*.{jpeg,jpg,png,gif}',
-);
 ---
 
 <div class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2', className)}>
@@ -41,14 +38,22 @@ const endorsementsImages = import.meta.glob<{ default: ImageMetadata }>(
 				</blockquote>
 
 				<div class="mt-6 flex items-center gap-4">
-					{endorsement.imageUrl.startsWith('/src') ? (
+					{endorsement.imageUrl.startsWith(config.images.cdnPrefix) ? (
 						<Image
-							src={endorsementsImages[endorsement.imageUrl]()}
+							src={endorsement.imageUrl}
 							alt={endorsement.author.name}
-							class="h-12 w-12 rounded-full object-cover"
+							width={48}
+							height={48}
+							class="rounded-full object-cover"
 						/>
 					) : (
-						<img src={endorsement.imageUrl} alt={endorsement.author.name} class="h-12 w-12 rounded-full object-cover" />
+						<img
+							src={endorsement.imageUrl}
+							alt={endorsement.author.name}
+							width={48}
+							height={48}
+							class="rounded-full object-cover"
+						/>
 					)}
 					<div>
 						<div class="font-semibold text-gray-900">

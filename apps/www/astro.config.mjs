@@ -1,6 +1,8 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { imageService } from '@unpic/astro/service';
+
 import { defineConfig } from 'astro/config';
 
 import sst from 'astro-sst';
@@ -20,6 +22,11 @@ export default defineConfig({
 	base: config.site.base,
 	trailingSlash: config.site.trailingSlash ? 'always' : 'never',
 
+	image: {
+		service: imageService({
+			placeholder: 'blurhash',
+		}),
+	},
 	server: { host: true },
 	adapter: sst(),
 	output: 'server',

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Button from '~/components/ui/Button.astro';
 import Endorsements from '~/components/Endorsements.astro';
-
+import Appearences from '~/components/Appearences.astro';
 import { Icon } from 'astro-icon/components';
 
 import portrait from '~/assets/images/jannik-wempe.jpeg';
@@ -18,7 +18,7 @@ const endorsements = [
 		},
 		role: 'Engineering Manager at TechCorp',
 		relation: 'co-worker at Hashnode',
-		imageUrl: '/src/assets/images/endorsements/sarah.jpeg',
+		imageUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555065/sarah_abmi1u.jpg',
 	},
 	{
 		text: 'Jannik is one of the smartest engineers I’ve worked with. He deeply understands problems, asks the right questions, and delivers high quality solutions quickly — exactly what a fast-moving startup needs. He’s an invaluable asset to any team.',
@@ -33,7 +33,7 @@ const endorsements = [
 			companyUrl: 'https://hashnode.com',
 		},
 		relation: 'boss at Hashnode',
-		imageUrl: '/src/assets/images/endorsements/sandeep-panda.jpeg',
+		imageUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555060/sandeep-panda_ntyg9z.jpg',
 	},
 ];
 ---
@@ -77,7 +77,14 @@ const endorsements = [
 						class="relative mt-8 h-[12.5rem] w-[12.5rem] before:absolute before:inset-0 before:left-0 before:top-0 before:-z-10 before:block before:h-full before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
 					>
 						<div class="h-48 w-48 overflow-hidden rounded-full shadow-lg ring-2 ring-slate-100">
-							<Image src={portrait} alt="Portrait of Jannik Wempe" width={192} height={192} loading={'eager'} />
+							<Image
+								src="https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555015/jannik-wempe.jpg"
+								alt="Portrait of Jannik Wempe"
+								width={192}
+								height={192}
+								quality={80}
+								loading={'eager'}
+							/>
 						</div>
 					</div>
 				</div>
@@ -111,6 +118,12 @@ const endorsements = [
 					class="transition-transform group-hover:rotate-12 group-hover:scale-125"
 				/>
 			</Button>
+		</section>
+
+		<section class="container mx-auto flex flex-col items-center px-32 py-16">
+			<p class="text-sm font-bold uppercase tracking-wide text-blue-600">Speaking & Appearances</p>
+			<h2 class="text-center text-3xl font-bold text-indigo-900">Tech Talks and Podcast Conversations</h2>
+			<Appearences class="mt-8" />
 		</section>
 	</main>
 </Layout>

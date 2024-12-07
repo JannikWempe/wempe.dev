@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+import Image from '~/components/ui/Image.astro';
+
+import { formatDate } from '~/utils/time';
+
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const appearances = [
+	{
+		title: 'Building Hashnode’s Public APIs with Sandro, Jannik, and Sandeep',
+		host: 'The Commit Podcast – Hashnode',
+		type: 'podcast',
+		date: '2023-11-29',
+		coverImageUrl: 'https://img.youtube.com/vi/5nL-C0JNKwE/hqdefault.jpg',
+		link: 'https://www.youtube.com/watch?v=5nL-C0JNKwE',
+	},
+	{
+		title: 'Hashnode and MongoDB with Jannik Wempe',
+		host: 'The MongoDB Podcast',
+		type: 'podcast',
+		date: '2022-11-22',
+		coverImageUrl: 'https://files.casted.us/00b5e640-29b3-4cf9-9d55-fd7a6b10fa82.png',
+		link: 'https://open.spotify.com/episode/2X6hD02EE8UmjksJpoemTb?si=b28b4c0e65ea4480',
+	},
+	{
+		title: 'Testing in Serverless Architectures Using the CDK Provider Framework',
+		host: 'CDK Day',
+		type: 'conference',
+		date: '2022-05-26',
+		coverImageUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733599207/talk-cdk-day-2022_lqnp7e.png',
+		link: 'https://www.youtube.com/live/s8tO-ymVQPg?si=7GuZlOGtZw9OT8g5&t=7749',
+	},
+];
+---
+
+<ul class={twMerge('columns-1 gap-8 lg:columns-2 xl:columns-3', className)}>
+	{
+		appearances.map((a, index) => (
+			<li
+				class:list={[
+					'relative overflow-hidden rounded-lg bg-white shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200',
+					index > 0 && 'mt-8',
+				]}
+			>
+				<Image src={a.coverImageUrl} alt={''} class="rounded-lg" inferSize={true} />
+				<div class="p-4">
+					<h3 class="text-pretty text-xl font-bold text-indigo-900">{a.title}</h3>
+					<div class="mt-2 flex items-center justify-between">
+						<div class="flex items-center gap-1 text-sm font-semibold text-slate-700">
+							<Icon name="lucide:calendar" />
+							<time>{formatDate(a.date)}</time>
+						</div>
+
+						{a.type === 'podcast' ? (
+							<div class="flex items-center gap-2 rounded-full bg-purple-100 px-3 py-1 text-purple-700">
+								<Icon name="lucide:mic" />
+								<span class="text-sm font-medium">Podcast</span>
+							</div>
+						) : (
+							<div class="flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-blue-700">
+								<Icon name="lucide:book-open" />
+								<span class="text-sm font-medium">Conference</span>
+							</div>
+						)}
+					</div>
+				</div>
+				<a href={a.link} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
+					<span class="sr-only">Watch or listen to {a.title}</span>
+				</a>
+			</li>
+		))
+	}
+</ul>

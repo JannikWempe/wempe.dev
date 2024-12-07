@@ -46,4 +46,8 @@ export const config = {
 		hashnode: 'https://hashnode.com/@jannikwempe',
 		email: 'jannik@wempe.dev',
 	},
+
+	images: {
+		cdnPrefix: 'https://res.cloudinary.com/dsxtwvsly/image/upload',
+	},
 } as const;

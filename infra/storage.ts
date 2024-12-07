@@ -1,1 +1,1 @@
-export const bucket = new sst.aws.Bucket("MyBucket");
+export const imagesBucket = $app.stage === 'prod' ? new sst.cloudflare.Bucket('Images') : null;
