@@ -57,7 +57,7 @@ const endorsements = [
 				</div>
 			</div>
 
-			<div class="container relative mx-auto pb-28 pt-16">
+			<div class="container relative mx-auto overflow-hidden pb-28 pt-16">
 				<div class="flex flex-col justify-between gap-12 lg:flex-row">
 					<div class="mt-8">
 						<p class="text-md font-bold uppercase tracking-wide text-blue-600">Engineering Value Beyond Code</p>
@@ -92,13 +92,14 @@ const endorsements = [
 								loading={'eager'}
 							/>
 						</div>
-						<h1 aria-label="Jannik Wempe" class="absolute bottom-[-35px] right-[25px] max-w-full lg:bottom-[23px]">
+						<h1 aria-label="Jannik Wempe" class="absolute bottom-[-35px] right-[-25px]">
 							<svg
 								viewBox="0 0 320 320"
 								xmlns="http://www.w3.org/2000/svg"
-								class="aspect-square w-[438px] border border-red-500 text-2xl font-bold text-indigo-800"
+								class="aspect-square w-[438px] max-w-[calc(100vw+25px)] text-xl font-bold text-indigo-800 sm:text-2xl"
 							>
-								<path id="bottom-curve" d="M 0 160 C 0 373, 320 373, 320 160" stroke="red" fill="transparent"></path>
+								<path id="bottom-curve" d="M 0 160 C 0 373, 320 373, 320 160" stroke="transparent" fill="transparent"
+								></path>
 
 								<text aria-hidden="true" textLength="320" fill="currentColor" text-anchor="middle">
 									<textPath xlink:href="#bottom-curve" text-anchor="middle" startOffset="50%">Me, Jannik Wempe</textPath
