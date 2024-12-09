@@ -41,6 +41,7 @@ export const config = {
 
 	social: {
 		x: 'https://x.com/JannikWempe',
+		bluesky: 'https://bsky.app/profile/jannikwempe.com',
 		linkedin: 'https://www.linkedin.com/in/jannik-wempe',
 		github: 'https://github.com/jannikwempe',
 		hashnode: 'https://hashnode.com/@jannikwempe',
