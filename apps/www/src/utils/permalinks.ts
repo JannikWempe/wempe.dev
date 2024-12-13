@@ -1,4 +1,4 @@
-import { config } from '~/constants/metadata';
+import { config } from '~/constants/config';
 import { trim } from '~/utils/misc';
 
 export const trimSlash = (s: string) => trim(trim(s, '/'));

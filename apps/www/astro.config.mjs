@@ -10,7 +10,7 @@ import sst from 'astro-sst';
 import tailwind from '@astrojs/tailwind';
 
 import sitemap from '@astrojs/sitemap';
-import { config } from './src/constants/metadata';
+import { config } from './src/constants/config';
 
 import icon from 'astro-icon';
 

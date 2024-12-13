@@ -1,5 +1,5 @@
 import { Cloudinary } from '@cloudinary/url-gen';
-import { config } from '~/constants/metadata';
+import { config } from '~/constants/config';
 
 export const cloudinary = new Cloudinary({
 	cloud: {
