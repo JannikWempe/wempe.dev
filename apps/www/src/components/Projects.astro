@@ -1,0 +1,242 @@
+---
+import { Image } from '@unpic/astro';
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+import { config } from '~/constants/metadata';
+
+import { scale } from '@cloudinary/url-gen/actions/resize';
+
+import { cloudinary } from '~/utils/image';
+
+interface Props {
+	limit?: number;
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const projects = [
+	{
+		type: 'website',
+		title: 'wempe.dev',
+		description: 'My personal website that you are looking at right now.',
+		url: 'https://www.wempe.dev/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924320/jannik-wempe_fij7v2.png',
+		status: 'ongoing',
+		tech: ['TypeScript', 'Astro', 'TailwindCSS', 'SST', 'AWS'],
+	},
+	{
+		type: 'Shopify app',
+		title: 'FraudFalcon',
+		description:
+			'Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud and block orders automatically.',
+		url: 'https://fraudfalcon.app/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/fraudfalcon_bv5fei.webp',
+		status: 'ongoing',
+		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS', 'Supabase'],
+	},
+	{
+		type: 'SaaS',
+		title: 'Octolense',
+		description:
+			'Analytics solution for GitHub actions. Understand which actions and repositories are most expensive. Exited because lack of time to maintain it.',
+		url: 'https://octolense.com/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/octolense_zshjyj.webp',
+		status: 'sold',
+		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
+	},
+	{
+		type: 'Shopify app',
+		title: 'Shoptain',
+		description:
+			'Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying desired keyword.',
+		url: 'https://shoptain.com/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924495/shoptain_ijp6n8.png',
+		status: 'done',
+		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
+	},
+	{
+		type: 'SaaS',
+		title: 'Kitlytics',
+		description:
+			'Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and grow your business.',
+		url: 'https://kitlytics.com/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/kitlytics_scewod.webp',
+		status: 'paused',
+		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Turso'],
+	},
+	{
+		type: 'eCommerce',
+		title: 'Glückweiser',
+		description: 'Headless Shopify shop using Shopify Hydrogen for a store selling handmade products.',
+		url: 'https://www.glückweiser.de/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924563/glueckweiser_rdxaun.png',
+		status: 'done',
+		tech: ['TypeScript', 'Shopify Hydrogen', 'Remix', 'React', 'TailwindCSS'],
+	},
+	{
+		type: 'website',
+		title: 'easy data solution Homepage',
+		description:
+			'Consulting, design and development of a webapp that represents the company and allows to book courses.',
+		url: 'https://www.easydatasolution.de/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924205/easy-data-solution_cxrsx3.png',
+		status: 'ongoing',
+		tech: ['TypeScript', 'Gatsby', 'React', 'ChakraUI', 'Framer', 'Netlify', 'Decap CMS'],
+	},
+	{
+		type: 'website',
+		title: 'easy working landing page',
+		description: 'Development of a landing page with focus on performance and SEO.',
+		url: 'https://www.easy-working.app/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924205/easy-data-solution_cxrsx3.png',
+		status: 'done',
+		tech: ['TypeScript', 'Astro', 'SolidJS', 'TailwindCSS', 'Netlify', 'Decap CMS'],
+	},
+	{
+		type: 'PWA',
+		title: 'Kiezapp Rixdorf',
+		description:
+			'Development of a PWA that allows newcomers to Rixdorf to get to know the neighborhood using a gamified approach.',
+		url: 'https://www.kiezapp-rixdorf.de/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924743/kiezapp-rixdorf_vvl8jj.png',
+		status: 'done',
+		tech: ['TypeScript', 'NextJS', 'React', 'PWA', 'TailwindCSS', 'Vercel', 'Strapi', 'PostgreSQL'],
+	},
+	{
+		type: 'eCommerce',
+		title: 'klebeki',
+		description:
+			'Design and development of a WooCommerce shop selling clothes for kids and babies with special needs. ',
+		url: 'https://klebeki.de/',
+		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924636/klebeki_o20nnv.avif',
+		status: 'paused',
+		tech: ['PHP', 'Wordpress', 'WooCommerce', 'MySQL'],
+	},
+] as const;
+
+const techIcons = {
+	TypeScript: 'logos:typescript-icon',
+	Gatsby: 'logos:gatsby',
+	React: 'logos:react',
+	ChakraUI: 'chakra-ui',
+	Framer: 'logos:framer',
+	Netlify: 'logos:netlify-icon',
+	'Decap CMS': 'decap-cms',
+	Astro: 'logos:astro-icon',
+	SolidJS: 'logos:solidjs-icon',
+	TailwindCSS: 'logos:tailwindcss-icon',
+	Remix: 'logos:remix-icon',
+	SST: 'logos:sst-icon',
+	'AWS CDK': 'cdk',
+	AWS: 'logos:aws',
+	Supabase: 'logos:supabase-icon',
+	PostgreSQL: 'logos:postgresql',
+	MySQL: 'logos:mysql',
+	PHP: 'logos:php',
+	Wordpress: 'logos:wordpress-icon',
+	WooCommerce: 'logos:woocommerce-icon',
+	NextJS: 'logos:nextjs-icon',
+	PWA: 'logos:pwa',
+	Vercel: 'logos:vercel-icon',
+	Strapi: 'logos:strapi-icon',
+	'Shopify Hydrogen': 'hydrogen',
+	Turso: 'turso',
+} satisfies Record<(typeof projects)[number]['tech'][number], string>;
+
+const typeToColorMap = {
+	website: {
+		bg: 'bg-purple-100',
+		text: 'text-purple-700',
+	},
+	'Shopify app': {
+		bg: 'bg-green-100',
+		text: 'text-green-700',
+	},
+	SaaS: {
+		bg: 'bg-blue-100',
+		text: 'text-blue-700',
+	},
+	eCommerce: {
+		bg: 'bg-yellow-100',
+		text: 'text-yellow-700',
+	},
+	PWA: {
+		bg: 'bg-pink-100',
+		text: 'text-pink-700',
+	},
+} satisfies Record<(typeof projects)[number]['type'], { bg: string; text: string }>;
+---
+
+<ul class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3', className)}>
+	{
+		projects.map((project, projectIndex) => (
+			<li
+				class="relative flex flex-col overflow-hidden rounded-lg bg-white shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200"
+				style={{ transform: 'translateZ(0)' }}
+			>
+				<div class="relative grow">
+					<div class="p-4">
+						<Image
+							src={cloudinary
+								.image(project.logoUrl.replace(config.images.cdnPrefix + '/', ''))
+								.resize(scale().height(50))
+								.toURL()}
+							alt={`${project.title} logo`}
+							height={50}
+							background="none"
+							class="h-[50px] !w-auto self-start object-contain"
+						/>
+						<p
+							class:list={[
+								'mt-3 justify-self-start rounded-full px-3 py-1 text-xs font-medium tracking-wide',
+								typeToColorMap[project.type].bg,
+								typeToColorMap[project.type].text,
+							]}
+						>
+							{project.type}
+						</p>
+						<h3 class="mt-1 text-pretty text-xl font-bold text-indigo-900">{project.title}</h3>
+						<p class="mt-3 text-slate-700">{project.description}</p>
+					</div>
+					<a href={project.url} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
+						<span class="sr-only">Visit {project.title}</span>
+					</a>
+				</div>
+				<div class="mt-auto flex flex-wrap items-center justify-between gap-8 p-4">
+					<div class="flex items-center gap-4">
+						{project.tech.map((tech, techIndex) => (
+							<div class="relative">
+								<Icon
+									name={techIcons[tech]}
+									class="h-5 w-auto"
+									aria-describedby={`tooltip-${projectIndex}-${techIndex}`}
+									class="peer"
+								/>
+								<span
+									role="tooltip"
+									id={`tooltip-${projectIndex}-${techIndex}`}
+									class="absolute bottom-5 left-0 -z-10 hidden w-auto rounded bg-slate-100 p-1 text-slate-600 shadow-lg peer-[:hover]:block"
+								>
+									{tech}
+								</span>
+							</div>
+						))}
+					</div>
+
+					<div class="shrink-0">
+						<p
+							class:list={[
+								'rounded-full px-3 py-1 text-xs font-medium tracking-wide',
+								typeToColorMap[project.type].bg,
+								typeToColorMap[project.type].text,
+							]}
+						>
+							{project.type}
+						</p>
+					</div>
+				</div>
+			</li>
+		))
+	}
+</ul>

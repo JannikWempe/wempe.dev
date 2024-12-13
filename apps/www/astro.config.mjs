@@ -38,6 +38,20 @@ export default defineConfig({
 			include: {
 				// TODO: only list the icons that are actually used
 				lucide: ['*'],
+				logos: ['*'],
+			},
+			svgoOptions: {
+				multipass: true,
+				plugins: [
+					{
+						name: 'preset-default',
+						params: {
+							overrides: {
+								cleanupIds: false,
+							},
+						},
+					},
+				],
 			},
 		}),
 	],

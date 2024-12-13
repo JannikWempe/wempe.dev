@@ -4,10 +4,11 @@ import Layout from '~/layouts/Layout.astro';
 import Button from '~/components/ui/Button.astro';
 import Endorsements from '~/components/Endorsements.astro';
 import Appearences from '~/components/Appearences.astro';
+import Projects from '~/components/Projects.astro';
 import { Icon } from 'astro-icon/components';
 
-import portrait from '~/assets/images/jannik-wempe.jpeg';
 import BlogPosts from '~/components/BlogPosts.astro';
+import { config } from '~/constants/metadata';
 
 const endorsements = [
 	{
@@ -106,7 +107,6 @@ const endorsements = [
 									>
 								</text>
 							</svg>
-							<!--  -->
 						</h1>
 					</div>
 				</div>
@@ -115,8 +115,37 @@ const endorsements = [
 
 		<section class="container mx-auto py-16">
 			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">Don't take my word for it</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">What Others Say</h2>
+			<h2 class="text-center text-3xl font-bold text-indigo-900">What Others Say About Me</h2>
 			<Endorsements {endorsements} class="mt-8" />
+		</section>
+
+		<section class="container mx-auto py-16">
+			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">What I've built</p>
+			<h2 class="text-center text-3xl font-bold text-indigo-900">Projects</h2>
+			<p class="mx-auto mt-2 max-w-[80ch] text-pretty text-center text-lg leading-relaxed text-slate-700">
+				Below are some of the projects that I've worked on. They only include projects that I've done in addition to my
+				day job and with the intent of doing earning money – not for fun or to learn something new.
+			</p>
+			<Projects class="mt-8" />
+		</section>
+
+		<section class="container mx-auto flex flex-col items-center py-16">
+			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">CV</p>
+			<h2 class="text-center text-3xl font-bold text-indigo-900">Work Experience</h2>
+			<div class="mx-auto mt-8 rounded-lg bg-indigo-50 px-10 py-6 shadow-lg shadow-indigo-100">
+				<p class="mx-auto max-w-[80ch] text-pretty text-center text-4xl font-black leading-relaxed text-slate-700">
+					DRY
+				</p>
+				<p class="mx-auto mt-1 max-w-[80ch] text-pretty text-center text-lg leading-relaxed text-slate-700">
+					"Don't repeat yourself" – go and look it up on my <a
+						href={config.social.linkedin}
+						target="_blank"
+						class="text-blue-600 hover:text-blue-700">LinkedIn profile</a
+					> or <a href={`mailto:${config.social.email}`} target="_blank" class="text-blue-600 hover:text-blue-700"
+						>reach out to me</a
+					>.
+				</p>
+			</div>
 		</section>
 
 		<section class="container mx-auto flex flex-col items-center py-16">
