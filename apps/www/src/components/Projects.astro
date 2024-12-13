@@ -166,6 +166,25 @@ const typeToColorMap = {
 		text: 'text-pink-700',
 	},
 } satisfies Record<(typeof projects)[number]['type'], { bg: string; text: string }>;
+
+const statusToColorMap = {
+	ongoing: {
+		bg: 'bg-blue-100',
+		text: 'text-blue-700',
+	},
+	done: {
+		bg: 'bg-green-100',
+		text: 'text-green-700',
+	},
+	paused: {
+		bg: 'bg-gray-100',
+		text: 'text-gray-700',
+	},
+	sold: {
+		bg: 'bg-yellow-100',
+		text: 'text-yellow-700',
+	},
+} satisfies Record<(typeof projects)[number]['status'], { bg: string; text: string }>;
 ---
 
 <ul class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3', className)}>
@@ -175,36 +194,25 @@ const typeToColorMap = {
 				class="relative flex flex-col overflow-hidden rounded-lg bg-white shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200"
 				style={{ transform: 'translateZ(0)' }}
 			>
-				<div class="relative grow">
-					<div class="p-4">
-						<Image
-							src={cloudinary
-								.image(project.logoUrl.replace(config.images.cdnPrefix + '/', ''))
-								.resize(scale().height(50))
-								.toURL()}
-							alt={`${project.title} logo`}
-							height={50}
-							background="none"
-							class="h-[50px] !w-auto self-start object-contain"
-						/>
-						<p
-							class:list={[
-								'mt-3 justify-self-start rounded-full px-3 py-1 text-xs font-medium tracking-wide',
-								typeToColorMap[project.type].bg,
-								typeToColorMap[project.type].text,
-							]}
-						>
-							{project.type}
-						</p>
-						<h3 class="mt-1 text-pretty text-xl font-bold text-indigo-900">{project.title}</h3>
-						<p class="mt-3 text-slate-700">{project.description}</p>
+				<div class="flex gap-5">
+					<div class="relative grow">
+						<div class="p-4">
+							<Image
+								src={cloudinary
+									.image(project.logoUrl.replace(config.images.cdnPrefix + '/', ''))
+									.resize(scale().height(50))
+									.toURL()}
+								alt={`${project.title} logo`}
+								height={50}
+								background="none"
+								class="h-[50px] !w-auto self-start object-contain"
+							/>
+							<h3 class="mt-3 text-pretty text-xl font-bold text-indigo-900">{project.title}</h3>
+							<p class="mt-3 text-slate-700">{project.description}</p>
+						</div>
 					</div>
-					<a href={project.url} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
-						<span class="sr-only">Visit {project.title}</span>
-					</a>
-				</div>
-				<div class="mt-auto flex flex-wrap items-center justify-between gap-8 p-4">
-					<div class="flex items-center gap-4">
+
+					<div class="z-10 flex flex-col items-center gap-4 pr-4 pt-4">
 						{project.tech.map((tech, techIndex) => (
 							<div class="relative">
 								<Icon
@@ -216,26 +224,44 @@ const typeToColorMap = {
 								<span
 									role="tooltip"
 									id={`tooltip-${projectIndex}-${techIndex}`}
-									class="absolute bottom-5 left-0 -z-10 hidden w-auto rounded bg-slate-100 p-1 text-slate-600 shadow-lg peer-[:hover]:block"
+									class="absolute left-0 top-1/2 z-10 hidden w-auto -translate-x-[calc(100%+0.25rem)] -translate-y-1/2 rounded bg-slate-100 p-1 text-slate-600 shadow-lg peer-[:hover]:block"
 								>
 									{tech}
 								</span>
 							</div>
 						))}
 					</div>
+				</div>
 
-					<div class="shrink-0">
-						<p
+				<div class="mt-auto p-4">
+					{' '}
+					<div class="flex shrink-0 gap-2">
+						<div
 							class:list={[
-								'rounded-full px-3 py-1 text-xs font-medium tracking-wide',
+								'flex items-center gap-2 rounded-full px-3 py-1',
 								typeToColorMap[project.type].bg,
 								typeToColorMap[project.type].text,
 							]}
 						>
-							{project.type}
-						</p>
+							<Icon name="lucide:tag" />
+							<span class="text-xs font-medium tracking-wide">{project.type}</span>
+						</div>
+
+						<div
+							class:list={[
+								'flex items-center gap-2 rounded-full px-3 py-1',
+								statusToColorMap[project.status].bg,
+								statusToColorMap[project.status].text,
+							]}
+						>
+							<Icon name="lucide:waypoints" />
+							<span class="text-xs font-medium tracking-wide">{project.status}</span>
+						</div>
 					</div>
 				</div>
+				<a href={project.url} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
+					<span class="sr-only">Visit {project.title}</span>
+				</a>
 			</li>
 		))
 	}
