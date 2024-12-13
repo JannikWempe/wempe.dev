@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '~/layouts/Layout.astro';
 import Button from '~/components/ui/Button.astro';
+import Image from '~/components/ui/Image.astro';
 import Endorsements from '~/components/Endorsements.astro';
 import Appearences from '~/components/Appearences.astro';
 import Projects from '~/components/Projects.astro';
@@ -43,7 +43,11 @@ const endorsements = [
 ];
 ---
 
-<Layout>
+<Layout
+	metadata={{
+		canonical: 'https://www.wempe.dev/',
+	}}
+>
 	<main>
 		<div class="relative flex justify-between">
 			{/* Background with gradient and pattern */}
@@ -79,17 +83,16 @@ const endorsements = [
 					</div>
 
 					<div
-						class="relative mt-8 aspect-square w-[388px] max-w-full before:absolute before:inset-0 before:left-0 before:top-0 before:-z-10 before:block before:aspect-square before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
+						class="relative mt-8 aspect-square w-[392px] max-w-full before:absolute before:inset-0 before:left-0 before:top-0 before:-z-10 before:block before:aspect-square before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
 					>
 						<div
-							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full shadow-lg ring-2 ring-slate-100"
+							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full shadow-lg ring-4 ring-slate-100"
 						>
 							<Image
-								src="https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555015/jannik-wempe.jpg"
+								src="https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555015/jannik-wempe.jpg?q=80&auto=compress,format"
 								alt="Portrait of Jannik Wempe"
 								width={380}
 								height={380}
-								quality={80}
 								loading={'eager'}
 							/>
 						</div>

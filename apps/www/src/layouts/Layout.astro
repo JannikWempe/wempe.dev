@@ -1,11 +1,11 @@
 ---
-import { Tooltips } from 'astro-tooltips';
-
 import Metadata from '~/components/Metadata.astro';
 import Favicons from '~/components/Favicons.astro';
 import SocialLinks from '~/components/SocialLinks.astro';
 
 import type { MetaData as MetaDataType } from '~/types';
+
+import '@fontsource/geist-sans';
 export interface Props {
 	metadata?: MetaDataType;
 }
@@ -22,11 +22,16 @@ const { metadata = {} } = Astro.props;
 		<Metadata {...metadata} />
 		<Favicons />
 
+		<script defer data-domain="wempe.dev" src="https://plausible.io/js/script.js"></script>
+
 		<link rel="sitemap" href={'/sitemap-index.xml'} />
 
-		<meta name="generator" content={Astro.generator} />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 
-		<!-- <Tooltips interactive={false} delay={[15, 14000]} /> -->
+		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body class="text-default pb-14 antialiased">
 		<slot />

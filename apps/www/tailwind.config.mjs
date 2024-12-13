@@ -12,7 +12,11 @@ export default {
 				'2xl': '6rem',
 			},
 		},
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ['Geist Sans', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };

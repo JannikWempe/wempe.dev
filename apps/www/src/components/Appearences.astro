@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
+
 import Image from '~/components/ui/Image.astro';
 
 import { formatDate } from '~/utils/time';
@@ -48,7 +49,7 @@ const appearances = [
 					index > 0 && 'mt-8',
 				]}
 			>
-				<Image src={a.coverImageUrl} alt={''} class="rounded-lg" inferSize={true} />
+				<Image src={a.coverImageUrl} alt={''} class="rounded-lg" />
 				<div class="p-4">
 					<h3 class="text-pretty text-xl font-bold text-indigo-900">{a.title}</h3>
 					<div class="mt-2 flex items-center justify-between">

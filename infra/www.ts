@@ -1,5 +1,8 @@
 // basically reflects the default SST cache policy
 // but excludes 'p' from query string caching
+
+import { hostname } from './dns';
+
 // since that is changing for server islands and causes cache misses
 const cachePolicy = new aws.cloudfront.CachePolicy('AstroServerCachePolicy', {
 	comment: 'Custom cache policy for Astro server',
@@ -27,6 +30,7 @@ const cachePolicy = new aws.cloudfront.CachePolicy('AstroServerCachePolicy', {
 export const astro = new sst.aws.Astro('Astro', {
 	path: './apps/www',
 	cachePolicy: cachePolicy.id,
+	domain: hostname,
 });
 
 export const outputs = {

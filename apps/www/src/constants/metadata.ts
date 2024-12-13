@@ -1,7 +1,9 @@
+const SITE = 'https://www.wempe.dev';
+
 export const config = {
 	site: {
 		name: 'Jannik Wempe | Passionate Software Engineer',
-		site: 'https://www.wempe.dev',
+		site: SITE,
 		base: '/',
 		trailingSlash: false,
 	},
@@ -11,7 +13,8 @@ export const config = {
 			default: 'Jannik Wempe | Passionate Software Engineer',
 			template: '%s — Jannik Wempe',
 		},
-		description: '',
+		description:
+			'Full-stack software engineer crafting high-impact web solutions. From frontend development to serverless architectures, I build scalable applications that solve real business challenges.',
 		robots: {
 			index: true,
 			follow: true,
@@ -20,10 +23,9 @@ export const config = {
 			site_name: 'Jannik Wempe',
 			images: [
 				{
-					// TODO: change image
-					url: '~/assets/images/default.png',
+					url: `${SITE}/og.png`,
 					width: 1200,
-					height: 628,
+					height: 630,
 				},
 			],
 			type: 'website',
