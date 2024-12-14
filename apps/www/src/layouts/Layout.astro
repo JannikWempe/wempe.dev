@@ -22,7 +22,18 @@ const { metadata = {} } = Astro.props;
 		<Metadata {...metadata} />
 		<Favicons />
 
-		<script defer data-domain="wempe.dev" src="https://plausible.io/js/script.js"></script>
+		<script
+			type="text/partytown"
+			async
+			data-domain="wempe.dev"
+			src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
+		<script>
+			window.plausible =
+				window.plausible ||
+				function () {
+					(window.plausible.q = window.plausible.q || []).push(arguments);
+				};
+		</script>
 
 		<link rel="sitemap" href={'/sitemap-index.xml'} />
 

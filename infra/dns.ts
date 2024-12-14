@@ -10,12 +10,23 @@ export const zone = cloudflare.getZoneOutput({
 });
 
 if ($app.stage === PRODUCTION_STAGE) {
-	// new cloudflare.Record("google-site-verification", {
-	//   zoneId: zone.id,
-	//   type: "TXT",
-	//   name: "@",
-	//   value:
-	//     "google-site-verification=mWCYnJ71yBNKa20iwohRe8PJB8FNKSxEl4El262yd54",
-	//   comment: "Google site verification",
+	new cloudflare.Record('GoogleSiteVerification', {
+		zoneId: zone.id,
+		type: 'TXT',
+		name: '@',
+		value: '"google-site-verification=_Yl9h69vYYhaMqvnu9BfzG7Ko5SeOuQ0hCwFQvFZui8"',
+		comment: 'Google site verification',
+	});
+
+	// new cloudflare.PageRule('RedirectCal', {
+	// 	zoneId: zone.id,
+	// 	target: `${hostname}/cal`,
+	// 	actions: {
+	// 		forwardingUrl: {
+	// 			url: 'https://cal.com/jannikwempe',
+	// 			statusCode: 302,
+	// 		},
+	// 	},
+	// 	priority: 1,
 	// });
 }

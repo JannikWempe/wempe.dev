@@ -2,7 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { imageService } from '@unpic/astro/service';
-
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'astro/config';
 
 import sst from 'astro-sst';
@@ -13,6 +13,8 @@ import sitemap from '@astrojs/sitemap';
 import { config } from './src/constants/config';
 
 import icon from 'astro-icon';
+
+import partytown from '@astrojs/partytown';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -54,13 +56,9 @@ export default defineConfig({
 				],
 			},
 		}),
+		partytown(),
 	],
-	redirects: { '/cal': 'https://cal.com/jannikwempe/30min' },
 	vite: {
-		resolve: {
-			alias: {
-				'~': path.resolve(__dirname, './src'),
-			},
-		},
+		plugins: [tsconfigPaths()],
 	},
 });

@@ -1,1 +1,1 @@
-export const PRODUCTION_STAGE = 'production';
+export const PRODUCTION_STAGE = 'prod';

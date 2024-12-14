@@ -1,4 +1,4 @@
-const SITE = 'https://www.wempe.dev';
+const SITE = 'https://wempe.dev';
 
 export const config = {
 	site: {

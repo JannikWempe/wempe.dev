@@ -39,7 +39,6 @@ type GetBlogPostsQueryResponse = {
 };
 
 export async function getBlogPosts(limit: number) {
-	// TODO: use env var
 	const response = await fetchGql(
 		`
     query GetBlogPosts($first: Int!) {

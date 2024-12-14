@@ -30,7 +30,11 @@ const cachePolicy = new aws.cloudfront.CachePolicy('AstroServerCachePolicy', {
 export const astro = new sst.aws.Astro('Astro', {
 	path: './apps/www',
 	cachePolicy: cachePolicy.id,
-	domain: hostname,
+	domain: {
+		name: hostname,
+		dns: sst.cloudflare.dns(),
+		redirects: [`www.${hostname}`],
+	},
 });
 
 export const outputs = {

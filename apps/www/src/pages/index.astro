@@ -45,7 +45,7 @@ const endorsements = [
 
 <Layout
 	metadata={{
-		canonical: 'https://www.wempe.dev/',
+		canonical: config.site.site,
 	}}
 >
 	<main>
@@ -72,7 +72,14 @@ const endorsements = [
 							end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to
 							stay at the forefront of technological innovation.
 						</p>
-						<Button color="primary" variant="solid" size="lg" class="group mt-8">
+						<Button
+							as="a"
+							href={`mailto:${config.social.email}`}
+							color="primary"
+							variant="solid"
+							size="lg"
+							class="plausible-event-name=contact+email plausible-event-name=contact group mt-8"
+						>
 							Reach out
 							<Icon
 								name="lucide:mail"
@@ -143,7 +150,8 @@ const endorsements = [
 					"Don't repeat yourself" – go and look it up on my <a
 						href={config.social.linkedin}
 						target="_blank"
-						class="text-blue-600 hover:text-blue-700">LinkedIn profile</a
+						class="plausible-event-name=contact+linkedin plausible-event-name=contact text-blue-600 hover:text-blue-700"
+						>LinkedIn profile</a
 					> or <a href={`mailto:${config.social.email}`} target="_blank" class="text-blue-600 hover:text-blue-700"
 						>reach out to me</a
 					>.
@@ -163,7 +171,7 @@ const endorsements = [
 				size="lg"
 				href="https://blog.jannikwempe.com"
 				target="_blank"
-				class="group mx-auto mt-8"
+				class="plausible-event-name=contact+blog plausible-event-name=contact group mx-auto mt-8"
 			>
 				Visit my blog
 				<Icon

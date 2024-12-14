@@ -1,3 +1,9 @@
+declare global {
+	interface Window {
+		plausible: any;
+	}
+}
+
 export interface MetaData {
 	title?: string;
 	ignoreTitleTemplate?: boolean;
