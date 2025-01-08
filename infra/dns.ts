@@ -18,15 +18,15 @@ if ($app.stage === PRODUCTION_STAGE) {
 		comment: 'Google site verification',
 	});
 
-	// new cloudflare.PageRule('RedirectCal', {
-	// 	zoneId: zone.id,
-	// 	target: `${hostname}/cal`,
-	// 	actions: {
-	// 		forwardingUrl: {
-	// 			url: 'https://cal.com/jannikwempe',
-	// 			statusCode: 302,
-	// 		},
-	// 	},
-	// 	priority: 1,
-	// });
+	new cloudflare.PageRule('RedirectCal', {
+		zoneId: zone.id,
+		target: `${hostname}/cal`,
+		actions: {
+			forwardingUrl: {
+				url: 'https://cal.com/jannikwempe',
+				statusCode: 302,
+			},
+		},
+		priority: 1,
+	});
 }
