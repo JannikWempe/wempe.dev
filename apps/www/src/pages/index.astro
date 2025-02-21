@@ -10,6 +10,9 @@ import { Icon } from 'astro-icon/components';
 import BlogPosts from '~/components/BlogPosts.astro';
 import { config } from '~/constants/config';
 
+// prerender the page and have dynamic content as server islands
+export const prerender = true;
+
 const endorsements = [
 	{
 		text: "We have been working with Jannik Wempe in the area of our website programming for many years. He has extensive expertise in this field and is always very solution-oriented. He always keeps his appointment commitments, and he responds very quickly to spontaneous inquiries and change requests. I enjoy working with Jannik - it's fun, and the result of his work exceeds our expectations.",

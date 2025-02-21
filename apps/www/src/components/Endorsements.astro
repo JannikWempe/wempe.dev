@@ -38,23 +38,13 @@ const { endorsements, class: className } = Astro.props;
 				</blockquote>
 
 				<div class="mt-6 flex items-center gap-4">
-					{endorsement.imageUrl.startsWith(config.images.cdnPrefix) ? (
-						<Image
-							src={endorsement.imageUrl}
-							alt={endorsement.author.name}
-							width={48}
-							height={48}
-							class="rounded-full object-cover"
-						/>
-					) : (
-						<img
-							src={endorsement.imageUrl}
-							alt={endorsement.author.name}
-							width={48}
-							height={48}
-							class="rounded-full object-cover"
-						/>
-					)}
+					<Image
+						src={endorsement.imageUrl}
+						alt={endorsement.author.name}
+						width={48}
+						height={48}
+						class="rounded-full object-cover"
+					/>
 					<div>
 						<div class="font-semibold text-gray-900">
 							{endorsement.author.social ? (
