@@ -2,25 +2,23 @@
 import { render } from 'astro:content';
 import { getCollection } from 'astro:content';
 import { getEntry } from 'astro:content';
+import Layout from '~/layouts/Layout.astro';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-	const allBlogPosts = await getCollection('blog');
-	const params = allBlogPosts.map((post) => ({
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
 		params: { id: post.id },
+		props: { post },
 	}));
-	console.log(params);
-	return params;
-}
-const { id } = Astro.params;
-
-const entry = await getEntry('blog', id);
-if (!entry) {
-	// Handle Error, for example:
-	throw new Error('Could not find blog post 1');
 }
 
-const { Content, headings } = await render(entry);
+const { post } = Astro.props;
+const { Content } = await render(post);
 ---
 
-<p>Published on: {entry.data.datePublished}</p>
-<Content />
+<Layout>
+	<p>Published on: {post.data.datePublished}</p>
+	<Content />
+</Layout>
