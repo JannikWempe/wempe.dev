@@ -1,5 +1,6 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes, ComponentProps } from 'astro/types';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
@@ -7,9 +8,10 @@ import { formatDate } from '~/utils/time';
 
 interface Props extends HTMLAttributes<'article'> {
 	post: CollectionEntry<'blog'>;
+	imageProps?: Omit<ComponentProps<typeof Image>, 'src' | 'alt' | 'width' | 'height' | 'class' | 'class:list'>;
 }
 
-const { post, class: classes, ...rest } = Astro.props;
+const { post, class: classes, imageProps, ...rest } = Astro.props;
 const { title, excerpt, datePublished, cover } = post.data;
 
 const formattedDate = formatDate(datePublished);
@@ -17,13 +19,16 @@ const formattedDate = formatDate(datePublished);
 
 <article class={twMerge('relative', classes)} {...rest}>
 	<div class="relative aspect-[1600/840] w-full">
-		<Image src={cover} alt={title} width={1600} height={840} class="rounded-xl object-cover" />
+		<Image src={cover} alt={title} width={1600} height={840} class="rounded-xl object-cover" {...imageProps ?? {}} />
 	</div>
 	<div class="mt-4">
 		<h2 class="text-2xl font-bold text-slate-900">{title}</h2>
-		<time datetime={formattedDate} class="mt-1 block text-sm font-semibold text-slate-600">
-			{formattedDate}
-		</time>
+		<div class="mt-1 flex items-center gap-2 text-slate-600">
+			<Icon name="lucide:calendar" class="h-4 w-4" />
+			<time datetime={formattedDate} class="block text-sm font-semibold">
+				{formattedDate}
+			</time>
+		</div>
 		<p class="mt-2 line-clamp-2 text-slate-700">{excerpt}</p>
 	</div>
 	<a href={`/blog/${post.data.slug}`} class="absolute inset-0">
