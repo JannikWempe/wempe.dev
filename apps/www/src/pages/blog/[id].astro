@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import { getCollection } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import Layout from '~/layouts/Layout.astro';
+import TableOfContents from '~/components/TableOfContents.astro';
 
 export const prerender = true;
 
@@ -20,9 +21,15 @@ const { Content, headings } = await render(post);
 
 <Layout>
 	<div class="container mx-auto px-4 py-8">
-		<!-- <p>Published on: {post.data.datePublished}</p> -->
-		<Prose class="mx-auto">
-			<Content />
-		</Prose>
+		<div class="flex gap-8">
+			<aside class="relative w-64">
+				<TableOfContents {headings} />
+			</aside>
+			<main class="flex-1">
+				<Prose class="mx-auto">
+					<Content />
+				</Prose>
+			</main>
+		</div>
 	</div>
 </Layout>
