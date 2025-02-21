@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import Button from '~/components/ui/Button.astro';
+import Link from '~/components/ui/Link.astro';
 import { Image } from 'astro:assets';
 import Endorsements from '~/components/Endorsements.astro';
 import Appearences from '~/components/Appearences.astro';
@@ -147,14 +148,11 @@ const endorsements = [
 					DRY
 				</p>
 				<p class="mx-auto mt-1 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
-					"Don't repeat yourself" – go and look it up on my <a
+					"Don't repeat yourself" – go and look it up on my <Link
 						href={config.social.linkedin}
 						target="_blank"
-						class="plausible-event-name=contact+linkedin plausible-event-name=contact text-blue-600 hover:text-blue-700"
-						>LinkedIn profile</a
-					> or <a href={`mailto:${config.social.email}`} target="_blank" class="text-blue-600 hover:text-blue-700"
-						>reach out to me</a
-					>.
+						class="plausible-event-name=contact+linkedin plausible-event-name=contact">LinkedIn profile</Link
+					> or <Link href={`mailto:${config.social.email}`} target="_blank">reach out to me</Link>.
 				</p>
 			</div>
 		</section>

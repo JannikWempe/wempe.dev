@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
+import Link from './ui/Link.astro';
 
 interface RoleWithLink {
 	text: string;
@@ -47,9 +48,7 @@ const { endorsements, class: className } = Astro.props;
 					<div>
 						<div class="font-semibold text-gray-900">
 							{endorsement.author.social ? (
-								<a href={endorsement.author.social} class="text-blue-600 hover:underline">
-									{endorsement.author.name}
-								</a>
+								<Link href={endorsement.author.social}>{endorsement.author.name}</Link>
 							) : (
 								endorsement.author.name
 							)}
@@ -60,9 +59,7 @@ const { endorsements, class: className } = Astro.props;
 							) : (
 								<>
 									{endorsement.role.text} at{' '}
-									<a href={endorsement.role.companyUrl} class="text-blue-600 hover:underline">
-										{endorsement.role.companyName}
-									</a>
+									<Link href={endorsement.role.companyUrl}>{endorsement.role.companyName}</Link>
 								</>
 							)}
 						</p>
