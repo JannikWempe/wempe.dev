@@ -7,6 +7,16 @@ slug: thoughts-trying-shopify-hydrogen
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1667127130481/ibn1OU0_N.png
 tags: 'web-development, ecommerce, reactjs, shopify, remix'
+excerpt: >-
+  EDIT (2022-10-31): Just one day after publishing this post, there is a huge
+  announcement: Remix joins Shopify and Hydrogen v2 will be leveraging Remix.
+  Also, there is a great thread on Twitter about design mistakes being made in
+  Hydrogen v1:
+
+  https://...
+subtitle: >-
+  I share my experience and thoughts after trying to port a shop from NextJS to
+  Shopify Hydrogen.
 ---
 
 **EDIT (2022-10-31):** Just one day after publishing this post, there is a huge announcement: [Remix joins Shopify](https://remix.run/blog/remixing-shopify) and [Hydrogen v2 will be leveraging Remix](https://hydrogen.shopify.dev/roadmap#remixing-hydrogen). Also, there is a great thread on Twitter about design mistakes being made in Hydrogen v1:

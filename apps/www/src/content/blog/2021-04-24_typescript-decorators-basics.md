@@ -9,6 +9,20 @@ slug: typescript-decorators-basics
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1619290789521/x1VLIrLOw.webp
 tags: 'web-development, typescript'
+excerpt: >-
+  ⁉️ What are decorators? What types of decorators are there?
+
+  ⁉️ How can they be used?
+
+  ⁉️ When are they executed?
+
+  Decorators
+
+  Decorators are a stage 2 ECMAScript proposal ("draft"; purpose: "Precisely
+  describe the syntax and semantics using formal spec ...
+subtitle: >-
+  TypeScript decorators are still an experimental feature, but they are widely
+  used. Learn about the types of decorators and how they work.
 ---
 
 ⁉️ **What** are decorators? **What** types of decorators are there?

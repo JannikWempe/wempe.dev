@@ -6,6 +6,15 @@ slug: nodejs-and-package-managers-versions
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1705519211379/6efceea6-04fe-4e65-b0a9-886d3215dfde.png
 tags: 'nodejs, package-manager, pnpm'
+excerpt: >-
+  You work on different projects, maybe in different teams, or just on older and
+  newer personal projects. Chances are you are using different Node.js versions
+  and different package managers or package manager versions.
+
+  You should be able to switch betw...
+subtitle: >-
+  I explain my setup to make it easy dealing with different Node.js version and
+  package managers per project.
 ---
 
 You work on different projects, maybe in different teams, or just on older and newer personal projects. Chances are you are using different Node.js versions and different package managers or package manager versions.

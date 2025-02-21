@@ -5,6 +5,11 @@ slug: podcast-notes-happy-bootstrapping
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1696167313472/e0dfab37-2821-487e-9f34-b2ee86d631fc.png
 tags: 'programming, saas, podcast, business'
+excerpt: "\U0001F481\nI will update this post if I have notes for new episodes.\n\n\nBy Andreas Lehr (\U0001F1E9\U0001F1EA) who is the founder of We Manage and also runs a newsletter allesnurgecloud.\n\nMy name is Andreas Lehr and in this podcast, I interview different entrepreneurs every ..."
+subtitle: >-
+  My podcast notes for Happy Bootstrap podcast. Inspiring interviews with
+  founders of bootstrapped companies. Discovering their stories and business.
+seriesSlug: podcast-notes
 ---
 
 <div data-node-type="callout">

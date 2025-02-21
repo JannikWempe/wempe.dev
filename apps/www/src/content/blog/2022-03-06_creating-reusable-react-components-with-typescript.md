@@ -5,6 +5,15 @@ slug: creating-reusable-react-components-with-typescript
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1646559850943/k2Gm09Rmg.png
 tags: 'reactjs, typescript, frontend-development'
+excerpt: >-
+  Often we write React components that get bigger and bigger and at some point,
+  we extract parts of it into separate components. Either because the component
+  is getting too big or because we need parts of it somewhere else.
+
+  This is generally a good app...
+subtitle: >-
+  Creating generic, reusable React components with TypeScript. Learning
+  techniques that are used by popular React libraries.
 ---
 
 Often we write React components that get bigger and bigger and at some point, we extract parts of it into separate components. Either because the component is getting too big or because we need parts of it somewhere else.

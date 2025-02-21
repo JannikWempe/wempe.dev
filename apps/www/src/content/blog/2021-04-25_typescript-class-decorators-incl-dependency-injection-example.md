@@ -9,6 +9,14 @@ slug: typescript-class-decorators-incl-dependency-injection-example
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1619348371572/XPj8eQCaG.webp
 tags: 'web-development, webdev, typescript'
+excerpt: >-
+  By using class decorators, we have access to the constructor and also its
+  prototype (for explanation about constructors and prototype see this MDN
+  explanation of inheritance). Therefore, we can modify the whole class. We
+  could add methods using its p...
+subtitle: >-
+  TypeScript class decorators are heavily used in some frameworks for Dependency
+  Injection. Learn how it works.
 ---
 
 By using class decorators, we have **access to the constructor and also its prototype** (for explanation about constructors and prototype see [this MDN explanation of inheritance](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance)). Therefore, we can modify the whole class. We could add methods using its prototype, set defaults for parameters passed to the constructor, add attributes and also remove or wrap these.

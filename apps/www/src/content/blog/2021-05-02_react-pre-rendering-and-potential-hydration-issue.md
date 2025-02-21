@@ -7,6 +7,17 @@ cover: >-
 ogImage: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1619957980803/HTeFDJEWl.png
 tags: 'webdev, reactjs, ssr, nextjs, jamstack'
+excerpt: >-
+  Why I did my research
+
+  I am not writing this article because the subject just came to me. It all
+  started with an issue I had. While developing an eCommerce website for my
+  little brother using Next.js this popped up in Google Chrome dev console:
+
+  Warnin...
+subtitle: >-
+  Explanation about Reacts hydration when pre-rendering. Showcased on an actual
+  issue I had.
 ---
 
 # Why I did my research
@@ -61,16 +72,16 @@ Probably you heard about terms like SSR, SSG and maybe also hydration. But do yo
 ## Pre-rendering
 Next.js supports [two forms of Pre-rendering](https://nextjs.org/docs/basic-features/pages#two-forms-of-pre-rendering): **Static generation** *(the SG in SSG, which stands for Static Side Generator)* and  **Server-Side Rendering** (SSR).
 
-The **main difference between** these two: point in time when the HTML markup is  generated:
+The **main difference between** these two: point in time when the HTML markup is  generated: 
 
 * SG -> **at build time**
 * SSR -> on the fly **at request time**
-
+   
 *(Note: SSR can be used with caching in order to not generate it every time.)*
 
 But both of them have one important thing in common: **both serve pre-rendered HTML to the client**. This is why both of them are referred to as "Pre-rendering". *(This is what differentiates them from Client Side Rendering (CSR), where the page loads with something like `<div id='root'><div>`, which acts as the container for React rendering.)*
 
-You can read more about the details, comparisons between  SSG, SSR and CSR and their performance implications in the great Google article [Rendering on the Web](https://developers.google.com/web/updates/2019/02/rendering-on-the-web).
+You can read more about the details, comparisons between  SSG, SSR and CSR and their performance implications in the great Google article [Rendering on the Web](https://developers.google.com/web/updates/2019/02/rendering-on-the-web). 
 
 *(I was using SG when the error appeared, but the same applies for SSR.)*
 
@@ -87,7 +98,7 @@ Great, but what is `ReactDOMServer`?
 
 **TLDR;** Hydration makes the pre-rendered HTML interactive in the client.
 
-But you should not stop there in the React docs, because the paragraph after the intro to `ReactDOM.hydrate()` explains the cause of my issue:
+But you should not stop there in the React docs, because the paragraph after the intro to `ReactDOM.hydrate()` explains the cause of my issue: 
 
 >React expects that the rendered content is **identical between the server and the client**. It can patch up differences in text content, but you should treat mismatches as bugs and fix them. [...] There are **no guarantees that attribute differences will be patched up** in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 

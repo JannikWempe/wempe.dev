@@ -11,13 +11,13 @@ const posts = (await getCollection('blog')).sort(newestFirst);
 
 <Layout>
 	<div class="container mx-auto px-4 py-8">
-		<h1 class="mb-8 text-3xl font-bold">Our Blog</h1>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+		<h1 class="mb-12 text-3xl font-bold">Our Blog</h1>
+		<div class="grid grid-cols-1 gap-12 md:grid-cols-2">
 			{
 				posts.map((post) => (
 					<BlogPostCard
 						title={post.data.title}
-						description={post.data.seoDescription || ''}
+						excerpt={post.data.excerpt}
 						date={post.data.datePublished}
 						url={`/blog/${post.data.slug}`}
 						cover={post.data.cover}

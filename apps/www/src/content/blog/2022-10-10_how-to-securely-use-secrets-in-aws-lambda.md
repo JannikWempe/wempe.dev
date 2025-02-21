@@ -5,6 +5,15 @@ slug: how-to-securely-use-secrets-in-aws-lambda
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1665376683242/AHPE0VPzz.png
 tags: 'aws, aws-lambda, aws-cdk'
+excerpt: >-
+  It is quite common to need a secret value of some kind in a Lambda function.
+  Either for a database connection, a 3-rd party service, or whatever else. But
+  how to securely use secrets in your Lambda? 
+
+  In this post, I am going to tell you why environme...
+subtitle: >-
+  Environment variables are not the best way to use secrets in your AWS Lambda.
+  I will tell you why and show you an alternative implemented in AWS CDK.
 ---
 
 It is quite common to need a secret value of some kind in a Lambda function. Either for a database connection, a 3-rd party service, or whatever else. But how to securely use secrets in your Lambda? 

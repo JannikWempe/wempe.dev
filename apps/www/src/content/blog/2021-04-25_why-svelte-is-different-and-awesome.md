@@ -9,6 +9,19 @@ slug: why-svelte-is-different-and-awesome
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1619358925225/50e2XssdE.png
 tags: 'javascript, web-development, webdev, javascript-framework, svelte'
+excerpt: >-
+  Just to get this out of the way in the beginning:
+
+  This is not meant to be bashing other frameworks like React, Vue, or Angular.
+  I used all of them and React (using NextJS) is mostly still my go-to.
+
+  What is Svelte?
+
+
+  Svelte is a radical new approach to...
+subtitle: >-
+  Svelte is not just another JavaScript framework. It's a compiler. Read what
+  that means and what the implications are.
 ---
 
 *Just to get this out of the way in the beginning:*

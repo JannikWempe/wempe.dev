@@ -5,6 +5,16 @@ slug: how-to-run-lambda-on-a-schedule
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1634488689959/6G2ZtCHRp.png
 tags: 'cloud, aws, cloud-computing, aws-lambda, aws-cdk'
+excerpt: >-
+  Running arbitrary code on a schedule is a very common use case. A common way
+  of doing that is by using cron jobs. But how would you do that in the cloud
+  (specifically AWS) without having to run a Linux instance or something
+  similar?
+
+  What We Are Going...
+subtitle: >-
+  We build a reusable CDK construct in order to schedule the execution of a
+  Lambda.
 ---
 
 Running arbitrary code on a schedule is a very common use case. A common way of doing that is by using [cron jobs](https://en.wikipedia.org/wiki/Cron). But how would you do that in the cloud (specifically AWS) without having to run a Linux instance or something similar?

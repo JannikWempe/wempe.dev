@@ -5,6 +5,17 @@ slug: how-to-git-revert
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1674676741389/9ef44422-0a77-4afd-86c5-c1bdc78ca582.png
 tags: 'programming, git, developer, programming-tips'
+excerpt: >-
+  You have messed up production. All hell broke loose. What to do now? Fix it as
+  fast as possible and undo the last change that made everything fall apart to
+  unblock further deployments.
+
+  Fix Production Fast
+
+  First of all, it is a good idea to get back t...
+subtitle: >-
+  Don't start learning how to fix issues if you have to. Make sure you know how
+  to use git revert.
 ---
 
 You have messed up production. All hell broke loose. What to do now? Fix it as fast as possible and undo the last change that made everything fall apart to unblock further deployments.

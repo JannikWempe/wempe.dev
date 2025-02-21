@@ -11,6 +11,14 @@ slug: github-actions-trunk-based-development
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1670998381200/knD6Ik8oS.png
 tags: 'aws, github, web-development, devops, github-actions, ci-cd'
+excerpt: >-
+  Nowadays trunk-based development as a branching model is preferred compared to
+  something like Git Flow. But creating a CI/CD pipeline is more challenging
+  since we deploy to every environment from the same branch. In this post, I
+  create a CI/CD pipeli...
+subtitle: >-
+  Creating a CI/CD pipeline with GitHub Actions and trunk-based development can
+  be challenging without advanced techniques
 ---
 
 Nowadays trunk-based development as a branching model is preferred compared to something like Git Flow. But creating a CI/CD pipeline is more challenging since we deploy to every environment from the same branch. In this post, I create a CI/CD pipeline with GitHub actions that deploys to multiple environments. We will start with a basic implementation and improve it step by step.

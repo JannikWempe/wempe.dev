@@ -5,6 +5,16 @@ slug: git-config-includes
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1694873897921/51063ecb-2e70-4e0f-b467-ef9f76470c6a.png
 tags: 'programming-blogs, github, programming, git'
+excerpt: >-
+  A lot of us are coding for an employee and privately or as a freelancer for
+  multiple companies. You might want to associate commits for the different
+  projects with a different user (e.g. email) or sign them differently (I think
+  you should).
+
+  While you...
+subtitle: >-
+  Optimize Git configs with conditional includes for multiple projects, managing
+  user profiles and streamlining commit associations.
 ---
 
 A lot of us are coding for an employee and privately or as a freelancer for multiple companies. You might want to associate commits for the different projects with a different user (e.g. email) or sign them differently (I think you should).

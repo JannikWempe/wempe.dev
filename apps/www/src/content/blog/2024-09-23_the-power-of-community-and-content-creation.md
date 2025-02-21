@@ -9,6 +9,17 @@ slug: the-power-of-community-and-content-creation
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1726902836576/fb4cac0b-1912-4727-8586-1b65b9c20c92.png
 tags: 'community, career, social-media, content-creation'
+excerpt: >-
+  It's story time. I want to share a life-changing story with you. A few changes
+  in my life opened up many doors for me, and I wouldn’t be where I am today
+  without those – and I probably wouldn’t work at Hashnode.
+
+  How It Started
+
+  In late 2020, I came to...
+subtitle: >-
+  How Embracing Content Creation and Community Engagement Transformed My Career
+  Path
 ---
 
 It's story time. I want to share a life-changing story with you. A few changes in my life opened up many doors for me, and I wouldn’t be where I am today without those – and I probably wouldn’t work at Hashnode.

@@ -5,6 +5,14 @@ slug: personal-chatgpt
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1682847180351/28c62519-991c-4ad9-9338-b0433a524e07.png
 tags: 'ai, programming, web-development, webdev, chatgpt'
+excerpt: >-
+  I was hesitant to purchase ChatGPT Pro. While I often use ChatGPT, the $20 per
+  month price tag seemed excessive for my needs. However, the slow response time
+  and limited availability were frustrating. I appreciate the serverless,
+  pay-per-use approach...
+subtitle: >-
+  Deploy a custom ChatGPT interface with faster response times and pay-as-you-go
+  pricing using open-source ChatBot UI and Vercel hosting.
 ---
 
 I was hesitant to purchase ChatGPT Pro. While I often use ChatGPT, the $20 per month price tag seemed excessive for my needs. However, the slow response time and limited availability were frustrating. I appreciate the serverless, pay-per-use approach, as that's what I was seeking. Thankfully, [Chatbot UI](https://github.com/mckaywrigley/chatbot-ui) offers a solution!

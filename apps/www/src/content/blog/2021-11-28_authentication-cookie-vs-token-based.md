@@ -5,6 +5,15 @@ slug: authentication-cookie-vs-token-based
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1638123493208/f4dRWdSd4.png
 tags: 'cookies, authentication, web-development, jwt'
+excerpt: >-
+  Authentication is about confirming that users are who they say they are.
+  Whereas authorization is about permissions of a given user (e.g. admin vs.
+  user). Authentication is an integral part of most apps.
+
+  The two main methods for authentication are co...
+subtitle: >-
+  Authentication is an integral part of most applications. This article briefly
+  describes the differences between authentication with cookies and tokens
 ---
 
 Authentication is about confirming that users are who they say they are. Whereas authorization is about permissions of a given user (e.g. admin vs. user). Authentication is an integral part of most apps.

@@ -5,6 +5,15 @@ slug: mastering-aws-cdk-aspects
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1664433023392/hqulxhQZs.png
 tags: 'aws, aws-cdk'
+excerpt: >-
+  CDK Aspects Introduction
+
+  CDK Aspects are a powerful tool provided by the AWS Cloud Development Kit
+  (CDK). They are utilizing the Visitor Pattern. By applying a CDK Aspect to a
+  specific scope, you get access to every child node within it. You can insp...
+subtitle: >-
+  AWS CDK Aspects are a powerful tool provided by the AWS Cloud Development Kit
+  (CDK). Learn how to master them by creating various Aspects on your own.
 ---
 
 ## CDK Aspects Introduction

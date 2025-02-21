@@ -9,6 +9,16 @@ slug: domain-driven-design-entities-value-objects
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1626012369505/o7xRDYZVe.png
 tags: 'programming, tools, developer, ddd, domain-driven-design'
+excerpt: >-
+  In my last post about Domain-Driven Design (DDD) I explained why DDD is
+  (still) relevant and what it actually is. I explained the basic terms like
+  Domain, Model, Ubiquitous Language, and Bounded Context.
+
+  DDD can be divided into Strategic and Tactical...
+subtitle: >-
+  Domain-Driven Design (DDD) consists of several building blocks. Two of the
+  most important ones are Entities and Value Objects (VOs).
+seriesSlug: domain-driven-design
 ---
 
 In my [last post about Domain-Driven Design (DDD)](https://blog.jannikwempe.com/domain-driven-design-introduction) I explained why DDD is (still) relevant and what it actually is. I explained the basic terms like *Domain*, *Model*, *Ubiquitous Language*, and *Bounded Context*.

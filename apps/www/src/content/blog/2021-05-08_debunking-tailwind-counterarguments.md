@@ -5,6 +5,15 @@ slug: debunking-tailwind-counterarguments
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1620484014614/Tp2Xanvum.png
 tags: 'css, web-development, html, tailwind-css'
+excerpt: >-
+  Same Discussions Over and Over Again
+
+  This post debunks some of the arguments against using tailwindcss. I've argued
+  about them quite often in the past. Maybe you have, too? I'll plan to just
+  reference this article from now on. This will make my (and ...
+subtitle: >-
+  I heard quite a few arguments against using Tailwind. Most of them are not
+  valid.
 ---
 
 # Same Discussions Over and Over Again

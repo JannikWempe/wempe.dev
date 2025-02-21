@@ -8,6 +8,14 @@ slug: aws-accounts-iam-users-root-user
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1660766052768/9vKwygz5X.png
 tags: 'cloud, aws, cloud-computing, beginners, amazon-web-services'
+excerpt: >-
+  Things are confusing when you are just starting to use AWS. You don't just
+  create an account and get started as you do with other services. You come
+  across terms like "Account", "User" and "Root User" and maybe ask yourself how
+  they differ. This post...
+subtitle: >-
+  The AWS account setup is different from other services. There are accounts,
+  IAM users and a root user. But what are the differences?
 ---
 
 Things are confusing when you are just starting to use AWS. You don't just create an account and get started as you do with other services. You come across terms like "Account", "User" and "Root User" and maybe ask yourself how they differ. This post should help understand these terms.

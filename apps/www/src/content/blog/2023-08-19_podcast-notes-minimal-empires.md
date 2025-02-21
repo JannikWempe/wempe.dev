@@ -8,6 +8,11 @@ slug: podcast-notes-minimal-empires
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1692431209248/be1eb663-95a1-4e4c-a020-0016709134c5.png
 tags: 'programming, saas, podcast, business'
+excerpt: "\U0001F481\nI will update this post if I have notes for new episodes.\n\n\nBy Sumit Kumar who is the founder of Parqet and has previously worked at Stripe.\n\nToday, all it takes is the internet to build a business empire that completely changes our lives - we jus..."
+subtitle: >-
+  My podcast notes from Minimal Empires podcast, covering topics like SaaS,
+  finding ideas, motivation, business structures, goal-setting, and more.
+seriesSlug: podcast-notes
 ---
 
 <div data-node-type="callout">

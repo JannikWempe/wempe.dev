@@ -5,6 +5,14 @@ slug: my-2023-in-retrospective-personal-live
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1704437574187/ff08b475-57d7-4b11-89e5-60048e53016f.png
 tags: 'personal, 2023, retrosepctive'
+excerpt: >-
+  I intended to write about my personal live and my professional live in this
+  post. But I have decided to split it up. There is so much to write about both
+  of those and most of you are probably not interested in my personal stuff. So
+  this post is only ...
+subtitle: >-
+  Some of my highlights of 2023. I share some insights into my personal live
+  (including lots of pics) – no tech content.
 ---
 
 I intended to write about my personal live and my professional live in this post. But I have decided to split it up. There is so much to write about both of those and most of you are probably not interested in my personal stuff. **So this post is only about personal stuff. No tech- and no career-related content or similar.** But in turn there are a lot of pics of myself 😝

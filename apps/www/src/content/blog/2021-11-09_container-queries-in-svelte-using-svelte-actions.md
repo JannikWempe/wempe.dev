@@ -5,11 +5,18 @@ slug: container-queries-in-svelte-using-svelte-actions
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1636490333008/fBoUrBEo7.png
 tags: 'css, web-development, webdev, svelte'
+excerpt: >-
+  Container queries are a neat upcoming CSS feature enabling us developers to
+  build more reusable components. But they aren't available in browsers just
+  yet.
+subtitle: >-
+  CSS container queries are an awesome upcoming CSS feature. It is not available
+  yet but you can create them yourself using Svelte actions.
 ---
 
 Container queries are a neat upcoming CSS feature enabling us developers to build more reusable components. But they [aren't available in browsers just yet](https://caniuse.com/css-container-queries).
 
-In this article you learn about the problem container queries are solving and how to already get that functionality in Svelte by implementing a custom action (with an even better API in my opinion). 
+In this article you learn about the problem container queries are solving and how to already get that functionality in Svelte by implementing a custom action (with an even better API in my opinion).
 
 ## What Problem do Container Queries Solve?
 
@@ -24,11 +31,11 @@ This is especially useful when building reusable components. For example, let us
 ![container-query-showcase.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1636481770868/0rwxR90K6.png)
 
 > [...] many designs have common components that change layout depending on the available width of their container. This may not always relate to the size of the viewport, but instead, relate to where in the layout the component is placed.
-<br>— [MDN - CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
+> <br>— [MDN - CSS Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
 
 ## Using Svelte Actions
 
-*You can play with it in [this Svelte REPL](https://svelte.dev/repl/cd0a53fb3672441eb49ef69a1c918cd7?version=3.44.1).*
+_You can play with it in [this Svelte REPL](https://svelte.dev/repl/cd0a53fb3672441eb49ef69a1c918cd7?version=3.44.1)._
 
 Now the [Svelte actions](https://svelte.dev/docs#use_action) come into play. An action in Svelte is a function that you attach to an HTML element by using the `use:` keyword (e.g. `<div use:actionName />`. In the function, you have access to the actual HTML element and optionally additional parameters you can pass to the action. From there on, the possibilities are almost endless. You can tinker with the classes being applied, dispatch custom events, apply styles and everything you can actually do with an HTML element and some JS.
 
@@ -42,27 +49,27 @@ And this is how the action can look like:
 export function containerClasses(node, breakpoints) {
 	const resizeObserver = new ResizeObserver(() => {
 		const containerWidth = node.clientWidth;
-		
+
 		const breakpointsArray = Object.entries(breakpoints);
 		const classes = breakpointsArray.reduce((prev, [breakpointStr, classes], idx) => {
 			node.classList.remove(...classes);
 			const breakpoint = +breakpointStr;
 			const prevBreakpoint = idx > 0 ? +breakpointsArray[idx - 1][0] : 0;
-			
+
 			if (containerWidth >= breakpoint && breakpoint >= prevBreakpoint) return classes;
 			return prev;
 		}, []);
-		
-		node.classList.add(...classes);
-  });
 
-  resizeObserver.observe(node);
-	
+		node.classList.add(...classes);
+	});
+
+	resizeObserver.observe(node);
+
 	return {
-    destroy() {
-      resizeObserver.disconnect();
-    },
-  };
+		destroy() {
+			resizeObserver.disconnect();
+		},
+	};
 }
 ```
 
@@ -71,9 +78,9 @@ And this is how you can use it:
 ```javascript
 <script>
 	import { containerClasses } from "./containerClasses.js";
-	
+
 	let name = 'world';
-	
+
 	const breakpoints = {
 		400: ["sm"],
 		800: ["md"],
@@ -82,18 +89,18 @@ And this is how you can use it:
 </script>
 
 <div use:containerClasses={breakpoints}>
-	<h1>Hello {name}!</h1>	
+	<h1>Hello {name}!</h1>
 </div>
 
 <style>
 	:global(.sm) > h1 {
 		background-color: #00aa00;
 	}
-	
+
 	:global(.md) > h1 {
 		background-color: #ffaadd;
 	}
-	
+
 	:global(.lg) > h1 {
 		background-color: #ff00dd;
 	}

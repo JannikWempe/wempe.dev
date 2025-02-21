@@ -5,6 +5,19 @@ slug: domain-driven-design-introduction
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1623820118835/s5gapCsww.png
 tags: 'programming, tools, developer, ddd'
+excerpt: >-
+  The concept of Domain-Driven Design (DDD) was introduced by Eric Evans. He
+  wrote about it in his book Domain-driven Design back in 2004 (aka "The Big
+  Blue Book"). 
+
+  ℹ️ What is a domain in the context of DDD?
+
+
+  A sphere of knowledge, influence, or activ...
+subtitle: >-
+  Domain-Driven Design is a concept you should know about – no matter if you are
+  a developer or domain expert. Tackle complex software projects with DDD
+seriesSlug: domain-driven-design
 ---
 
 The concept of Domain-Driven Design (DDD) was introduced by Eric Evans. He wrote about it in his book Domain-driven Design back in 2004 *(aka "The Big Blue Book")*. 

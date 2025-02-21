@@ -5,6 +5,19 @@ slug: my-favorite-tech-stack-for-2022
 cover: >-
   https://cdn.hashnode.com/res/hashnode/image/upload/v1640287015202/htRMAs7k4.png
 tags: 'technology, web-development, webdev, full-stack'
+excerpt: >-
+  I just recently tweeted my favorite tech stack for 2022 (inspired by Jon
+  Meyers tweet). I'd like to share some more thoughts about my choices in this
+  post.
+
+  https://twitter.com/JannikWempe/status/1473935933447839748
+
+  Frontend
+
+  First of all: I love front...
+subtitle: >-
+  Sharing my favorite tech stack for 2022. It's tech that I enjoy and I think
+  will be valuable in the near future.
 ---
 
 I just recently tweeted my favorite tech stack for 2022 (inspired by @[Jon Meyers](@dijonmusters) tweet). I'd like to share some more thoughts about my choices in this post.
