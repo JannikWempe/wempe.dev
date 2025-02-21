@@ -1,7 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { imageService } from '@unpic/astro/service';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'astro/config';
 
@@ -23,13 +22,6 @@ export default defineConfig({
 	site: config.site.site,
 	base: config.site.base,
 	trailingSlash: config.site.trailingSlash ? 'always' : 'never',
-
-	// image: {
-	// 	service: imageService({
-	// 		placeholder: 'blurhash',
-	// 	}),
-	// },
-
 	server: { host: true },
 	adapter: sst({
 		deploymentStrategy: 'regional',

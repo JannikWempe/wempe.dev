@@ -1,10 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
-
-import Image from '~/components/ui/Image.astro';
-
+import { Image } from 'astro:assets';
 import { formatDate } from '~/utils/time';
+
+import hashnodeCommitImg from '~/assets/images/talks/hashnode-podcast.jpg';
+import mongodbPodcastImg from '~/assets/images/talks/mongodb-podcast.png';
+import cdkDayTalkImg from '~/assets/images/talks/cdk-day-2022.png';
 
 interface Props {
 	class?: string;
@@ -18,7 +20,7 @@ const appearances = [
 		host: 'The Commit Podcast – Hashnode',
 		type: 'podcast',
 		date: '2023-11-29',
-		coverImageUrl: 'https://img.youtube.com/vi/5nL-C0JNKwE/hqdefault.jpg',
+		coverImageUrl: hashnodeCommitImg,
 		link: 'https://www.youtube.com/watch?v=5nL-C0JNKwE',
 	},
 	{
@@ -26,7 +28,7 @@ const appearances = [
 		host: 'The MongoDB Podcast',
 		type: 'podcast',
 		date: '2022-11-22',
-		coverImageUrl: 'https://files.casted.us/00b5e640-29b3-4cf9-9d55-fd7a6b10fa82.png',
+		coverImageUrl: mongodbPodcastImg,
 		link: 'https://open.spotify.com/episode/2X6hD02EE8UmjksJpoemTb?si=b28b4c0e65ea4480',
 	},
 	{
@@ -34,10 +36,10 @@ const appearances = [
 		host: 'CDK Day',
 		type: 'conference',
 		date: '2022-05-26',
-		coverImageUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733599207/talk-cdk-day-2022_lqnp7e.png',
+		coverImageUrl: cdkDayTalkImg,
 		link: 'https://www.youtube.com/live/s8tO-ymVQPg?si=7GuZlOGtZw9OT8g5&t=7749',
 	},
-];
+] as const;
 ---
 
 <ul class={twMerge('columns-1 gap-8 lg:columns-2 xl:columns-3', className)}>
@@ -51,7 +53,7 @@ const appearances = [
 			>
 				<Image src={a.coverImageUrl} alt={''} class="rounded-lg" />
 				<div class="p-4">
-					<h3 class="text-pretty text-xl font-bold text-indigo-900">{a.title}</h3>
+					<h3 class="text-xl font-bold text-pretty text-indigo-900">{a.title}</h3>
 					<div class="mt-2 flex items-center justify-between">
 						<div class="flex items-center gap-1 text-sm font-semibold text-slate-700">
 							<Icon name="lucide:calendar" />

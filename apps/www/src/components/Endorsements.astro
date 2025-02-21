@@ -1,7 +1,6 @@
 ---
-import Image from '~/components/ui/Image.astro';
+import { Image } from 'astro:assets';
 import { twMerge } from 'tailwind-merge';
-import { config } from '~/constants/config';
 
 interface RoleWithLink {
 	text: string;
@@ -17,11 +16,11 @@ interface Endorsement {
 	};
 	relation: string;
 	role: string | RoleWithLink;
-	imageUrl: string;
+	imageUrl: ImageMetadata;
 }
 
 interface Props {
-	endorsements: Endorsement[];
+	endorsements: readonly Endorsement[];
 	class?: string;
 }
 
@@ -32,7 +31,7 @@ const { endorsements, class: className } = Astro.props;
 	{
 		endorsements.map((endorsement, index) => (
 			<div class:list={['rounded-lg bg-white p-8 shadow-md shadow-indigo-200', index > 0 && 'mt-8']}>
-				<p class="text-sm font-semibold uppercase tracking-wide text-indigo-800">{endorsement.relation}</p>
+				<p class="text-sm font-semibold tracking-wide text-indigo-800 uppercase">{endorsement.relation}</p>
 				<blockquote>
 					<p class="text-lg leading-relaxed text-slate-700">"{endorsement.text}"</p>
 				</blockquote>

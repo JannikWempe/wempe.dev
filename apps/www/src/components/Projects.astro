@@ -1,12 +1,17 @@
 ---
-import Image from '~/components/ui/Image.astro';
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
-import { config } from '~/constants/config';
 
-import { scale } from '@cloudinary/url-gen/actions/resize';
-
-import { cloudinary } from '~/utils/image';
+import jannikWempeImg from '~/assets/images/projects/jannik-wempe.png';
+import fraudfalconImg from '~/assets/images/projects/fraudfalcon.webp';
+import octolenseImg from '~/assets/images/projects/octolense.webp';
+import shoptainImg from '~/assets/images/projects/shoptain.png';
+import kitlyticsImg from '~/assets/images/projects/kitlytics.webp';
+import glueckweiserImg from '~/assets/images/projects/glueckweiser.png';
+import easyDataSolutionImg from '~/assets/images/projects/easy-data-solution.png';
+import kiezappRixdorfImg from '~/assets/images/projects/kiezapp-rixdorf.png';
+import klebekiImg from '~/assets/images/projects/klebeki.avif';
 
 interface Props {
 	limit?: number;
@@ -21,7 +26,7 @@ const projects = [
 		title: 'wempe.dev',
 		description: 'My personal website that you are looking at right now.',
 		url: 'https://www.wempe.dev/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924320/jannik-wempe_fij7v2.png',
+		logoUrl: jannikWempeImg,
 		status: 'ongoing',
 		tech: ['TypeScript', 'Astro', 'TailwindCSS', 'SST', 'AWS'],
 	},
@@ -31,7 +36,7 @@ const projects = [
 		description:
 			'Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud and block orders automatically.',
 		url: 'https://fraudfalcon.app/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/fraudfalcon_bv5fei.webp',
+		logoUrl: fraudfalconImg,
 		status: 'ongoing',
 		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS', 'Supabase'],
 	},
@@ -41,7 +46,7 @@ const projects = [
 		description:
 			'Analytics solution for GitHub actions. Understand which actions and repositories are most expensive. Exited because lack of time to maintain it.',
 		url: 'https://octolense.com/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/octolense_zshjyj.webp',
+		logoUrl: octolenseImg,
 		status: 'sold',
 		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
 	},
@@ -51,7 +56,7 @@ const projects = [
 		description:
 			'Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying desired keyword.',
 		url: 'https://shoptain.com/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924495/shoptain_ijp6n8.png',
+		logoUrl: shoptainImg,
 		status: 'done',
 		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
 	},
@@ -61,7 +66,7 @@ const projects = [
 		description:
 			'Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and grow your business.',
 		url: 'https://kitlytics.com/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924039/kitlytics_scewod.webp',
+		logoUrl: kitlyticsImg,
 		status: 'paused',
 		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Turso'],
 	},
@@ -70,7 +75,7 @@ const projects = [
 		title: 'Glückweiser',
 		description: 'Headless Shopify shop using Shopify Hydrogen for a store selling handmade products.',
 		url: 'https://www.glückweiser.de/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924563/glueckweiser_rdxaun.png',
+		logoUrl: glueckweiserImg,
 		status: 'done',
 		tech: ['TypeScript', 'Shopify Hydrogen', 'Remix', 'React', 'TailwindCSS'],
 	},
@@ -80,7 +85,7 @@ const projects = [
 		description:
 			'Consulting, design and development of a webapp that represents the company and allows to book courses.',
 		url: 'https://www.easydatasolution.de/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924205/easy-data-solution_cxrsx3.png',
+		logoUrl: easyDataSolutionImg,
 		status: 'ongoing',
 		tech: ['TypeScript', 'Gatsby', 'React', 'ChakraUI', 'Framer', 'Netlify', 'Decap CMS'],
 	},
@@ -89,7 +94,7 @@ const projects = [
 		title: 'easy working landing page',
 		description: 'Development of a landing page with focus on performance and SEO.',
 		url: 'https://www.easy-working.app/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924205/easy-data-solution_cxrsx3.png',
+		logoUrl: easyDataSolutionImg,
 		status: 'done',
 		tech: ['TypeScript', 'Astro', 'SolidJS', 'TailwindCSS', 'Netlify', 'Decap CMS'],
 	},
@@ -99,7 +104,7 @@ const projects = [
 		description:
 			'Development of a PWA that allows newcomers to Rixdorf to get to know the neighborhood using a gamified approach.',
 		url: 'https://www.kiezapp-rixdorf.de/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924743/kiezapp-rixdorf_vvl8jj.png',
+		logoUrl: kiezappRixdorfImg,
 		status: 'done',
 		tech: ['TypeScript', 'NextJS', 'React', 'PWA', 'TailwindCSS', 'Vercel', 'Strapi', 'PostgreSQL'],
 	},
@@ -109,7 +114,7 @@ const projects = [
 		description:
 			'Design and development of a WooCommerce shop selling clothes for kids and babies with special needs. ',
 		url: 'https://klebeki.de/',
-		logoUrl: 'https://res.cloudinary.com/dsxtwvsly/image/upload/v1733924636/klebeki_o20nnv.avif',
+		logoUrl: klebekiImg,
 		status: 'done',
 		tech: ['PHP', 'Wordpress', 'WooCommerce', 'MySQL'],
 	},
@@ -196,16 +201,12 @@ const statusToColorMap = {
 			>
 				<div class="relative grow">
 					<Image
-						src={cloudinary
-							.image(project.logoUrl.replace(config.images.cdnPrefix + '/', ''))
-							.resize(scale().height(50))
-							.toURL()}
+						src={project.logoUrl}
 						alt={`${project.title} logo`}
 						height={50}
-						background="none"
 						class="h-[50px] w-auto! self-start object-contain"
 					/>
-					<h3 class="mt-3 text-pretty text-xl font-bold text-indigo-900">{project.title}</h3>
+					<h3 class="mt-3 text-xl font-bold text-pretty text-indigo-900">{project.title}</h3>
 					<p class="mt-3 text-slate-700">{project.description}</p>
 				</div>
 
@@ -238,7 +239,7 @@ const statusToColorMap = {
 						</div>
 					</div>
 
-					<div class="z-20 flex items-center gap-4 pr-4 pt-4">
+					<div class="z-20 flex items-center gap-4 pt-4 pr-4">
 						{project.tech.map((tech, techIndex) => (
 							<div class="relative">
 								<Icon

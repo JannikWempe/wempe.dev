@@ -6,7 +6,8 @@
 		"node": "^22"
 	},
 	"scripts": {
-		"sst": "sst"
+		"sst": "sst",
+		"postinstall": "pnpm sst install && cp -r sst-platform-override/* .sst/platform/"
 	},
 	"devDependencies": {
 		"@tsconfig/node22": "22.0.0",
