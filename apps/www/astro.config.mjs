@@ -15,6 +15,8 @@ import partytown from '@astrojs/partytown';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import expressiveCode from 'astro-expressive-code';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -28,6 +30,9 @@ export default defineConfig({
 		responseMode: 'buffer',
 	}),
 	output: 'server',
+	image: {
+		domains: ['cdn.hashnode.com'],
+	},
 	redirects: {
 		'/cal': {
 			destination: 'https://cal.com/jannikwempe',
@@ -58,6 +63,7 @@ export default defineConfig({
 			},
 		}),
 		partytown(),
+		expressiveCode({ themes: ['night-owl'] }),
 	],
 	vite: {
 		plugins: [tsconfigPaths(), tailwindcss()],
