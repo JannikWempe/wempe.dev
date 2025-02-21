@@ -52,9 +52,9 @@ const endorsements = [
 	}}
 >
 	<main>
-		<div class="relative flex justify-between">
+		<section class="relative flex justify-between">
 			{/* Background with gradient and pattern */}
-			<div class="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100 via-white to-indigo-100">
+			<div class="absolute inset-0 -z-10 bg-linear-to-br from-blue-100 via-white to-indigo-100">
 				<div
 					class="absolute inset-0"
 					style={{
@@ -65,12 +65,12 @@ const endorsements = [
 				</div>
 			</div>
 
-			<div class="container relative mx-auto overflow-hidden pb-28 pt-16">
+			<div class="relative container mx-auto overflow-hidden pt-16 pb-28">
 				<div class="flex flex-col justify-between gap-12 lg:flex-row">
 					<div class="mt-8">
-						<p class="text-md font-bold uppercase tracking-wide text-blue-600">Engineering Value Beyond Code</p>
+						<p class="text-md font-bold tracking-wide text-blue-600 uppercase">Engineering Value Beyond Code</p>
 						<h2 class="mt-1 max-w-lg text-5xl font-bold text-indigo-900">Crafting Full-Stack Solutions That Matter</h2>
-						<p class="mt-4 max-w-xl text-lg font-semibold leading-relaxed text-slate-700">
+						<p class="mt-4 max-w-xl text-lg leading-relaxed font-semibold text-slate-700">
 							Drawing from experience across modern web technologies, cloud platforms, and system architecture, I build
 							end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to
 							stay at the forefront of technological innovation.
@@ -87,16 +87,16 @@ const endorsements = [
 							<Icon
 								name="lucide:mail"
 								slot="icon-right"
-								class="transition-transform group-hover:rotate-12 group-hover:scale-125"
+								class="transition-transform group-hover:scale-125 group-hover:rotate-12"
 							/>
 						</Button>
 					</div>
 
 					<div
-						class="relative mt-8 aspect-square w-[392px] max-w-full before:absolute before:inset-0 before:left-0 before:top-0 before:-z-10 before:block before:aspect-square before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
+						class="relative mt-8 aspect-square w-[392px] max-w-full before:absolute before:inset-0 before:top-0 before:left-0 before:-z-10 before:block before:aspect-square before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
 					>
 						<div
-							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full shadow-lg ring-4 ring-slate-100"
+							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full ring-4 shadow-lg ring-slate-100"
 						>
 							<Image
 								src="https://res.cloudinary.com/dsxtwvsly/image/upload/v1733555015/jannik-wempe.jpg?q=80&auto=compress,format"
@@ -106,7 +106,7 @@ const endorsements = [
 								loading={'eager'}
 							/>
 						</div>
-						<h1 aria-label="Jannik Wempe" class="absolute bottom-[-35px] right-[-25px]">
+						<h1 aria-label="Jannik Wempe" class="absolute right-[-25px] bottom-[-35px]">
 							<svg
 								viewBox="0 0 320 320"
 								xmlns="http://www.w3.org/2000/svg"
@@ -124,18 +124,18 @@ const endorsements = [
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<section class="container mx-auto py-16">
-			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">Don't take my word for it</p>
+			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">Don't take my word for it</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">What Others Say About Me</h2>
 			<Endorsements {endorsements} class="mt-8" />
 		</section>
 
 		<section class="container mx-auto py-16">
-			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">What I've built</p>
+			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">What I've built</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Projects</h2>
-			<p class="mx-auto mt-2 max-w-[80ch] text-pretty text-center text-lg leading-relaxed text-slate-700">
+			<p class="mx-auto mt-2 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
 				Below are some of the projects that I've worked on. They only include projects that I've done in addition to my
 				day job and with the intent of doing earning money – not for fun or to learn something new.
 			</p>
@@ -143,13 +143,13 @@ const endorsements = [
 		</section>
 
 		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-center text-sm font-bold uppercase tracking-wide text-blue-600">CV</p>
+			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">CV</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Work Experience</h2>
 			<div class="mx-auto mt-8 rounded-lg bg-indigo-50 px-10 py-6 shadow-lg shadow-indigo-100">
-				<p class="mx-auto max-w-[80ch] text-pretty text-center text-4xl font-black leading-relaxed text-slate-700">
+				<p class="mx-auto max-w-[80ch] text-center text-4xl leading-relaxed font-black text-pretty text-slate-700">
 					DRY
 				</p>
-				<p class="mx-auto mt-1 max-w-[80ch] text-pretty text-center text-lg leading-relaxed text-slate-700">
+				<p class="mx-auto mt-1 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
 					"Don't repeat yourself" – go and look it up on my <a
 						href={config.social.linkedin}
 						target="_blank"
@@ -163,7 +163,7 @@ const endorsements = [
 		</section>
 
 		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-sm font-bold uppercase tracking-wide text-blue-600">Things I write about</p>
+			<p class="text-sm font-bold tracking-wide text-blue-600 uppercase">Things I write about</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Latest Blog Posts</h2>
 			<BlogPosts server:defer class="mt-8" />
 			<!-- TODO: add signup to blog newsletter here? -->
@@ -180,13 +180,13 @@ const endorsements = [
 				<Icon
 					name="lucide:external-link"
 					slot="icon-right"
-					class="transition-transform group-hover:rotate-12 group-hover:scale-125"
+					class="transition-transform group-hover:scale-125 group-hover:rotate-12"
 				/>
 			</Button>
 		</section>
 
 		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-sm font-bold uppercase tracking-wide text-blue-600">Speaking & Appearances</p>
+			<p class="text-sm font-bold tracking-wide text-blue-600 uppercase">Speaking & Appearances</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Tech Talks and Podcast Conversations</h2>
 			<Appearences class="mt-8" />
 		</section>

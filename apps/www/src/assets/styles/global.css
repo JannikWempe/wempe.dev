@@ -1,15 +1,10 @@
 @import 'tailwindcss';
 
-@theme {
-	--font-sans: Geist Sans, sans-serif;
-}
-
-/* Currently, these are not applied */
-/* @see: https://github.com/tailwindlabs/tailwindcss/issues/13129 */
-/* @utility container {
+/* This should be a Tailwind utility, but it doesn't work */
+.container {
 	margin-inline: auto;
 	padding-inline: 1rem;
-	background-color: red;
+
 	@media (width >= theme(--breakpoint-sm)) {
 		padding-inline: 2rem;
 	}
@@ -22,4 +17,4 @@
 	@media (width >= theme(--breakpoint-2xl)) {
 		padding-inline: 6rem;
 	}
-} */
+}

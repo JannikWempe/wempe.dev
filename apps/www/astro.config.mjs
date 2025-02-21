@@ -7,14 +7,14 @@ import { defineConfig } from 'astro/config';
 
 import sst from 'astro-sst';
 
-import tailwind from '@astrojs/tailwind';
-
 import sitemap from '@astrojs/sitemap';
 import { config } from './src/constants/config';
 
 import icon from 'astro-icon';
 
 import partytown from '@astrojs/partytown';
+
+import tailwindcss from '@tailwindcss/vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -33,7 +33,6 @@ export default defineConfig({
 	adapter: sst(),
 	output: 'server',
 	integrations: [
-		tailwind(),
 		sitemap(),
 		icon({
 			iconDir: path.resolve(__dirname, './src/assets/icons'),
@@ -59,6 +58,6 @@ export default defineConfig({
 		partytown(),
 	],
 	vite: {
-		plugins: [tsconfigPaths()],
+		plugins: [tsconfigPaths(), tailwindcss()],
 	},
 });
