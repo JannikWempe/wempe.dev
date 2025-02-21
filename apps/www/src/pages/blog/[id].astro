@@ -15,12 +15,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <Layout>
-	<p>Published on: {post.data.datePublished}</p>
-	<Prose>
-		<Content />
-	</Prose>
+	<div class="container mx-auto px-4 py-8">
+		<!-- <p>Published on: {post.data.datePublished}</p> -->
+		<Prose class="mx-auto">
+			<Content />
+		</Prose>
+	</div>
 </Layout>
