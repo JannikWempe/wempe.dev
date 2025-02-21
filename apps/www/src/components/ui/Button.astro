@@ -6,7 +6,6 @@ type Props<T extends HTMLTag = 'button'> = Polymorphic<{ as: T }> & {
 	variant?: 'solid' | 'outline' | 'ghost';
 	size?: 'sm' | 'md' | 'lg' | 'xl';
 	color?: 'primary' | 'secondary';
-	class?: string;
 };
 
 const {
@@ -14,7 +13,7 @@ const {
 	variant = 'solid',
 	size = 'md',
 	color = 'primary',
-	class: className = '',
+	class: classes = '',
 	...rest
 } = Astro.props;
 
@@ -40,11 +39,9 @@ const sizes = {
 	lg: 'h-12 px-6 text-base gap-2.5',
 	xl: 'h-14 px-8 text-lg gap-3',
 };
-
-const classes = twMerge(baseStyles, variants[color][variant], sizes[size], className);
 ---
 
-<Tag class={classes} {...rest}>
+<Tag class={twMerge(baseStyles, variants[color][variant], sizes[size], classes)} {...rest}>
 	<slot name="icon-left" />
 	<slot />
 	<slot name="icon-right" />

@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import { getCollection } from 'astro:content';
-import { getEntry } from 'astro:content';
+import Prose from '~/components/Prose.astro';
 import Layout from '~/layouts/Layout.astro';
 
 export const prerender = true;
@@ -20,5 +20,7 @@ const { Content } = await render(post);
 
 <Layout>
 	<p>Published on: {post.data.datePublished}</p>
-	<Content />
+	<Prose>
+		<Content />
+	</Prose>
 </Layout>

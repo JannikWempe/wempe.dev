@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 /* This should be a Tailwind utility, but it doesn't work */
 .container {

@@ -8,13 +8,14 @@ import Appearences from '~/components/Appearences.astro';
 import Projects from '~/components/Projects.astro';
 import { Icon } from 'astro-icon/components';
 
-import BlogPosts from '~/components/BlogPosts.astro';
 import { config } from '~/constants/config';
 
 import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
 import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
-
+import { getCollection } from 'astro:content';
+import { newestFirst } from '~/lib/blog';
+import BlogPostCard from '~/components/BlogPostCard.astro';
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
 
@@ -48,6 +49,8 @@ const endorsements = [
 		imageUrl: sandeepPandaImg,
 	},
 ] as const;
+
+const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0, 4);
 ---
 
 <Layout
@@ -160,23 +163,13 @@ const endorsements = [
 		<section class="container mx-auto flex flex-col items-center py-16">
 			<p class="text-sm font-bold tracking-wide text-blue-600 uppercase">Things I write about</p>
 			<h2 class="text-center text-3xl font-bold text-indigo-900">Latest Blog Posts</h2>
-			<BlogPosts server:defer class="mt-8" />
+
+			<div class="mt-8 grid grid-cols-1 gap-16 md:grid-cols-2">
+				{latestBlogPosts.map((post) => <BlogPostCard post={post} />)}
+			</div>
 			<!-- TODO: add signup to blog newsletter here? -->
-			<Button
-				as="a"
-				color="primary"
-				variant="solid"
-				size="lg"
-				href="https://blog.jannikwempe.com"
-				target="_blank"
-				class="plausible-event-name=contact+blog plausible-event-name=contact group mx-auto mt-8"
-			>
-				Visit my blog
-				<Icon
-					name="lucide:external-link"
-					slot="icon-right"
-					class="transition-transform group-hover:scale-125 group-hover:rotate-12"
-				/>
+			<Button as="a" color="primary" variant="solid" size="lg" href="/blog" class="group mx-auto mt-8">
+				See all posts
 			</Button>
 		</section>
 

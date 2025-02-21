@@ -25,10 +25,10 @@ interface Props {
 	class?: string;
 }
 
-const { endorsements, class: className } = Astro.props;
+const { endorsements, class: classes } = Astro.props;
 ---
 
-<div class={twMerge('columns-1 gap-8 lg:columns-2', className)}>
+<div class={twMerge('columns-1 gap-8 lg:columns-2', classes)}>
 	{
 		endorsements.map((endorsement, index) => (
 			<div class:list={['rounded-lg bg-white p-8 shadow-md shadow-indigo-200', index > 0 && 'mt-8']}>
@@ -46,14 +46,14 @@ const { endorsements, class: className } = Astro.props;
 						class="rounded-full object-cover"
 					/>
 					<div>
-						<div class="font-semibold text-gray-900">
+						<div class="font-semibold text-slate-900">
 							{endorsement.author.social ? (
 								<Link href={endorsement.author.social}>{endorsement.author.name}</Link>
 							) : (
 								endorsement.author.name
 							)}
 						</div>
-						<p class="text-sm text-gray-600">
+						<p class="text-sm text-slate-600">
 							{typeof endorsement.role === 'string' ? (
 								endorsement.role
 							) : (

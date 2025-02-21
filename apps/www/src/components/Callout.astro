@@ -1,0 +1,17 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+interface Props {
+	icon?: string;
+	class?: string;
+}
+
+const { icon = 'ℹ️', class: classes } = Astro.props;
+---
+
+<div class={twMerge('my-4 flex gap-3 rounded-lg bg-slate-100 p-4', classes)}>
+	<div class="flex-shrink-0 text-lg">{icon}</div>
+	<div class="text-[0.95rem] [&>p]:m-0 [&>p+p]:mt-3">
+		<slot />
+	</div>
+</div>

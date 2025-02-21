@@ -1,32 +1,32 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { twMerge } from 'tailwind-merge';
+import { formatDate } from '~/utils/time';
 
-interface Props {
-	title: string;
-	excerpt: string;
-	date: Date;
-	url: string;
-	cover: string;
+interface Props extends HTMLAttributes<'article'> {
+	post: CollectionEntry<'blog'>;
 }
 
-const { title, excerpt, date, url, cover } = Astro.props;
+const { post, class: classes, ...rest } = Astro.props;
+const { title, excerpt, datePublished, cover } = post.data;
 
-// Format date to YYYY-MM-DD
-const formattedDate = date.toISOString().split('T')[0];
+const formattedDate = formatDate(datePublished);
 ---
 
-<article class="relative">
+<article class={twMerge('relative', classes)} {...rest}>
 	<div class="relative aspect-[1600/840] w-full">
-		<Image src={cover} alt={title} width={1600} height={840} class="object-cover" />
+		<Image src={cover} alt={title} width={1600} height={840} class="rounded-xl object-cover" />
 	</div>
 	<div class="mt-4">
-		<h2 class="text-2xl font-bold text-gray-900">{title}</h2>
-		<time datetime={formattedDate} class="mt-2 block text-gray-600">
+		<h2 class="text-2xl font-bold text-slate-900">{title}</h2>
+		<time datetime={formattedDate} class="mt-1 block text-sm font-semibold text-slate-600">
 			{formattedDate}
 		</time>
-		<p class="mt-2 line-clamp-2 text-gray-700">{excerpt}</p>
+		<p class="mt-2 line-clamp-2 text-slate-700">{excerpt}</p>
 	</div>
-	<a href={url} class="absolute inset-0">
+	<a href={`/blog/${post.data.slug}`} class="absolute inset-0">
 		<span class="sr-only">Read more about {title}</span>
 	</a>
 </article>

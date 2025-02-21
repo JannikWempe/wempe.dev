@@ -18,7 +18,7 @@ interface Props {
 	class?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: classes } = Astro.props;
 
 const projects = [
 	{
@@ -182,8 +182,8 @@ const statusToColorMap = {
 		text: 'text-green-700',
 	},
 	paused: {
-		bg: 'bg-gray-100',
-		text: 'text-gray-700',
+		bg: 'bg-slate-100',
+		text: 'text-slate-700',
 	},
 	sold: {
 		bg: 'bg-yellow-100',
@@ -192,7 +192,7 @@ const statusToColorMap = {
 } satisfies Record<(typeof projects)[number]['status'], { bg: string; text: string }>;
 ---
 
-<ul class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3', className)}>
+<ul class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3', classes)}>
 	{
 		projects.map((project, projectIndex) => (
 			<li
