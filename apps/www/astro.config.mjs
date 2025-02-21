@@ -28,6 +28,12 @@ export default defineConfig({
 		responseMode: 'buffer',
 	}),
 	output: 'server',
+	redirects: {
+		'/cal': {
+			destination: 'https://cal.com/jannikwempe',
+			status: 302,
+		},
+	},
 	integrations: [
 		sitemap(),
 		icon({
