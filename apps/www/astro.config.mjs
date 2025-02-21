@@ -24,13 +24,17 @@ export default defineConfig({
 	base: config.site.base,
 	trailingSlash: config.site.trailingSlash ? 'always' : 'never',
 
-	image: {
-		service: imageService({
-			placeholder: 'blurhash',
-		}),
-	},
+	// image: {
+	// 	service: imageService({
+	// 		placeholder: 'blurhash',
+	// 	}),
+	// },
+
 	server: { host: true },
-	adapter: sst(),
+	adapter: sst({
+		deploymentStrategy: 'regional',
+		responseMode: 'buffer',
+	}),
 	output: 'server',
 	integrations: [
 		sitemap(),

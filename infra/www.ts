@@ -1,7 +1,7 @@
 import { hostname } from './dns';
 
 export const astro = new sst.aws.Astro('Astro', {
-	path: './apps/www',
+	path: 'apps/www',
 	dev: {
 		autostart: true,
 		command: 'astro dev',

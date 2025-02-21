@@ -7,8 +7,12 @@ import Appearences from '~/components/Appearences.astro';
 import Projects from '~/components/Projects.astro';
 import { Icon } from 'astro-icon/components';
 
+import { Image as AstroImage } from 'astro:assets';
+
 import BlogPosts from '~/components/BlogPosts.astro';
 import { config } from '~/constants/config';
+
+import localImage from '~/assets/images/jannik-wempe.jpg';
 
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
@@ -141,6 +145,8 @@ const endorsements = [
 			</p>
 			<Projects class="mt-8" />
 		</section>
+
+		<AstroImage src={localImage} alt="Jannik Wempe" width={380} height={380} />
 
 		<section class="container mx-auto flex flex-col items-center py-16">
 			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">CV</p>
