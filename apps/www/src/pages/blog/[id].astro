@@ -20,18 +20,9 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
 const formattedDatePublished = formatDate(post.data.datePublished);
-
-const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 ---
 
-<BlogPostLayout
-	{headings}
-	{hasTweetEmbed}
-	metadata={{
-		title: post.data.seoTitle ?? post.data.title,
-		description: post.data.seoDescription ?? post.data.excerpt,
-	}}
->
+<BlogPostLayout {post} {headings}>
 	<Image
 		transition:name={`cover-${post.data.slug}`}
 		src={post.data.cover}

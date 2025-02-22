@@ -2,6 +2,7 @@
 import type { ComponentProps } from 'astro/types';
 import BaseLayout from './BaseLayout.astro';
 import type Metadata from '~/components/Metadata.astro';
+import WebPageJsonLd from '~/components/WebPageJsonLd.astro';
 
 export interface Props {
 	metadata: Omit<ComponentProps<typeof Metadata>, 'og'>;
@@ -17,5 +18,8 @@ const metadata = {
 ---
 
 <BaseLayout {metadata}>
+	<Fragment slot="header">
+		<WebPageJsonLd />
+	</Fragment>
 	<slot />
 </BaseLayout>

@@ -1,0 +1,16 @@
+---
+let schema = JSON.stringify({
+	'@context': 'http://schema.org',
+	'@type': 'WebPage',
+	name: 'Jannik Wempe',
+	description: 'Jannik Wempe is a software engineer and entrepreneur.',
+	author: {
+		'@type': 'Person',
+		name: 'Jannik Wempe',
+	},
+});
+---
+
+...
+
+<script type="application/ld+json" set:html={schema} />

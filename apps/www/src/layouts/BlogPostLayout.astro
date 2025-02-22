@@ -2,26 +2,30 @@
 import BaseLayout from './BaseLayout.astro';
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from '~/components/TableOfContents.astro';
-import type Metadata from '~/components/Metadata.astro';
-import type { ComponentProps } from 'astro/types';
+import type { CollectionEntry } from 'astro:content';
+import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 
 export interface Props {
-	metadata: Omit<ComponentProps<typeof Metadata>, 'og'>;
-	hasTweetEmbed: boolean;
+	post: CollectionEntry<'blog'>;
 	headings: MarkdownHeading[];
 }
 
-const { metadata: _metadata, hasTweetEmbed, headings } = Astro.props;
+const { post, headings } = Astro.props;
+
 const metadata = {
-	..._metadata,
+	title: post.data.seoTitle ?? post.data.title,
+	description: post.data.seoDescription ?? post.data.excerpt,
 	og: {
 		type: 'article' as const,
 	},
 };
+
+const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 ---
 
 <BaseLayout {metadata}>
 	<Fragment slot="header">
+		<BlogPostJsonLd {post} />
 		<!-- Transforms basic Tweet embeds into interactive widgets -->
 		<!-- see https://astro-embed.netlify.app/components/twitter/  -->
 		{hasTweetEmbed && <script is:inline async src="https://platform.twitter.com/widgets.js" />}
