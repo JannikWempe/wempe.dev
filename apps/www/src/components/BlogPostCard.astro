@@ -19,10 +19,18 @@ const formattedDate = formatDate(datePublished);
 
 <article class={twMerge('relative', classes)} {...rest}>
 	<div class="relative aspect-[1600/840] w-full">
-		<Image src={cover} alt={title} width={1600} height={840} class="rounded-xl object-cover" {...imageProps} />
+		<Image
+			transition:name={`cover-${post.data.slug}`}
+			src={cover}
+			alt={title}
+			width={1600}
+			height={840}
+			class="rounded-xl object-cover"
+			{...imageProps}
+		/>
 	</div>
 	<div class="mt-4">
-		<h2 class="text-2xl font-bold text-slate-900">{title}</h2>
+		<h2 transition:name={`title-${post.data.slug}`} class="text-2xl font-bold text-slate-900">{title}</h2>
 		<div class="mt-1 flex items-center gap-2 text-slate-600">
 			<Icon name="lucide:calendar" class="h-4 w-4" />
 			<time datetime={formattedDate} class="block text-sm font-semibold">

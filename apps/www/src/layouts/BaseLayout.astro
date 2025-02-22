@@ -7,6 +7,7 @@ import '@fontsource/geist-sans';
 import '../assets/styles/global.css';
 
 import type { MetaData as MetaDataType } from '~/types';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
 	metadata?: MetaDataType;
@@ -16,13 +17,14 @@ const { metadata = {} } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<Metadata {...metadata} />
 		<Favicons />
+		<ClientRouter fallback="none" />
 
 		<script
 			type="text/partytown"

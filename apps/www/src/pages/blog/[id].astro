@@ -1,12 +1,10 @@
 ---
-import { render } from 'astro:content';
-import { getCollection } from 'astro:content';
-import Prose from '~/components/Prose.astro';
-import TableOfContents from '~/components/TableOfContents.astro';
-import { formatDate } from '~/utils/time';
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
+import { formatDate } from '~/utils/time';
 
 export const prerender = true;
 
@@ -28,6 +26,7 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 
 <BlogPostLayout {hasTweetEmbed} {headings}>
 	<Image
+		transition:name={`cover-${post.data.slug}`}
 		src={post.data.cover}
 		alt={post.data.title}
 		width={1000}
@@ -35,7 +34,7 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		loading="eager"
 		class="mb-4 rounded-lg"
 	/>
-	<h1 class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
+	<h1 transition:name={`title-${post.data.slug}`} class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
 	{post.data.subtitle && <h2 class="mt-2 text-xl font-semibold text-indigo-900/70">{post.data.subtitle}</h2>}
 	<div class="mt-2 flex items-center gap-2">
 		<Icon name="lucide:calendar" class="text-slate-500" />
@@ -63,6 +62,5 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		});
 	}
 
-	makeHeadingsClickable();
 	document.addEventListener('astro:page-load', makeHeadingsClickable);
 </script>
