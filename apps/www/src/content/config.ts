@@ -7,6 +7,7 @@ const blog = defineCollection({
 		z.object({
 			slug: z.string(),
 			title: z.string(),
+			subtitle: z.string().optional(),
 			cover: image(),
 			datePublished: z.coerce.date(), // ISO date string
 			excerpt: z.string(),

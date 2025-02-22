@@ -4,6 +4,9 @@ import { getCollection } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import Layout from '~/layouts/Layout.astro';
 import TableOfContents from '~/components/TableOfContents.astro';
+import { formatDate } from '~/utils/time';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 
 export const prerender = true;
 
@@ -17,19 +20,75 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+
+const formattedDatePublished = formatDate(post.data.datePublished);
 ---
 
 <Layout>
 	<div class="container mx-auto px-4 py-8">
-		<div class="flex gap-8">
-			<aside class="relative w-64">
-				<TableOfContents {headings} />
-			</aside>
-			<main class="flex-1">
-				<Prose class="mx-auto">
+		<div class="flex gap-20">
+			<main>
+				<Image
+					src={post.data.cover}
+					alt={post.data.title}
+					width={1000}
+					height={500}
+					loading="eager"
+					class="mb-4 rounded-lg"
+				/>
+				<h1 class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
+				{post.data.subtitle && <h2 class="mt-2 text-xl font-semibold text-indigo-900/70">{post.data.subtitle}</h2>}
+				<div class="mt-2 flex items-center gap-2">
+					<Icon name="lucide:calendar" class="text-slate-500" />
+					<time class="block font-semibold text-slate-500">
+						{formattedDatePublished}
+					</time>
+				</div>
+				<Prose id="content" class="mt-8">
 					<Content />
 				</Prose>
 			</main>
+			<aside>
+				<TableOfContents {headings} />
+			</aside>
 		</div>
 	</div>
 </Layout>
+
+<script>
+	function makeHeadingsClickable() {
+		const content = document.getElementById('content');
+		if (!content) return;
+
+		const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		headings.forEach((heading) => {
+			heading.classList.add('cursor-pointer', 'hover:text-indigo-800', 'group', 'inline-flex', 'items-center', 'gap-1');
+
+			const linkIcon = document.createElement('span');
+			linkIcon.innerHTML = `
+				<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M9 7L6 7C3.79086 7 2 8.79086 2 11C2 13.2091 3.79086 15 6 15L9 15" stroke-linecap="round"/>
+					<path d="M15 7L18 7C20.2091 7 22 8.79086 22 11C22 13.2091 20.2091 15 18 15L15 15" stroke-linecap="round"/>
+					<path d="M8 11L16 11" stroke-linecap="round"/>
+				</svg>
+			`;
+			linkIcon.classList.add(
+				'opacity-0',
+				'group-hover:opacity-100',
+				'transition-opacity',
+				'mt-1',
+				'w-3',
+				'h-3',
+				'-rotate-45',
+			);
+			heading.appendChild(linkIcon);
+
+			heading.addEventListener('click', () => {
+				window.location.hash = heading.id;
+			});
+		});
+	}
+
+	makeHeadingsClickable();
+	document.addEventListener('astro:page-load', makeHeadingsClickable);
+</script>
