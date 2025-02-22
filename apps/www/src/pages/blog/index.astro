@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPostCard from '../../components/BlogPostCard.astro';
-import Layout from '~/layouts/Layout.astro';
+import CommonLayout from '~/layouts/CommonLayout.astro';
 import type { CollectionEntry } from 'astro:content';
 
 export const prerender = true;
@@ -11,11 +11,11 @@ const newestFirst = (a: CollectionEntry<'blog'>, z: CollectionEntry<'blog'>) =>
 const posts = (await getCollection('blog')).sort(newestFirst);
 ---
 
-<Layout>
-	<div class="container mx-auto px-4 py-8">
+<CommonLayout>
+	<div class="container mx-auto pt-8">
 		<h1 class="text-3xl font-bold text-indigo-900">My {posts.length} Blog Posts</h1>
 		<div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
 			{posts.map((post, index) => <BlogPostCard post={post} imageProps={{ loading: index <= 3 ? 'eager' : 'lazy' }} />)}
 		</div>
 	</div>
-</Layout>
+</CommonLayout>

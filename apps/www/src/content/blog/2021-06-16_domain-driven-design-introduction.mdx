@@ -8,7 +8,7 @@ tags: 'programming, tools, developer, ddd'
 excerpt: >-
   The concept of Domain-Driven Design (DDD) was introduced by Eric Evans. He
   wrote about it in his book Domain-driven Design back in 2004 (aka "The Big
-  Blue Book"). 
+  Blue Book").
 
   ℹ️ What is a domain in the context of DDD?
 
@@ -22,16 +22,16 @@ seriesSlug: domain-driven-design
 import Callout from '../../components/Callout.astro';
 
 
-The concept of Domain-Driven Design (DDD) was introduced by Eric Evans. He wrote about it in his book Domain-driven Design back in 2004 *(aka "The Big Blue Book")*. 
+The concept of Domain-Driven Design (DDD) was introduced by Eric Evans. He wrote about it in his book Domain-driven Design back in 2004 *(aka "The Big Blue Book")*.
 
 ℹ️ What is a domain in the context of DDD?
 > A **sphere of knowledge, influence, or activity**. The **subject area** to which the user applies a program is the domain of the software.
 
 I will provide you with an overview of what DDD is all about. This post is about the **"Why?" and "What?" of DDD**. I won't deep dive into specific topics here. Nevertheless, I will point out some definitions of important terms like I just did with "domain". As you will realize a shared vocabulary also is part of DDD itself.
 
-First of all, you ask yourself if the concepts are still valid? 
+First of all, you ask yourself if the concepts are still valid?
 
-# Relevance of DDD Today
+## Relevance of DDD Today
 DDD is not about a certain technology, it is a concept. More modern concepts are directly referring to DDD. A quick citation from the very first page of the book Building Microservices by Sam Newman:
 
 > Eric Evan's book DDD helped us understand the importance of representing the real world in our code. and showed us better ways to model our systems.
@@ -40,7 +40,7 @@ Also, the [IBM Garage Event-Driven Reference Architecture](https://ibm-cloud-arc
 
 To answer the question about the relevance: It is indeed very valid until today. With the up-to-dateness out of the way let's move on and explore the "Why?" and "What?"
 
-# Why Does DDD Exist?
+## Why Does DDD Exist?
 Why is there even a need for something like DDD? The subtitle of Eric Evans book provides a really good hint:
 
 > Tackling Complexity in the Heart of Software
@@ -51,7 +51,7 @@ Additionally, we do not develop software just for the purpose of developing soft
 
 > The heart of software is its ability to solve domain-related problems for its user. All other features, vital though they may be, support this basic purpose.
 
-# What is DDD About?
+## What is DDD About?
 So what actually is DDD? DDD can't be defined in a sentence or two. It is an approach to the development of complex software consisting of multiple puzzle pieces:
 
 1. Focus on the core complexity and opportunity in the *domain*.
@@ -62,15 +62,15 @@ So what actually is DDD? DDD can't be defined in a sentence or two. It is an app
 
 These three points are already a very high-level summary of DDD but I'll go through them one by one in the following sections.
 
-## Focus on Domain
+### Focus on Domain
 
 > Focus on the core complexity and opportunity in the *domain*.
 
 I can keep this one short. It is essentially about the things I already pointed out in the "Why?" chapter above. Software is no self-purpose.
 
-Don't confuse this with "focus on the business". The core complexity and opportunity can be different from what we would call "the business". Think about Twitter. Providing the functionality of Tweets, following each other, etc. wasn't the main complexity. Most probably the main complexity was more in scaling that platform. 
+Don't confuse this with "focus on the business". The core complexity and opportunity can be different from what we would call "the business". Think about Twitter. Providing the functionality of Tweets, following each other, etc. wasn't the main complexity. Most probably the main complexity was more in scaling that platform.
 
-## Explore the Models
+### Explore the Models
 
 > Explore the *models* in a collaboration of domain experts and software experts.
 
@@ -86,16 +86,13 @@ I think it does worth it to explicitly point out what it is not: **It is not a d
 
 The verb "explore" is chosen very intentionally over something like "writing down". It will be an iterative process to get to a model. There is no such thing as finishing the models once and for all. There will be new insights, new or changing problems in the domain or whatsoever. It is an ongoing exploration.
 
---- 
-### Excursion: Example of a Model
+#### Excursion: Example of a Model
 Think of a typical map of the world *(somewhat like a diagram)*. The standard map of the world shows the Mercator projection. Most of you will know that this map is not about the sizes of different countries or something like that. It was specifically created for navigation on the sea. You can draw a line between points on the map and know how to navigate with your compass.
 
-This is what is behind the map, the actual model: 
+This is what is behind the map, the actual model:
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1623700470766/hbP4Kepgk.png)
 
 This example used by [Eric Evans in his 2019 conference talk](https://youtu.be/pMuiVlnGqjk?t=1787) is a good one. It points out that the model is directly related to the problem at hand.
-
---- 
 
 > Having a model doesn't actually give you any advantage as such. The advantage doesn't come from having a model. The advantage comes from having a **model that is a very nice fit for a specific set of problems that you are trying to solve**.
 
@@ -109,7 +106,7 @@ Closing this section with a last, very important point best expressed through tw
 
 This gist of these: **the code and the model are directly related.**
 
-## Speak a Ubiquitous Language
+### Speak a Ubiquitous Language
 
 > Speak a *ubiquitous language* within a *bounded context*.
 
@@ -121,7 +118,7 @@ This gist of these: **the code and the model are directly related.**
 The setting in which a word or statement appears that determines its meaning.    **Statements about a model can only be understood in a context.**
 
 >**Bounded Context**:
-A description of a boundary (typically a subsystem, or the work of a particular team) **within which a particular model is defined and applicable**.   
+A description of a boundary (typically a subsystem, or the work of a particular team) **within which a particular model is defined and applicable**.
 
 *(Now we have all definitions of this article out of the way - I promise.)*
 
@@ -143,14 +140,14 @@ Make it a habit in the team to ask for the meaning of specific terms being used.
 
 The ubiquitous language will lead to the code and the actual domain moving closer together. It is not only about the code reflecting the actual domain, it has also quite a few other positive aspects. Think about the maintainability of the code. If another developer gets back to the code after a while there will be terms used in the domain. Domain experts do have the knowledge about the terms being used, they are not just classes with names made up by the developers.
 
-# There is More
+## There is More
 This was a rather high-level introduction to DDD. But there is of course more to it.
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1623733629176/pK96QwPuC.png)
 
 This image provides an overview of different concepts within DDD. As you can see, I wrote only about a very small part of it. I will write a follow-up post about concepts like *Entity*, *Value Object*, and *Aggregates*. But this post should be enough to get an understanding of what DDD is all about.
 
-# Conclusion
+## Conclusion
 DDD is still an important concept to have in your toolbelt. It has influenced a lot of other areas already *([have a look at the JavaDoc of the JPA Specification](https://github.com/spring-projects/spring-data-jpa/blob/main/src/main/java/org/springframework/data/jpa/domain/Specification.java))* and still is influencing them.
 
 Solving problems of the domain is what developing software is all about. We have to deal with that complexity. But we can make our lives easier by applying DDD to handle this complexity.
@@ -158,7 +155,7 @@ Solving problems of the domain is what developing software is all about. We have
 ---
 Hope you liked it. Happy to hear your feedback. Let us connect on [Twitter](https://twitter.com/JannikWempe) or [LinkedIn](https://www.linkedin.com/in/jannik-wempe/).
 
-# Resources
+## Resources
 
 Of course the main resource: [The book DDD](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/)
 
@@ -167,6 +164,3 @@ There is a [free Domain-Driven Design Reference](https://www.domainlanguage.com/
 The [IBM Garage Event-Driven Reference architecture](https://ibm-cloud-architecture.github.io/refarch-eda/methodology/domain-driven-design/) also containing information about DDD.
 
 I liked this [conference talk from Eric Evans at the DDD Europe 2019](https://youtu.be/pMuiVlnGqjk). Of course, there are several other great talks available on YouTube.
-
-
-

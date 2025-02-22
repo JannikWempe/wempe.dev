@@ -2,13 +2,16 @@
 import type { MetaData as MetaDataType } from '~/types';
 
 import BaseLayout from './BaseLayout.astro';
+import type { MarkdownHeading } from 'astro';
+import TableOfContents from '~/components/TableOfContents.astro';
 
 export interface Props {
 	metadata?: MetaDataType;
 	hasTweetEmbed: boolean;
+	headings: MarkdownHeading[];
 }
 
-const { metadata = {}, hasTweetEmbed } = Astro.props;
+const { metadata = {}, hasTweetEmbed, headings } = Astro.props;
 ---
 
 <BaseLayout {metadata}>
@@ -16,6 +19,17 @@ const { metadata = {}, hasTweetEmbed } = Astro.props;
 		<!-- Transforms basic Tweet embeds into interactive widgets -->
 		<!-- see https://astro-embed.netlify.app/components/twitter/  -->
 		{hasTweetEmbed && <script async src="https://platform.twitter.com/widgets.js" />}
-		<slot />
 	</Fragment>
-</BaseLayout>
+
+	<div class="container mx-auto px-4 py-8">
+		<div class="flex gap-20">
+			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
+			<main class="max-w-prose text-lg">
+				<slot />
+			</main>
+			<aside>
+				<TableOfContents {headings} />
+			</aside>
+		</div>
+	</div></BaseLayout
+>

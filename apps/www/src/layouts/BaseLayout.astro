@@ -3,11 +3,11 @@ import Metadata from '~/components/Metadata.astro';
 import Favicons from '~/components/Favicons.astro';
 import Navigation from '~/components/Navigation.astro';
 
+import '@fontsource/geist-sans';
 import '../assets/styles/global.css';
 
 import type { MetaData as MetaDataType } from '~/types';
 
-import '@fontsource/geist-sans';
 export interface Props {
 	metadata?: MetaDataType;
 }

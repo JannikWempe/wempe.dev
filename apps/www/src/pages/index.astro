@@ -1,5 +1,5 @@
 ---
-import Layout from '~/layouts/Layout.astro';
+import CommonLayout from '~/layouts/CommonLayout.astro';
 import Button from '~/components/ui/Button.astro';
 import Link from '~/components/ui/Link.astro';
 import { Image } from 'astro:assets';
@@ -53,7 +53,7 @@ const endorsements = [
 const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0, 4);
 ---
 
-<Layout
+<CommonLayout
 	metadata={{
 		canonical: config.site.site,
 	}}
@@ -179,4 +179,4 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 			<Appearences class="mt-8" />
 		</section>
 	</main>
-</Layout>
+</CommonLayout>
