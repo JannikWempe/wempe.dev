@@ -2,7 +2,7 @@ import rss, { type RSSOptions } from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 
 import type { APIRoute } from 'astro';
-import { config } from '~/constants/config';
+import { SITE_BASE_URL, SITE_NAME } from '~/constants/site';
 import { newestFirst } from '~/lib/blog';
 
 export const GET: APIRoute = async (context) => {
@@ -14,13 +14,13 @@ export const GET: APIRoute = async (context) => {
 		description: post.data.excerpt,
 		link: `/blog/${post.id}`,
 		author: 'Jannik Wempe',
-		trailingSlash: config.site.trailingSlash,
+		trailingSlash: false,
 	})) satisfies RSSOptions['items'];
 
 	return rss({
-		title: config.site.name,
+		title: SITE_NAME,
 		description: 'Blog Posts by Jannik Wempe.',
-		site: context.site || config.site.site,
+		site: context.site || SITE_BASE_URL,
 		items,
 		customData: `<language>en-us</language>`,
 		stylesheet: '/pretty-feed-v3.xsl',

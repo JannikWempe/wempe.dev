@@ -24,7 +24,14 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 ---
 
-<BlogPostLayout {hasTweetEmbed} {headings}>
+<BlogPostLayout
+	{headings}
+	{hasTweetEmbed}
+	metadata={{
+		title: post.data.seoTitle ?? post.data.title,
+		description: post.data.seoDescription ?? post.data.excerpt,
+	}}
+>
 	<Image
 		transition:name={`cover-${post.data.slug}`}
 		src={post.data.cover}

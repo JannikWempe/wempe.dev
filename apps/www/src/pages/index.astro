@@ -1,5 +1,5 @@
 ---
-import CommonLayout from '~/layouts/CommonLayout.astro';
+import DefaultLayout from '~/layouts/DefaultLayout.astro';
 import Button from '~/components/ui/Button.astro';
 import Link from '~/components/ui/Link.astro';
 import { Image } from 'astro:assets';
@@ -8,14 +8,13 @@ import Appearences from '~/components/Appearences.astro';
 import Projects from '~/components/Projects.astro';
 import { Icon } from 'astro-icon/components';
 
-import { config } from '~/constants/config';
-
 import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
 import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
 import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
 import BlogPostCard from '~/components/BlogPostCard.astro';
+import { EMAIL, LINKEDIN_URL } from '~/constants/socials';
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
 
@@ -53,9 +52,11 @@ const endorsements = [
 const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0, 4);
 ---
 
-<CommonLayout
+<DefaultLayout
 	metadata={{
-		canonical: config.site.site,
+		title: 'Jannik Wempe | Passionate Software Engineer',
+		description:
+			'Full-stack software engineer crafting high-impact web solutions. From frontend development to serverless architectures, I build scalable applications that solve real business challenges.',
 	}}
 >
 	<main>
@@ -84,7 +85,7 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 						</p>
 						<Button
 							as="a"
-							href={`mailto:${config.social.email}`}
+							href={`mailto:${EMAIL}`}
 							color="primary"
 							variant="solid"
 							size="lg"
@@ -152,10 +153,10 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 				</p>
 				<p class="mx-auto mt-1 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
 					"Don't repeat yourself" – go and look it up on my <Link
-						href={config.social.linkedin}
+						href={LINKEDIN_URL}
 						target="_blank"
 						class="plausible-event-name=contact+linkedin plausible-event-name=contact">LinkedIn profile</Link
-					> or <Link href={`mailto:${config.social.email}`} target="_blank">reach out to me</Link>.
+					> or <Link href={`mailto:${EMAIL}`} target="_blank">reach out to me</Link>.
 				</p>
 			</div>
 		</section>
@@ -179,4 +180,4 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 			<Appearences class="mt-8" />
 		</section>
 	</main>
-</CommonLayout>
+</DefaultLayout>

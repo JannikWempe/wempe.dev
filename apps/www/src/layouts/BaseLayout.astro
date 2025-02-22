@@ -6,14 +6,20 @@ import Navigation from '~/components/Navigation.astro';
 import '@fontsource/geist-sans';
 import '../assets/styles/global.css';
 
-import type { MetaData as MetaDataType } from '~/types';
 import { ClientRouter } from 'astro:transitions';
+import type { ComponentProps } from 'astro/types';
 
-export interface Props {
-	metadata?: MetaDataType;
+declare global {
+	interface Window {
+		plausible: any;
+	}
 }
 
-const { metadata = {} } = Astro.props;
+export interface Props {
+	metadata: ComponentProps<typeof Metadata>;
+}
+
+const { metadata } = Astro.props;
 ---
 
 <!doctype html>
@@ -43,11 +49,6 @@ const { metadata = {} } = Astro.props;
 		<link rel="sitemap" href={'/sitemap-index.xml'} />
 		<!-- Enables RSS Feed auto-discovery -->
 		<link rel="alternate" type="application/rss+xml" title="Jannik Wempe Blog" href={new URL('rss.xml', Astro.site)} />
-
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="manifest" href="/site.webmanifest" />
 
 		<slot name="header" />
 

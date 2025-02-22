@@ -1,0 +1,21 @@
+---
+import type { ComponentProps } from 'astro/types';
+import BaseLayout from './BaseLayout.astro';
+import type Metadata from '~/components/Metadata.astro';
+
+export interface Props {
+	metadata: Omit<ComponentProps<typeof Metadata>, 'og'>;
+}
+
+const { metadata: _metadata } = Astro.props;
+const metadata = {
+	..._metadata,
+	og: {
+		type: 'website' as const,
+	},
+};
+---
+
+<BaseLayout {metadata}>
+	<slot />
+</BaseLayout>

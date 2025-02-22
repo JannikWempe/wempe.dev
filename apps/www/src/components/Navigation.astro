@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { config } from '~/constants/config';
-
+import { BLUESKY_URL, EMAIL, GITHUB_URL, HASHNODE_URL, LINKEDIN_URL, X_URL } from '~/constants/socials';
 interface Props {
 	currentPath: string;
 }
@@ -38,7 +37,7 @@ const navItems = [
 		<!-- Social Links -->
 		<div class="flex items-center gap-5">
 			<a
-				href={config.social.x}
+				href={X_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="plausible-event-name=contact+x plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
@@ -48,7 +47,7 @@ const navItems = [
 			</a>
 
 			<a
-				href={config.social.bluesky}
+				href={BLUESKY_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="plausible-event-name=contact+bluesky plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
@@ -58,7 +57,7 @@ const navItems = [
 			</a>
 
 			<a
-				href={config.social.linkedin}
+				href={LINKEDIN_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="plausible-event-name=contact+linkedin plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
@@ -68,7 +67,7 @@ const navItems = [
 			</a>
 
 			<a
-				href={config.social.github}
+				href={GITHUB_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="plausible-event-name=contact+github plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
@@ -78,7 +77,7 @@ const navItems = [
 			</a>
 
 			<a
-				href={config.social.hashnode}
+				href={HASHNODE_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="plausible-event-name=contact+hashnode plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
@@ -88,7 +87,7 @@ const navItems = [
 			</a>
 
 			<a
-				href={`mailto:${config.social.email}`}
+				href={`mailto:${EMAIL}`}
 				class="plausible-event-name=contact+email plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
 			>
 				<Icon name="lucide:mail" class="h-5 w-5" />
