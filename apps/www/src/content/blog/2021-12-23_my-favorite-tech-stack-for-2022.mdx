@@ -20,11 +20,11 @@ subtitle: >-
   will be valuable in the near future.
 ---
 import Callout from '../../components/Callout.astro';
-
+import { Tweet } from 'astro-embed';
 
 I just recently tweeted my favorite tech stack for 2022 (inspired by @[Jon Meyers](@dijonmusters) tweet). I'd like to share some more thoughts about my choices in this post.
 
-%[https://twitter.com/JannikWempe/status/1473935933447839748]
+<Tweet id="https://x.com/JannikWempe/status/1473935933447839748" />
 
 ## Frontend
 
@@ -36,7 +36,7 @@ There is so much out there. It can be paralyzing. I already used a variety of fr
 
 This blog post goes into detail [Why Svelte is different - and awesome](https://blog.jannikwempe.com/why-svelte-is-different-and-awesome). I just really enjoy using Svelte. It is more concise than React and more performant. Stores and animations are also great features. There is a reason why Svelte was the [most loved web framework in the Stack Overflow Developer Survey 2021](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks).
 
-I think Svelte will make a jump in popularity with the release of SvelteKit version 1.0 which is my default for every Svelte app. In addition to that, Rich Harris (the creator of Svelte) was hired by Vercel and is now working full-time on Svelte / SvelteKit. 
+I think Svelte will make a jump in popularity with the release of SvelteKit version 1.0 which is my default for every Svelte app. In addition to that, Rich Harris (the creator of Svelte) was hired by Vercel and is now working full-time on Svelte / SvelteKit.
 
 Svelte will rise and shine ✨
 
@@ -46,7 +46,7 @@ Svelte will rise and shine ✨
 
 ### NextJS
 
-Currently, I am still often using NextJS. It is great! Just like SvelteKit is my default for every Svelte project, NextJS is my default for any React project. Mostly for the same reasons: Static Site Generation (SSG), Server-Side Rendering (SSR), built-in file-based routing based, and more. 
+Currently, I am still often using NextJS. It is great! Just like SvelteKit is my default for every Svelte project, NextJS is my default for any React project. Mostly for the same reasons: Static Site Generation (SSG), Server-Side Rendering (SSR), built-in file-based routing based, and more.
 
 The ecosystem for React is way larger than the Svelte one and more people are familiar with React. Therefore NextJS is my choice for working together with other React-devs and when relying on a certain library that is not (yet) available in Svelte (can't think of any out of my head). In addition, the demand and job market for React / NextJS are much larger than for Svelte / SvelteKit.
 
@@ -68,7 +68,7 @@ Chakra UI is inspired by Tailwind. It is also based on a theme that uses very si
 
 ## Backend
 
-No frontend without backend (at least if you also consider static site hosting as backend). I do not only love frontend but I love backend as well — yes, I know, focusing is not one of my strengths, but I just can't go with just one of them. 
+No frontend without backend (at least if you also consider static site hosting as backend). I do not only love frontend but I love backend as well — yes, I know, focusing is not one of my strengths, but I just can't go with just one of them.
 
 ### Vercel
 

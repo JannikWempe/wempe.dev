@@ -2,11 +2,11 @@
 import { render } from 'astro:content';
 import { getCollection } from 'astro:content';
 import Prose from '~/components/Prose.astro';
-import Layout from '~/layouts/Layout.astro';
 import TableOfContents from '~/components/TableOfContents.astro';
 import { formatDate } from '~/utils/time';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 
 export const prerender = true;
 
@@ -22,9 +22,11 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
 const formattedDatePublished = formatDate(post.data.datePublished);
+
+const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 ---
 
-<Layout>
+<BlogPostLayout {hasTweetEmbed}>
 	<div class="container mx-auto px-4 py-8">
 		<div class="flex gap-20">
 			<main>
@@ -53,7 +55,7 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 			</aside>
 		</div>
 	</div>
-</Layout>
+</BlogPostLayout>
 
 <script>
 	function makeHeadingsClickable() {

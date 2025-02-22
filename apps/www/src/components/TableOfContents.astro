@@ -47,11 +47,9 @@ const { headings } = Astro.props;
 					const tocLink = document.querySelector(`[data-heading-id="${id}"]`);
 
 					if (entry.isIntersecting) {
-						// Remove active class from all links
 						document.querySelectorAll('.toc-link').forEach((link) => {
 							link.classList.remove('text-blue-600');
 						});
-						// Add active class to current link
 						tocLink?.classList.add('text-blue-600');
 					}
 				});
@@ -62,29 +60,22 @@ const { headings } = Astro.props;
 			},
 		);
 
-		// Observe all headings and apply scroll margin
 		document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').forEach((heading) => {
 			observer.observe(heading);
 			// Add scroll margin to match sticky top offset
 			(heading as HTMLElement).style.scrollMarginTop = '96px';
 		});
 
-		// Add click handlers to TOC links
 		document.querySelectorAll('.toc-link').forEach((link) => {
-			link.addEventListener('click', (e) => {
-				// Remove active class from all links
+			link.addEventListener('click', () => {
 				document.querySelectorAll('.toc-link').forEach((l) => {
 					l.classList.remove('text-blue-600');
 				});
-				// Add active class to clicked link
 				link.classList.add('text-blue-600');
 			});
 		});
 	}
 
-	// Update active heading when the page loads
 	updateActiveHeading();
-
-	// Update active heading when client-side navigation occurs
 	document.addEventListener('astro:page-load', updateActiveHeading);
 </script>

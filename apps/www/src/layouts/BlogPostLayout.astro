@@ -1,0 +1,21 @@
+---
+import type { MetaData as MetaDataType } from '~/types';
+
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+	metadata?: MetaDataType;
+	hasTweetEmbed: boolean;
+}
+
+const { metadata = {}, hasTweetEmbed } = Astro.props;
+---
+
+<BaseLayout {metadata}>
+	<Fragment slot="header">
+		<!-- Transforms basic Tweet embeds into interactive widgets -->
+		<!-- see https://astro-embed.netlify.app/components/twitter/  -->
+		{hasTweetEmbed && <script async src="https://platform.twitter.com/widgets.js" />}
+		<slot />
+	</Fragment>
+</BaseLayout>
