@@ -15,6 +15,7 @@ import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
 import BlogPostCard from '~/components/BlogPostCard.astro';
 import { EMAIL, LINKEDIN_URL } from '~/constants/socials';
+import WebPageJsonLd from '~/components/WebPageJsonLd.astro';
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
 
@@ -59,6 +60,9 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 			'Full-stack software engineer crafting high-impact web solutions. From frontend development to serverless architectures, I build scalable applications that solve real business challenges.',
 	}}
 >
+	<Fragment slot="header">
+		<WebPageJsonLd />
+	</Fragment>
 	<main>
 		<section class="relative flex justify-between">
 			{/* Background with gradient and pattern */}

@@ -1,6 +1,7 @@
 ---
-import { getImage } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { Schema } from 'astro-seo-schema';
+import { SITE_BASE_URL } from '~/constants/site';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
@@ -8,27 +9,29 @@ interface Props {
 
 const { post } = Astro.props;
 
-const optimizedImage = await getImage({ src: post.data.cover });
-let imageURL = optimizedImage.src;
-
-let schema = JSON.stringify({
-	'@context': 'https://schema.org/',
-	'@type': 'BlogPosting',
-	headline: post.data.title,
-	author: {
-		'@type': 'Person',
-		name: 'Jannik Wempe',
-	},
-	datePublished: post.data.datePublished,
-	dateCreated: post.data.datePublished,
-	description: post.data.excerpt,
-	url: new URL(`/blog/${post.id}`, Astro.site),
-	'inLanguage ': 'en-US',
-	image: imageURL,
-	// "keywords": tags,
-});
+const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
 ---
 
-...
-
-<script type="application/ld+json" set:html={schema} />
+<Schema
+	item={{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: post.data.title,
+		author: {
+			'@type': 'Person',
+			name: 'Jannik Wempe',
+			url: SITE_BASE_URL,
+		},
+		// TODO: add image
+		// image: post.data.cover,
+		datePublished: post.data.datePublished.toISOString(),
+		dateCreated: post.data.datePublished.toISOString(),
+		description: post.data.excerpt,
+		url: postUrl,
+		'inLanguage ': 'en-US',
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': postUrl,
+		},
+	}}
+/>

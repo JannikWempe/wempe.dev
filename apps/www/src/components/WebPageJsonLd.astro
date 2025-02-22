@@ -1,16 +1,18 @@
 ---
-let schema = JSON.stringify({
-	'@context': 'http://schema.org',
-	'@type': 'WebPage',
-	name: 'Jannik Wempe',
-	description: 'Jannik Wempe is a software engineer and entrepreneur.',
-	author: {
-		'@type': 'Person',
-		name: 'Jannik Wempe',
-	},
-});
+import { Schema } from 'astro-seo-schema';
+import { SITE_BASE_URL } from '~/constants/site';
 ---
 
-...
-
-<script type="application/ld+json" set:html={schema} />
+<Schema
+	item={{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: 'Jannik Wempe',
+		description: 'Jannik Wempe is a software engineer and entrepreneur.',
+		author: {
+			'@type': 'Person',
+			name: 'Jannik Wempe',
+			url: SITE_BASE_URL,
+		},
+	}}
+/>

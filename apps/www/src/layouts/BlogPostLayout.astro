@@ -15,6 +15,7 @@ const { post, headings } = Astro.props;
 const metadata = {
 	title: post.data.seoTitle ?? post.data.title,
 	description: post.data.seoDescription ?? post.data.excerpt,
+	// TODO: add og image
 	og: {
 		type: 'article' as const,
 	},

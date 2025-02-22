@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Schema } from 'astro-seo-schema';
+import { SITE_BASE_URL } from '~/constants/site';
+
+interface Props {
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+
+const blogPosts = await Promise.all(
+	posts.map(async (post) => {
+		const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
+
+		return {
+			'@type': 'BlogPosting' as const,
+			headline: post.data.title,
+			description: post.data.excerpt,
+			datePublished: post.data.datePublished.toISOString(),
+			url: postUrl,
+			'inLanguage ': 'en-US',
+			// TODO: add image
+			// image: post.data.cover,
+			author: {
+				'@type': 'Person' as const,
+				name: 'Jannik Wempe',
+				url: SITE_BASE_URL,
+			},
+		};
+	}),
+);
+const url = new URL('/blog', Astro.site).toString();
+---
+
+<Schema
+	item={{
+		'@context': 'https://schema.org',
+		'@type': 'Blog',
+		name: 'Jannik Wempe',
+		description: 'Jannik Wempe is a software engineer and entrepreneur.',
+		url: url,
+		publisher: {
+			'@type': 'Person',
+			name: 'Jannik Wempe',
+			url: SITE_BASE_URL,
+		},
+		blogPost: blogPosts,
+	}}
+/>

@@ -66,6 +66,9 @@ importers:
       astro-icon:
         specifier: 1.1.5
         version: 1.1.5
+      astro-seo-schema:
+        specifier: 5.0.0
+        version: 5.0.0(astro@5.3.0(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.2(typescript@5.7.3))
       astro-sst:
         specifier: workspace:*
         version: link:../../packages/astro-sst
@@ -75,6 +78,9 @@ importers:
       lodash.merge:
         specifier: 4.6.2
         version: 4.6.2
+      schema-dts:
+        specifier: 1.1.2
+        version: 1.1.2(typescript@5.7.3)
       tailwind-merge:
         specifier: 3.0.1
         version: 3.0.1
@@ -1001,6 +1007,12 @@ packages:
 
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
+
+  astro-seo-schema@5.0.0:
+    resolution: {integrity: sha512-rbP9BUxvqH4tdgG5VEYDcoAxUhVKv93TdHRQ5zbYUxee1TKAWsNcAG3nqavX83QTTGqU5anvikMcJZXWhGN9wg==}
+    peerDependencies:
+      astro: ^5.0.0
+      schema-dts: ^1.1.0
 
   astro@5.3.0:
     resolution: {integrity: sha512-e88l/Yk/6enR/ZDddLbqtM+oblBFk5mneNSmNesyVYGL/6Dj4UA67GPAZOk79VxT5dbLlclZSyyw/wlxN1aj3A==}
@@ -2331,6 +2343,11 @@ packages:
 
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+
+  schema-dts@1.1.2:
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
 
   semver@7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
@@ -3842,6 +3859,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
+
+  astro-seo-schema@5.0.0(astro@5.3.0(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.2(typescript@5.7.3)):
+    dependencies:
+      astro: 5.3.0(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.7.3)(yaml@2.7.0)
+      schema-dts: 1.1.2(typescript@5.7.3)
 
   astro@5.3.0(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.8)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
@@ -5651,6 +5673,10 @@ snapshots:
       suf-log: 2.5.3
 
   sax@1.4.1: {}
+
+  schema-dts@1.1.2(typescript@5.7.3):
+    dependencies:
+      typescript: 5.7.3
 
   semver@7.7.1: {}
 
