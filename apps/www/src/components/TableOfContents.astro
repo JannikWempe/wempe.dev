@@ -1,16 +1,19 @@
 ---
+import { twMerge } from 'tailwind-merge';
+
 interface Props {
 	headings: {
 		depth: number;
 		slug: string;
 		text: string;
 	}[];
+	class?: string;
 }
 
-const { headings } = Astro.props;
+const { headings, class: classes } = Astro.props;
 ---
 
-<nav class="sticky top-24 max-h-[calc(100vh-8rem)] w-80 overflow-auto">
+<nav class={twMerge('', classes)}>
 	<ul class="space-y-2">
 		{
 			headings.map((heading) => (

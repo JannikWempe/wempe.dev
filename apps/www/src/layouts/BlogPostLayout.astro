@@ -5,6 +5,7 @@ import TableOfContents from '~/components/TableOfContents.astro';
 import type { CollectionEntry } from 'astro:content';
 import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
+import ShareButtons from '~/components/ShareButtons.astro';
 import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
 
@@ -51,16 +52,19 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		{hasTweetEmbed && <script is:inline async src="https://platform.twitter.com/widgets.js" />}
 	</Fragment>
 
-	<div class="container mx-auto px-4 py-8">
+	<div class="container mx-auto py-8">
 		<div class="flex gap-20">
 			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
 			<main class="max-w-prose text-lg">
 				<slot />
 				<BlogPostNavigation {previousPost} {nextPost} />
 			</main>
-			<aside>
-				<TableOfContents {headings} />
-			</aside>
+			<div class="relative">
+				<aside class="sticky top-24 flex max-h-[calc(100vh-8rem)] flex-col gap-8">
+					<TableOfContents {headings} class="w-80" />
+					<ShareButtons url={Astro.url.toString()} title={post.data.title} />
+				</aside>
+			</div>
 		</div>
-	</div></BaseLayout
->
+	</div>
+</BaseLayout>
