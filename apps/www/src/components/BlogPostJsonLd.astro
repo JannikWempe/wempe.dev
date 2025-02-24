@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { Schema } from 'astro-seo-schema';
 import { SITE_BASE_URL } from '~/constants/site';
+import { render } from 'astro:content';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
@@ -9,12 +10,9 @@ interface Props {
 
 const { post } = Astro.props;
 
-const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
+const { remarkPluginFrontmatter } = await render(post);
 
-// Calculate reading time (rough estimate)
-const wordsPerMinute = 200;
-const wordCount = post.body ? post.body.split(/\s+/g).length : 0;
-const readingTime = Math.ceil(wordCount / wordsPerMinute);
+const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
 ---
 
 <Schema
@@ -31,8 +29,8 @@ const readingTime = Math.ceil(wordCount / wordsPerMinute);
 		datePublished: post.data.datePublished.toISOString(),
 		dateCreated: post.data.datePublished.toISOString(),
 		description: post.data.excerpt,
-		wordCount: wordCount,
-		timeRequired: `PT${readingTime}M`,
+		wordCount: remarkPluginFrontmatter.readingTime.words,
+		timeRequired: `PT${Math.ceil(remarkPluginFrontmatter.readingTime.minutes)}M`,
 		url: postUrl,
 		inLanguage: 'en-US',
 		mainEntityOfPage: {

@@ -5,19 +5,20 @@ import { getCollection, render } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
+import type { GetStaticPaths } from 'astro';
 
 export const prerender = true;
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
 		params: { id: post.id },
 		props: { post },
 	}));
-}
+}) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { Content, headings } = await render(post);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
 
 const formattedDatePublished = formatDate(post.data.datePublished);
 ---
@@ -33,13 +34,24 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 			loading="eager"
 			class="mb-4 rounded-lg"
 		/>
+
 		<h1 transition:name={`title-${post.data.slug}`} class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
 		{post.data.subtitle && <h2 class="mt-2 text-xl font-semibold text-indigo-900/70">{post.data.subtitle}</h2>}
-		<div class="mt-2 flex items-center gap-2">
-			<Icon name="lucide:calendar" class="text-slate-500" />
-			<time class="block text-sm font-semibold text-slate-500">
-				{formattedDatePublished}
-			</time>
+		<div class="mt-2 flex items-center gap-5">
+			<div class="flex items-center gap-1">
+				<Icon name="lucide:calendar" class="text-slate-500" />
+				<time class="block text-sm font-semibold text-slate-500">
+					{formattedDatePublished}
+				</time>
+			</div>
+			{
+				remarkPluginFrontmatter.readingTime && (
+					<div class="flex items-center gap-1">
+						<Icon name="lucide:clock" class="text-slate-500" />
+						<span class="text-sm font-semibold text-slate-500">{remarkPluginFrontmatter.readingTime.text}</span>
+					</div>
+				)
+			}
 		</div>
 	</Fragment>
 

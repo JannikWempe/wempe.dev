@@ -12,6 +12,7 @@ import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
 
 import { SITE_BASE_PATH, SITE_BASE_URL } from './src/constants/site';
+import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -60,7 +61,9 @@ export default defineConfig({
 		}),
 		partytown(),
 		expressiveCode({ themes: ['night-owl'] }),
-		mdx(),
+		mdx({
+			remarkPlugins: [remarkReadingTime],
+		}),
 	],
 	vite: {
 		plugins: [tsconfigPaths(), tailwindcss()],
