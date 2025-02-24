@@ -2,7 +2,6 @@
 import BaseLayout from './BaseLayout.astro';
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from '~/components/TableOfContents.astro';
-import TableOfContentsDrawer from '~/components/TableOfContentsDrawer.astro';
 import type { CollectionEntry } from 'astro:content';
 import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
@@ -53,19 +52,23 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		{hasTweetEmbed && <script is:inline async src="https://platform.twitter.com/widgets.js" />}
 	</Fragment>
 
-	<TableOfContentsDrawer {headings} url={Astro.url.toString()} title={post.data.title} />
-
 	<div class="container mx-auto py-8">
 		<div class="flex gap-20">
 			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
 			<main class="max-w-prose text-lg">
 				<slot />
-				<BlogPostNavigation {previousPost} {nextPost} />
+				<div class="mt-16 flex flex-col gap-8">
+					<hr class="border-slate-200 xl:hidden" />
+					<ShareButtons url={Astro.url.toString()} title={post.data.title} class="self-center text-center xl:hidden" />
+					<hr class="border-slate-200" />
+					<BlogPostNavigation {previousPost} {nextPost} />
+				</div>
 			</main>
-			<div class="relative hidden lg:block">
+			<div class="relative hidden xl:block">
 				<aside class="sticky top-24 flex max-h-[calc(100vh-8rem)] flex-col gap-8">
 					<TableOfContents {headings} class="w-80" />
-					<ShareButtons url={Astro.url.toString()} title={post.data.title} />
+					<hr class="border-slate-200" />
+					<ShareButtons url={Astro.url.toString()} title={post.data.title} class="hidden xl:block" />
 				</aside>
 			</div>
 		</div>

@@ -1,12 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
 	url: string;
 	title: string;
+	class?: string;
 }
 
-const { url, title } = Astro.props;
+const { url, title, class: classes } = Astro.props;
 
 // Encode the URL and title for sharing
 const encodedUrl = encodeURIComponent(url);
@@ -34,7 +36,7 @@ const shareLinks = [
 ];
 ---
 
-<div class="border-t pt-6">
+<div class={twMerge('', classes)}>
 	<h3 class="mb-4 text-sm font-semibold text-slate-900">Share this post</h3>
 	<div class="flex gap-4">
 		{

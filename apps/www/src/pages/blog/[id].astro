@@ -5,6 +5,7 @@ import { getCollection, render } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
+import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
 
 export const prerender = true;
 
@@ -40,6 +41,12 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 			{formattedDatePublished}
 		</time>
 	</div>
+
+	<!-- Mobile TOC -->
+	<div class="mt-8 xl:hidden">
+		<MobileTableOfContents {headings} />
+	</div>
+
 	<Prose id="content" class="mt-8">
 		<Content />
 	</Prose>

@@ -1,0 +1,96 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+	headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<nav class="relative rounded-2xl bg-white p-6 ring-1 shadow-[0_1px_3px_0_rgb(0,0,0,0.05)] ring-slate-900/5">
+	<h2 class="mb-4 text-base font-semibold text-slate-900">Table of contents</h2>
+	<div class="toc-wrapper relative">
+		<div class="toc-content max-h-[220px] overflow-hidden transition-[max-height] duration-200 ease-in-out">
+			<ul class="space-y-2.5">
+				{
+					headings.map((heading) => (
+						<li
+							class:list={[
+								'text-slate-600',
+								{
+									'ml-4': heading.depth === 3,
+									'ml-8': heading.depth === 4,
+									'ml-12': heading.depth === 5,
+									'ml-16': heading.depth === 6,
+								},
+							]}
+						>
+							<a href={`#${heading.slug}`} class="block text-[14px] leading-6">
+								{heading.text}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div
+			class="pointer-events-none absolute right-0 bottom-0 left-0 h-12 max-h-none bg-gradient-to-t from-white to-transparent opacity-100 transition-opacity duration-200"
+		>
+		</div>
+	</div>
+	<button
+		type="button"
+		id="toc-toggle"
+		class="mt-2 flex w-full cursor-pointer items-center justify-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900"
+	>
+		<span class="button-text">Show more</span>
+		<Icon name="lucide:chevron-down" class="h-4 w-4 transition-transform duration-200" />
+	</button>
+</nav>
+
+<script>
+	function setupMobileTOC() {
+		const tocWrapper = document.querySelector('.toc-wrapper');
+		const tocContent = tocWrapper?.querySelector('.toc-content');
+		const tocToggle = document.getElementById('toc-toggle');
+		const buttonText = tocToggle?.querySelector('.button-text');
+		const fadeOverlay = tocWrapper?.querySelector('div:last-child');
+		const chevron = tocToggle?.querySelector('svg');
+
+		// Only show toggle if content is taller than max-height
+		if (tocContent && tocToggle && fadeOverlay) {
+			const isContentOverflowing = tocContent.scrollHeight > 220;
+			if (!isContentOverflowing) {
+				tocToggle.classList.add('hidden');
+				fadeOverlay.classList.add('hidden');
+			}
+		}
+
+		tocToggle?.addEventListener('click', () => {
+			const isExpanded = tocContent?.classList.contains('!max-h-none');
+
+			// Toggle max-height
+			tocContent?.classList.toggle('!max-h-none');
+
+			// Toggle fade and chevron
+			if (isExpanded) {
+				fadeOverlay?.classList.remove('hidden');
+				fadeOverlay?.classList.remove('opacity-0');
+				chevron?.classList.remove('rotate-180');
+			} else {
+				fadeOverlay?.classList.add('opacity-0');
+				fadeOverlay?.classList.add('hidden');
+				chevron?.classList.add('rotate-180');
+			}
+
+			// Update button text
+			if (buttonText) {
+				buttonText.textContent = isExpanded ? 'Show more' : 'Show less';
+			}
+		});
+	}
+
+	document.addEventListener('astro:page-load', setupMobileTOC);
+</script>
