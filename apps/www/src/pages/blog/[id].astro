@@ -29,8 +29,8 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 			transition:name={`cover-${post.data.slug}`}
 			src={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src}
 			alt={post.data.title}
-			width={1000}
-			height={525}
+			width={800}
+			height={420}
 			loading="eager"
 			class="mb-4 rounded-lg"
 		/>

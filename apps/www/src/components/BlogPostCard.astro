@@ -22,12 +22,14 @@ const { remarkPluginFrontmatter } = await render(post);
 
 <article class={twMerge('relative', classes)} {...rest}>
 	<div class="relative aspect-[1600/840] w-full">
+		<!-- Dimensions based two columns in a container -->
 		<Image
 			transition:name={`cover-${slug}`}
 			src={getCoverImageSrc(cover)}
 			alt={title}
-			width={1600}
-			height={840}
+			width={650}
+			height={303}
+			format="webp"
 			class="rounded-xl object-cover"
 			{...imageProps}
 		/>
