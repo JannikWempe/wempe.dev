@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components';
+import TableOfContents from './TableOfContents.astro';
+import ShareButtons from './ShareButtons.astro';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+	headings: MarkdownHeading[];
+	url: string;
+	title: string;
+}
+
+const { headings, url, title } = Astro.props;
+---
+
+<div class="lg:hidden">
+	<!-- Toggle Button -->
+	<button
+		id="toc-toggle"
+		type="button"
+		class="fixed top-20 right-4 z-30 rounded-md bg-white p-2 text-slate-600 shadow-md transition-colors hover:text-slate-900"
+		aria-label="Toggle table of contents"
+	>
+		<Icon name="lucide:list" class="h-6 w-6" />
+	</button>
+
+	<!-- Backdrop -->
+	<div
+		id="toc-backdrop"
+		class="fixed inset-0 z-40 hidden bg-black/20 backdrop-blur-sm transition-opacity"
+		aria-hidden="true"
+	>
+	</div>
+
+	<!-- Drawer -->
+	<div
+		id="toc-drawer"
+		class="fixed top-0 right-0 bottom-0 z-50 hidden w-80 transform overflow-y-auto bg-white p-6 shadow-lg transition-transform"
+		aria-label="Table of contents"
+	>
+		<div class="flex items-center justify-between">
+			<h2 class="text-lg font-semibold text-slate-900">Contents</h2>
+			<button
+				id="toc-close"
+				type="button"
+				class="rounded-md p-2 text-slate-600 transition-colors hover:text-slate-900"
+				aria-label="Close table of contents"
+			>
+				<Icon name="lucide:x" class="h-5 w-5" />
+			</button>
+		</div>
+		<div class="mt-4">
+			<TableOfContents {headings} />
+		</div>
+		<ShareButtons {url} {title} />
+	</div>
+</div>
+
+<script>
+	function setupTOCDrawer() {
+		const toggle = document.getElementById('toc-toggle');
+		const drawer = document.getElementById('toc-drawer');
+		const backdrop = document.getElementById('toc-backdrop');
+		const close = document.getElementById('toc-close');
+
+		function openDrawer() {
+			drawer?.classList.remove('hidden', 'translate-x-full');
+			backdrop?.classList.remove('hidden');
+			// Prevent body scroll when drawer is open
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeDrawer() {
+			drawer?.classList.add('translate-x-full');
+			backdrop?.classList.add('hidden');
+			document.body.style.overflow = '';
+			// Hide drawer after transition
+			setTimeout(() => {
+				drawer?.classList.add('hidden');
+			}, 300);
+		}
+
+		toggle?.addEventListener('click', openDrawer);
+		close?.addEventListener('click', closeDrawer);
+		backdrop?.addEventListener('click', closeDrawer);
+
+		// Close drawer on navigation
+		document.querySelectorAll('#toc-drawer .toc-link').forEach((link) => {
+			link.addEventListener('click', closeDrawer);
+		});
+	}
+
+	document.addEventListener('astro:page-load', setupTOCDrawer);
+</script>
