@@ -5,7 +5,6 @@ import { getCollection, render } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
-import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
 
 export const prerender = true;
 
@@ -24,28 +23,25 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 ---
 
 <BlogPostLayout {post} {headings}>
-	<Image
-		transition:name={`cover-${post.data.slug}`}
-		src={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src}
-		alt={post.data.title}
-		width={1000}
-		height={525}
-		loading="eager"
-		class="mb-4 rounded-lg"
-	/>
-	<h1 transition:name={`title-${post.data.slug}`} class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
-	{post.data.subtitle && <h2 class="mt-2 text-xl font-semibold text-indigo-900/70">{post.data.subtitle}</h2>}
-	<div class="mt-2 flex items-center gap-2">
-		<Icon name="lucide:calendar" class="text-slate-500" />
-		<time class="block text-sm font-semibold text-slate-500">
-			{formattedDatePublished}
-		</time>
-	</div>
-
-	<!-- Mobile TOC -->
-	<div class="mt-8 xl:hidden">
-		<MobileTableOfContents {headings} />
-	</div>
+	<Fragment slot="header">
+		<Image
+			transition:name={`cover-${post.data.slug}`}
+			src={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src}
+			alt={post.data.title}
+			width={1000}
+			height={525}
+			loading="eager"
+			class="mb-4 rounded-lg"
+		/>
+		<h1 transition:name={`title-${post.data.slug}`} class="text-3xl font-bold text-indigo-900">{post.data.title}</h1>
+		{post.data.subtitle && <h2 class="mt-2 text-xl font-semibold text-indigo-900/70">{post.data.subtitle}</h2>}
+		<div class="mt-2 flex items-center gap-2">
+			<Icon name="lucide:calendar" class="text-slate-500" />
+			<time class="block text-sm font-semibold text-slate-500">
+				{formattedDatePublished}
+			</time>
+		</div>
+	</Fragment>
 
 	<Prose id="content" class="mt-8">
 		<Content />
