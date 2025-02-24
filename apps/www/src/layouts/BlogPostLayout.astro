@@ -4,6 +4,9 @@ import type { MarkdownHeading } from 'astro';
 import TableOfContents from '~/components/TableOfContents.astro';
 import type { CollectionEntry } from 'astro:content';
 import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
+import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
+import { getCollection } from 'astro:content';
+import { newestFirst } from '~/lib/blog';
 
 export interface Props {
 	post: CollectionEntry<'blog'>;
@@ -11,6 +14,12 @@ export interface Props {
 }
 
 const { post, headings } = Astro.props;
+
+// Get previous and next posts
+const posts = (await getCollection('blog')).sort(newestFirst);
+const currentIndex = posts.findIndex((p) => p.id === post.id);
+const previousPost = posts[currentIndex + 1];
+const nextPost = posts[currentIndex - 1];
 
 const metadata = {
 	title: post.data.seoTitle ?? post.data.title,
@@ -47,6 +56,7 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
 			<main class="max-w-prose text-lg">
 				<slot />
+				<BlogPostNavigation {previousPost} {nextPost} />
 			</main>
 			<aside>
 				<TableOfContents {headings} />

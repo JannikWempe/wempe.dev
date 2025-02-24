@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+	previousPost?: CollectionEntry<'blog'>;
+	nextPost?: CollectionEntry<'blog'>;
+}
+
+const { previousPost, nextPost } = Astro.props;
+---
+
+<nav class="mt-12 flex justify-between gap-4 border-t border-slate-200 pt-8">
+	{
+		previousPost && (
+			<a
+				href={`/blog/${previousPost.id}`}
+				class="group flex max-w-[45%] items-start gap-2 text-left transition-colors hover:text-indigo-800"
+			>
+				<Icon name="lucide:arrow-left" class="mt-1 shrink-0" />
+				<div>
+					<span class="block text-sm text-slate-500">Previous Post</span>
+					<span class="line-clamp-3 font-semibold">{previousPost.data.title}</span>
+				</div>
+			</a>
+		)
+	}
+	{
+		nextPost && (
+			<a
+				href={`/blog/${nextPost.id}`}
+				class="group ml-auto flex max-w-[45%] items-start gap-2 text-right transition-colors hover:text-indigo-800"
+			>
+				<div>
+					<span class="block text-sm text-slate-500">Next Post</span>
+					<span class="line-clamp-3 font-semibold">{nextPost.data.title}</span>
+				</div>
+				<Icon name="lucide:arrow-right" class="mt-1 shrink-0" />
+			</a>
+		)
+	}
+</nav>
