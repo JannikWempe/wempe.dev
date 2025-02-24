@@ -8,6 +8,7 @@ import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
 import ShareButtons from '~/components/ShareButtons.astro';
 import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
+import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
 
 export interface Props {
 	post: CollectionEntry<'blog'>;
@@ -56,6 +57,11 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		<div class="flex gap-20">
 			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
 			<main class="max-w-prose text-lg">
+				<slot name="header" />
+				<!-- Mobile TOC -->
+				<div class="mt-8 xl:hidden">
+					<MobileTableOfContents {headings} />
+				</div>
 				<slot />
 				<div class="mt-16 flex flex-col gap-8">
 					<hr class="border-slate-200 xl:hidden" />
