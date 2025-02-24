@@ -8,7 +8,7 @@ const blog = defineCollection({
 			slug: z.string(),
 			title: z.string(),
 			subtitle: z.string().optional(),
-			cover: image(),
+			cover: z.union([image(), z.string().url()]),
 			datePublished: z.coerce.date(), // ISO date string
 			excerpt: z.string(),
 

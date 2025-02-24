@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
-import type { CollectionEntry } from 'astro:content';
 import BlogIndexJsonLd from '~/components/BlogIndexJsonLd.astro';
+import { newestFirst } from '~/lib/blog';
 
 export const prerender = true;
 
-const newestFirst = (a: CollectionEntry<'blog'>, z: CollectionEntry<'blog'>) =>
-	z.data.datePublished.getTime() - a.data.datePublished.getTime();
 const posts = (await getCollection('blog')).sort(newestFirst);
 ---
 

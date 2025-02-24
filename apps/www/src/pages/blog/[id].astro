@@ -25,7 +25,7 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 <BlogPostLayout {post} {headings}>
 	<Image
 		transition:name={`cover-${post.data.slug}`}
-		src={post.data.cover}
+		src={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src}
 		alt={post.data.title}
 		width={1000}
 		height={525}

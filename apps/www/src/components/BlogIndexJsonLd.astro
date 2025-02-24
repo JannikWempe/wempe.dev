@@ -20,8 +20,10 @@ const blogPosts = await Promise.all(
 			datePublished: post.data.datePublished.toISOString(),
 			url: postUrl,
 			'inLanguage ': 'en-US',
-			// TODO: add image
-			// image: post.data.cover,
+			image: new URL(
+				typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src,
+				Astro.site,
+			).toString(),
 			author: {
 				'@type': 'Person' as const,
 				name: 'Jannik Wempe',

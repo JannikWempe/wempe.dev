@@ -15,9 +15,19 @@ const { post, headings } = Astro.props;
 const metadata = {
 	title: post.data.seoTitle ?? post.data.title,
 	description: post.data.seoDescription ?? post.data.excerpt,
-	// TODO: add og image
+	image: {
+		url: typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src,
+		width: typeof post.data.cover === 'string' ? 1200 : post.data.cover.width,
+		height: typeof post.data.cover === 'string' ? 630 : post.data.cover.height,
+	},
 	og: {
 		type: 'article' as const,
+		article: {
+			publishedTime: post.data.datePublished.toISOString(),
+			modifiedTime: post.data.datePublished.toISOString(),
+			author: 'Jannik Wempe',
+			section: 'Web Development',
+		},
 	},
 };
 

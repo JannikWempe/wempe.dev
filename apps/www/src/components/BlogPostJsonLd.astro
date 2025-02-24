@@ -10,6 +10,11 @@ interface Props {
 const { post } = Astro.props;
 
 const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
+
+// Calculate reading time (rough estimate)
+const wordsPerMinute = 200;
+const wordCount = post.body ? post.body.split(/\s+/g).length : 0;
+const readingTime = Math.ceil(wordCount / wordsPerMinute);
 ---
 
 <Schema
@@ -22,16 +27,23 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
 			name: 'Jannik Wempe',
 			url: SITE_BASE_URL,
 		},
-		// TODO: add image
-		// image: post.data.cover,
+		image: new URL(typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src, Astro.site).toString(),
 		datePublished: post.data.datePublished.toISOString(),
 		dateCreated: post.data.datePublished.toISOString(),
 		description: post.data.excerpt,
+		wordCount: wordCount,
+		timeRequired: `PT${readingTime}M`,
 		url: postUrl,
-		'inLanguage ': 'en-US',
+		inLanguage: 'en-US',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
 			'@id': postUrl,
+		},
+		keywords: post.data.tags?.join(', '),
+		publisher: {
+			'@type': 'Person',
+			name: 'Jannik Wempe',
+			url: SITE_BASE_URL,
 		},
 	}}
 />
