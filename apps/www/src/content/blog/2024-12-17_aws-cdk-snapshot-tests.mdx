@@ -30,7 +30,7 @@ Snapshot tests **capture the output of a system** and save it as a reference "sn
 runs, new snapshots are compared against this stored reference – **any differences trigger a test failure**. Think of it
 as taking a "photograph" of your system's output and comparing future changes against it.
 
-![Flowchart illustrating two processes: The first run involves creating a snapshot using CDK code and CloudFormation; the snapshot is then created. Subsequent runs involve CDK code and CloudFormation to compare with the snapshot, resulting in either a pass or fail outcome.](https://cdn.hashnode.com/res/hashnode/image/upload/v1734444906658/b009a943-42f2-4eb8-8133-a92756ba9482.png)
+![Flowchart illustrating two processes: The first run involves creating a snapshot using CDK code and CloudFormation; the snapshot is then created. Subsequent runs involve CDK code and CloudFormation to compare with the snapshot, resulting in either a pass or fail outcome.](https://cdn.hashnode.com/res/hashnode/image/upload/v1734444906658/b009a943-42f2-4eb8-8133-a92756ba9482.png?auto=format,compress&w=800&fit=fillmax)
 
 In AWS CDK, snapshot tests **verify the CloudFormation templates** that CDK generates from your infrastructure code.
 Whether you write CDK in TypeScript, Python, or other supported languages, your code ultimately **synthesizes into
@@ -97,7 +97,7 @@ modifications before they reach production.
 This is a real-world screenshot I have taken from a simple AWS Lambda timeout adjustment, but I think it is sufficient
 to get the idea:
 
-![Screenshot from a GitHub pull request that shows a diff in an updated snapshot test file.](https://cdn.hashnode.com/res/hashnode/image/upload/v1734445468360/ca9e6cee-b9cd-446d-94dc-f56a1486a240.png)
+![Screenshot from a GitHub pull request that shows a diff in an updated snapshot test file.](https://cdn.hashnode.com/res/hashnode/image/upload/v1734445468360/ca9e6cee-b9cd-446d-94dc-f56a1486a240.png?auto=format,compress&w=800&fit=fillmax)
 
 ### **Guard Rails for Infrastructure Changes**
 

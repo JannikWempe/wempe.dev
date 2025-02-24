@@ -32,7 +32,7 @@ Think of it as a status or mode of a system. Let us take a simplified oven as an
 
 Maybe you have also heard about *Finite State Machines (FSM)*? Have you googled "state machines" before? FSMs will be all over the place. This is how it looks like:
 
-![state machines google search](https://cdn.hashnode.com/res/hashnode/image/upload/v1628324514880/K8F9JoCmB.png)
+![state machines google search](https://cdn.hashnode.com/res/hashnode/image/upload/v1628324514880/K8F9JoCmB.png?auto=format,compress&w=800&fit=fillmax)
 
 Ok fine, but **what is the difference between state machines and finite state machines?** It is rather obvious: it's the word "finite".
 
@@ -44,11 +44,11 @@ With the terminology about state machines and FSMs out of the way let us now ans
 
 An FSM is a mathematical [model of computation](https://en.wikipedia.org/wiki/Model_of_computation). It is always exactly in one state at a time. And, as the name suggests, consists of a finite number of states. FSMs are part of the automata theory. They are also called *finite state automata (FSA)*.
 
-![state machines as part of automata theory](https://cdn.hashnode.com/res/hashnode/image/upload/v1628336465395/khx5SInlYp.jpeg)
+![state machines as part of automata theory](https://cdn.hashnode.com/res/hashnode/image/upload/v1628336465395/khx5SInlYp.jpeg?auto=format,compress&w=800&fit=fillmax)
 
 I can already hear you thinking that this is being way too theoretical. It is getting more practical now. Let me show you the different parts of a state machine using a state(-transition) diagram showcasing the behavior of a video player:
 
-![state machine example](https://cdn.hashnode.com/res/hashnode/image/upload/v1628420019200/X1wpLZ9Ix.png)
+![state machine example](https://cdn.hashnode.com/res/hashnode/image/upload/v1628420019200/X1wpLZ9Ix.png?auto=format,compress&w=800&fit=fillmax)
 
 This diagram depicts all mandatory parts of an FSM: There are three different **states** (`stopped`, `playing`, `paused`) whereas `stopped` is the **initial state**. There are multiple **transitions** between states. A transition is a function that determines the next state based on the current state and an **event** (`f(currentState, event) = nextState`), e.g. being in the `playing` state and receiving a `pause` event would lead to a transition to the `paused` state.
 
@@ -64,7 +64,7 @@ Optionally there are zero or more **final states**, which are states without any
 
 Remember state machines being a mathematical model? This is how you would define the aforementioned using math:
 
-![state machine mathematical model](https://cdn.hashnode.com/res/hashnode/image/upload/v1628337989607/oGAPOoD6C.png)
+![state machine mathematical model](https://cdn.hashnode.com/res/hashnode/image/upload/v1628337989607/oGAPOoD6C.png?auto=format,compress&w=800&fit=fillmax)
 
 That is already a very good foundational knowledge about state machines. There is more to it, like different classifications (deterministic vs. non-deterministic and Moore machines vs. Mealy machines), but I would consider them as extended knowledge. Therefore I will not go into details here.
 
@@ -78,7 +78,7 @@ Imagine the video player example above would be extended to also include whether
 
 Can you imagine how wild this would get with complex systems? There is even a term for that: [state explosion](https://statecharts.dev/state-machine-state-explosion.html) (aka exponential blow-up problem). But don't worry, statecharts to the rescue. To describe the need for statecharts with the words of its inventor David Haral (therefore they are also known as Harel statecharts):
 
-> However, it is also generally agreed that a complex system cannot be beneficially 
+> However, it is also generally agreed that a complex system cannot be beneficially
 described in this naive fashion [referring to FSMs], because of the unmanageable, exponentially growing multitude of states, all of which have to be arranged in a ‘flat’ unstratified fashion, resulting in an **unstructured, unrealistic, and chaotic state diagram**.
 
 (taken from [STATECHARTS: A VISUAL FORMALISM FOR COMPLEX SYSTEMS by David Harel from 1987](http://www.inf.ed.ac.uk/teaching/courses/seoc/2005_2006/resources/statecharts.pdf)
@@ -94,7 +94,7 @@ I would refer to hierarchical and orthogonal states as the main features because
 
 I'll explain the aforementioned features by extending our video player example:
 
-![statechart example](https://cdn.hashnode.com/res/hashnode/image/upload/v1628418544061/o1JdyQ0RP.png)
+![statechart example](https://cdn.hashnode.com/res/hashnode/image/upload/v1628418544061/o1JdyQ0RP.png?auto=format,compress&w=800&fit=fillmax)
 
 *Please note that this is a simplified example. It is missing crucial parts like some kind of an error state.*
 
@@ -140,7 +140,7 @@ In addition, conditions allow us multiple outgoing transitions for the same even
 
 Actions are outputs of your statecharts. They are side-effects allowing us to interact with the world outside of the machine itself or to send events to the machine. They are instantaneous and ideally take zero amount of time (you are not waiting for something to be finished, e.g. a request to respond). Think of actions like "fire and forget".
 
-Actions can happen in three different scenarios: **entering** a state, **exiting** a state, or when **transitioning**. I included examples for all of those in the video player. 
+Actions can happen in three different scenarios: **entering** a state, **exiting** a state, or when **transitioning**. I included examples for all of those in the video player.
 
 When entering `loading` we fire the `showLoadingIndicator` action and when exiting that stat we would fire `hideLoadingIndicator` *(This is probably not what you would do, because you could just show the loading indication by checking the state. But you could do it this way and I was lacking a better example)*. Also, for the transitions of the `play` events, I added the `start` action. This action could send a signal to an actual video player implementation.
 

@@ -70,13 +70,13 @@ This one should be obvious: No runtime to load for the client results in faster 
 
 The following image shows an excerpt of a JS framework benchmark (see [this GitHub repo](https://github.com/krausest/js-framework-benchmark)). It's based on a large table with randomized entries and measures the time for various operations including rendering duration.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1619355158508/Olvdi5zOk.png)
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1619355158508/Olvdi5zOk.png?auto=format,compress&w=800&fit=fillmax)
 
 The app using Svelte ships the lowest amount of code. *(Somehow Svelte seems to require less code than vanilla JS, I have no clue how that could happen 😅)*
 
 But it not only ships less code to the client but also executes faster:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1619355565050/accrTZHyr.png)
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1619355565050/accrTZHyr.png?auto=format,compress&w=800&fit=fillmax)
 
 One of the reasons for this is that Svelte does not use a virtual DOM (vDOM). Svelte does not rely on the diff between vDOM and DOM to update the DOM. The other mentioned frameworks like React, Vue ~~and Angular~~ *(EDIT: Angular uses Incremental DOM)* do use the vDOM. You can read details about this in Svelte's blog post [Virtual DOM is pure overhead](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
 
@@ -86,10 +86,10 @@ A quick quote from that post:
 ## Svelte in a Micro-Frontend Architecture
 Micro-Frontends (MFEs) is a topic in itself (read about it in [this article](https://martinfowler.com/articles/micro-frontends.html) proved by [Martin Fowler](https://twitter.com/martinfowler)). But the concept is basically that different teams can separately develop distinct parts of the frontend. Teams can also choose the tech stack they want to use. Therefore the client could end up loading different versions of Angular, Vue, React, etc.:
 
-> Some micro frontend implementations can lead to duplication of dependencies, *increasing the number of bytes our users must download*. 
+> Some micro frontend implementations can lead to duplication of dependencies, *increasing the number of bytes our users must download*.
 *(from Martin Fowler article linked above)*
 
-But what about Svelte? Svelte (also using different versions of it) does not come with the downside of increasing the KBs a client has to load. 
+But what about Svelte? Svelte (also using different versions of it) does not come with the downside of increasing the KBs a client has to load.
 
 Svelte is an awesome choice for MFE Architecture.
 
@@ -108,7 +108,7 @@ The REPL is used in their awesome tutorial as well. You can learn Svelte hands-o
 ## Builtin features
 Svelte has some features built-in that you need in almost any app anyways (at least larger ones), like transitions, animations, and a store. No need for an additional dependency or the decision between various choices in the first place.
 
-> A store is simply an object with a subscribe method that allows interested parties to be notified whenever the store value changes. 
+> A store is simply an object with a subscribe method that allows interested parties to be notified whenever the store value changes.
 
 ```javascript
 import { writable } from 'svelte/store';
@@ -138,7 +138,7 @@ Animations and transitions in Svelte are easy to use. Can you guess what the fol
 
 But they can also be used for more complex things, like the following:
 
-![animations.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1619357232242/hS_6eOg5V.gif)
+![animations.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1619357232242/hS_6eOg5V.gif?auto=format,compress&w=800&fit=fillmax)
 
 Have fun building this in React 🤪
 

@@ -44,7 +44,7 @@ You could just remove your last commit using `git reset HEAD^ --hard` and `git p
 of a shared remote branch. (Even if you are alone in this project I'd prefer the next solution). It can introduce
 conflicts with your co-workers' local working version of that branch. But how to do better?
 
-![removing commit SHA1 by using git reset and force push](https://cdn.hashnode.com/res/hashnode/image/upload/v1674669030942/108711f3-5a33-495a-b628-94803e065465.png)
+![removing commit SHA1 by using git reset and force push](https://cdn.hashnode.com/res/hashnode/image/upload/v1674669030942/108711f3-5a33-495a-b628-94803e065465.png?auto=format,compress&w=800&fit=fillmax)
 
 **Here is where** `git revert` **comes into place.**
 
@@ -59,7 +59,7 @@ This is what we want. We create a new commit (not changing the existing commits 
 that applies the changes that the commit to be reverted introduced. We can revert the changes of the last commit by
 finding its SHA using `git log` and run `git revert SHA`:
 
-![reverting a single commit using git log and git revert](https://cdn.hashnode.com/res/hashnode/image/upload/v1674667816083/3809b465-a5d3-45f3-b4b0-dfe60ab666e3.png)
+![reverting a single commit using git log and git revert](https://cdn.hashnode.com/res/hashnode/image/upload/v1674667816083/3809b465-a5d3-45f3-b4b0-dfe60ab666e3.png?auto=format,compress&w=800&fit=fillmax)
 
 Commit `SHA3` now applies the changes that are required to get back from `SHA2` to `SHA1`. Problem solved and we are
 good to go, right? Well, in this simple case, yes. But often we work with Pull Requests (PRs) and create merge commits
@@ -92,7 +92,7 @@ Okay, next question: What does "which side of the merge should be considered the
 
 Let's have a look at this scenario:
 
-![two branches and a merge commit SHA3 that is based on SHA1 (main branch) and SHA2 (branch A)](https://cdn.hashnode.com/res/hashnode/image/upload/v1674668527499/4ae01ecd-3c31-489d-88c5-ef82837f186a.png)
+![two branches and a merge commit SHA3 that is based on SHA1 (main branch) and SHA2 (branch A)](https://cdn.hashnode.com/res/hashnode/image/upload/v1674668527499/4ae01ecd-3c31-489d-88c5-ef82837f186a.png?auto=format,compress&w=800&fit=fillmax)
 
 As you can see, `SHA3` which introduced the issues has **two parent branches** (`SHA1` and `SHA2`). How should git know
 which one it should revert to (the mainline)? This is what you have to tell `git revert` with the `-m` option.
@@ -100,7 +100,7 @@ which one it should revert to (the mainline)? This is what you have to tell `git
 How to find the "parent number" that you have to pass to `git revert -m`? You can use `git catfile -p SHA3` for that or
 look at the commit message of the merge commit using `git log`:
 
-![git log and git cat-file commands in action](https://cdn.hashnode.com/res/hashnode/image/upload/v1674669278777/d7c0269e-7fc1-4d44-b767-e400a0f187e7.png)
+![git log and git cat-file commands in action](https://cdn.hashnode.com/res/hashnode/image/upload/v1674669278777/d7c0269e-7fc1-4d44-b767-e400a0f187e7.png?auto=format,compress&w=800&fit=fillmax)
 
 `git log` tells you that `SHA3` is a merge commit of `SHA1` and `SHA2`. `git cat-file` shows you details for commit
 `SHA3` and tells you that `SHA3` has two parents (basically the same info as in the commit message). In both cases the
@@ -108,7 +108,7 @@ first mentioned SHA is `parent-number` 1 (the second 2 etc.). In order to revert
 and get back to `SHA1` you have to execute `git revert -m 1 SHA3`. Now you are all set and can push the branch with the
 new commit.
 
-![adding a new commit SHA4 that reverts SHA3 back to the state of SHA1](https://cdn.hashnode.com/res/hashnode/image/upload/v1674668889646/27d39782-d101-4220-a766-dbaed6359247.png)
+![adding a new commit SHA4 that reverts SHA3 back to the state of SHA1](https://cdn.hashnode.com/res/hashnode/image/upload/v1674668889646/27d39782-d101-4220-a766-dbaed6359247.png?auto=format,compress&w=800&fit=fillmax)
 
 Now you know to revert merge commits and understand what you are doing instead of copying the command from Stackoverflow
 over and over again 😜

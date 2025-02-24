@@ -30,7 +30,7 @@ This post will be about the basic building blocks of DDD: **_Entities and Value 
 two of the building blocks in DDD expressing the model. They are the starting points for Domain-Driven Design (besides
 Services and Domain Events).
 
-![entities_value-objects.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1625991596910/OqWYI40Qe.png)
+![entities_value-objects.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1625991596910/OqWYI40Qe.png?auto=format,compress&w=800&fit=fillmax)
 
 Besides just looking at the definitions of Entity and VO, I will also provide you with some guidance on how to
 distinguish them.
@@ -63,12 +63,12 @@ if attributes like `email` or even `name` change. It is important to define what
 student. Maybe it would be something like `matriculationNumber` or just a generic `id`. The following image shows a
 potential class diagram for this application, which I'll use as an example from now on.
 
-![Entities.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626007641550/iwbJg62Rv.png)
+![Entities.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626007641550/iwbJg62Rv.png?auto=format,compress&w=800&fit=fillmax)
 
 This could be the database representation of an actual instance of the `Student` Entity _(for simplicity the_ `Course`
 is committed as it isn't really required to prove my point later on):
 
-![database_representation.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626009179377/OC3PgUleU.png)
+![database_representation.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626009179377/OC3PgUleU.png?auto=format,compress&w=800&fit=fillmax)
 
 You have to answer the question **"What makes an object the same object?"** from a domain perspective. Therefore
 defining the identity of an Entity demands understanding of the domain.
@@ -100,7 +100,7 @@ one of the attributes would make it a different address. An address is more like
 of a primitive data type like string, boolean, etc.) **of an Entity (or other VOs;** in this case of the Entity
 `Student`).
 
-![entities-and-vo.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626008060606/biY7edZ3K.png)
+![entities-and-vo.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626008060606/biY7edZ3K.png?auto=format,compress&w=800&fit=fillmax)
 
 Not caring about the identity of an object gives us the freedom to simplify our design and optimize performance. We can
 now share instances of VOs because they are essentially like a complex attribute holding some information. **BUT** in
@@ -113,7 +113,7 @@ would affect the other student as well. Instead, we end up creating a new `Addre
 instance of that address if it exists). Sharing a VO instance is shown in the next image. It also showcases the VO being
 like a complex attribute because it ends up in the same row in the database in this case.
 
-![reference_vo.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626009267226/PAH9IWM9K.png)
+![reference_vo.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626009267226/PAH9IWM9K.png?auto=format,compress&w=800&fit=fillmax)
 
 Do not attach artificial IDs to a VO. VOs are also not represented in their own table in a database. If you do so you
 would not only end up losing the benefits of performance and lower complexity of VOs, but you would also muddle the
@@ -132,7 +132,7 @@ But as we already learned, there are differences in Entities and VOs.
 
 The following table showcases the main differences between Entities and Value Objects:
 
-![Entities-Page-5.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626010038393/bWvqwCDak.png)
+![Entities-Page-5.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1626010038393/bWvqwCDak.png?auto=format,compress&w=800&fit=fillmax)
 
 The following questions can help to identify an Entity or a VO:
 

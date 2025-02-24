@@ -69,7 +69,7 @@ With statecharts, you will be using a **top-down approach**. You would first sta
 
 ✅ **Easier Communication**
 
-A visualization of the logic is not only very useful for implementation but also for communication. Can you show your code to business experts arguing about correctness or completeness? You can't. But you can show them a diagram with states, events, transitions, and so on. 
+A visualization of the logic is not only very useful for implementation but also for communication. Can you show your code to business experts arguing about correctness or completeness? You can't. But you can show them a diagram with states, events, transitions, and so on.
 
 The visualization can help to bridge the gap between business experts and developers. It helps to solve the actual business problem in a correct way. You can (and should) use actual business terms for states and events. This makes it a handy tool in combination with [Domain-Driven Design](https://blog.jannikwempe.com/domain-driven-design-introduction). Using tools like Event Storming works well together with the concept of statecharts.
 
@@ -77,12 +77,12 @@ The visualization can help to bridge the gap between business experts and develo
 
 ✅ **Improved Readability and Maintainability**
 
-With statecharts you describe behavior in a single place instead of having it scattered everywhere in your code. This enables a nice **separation of concerns** between behavior/logic and presentation (in case of using it in a frontend). Both of these will be easier to understand when being separated. 
+With statecharts you describe behavior in a single place instead of having it scattered everywhere in your code. This enables a nice **separation of concerns** between behavior/logic and presentation (in case of using it in a frontend). Both of these will be easier to understand when being separated.
 
 I highly recommend watching the talk [Finite State Machines in Vue 3](https://youtu.be/fT9p9CCSrn8) by [Sarah Dayan](https://twitter.com/frontstuff_io). She refactors some Vue code using [XState](https://xstate.js.org/) (a JavaScript statecharts library). The result is much more readable after the refactoring.
 
 Having the behavior separated in a state machine also enables you to reuse it. You can replace the UI and keep the logic. You can't do that with presentation and behavior concerns being mixed.
- 
+
 This also allows you to share common logic — not only within your codebase but also with others. Great examples are [XState Catalogue](https://xstate-catalogue.com/) and [Stately Registry](https://stately.ai/registry)
 
 *The benefit isn't unique to state machines. You can also separate behavior using something like hooks. Nevertheless, state machines somehow enforce to make use of that benefit.*
@@ -97,7 +97,7 @@ Features will be added over time and things are getting out of control. It is st
 
 *The diagram is specific to React, but I think it is even valuable if you don't have experience using React. XState is a statechart library. It could be generalized to statecharts.*
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1629041431148/X-yUOjhxl.png)
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1629041431148/X-yUOjhxl.png?auto=format,compress&w=800&fit=fillmax)
 
 It visualizes nicely how statecharts will pay off over time. I'll get to the learning curve later on 😉
 
@@ -109,7 +109,7 @@ Modeling behavior using statecharts enables you to generate various things becau
 
 My favorite tool and a great example for this is [XStates Visualizer](https://xstate.js.org/viz/). Just paste your state machine code in and get an interactive visualization. Does it get any cooler?
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1629042148370/aJLxZU3Qb3.png)
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1629042148370/aJLxZU3Qb3.png?auto=format,compress&w=800&fit=fillmax)
 
 But it doesn't end at visualizations. You could generate much more. You could even generate tests 🤯 [David Khourshids](https://twitter.com/DavidKPiano) talk [Write Fewer Tests! From Automation to Autogeneration](https://youtu.be/tpNmPKjPSFQ) is exactly about that. Definitely interesting to watch.
 

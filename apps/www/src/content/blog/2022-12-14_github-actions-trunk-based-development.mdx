@@ -46,7 +46,7 @@ Trunk-Based Development is considered the best practice nowadays. You can learn 
 
 This is the basic CI/CD pipeline I'd like to create:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670875502156/566b2DSb1.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670875502156/566b2DSb1.png?auto=format,compress&w=800&fit=fillmax)
 
 At first, we will run some basic checks, then we build the artifact(s) and after that, we deploy it to a staging and a
 production environment. Yes, we can do a lot more like integration and E2E tests, more environment etc. but this should
@@ -220,18 +220,18 @@ be sure that they are stable (and not differ due to different builds).
 After running this pipeline for the first to you'll the the "Environments" sections in the sidebar in your GitHub
 repository:
 
-![A red arrow indicating the position where the environments are shown on the GitHub UI.](https://cdn.hashnode.com/res/hashnode/image/upload/v1670874582559/375BNlM7L.png)
+![A red arrow indicating the position where the environments are shown on the GitHub UI.](https://cdn.hashnode.com/res/hashnode/image/upload/v1670874582559/375BNlM7L.png?auto=format,compress&w=800&fit=fillmax)
 
 When clicking on it you will see the deployment history of that environment:
 
-![The deployment history for the production environment in the GitHub UI.](https://cdn.hashnode.com/res/hashnode/image/upload/v1670874507848/AeGV3iv_A.png)
+![The deployment history for the production environment in the GitHub UI.](https://cdn.hashnode.com/res/hashnode/image/upload/v1670874507848/AeGV3iv_A.png?auto=format,compress&w=800&fit=fillmax)
 
 _Ideally, your history looks a lot greener_ 😅
 
 In addition to that, we can now re-run only the failed jobs (and not our whole pipeline). That was not possible with one
 job.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910175985/gleeHDeANj.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910175985/gleeHDeANj.png?auto=format,compress&w=800&fit=fillmax)
 
 Okay, this is an improvement, but there is one more thing: Often you don't want to automatically deploy to production
 but rather have a manual trigger in order to promote the artifact to production in order to have the opportunity to
@@ -242,11 +242,11 @@ check the staging environment before actually releasing your changes to the user
 You can activate the "**Required reviewers**" config for your production environment under Settings -&gt; Environments
 -&gt; production:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910671185/xioSC3v0h.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910671185/xioSC3v0h.png?auto=format,compress&w=800&fit=fillmax)
 
 That way you don't have to change anything in your pipeline. This is what it looks like:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910597864/edLEolrtJ.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670910597864/edLEolrtJ.png?auto=format,compress&w=800&fit=fillmax)
 
 It will not be deployed to production without a review by an authorized person.
 
@@ -321,7 +321,7 @@ convention you can change the tag name there.
 
 This is an example release that has been created with the previously shown workflow:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670913779674/QBgx1Rpv8z.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670913779674/QBgx1Rpv8z.png?auto=format,compress&w=800&fit=fillmax)
 
 Editing that draft release and clicking on "Publish release" will trigger the next workflow that deploys the artifacts
 to production:
@@ -367,7 +367,7 @@ workflow starts with the prefix for the tag we have created earlier.
 
 That is it. You can see the published releases in the sidebar on the GitHub UI:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670914248931/ln0OxILWB.png)
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1670914248931/ln0OxILWB.png?auto=format,compress&w=800&fit=fillmax)
 
 I like this approach since you have GitHub releases for your actual production releases. That releases have the deployed
 artifacts attached. That way you can re-deploy any previously deployed artifact easily. This **enables rollbacks to
