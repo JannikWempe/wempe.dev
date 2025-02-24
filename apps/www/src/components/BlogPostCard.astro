@@ -6,6 +6,7 @@ import type { CollectionEntry } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
 import { formatDate } from '~/utils/time';
 import { getCoverImageSrc } from '~/utils/image';
+import { render } from 'astro:content';
 
 interface Props extends HTMLAttributes<'article'> {
 	post: CollectionEntry<'blog'>;
@@ -14,8 +15,9 @@ interface Props extends HTMLAttributes<'article'> {
 
 const { post, class: classes, imageProps, ...rest } = Astro.props;
 const { title, excerpt, datePublished, cover, slug } = post.data;
-
 const formattedDate = formatDate(datePublished);
+
+const { remarkPluginFrontmatter } = await render(post);
 ---
 
 <article class={twMerge('relative', classes)} {...rest}>
@@ -32,11 +34,19 @@ const formattedDate = formatDate(datePublished);
 	</div>
 	<div class="mt-4">
 		<h2 transition:name={`title-${slug}`} class="text-2xl font-bold text-slate-900">{title}</h2>
-		<div class="mt-1 flex items-center gap-2 text-slate-600">
-			<Icon name="lucide:calendar" class="h-4 w-4" />
-			<time datetime={formattedDate} class="block text-sm font-semibold">
-				{formattedDate}
-			</time>
+		<div class="mt-1 flex items-center gap-3">
+			<div class="flex items-center gap-1 text-slate-600">
+				<Icon name="lucide:calendar" class="h-4 w-4" />
+				<time datetime={formattedDate} class="block text-sm font-semibold">
+					{formattedDate}
+				</time>
+			</div>
+			<div class="flex items-center gap-1 text-slate-600">
+				<Icon name="lucide:clock" class="h-4 w-4" />
+				<span class="text-sm font-semibold">
+					{remarkPluginFrontmatter.readingTime.text}
+				</span>
+			</div>
 		</div>
 		<p class="mt-2 line-clamp-2 text-slate-700">{excerpt}</p>
 	</div>
