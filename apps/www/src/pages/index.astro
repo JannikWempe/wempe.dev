@@ -51,6 +51,8 @@ const endorsements = [
 ] as const;
 
 const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0, 4);
+
+const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 ---
 
 <DefaultLayout
@@ -59,6 +61,7 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 		description:
 			'Full-stack software engineer crafting high-impact web solutions. From frontend development to serverless architectures, I build scalable applications that solve real business challenges.',
 	}}
+	{breadcrumbItems}
 >
 	<Fragment slot="header">
 		<WebPageJsonLd />

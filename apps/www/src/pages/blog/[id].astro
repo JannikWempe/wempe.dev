@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
-import Breadcrumb from '~/components/Breadcrumb.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
 import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
@@ -31,10 +30,8 @@ const breadcrumbItems = [
 ];
 ---
 
-<BlogPostLayout {post} {headings}>
+<BlogPostLayout {post} {headings} {breadcrumbItems}>
 	<Fragment slot="header">
-		<Breadcrumb items={breadcrumbItems} class="mb-4" />
-
 		<Image
 			transition:name={`cover-${post.data.slug}`}
 			src={getCoverImageSrc(post.data.cover)}

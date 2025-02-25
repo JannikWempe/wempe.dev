@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
-import Breadcrumb from '~/components/Breadcrumb.astro';
 import { newestFirst } from '~/lib/blog';
 import type { GetStaticPaths } from 'astro';
 import { Icon } from 'astro-icon/components';
@@ -38,10 +37,9 @@ const breadcrumbItems = [
 		title: `${tag} Posts | Jannik Wempe`,
 		description: `Browse all articles about ${tag} - insights, tutorials, and best practices on ${tag} development.`,
 	}}
+	{breadcrumbItems}
 >
 	<div class="container mx-auto pt-8">
-		<Breadcrumb items={breadcrumbItems} class="mb-4" />
-
 		<h1 class="text-3xl font-bold text-indigo-900">
 			{posts.length}
 			#{tag}

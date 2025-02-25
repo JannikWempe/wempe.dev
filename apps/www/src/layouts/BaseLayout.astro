@@ -2,6 +2,8 @@
 import Metadata from '~/components/Metadata.astro';
 import Favicons from '~/components/Favicons.astro';
 import Navigation from '~/components/Navigation.astro';
+import Breadcrumb from '~/components/Breadcrumb.astro';
+import type { BreadcrumbItem } from '~/components/Breadcrumb.astro';
 
 import '@fontsource/geist-sans';
 import '../assets/styles/global.css';
@@ -17,9 +19,11 @@ declare global {
 
 export interface Props {
 	metadata: ComponentProps<typeof Metadata>;
+	breadcrumbItems?: BreadcrumbItem[];
 }
 
-const { metadata } = Astro.props;
+const { metadata, breadcrumbItems = [] } = Astro.props;
+const showBreadcrumb = breadcrumbItems.length > 1;
 ---
 
 <!doctype html>
@@ -57,6 +61,13 @@ const { metadata } = Astro.props;
 	<body class="text-default pb-14 antialiased">
 		<Navigation currentPath={Astro.url.pathname} />
 		<div class="pt-16">
+			{
+				showBreadcrumb && (
+					<div class="container mx-auto pt-4">
+						<Breadcrumb items={breadcrumbItems} class="mb-4" />
+					</div>
+				)
+			}
 			<slot />
 		</div>
 	</body>

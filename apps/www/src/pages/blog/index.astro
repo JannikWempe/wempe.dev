@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
 import BlogIndexJsonLd from '~/components/BlogIndexJsonLd.astro';
-import Breadcrumb from '~/components/Breadcrumb.astro';
 import { newestFirst } from '~/lib/blog';
 
 export const prerender = true;
@@ -22,12 +21,12 @@ const breadcrumbItems = [
 		description:
 			'Explore insightful articles on web development, software engineering, and tech best practices. Read my latest thoughts and tutorials on modern development techniques.',
 	}}
+	{breadcrumbItems}
 >
 	<Fragment slot="header">
 		<BlogIndexJsonLd posts={posts.slice(0, 5)} />
 	</Fragment>
 	<div class="container mx-auto pt-8">
-		<Breadcrumb items={breadcrumbItems} class="mb-4" />
 		<h1 class="text-3xl font-bold text-indigo-900">My {posts.length} Blog Posts</h1>
 		<div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
 			{posts.map((post, index) => <BlogPostCard post={post} imageProps={{ loading: index <= 3 ? 'eager' : 'lazy' }} />)}

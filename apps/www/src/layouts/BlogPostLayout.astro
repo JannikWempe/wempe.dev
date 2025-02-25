@@ -10,13 +10,15 @@ import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
 import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
 import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
+import type { BreadcrumbItem } from '~/components/Breadcrumb.astro';
 
 export interface Props {
 	post: CollectionEntry<'blog'>;
 	headings: MarkdownHeading[];
+	breadcrumbItems: BreadcrumbItem[];
 }
 
-const { post, headings } = Astro.props;
+const { post, headings, breadcrumbItems } = Astro.props;
 
 // Get previous and next posts
 const posts = (await getCollection('blog')).sort(newestFirst);
@@ -47,7 +49,7 @@ const metadata = {
 const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 ---
 
-<BaseLayout {metadata}>
+<BaseLayout {metadata} {breadcrumbItems}>
 	<Fragment slot="header">
 		<BlogPostJsonLd {post} />
 		<!-- Transforms basic Tweet embeds into interactive widgets -->
