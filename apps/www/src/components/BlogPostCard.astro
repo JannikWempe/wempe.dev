@@ -14,7 +14,7 @@ interface Props extends HTMLAttributes<'article'> {
 }
 
 const { post, class: classes, imageProps, ...rest } = Astro.props;
-const { title, excerpt, datePublished, cover, slug } = post.data;
+const { title, excerpt, datePublished, cover, slug, tags } = post.data;
 const formattedDate = formatDate(datePublished);
 
 const { remarkPluginFrontmatter } = await render(post);
@@ -35,6 +35,18 @@ const { remarkPluginFrontmatter } = await render(post);
 		/>
 	</div>
 	<div class="mt-4">
+		<!-- Don't show tags as long as they are not very useful -->
+		<!-- {
+			tags && tags.length > 0 && (
+				<div class="mb-2 flex flex-wrap gap-2">
+					{tags.map((tag: string) => (
+						<span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700 hover:bg-slate-200">
+							{tag}
+						</span>
+					))}
+				</div>
+			)
+		} -->
 		<h2 transition:name={`title-${slug}`} class="text-2xl font-bold text-slate-900">{title}</h2>
 		<div class="mt-1 flex items-center gap-3">
 			<div class="flex items-center gap-1 text-slate-600">
