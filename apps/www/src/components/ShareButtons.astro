@@ -20,18 +20,21 @@ const shareLinks = [
 		url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
 		icon: 'twitter-x',
 		label: 'Share on X',
+		classes: 'plausible-event-name=share plausible-event-type=x',
 	},
 	{
 		name: 'Bluesky',
 		url: `https://bsky.app/intent/compose?text=${encodedTitle}%20${encodedUrl}`,
 		icon: 'bluesky',
 		label: 'Share on Bluesky',
+		classes: 'plausible-event-name=share plausible-event-type=bluesky',
 	},
 	{
 		name: 'LinkedIn',
 		url: `https://www.linkedin.com/sharing/share-offsite/url=${encodedUrl}`,
 		icon: 'lucide:linkedin',
 		label: 'Share on LinkedIn',
+		classes: 'plausible-event-name=share plausible-event-type=linkedin',
 	},
 ];
 ---
@@ -40,12 +43,15 @@ const shareLinks = [
 	<h3 class="mb-4 text-sm font-semibold text-slate-900">Share this post</h3>
 	<div class="flex gap-4">
 		{
-			shareLinks.map(({ url, icon, label }) => (
+			shareLinks.map(({ url, icon, label, classes }) => (
 				<a
 					href={url}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="rounded-md bg-slate-100 p-2 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900"
+					class:list={[
+						'rounded-md bg-slate-100 p-2 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900',
+						classes,
+					]}
 					aria-label={label}
 				>
 					<Icon name={icon} class="h-5 w-5" />
