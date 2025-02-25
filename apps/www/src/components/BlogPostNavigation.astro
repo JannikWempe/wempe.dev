@@ -12,12 +12,12 @@ export interface Props {
 const { previousPost, nextPost, class: classes } = Astro.props;
 ---
 
-<nav class={twMerge('flex justify-between gap-4', classes)}>
+<nav class={twMerge('flex flex-col md:flex-row justify-between gap-4', classes)}>
 	{
 		previousPost && (
 			<a
 				href={`/blog/${previousPost.id}`}
-				class="group flex max-w-[45%] items-start gap-2 text-left transition-colors hover:text-indigo-800"
+				class="group flex items-start gap-2 text-left transition-colors hover:text-indigo-800 md:max-w-[45%]"
 			>
 				<Icon name="lucide:arrow-left" class="mt-1 shrink-0" />
 				<div>
@@ -31,7 +31,7 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 		nextPost && (
 			<a
 				href={`/blog/${nextPost.id}`}
-				class="group ml-auto flex max-w-[45%] items-start gap-2 text-right transition-colors hover:text-indigo-800"
+				class="group ml-auto flex items-start gap-2 text-right transition-colors hover:text-indigo-800 md:max-w-[45%]"
 			>
 				<div>
 					<span class="block text-sm text-slate-500">Next Post</span>
