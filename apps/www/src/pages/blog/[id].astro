@@ -7,6 +7,7 @@ import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
 import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
+import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 
 export const prerender = true;
 
@@ -32,6 +33,7 @@ const breadcrumbItems = [
 
 <BlogPostLayout {post} {headings} {breadcrumbItems}>
 	<Fragment slot="header">
+		<BlogPostJsonLd {post} {breadcrumbItems} />
 		<Image
 			transition:name={`cover-${post.data.slug}`}
 			src={getCoverImageSrc(post.data.cover)}

@@ -1,50 +1,41 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import { Schema } from 'astro-seo-schema';
-import { SITE_BASE_URL } from '~/constants/site';
+import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
-import { isExternalCoverImage } from '~/utils/image';
+import { blogPosting, breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
+import type { BreadcrumbItem } from './Breadcrumb.astro';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
+	breadcrumbItems: BreadcrumbItem[];
 }
 
-const { post } = Astro.props;
+const { post, breadcrumbItems } = Astro.props;
 
 const { remarkPluginFrontmatter } = await render(post);
 
-const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
+const breadcrumbItemsLd = breadcrumbItems.map((item, index) => {
+	const url = new URL(item.href, Astro.site).toString();
+
+	return breadcrumbItem({
+		position: index + 1,
+		name: item.label,
+		url,
+	});
+});
 ---
 
 <Schema
 	item={{
 		'@context': 'https://schema.org',
-		'@type': 'BlogPosting',
-		headline: post.data.title,
-		author: {
-			'@type': 'Person',
-			name: 'Jannik Wempe',
-			url: SITE_BASE_URL,
-		},
-		image: isExternalCoverImage(post.data.cover)
-			? post.data.cover
-			: new URL(post.data.cover.src, Astro.site).toString(),
-		datePublished: post.data.datePublished.toISOString(),
-		dateCreated: post.data.datePublished.toISOString(),
-		description: post.data.excerpt,
-		wordCount: remarkPluginFrontmatter.readingTime.words,
-		timeRequired: `PT${Math.ceil(remarkPluginFrontmatter.readingTime.minutes)}M`,
-		url: postUrl,
-		inLanguage: 'en-US',
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': postUrl,
-		},
-		keywords: post.data.tags?.join(', '),
-		publisher: {
-			'@type': 'Person',
-			name: 'Jannik Wempe',
-			url: SITE_BASE_URL,
-		},
+		'@graph': [
+			blogPosting({
+				post,
+				readingTime: remarkPluginFrontmatter.readingTime,
+			}),
+			breadcrumbList({
+				items: breadcrumbItemsLd,
+			}),
+		],
 	}}
 />

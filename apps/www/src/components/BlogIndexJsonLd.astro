@@ -1,52 +1,49 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import { Schema } from 'astro-seo-schema';
-import { SITE_BASE_URL } from '~/constants/site';
-import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import { blog, blogPosting, breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
+import type { BreadcrumbItem } from './Breadcrumb.astro';
 
 interface Props {
 	posts: CollectionEntry<'blog'>[];
+	breadcrumbItems: BreadcrumbItem[];
 }
 
-const { posts } = Astro.props;
+const { posts, breadcrumbItems } = Astro.props;
 
 const blogPosts = await Promise.all(
 	posts.map(async (post) => {
-		const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
+		const { remarkPluginFrontmatter } = await render(post);
 
-		return {
-			'@type': 'BlogPosting' as const,
-			headline: post.data.title,
-			description: post.data.excerpt,
-			datePublished: post.data.datePublished.toISOString(),
-			url: postUrl,
-			'inLanguage ': 'en-US',
-			image: isExternalCoverImage(post.data.cover)
-				? post.data.cover
-				: new URL(getCoverImageSrc(post.data.cover), Astro.site).toString(),
-			author: {
-				'@type': 'Person' as const,
-				name: 'Jannik Wempe',
-				url: SITE_BASE_URL,
-			},
-		};
+		return blogPosting({
+			post,
+			readingTime: remarkPluginFrontmatter.readingTime,
+		});
 	}),
 );
+
 const url = new URL('/blog', Astro.site).toString();
+const breadcrumbItemsLd = breadcrumbItems.map((item, index) => {
+	return breadcrumbItem({
+		position: index + 1,
+		name: item.label,
+		url: new URL(item.href, Astro.site).toString(),
+	});
+});
 ---
 
 <Schema
 	item={{
 		'@context': 'https://schema.org',
-		'@type': 'Blog',
-		name: 'Jannik Wempe',
-		description: 'Jannik Wempe is a software engineer and entrepreneur.',
-		url: url,
-		publisher: {
-			'@type': 'Person',
-			name: 'Jannik Wempe',
-			url: SITE_BASE_URL,
-		},
-		blogPost: blogPosts,
+		'@graph': [
+			blog({
+				url,
+				blogPosts,
+			}),
+			breadcrumbList({
+				items: breadcrumbItemsLd,
+			}),
+		],
 	}}
 />

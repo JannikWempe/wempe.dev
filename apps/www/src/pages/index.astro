@@ -64,7 +64,7 @@ const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 	{breadcrumbItems}
 >
 	<Fragment slot="header">
-		<WebPageJsonLd />
+		<WebPageJsonLd {breadcrumbItems} />
 	</Fragment>
 	<main>
 		<section class="relative flex justify-between">

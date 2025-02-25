@@ -5,6 +5,7 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 import { newestFirst } from '~/lib/blog';
 import type { GetStaticPaths } from 'astro';
 import { Icon } from 'astro-icon/components';
+import BlogIndexJsonLd from '~/components/BlogIndexJsonLd.astro';
 
 export const prerender = true;
 
@@ -39,6 +40,9 @@ const breadcrumbItems = [
 	}}
 	{breadcrumbItems}
 >
+	<Fragment slot="header">
+		<BlogIndexJsonLd posts={posts.slice(0, 5)} {breadcrumbItems} />
+	</Fragment>
 	<div class="container mx-auto pt-8">
 		<h1 class="text-3xl font-bold text-indigo-900">
 			{posts.length}
