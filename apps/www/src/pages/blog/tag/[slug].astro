@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
+import Breadcrumb from '~/components/Breadcrumb.astro';
 import { newestFirst } from '~/lib/blog';
 import type { GetStaticPaths } from 'astro';
 import { Icon } from 'astro-icon/components';
@@ -24,6 +25,12 @@ export const getStaticPaths = (async () => {
 
 const { tag } = Astro.props;
 const posts = (await getCollection('blog', ({ data }) => data.tags.includes(tag))).sort(newestFirst);
+
+const breadcrumbItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Blog', href: '/blog' },
+	{ label: `#${tag}`, href: `/blog/tag/${tag}`, current: true },
+];
 ---
 
 <DefaultLayout
@@ -33,6 +40,8 @@ const posts = (await getCollection('blog', ({ data }) => data.tags.includes(tag)
 	}}
 >
 	<div class="container mx-auto pt-8">
+		<Breadcrumb items={breadcrumbItems} class="mb-4" />
+
 		<h1 class="text-3xl font-bold text-indigo-900">
 			{posts.length}
 			#{tag}

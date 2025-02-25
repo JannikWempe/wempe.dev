@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
+import Breadcrumb from '~/components/Breadcrumb.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
 import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
@@ -22,10 +23,18 @@ const { post } = Astro.props;
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
 
 const formattedDatePublished = formatDate(post.data.datePublished);
+
+const breadcrumbItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Blog', href: '/blog' },
+	{ label: post.data.title, href: `/blog/${post.id}`, current: true },
+];
 ---
 
 <BlogPostLayout {post} {headings}>
 	<Fragment slot="header">
+		<Breadcrumb items={breadcrumbItems} class="mb-4" />
+
 		<Image
 			transition:name={`cover-${post.data.slug}`}
 			src={getCoverImageSrc(post.data.cover)}

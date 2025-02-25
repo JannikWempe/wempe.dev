@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+
+export interface BreadcrumbItem {
+	label: string;
+	href: string;
+	current?: boolean;
+}
+
+export interface Props {
+	items: BreadcrumbItem[];
+	class?: string;
+}
+
+const { items, class: classes } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class={twMerge('flex', classes)}>
+	<ol class="flex flex-wrap items-center text-sm">
+		{
+			items.map((item, index) => (
+				<li class="flex items-center">
+					{index > 0 && <span class="mx-1 text-slate-400">›</span>}
+					{item.current ? (
+						<span aria-current="page" class="max-w-xs truncate font-medium text-indigo-700" title={item.label}>
+							{item.label}
+						</span>
+					) : (
+						<a href={item.href} class="text-slate-600 hover:text-indigo-700 hover:underline">
+							{item.label}
+						</a>
+					)}
+				</li>
+			))
+		}
+	</ol>
+</nav>
