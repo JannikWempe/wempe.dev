@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { BLUESKY_URL, EMAIL, GITHUB_URL, HASHNODE_URL, LINKEDIN_URL, X_URL } from '~/constants/socials';
+import { BLUESKY_URL, EMAIL, GITHUB_URL, LINKEDIN_URL, X_URL } from '~/constants/socials';
 interface Props {
 	currentPath: string;
 }
@@ -74,16 +74,6 @@ const navItems = [
 			>
 				<Icon name="lucide:github" class="h-5 w-5" />
 				<span class="sr-only">GitHub Profile</span>
-			</a>
-
-			<a
-				href={HASHNODE_URL}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="plausible-event-name=contact+hashnode plausible-event-name=contact text-slate-600 transition-colors hover:text-slate-800"
-			>
-				<Icon name="hashnode" class="h-5 w-5" />
-				<span class="sr-only">Hashnode Blog</span>
 			</a>
 
 			<a
