@@ -55,7 +55,7 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 		{hasTweetEmbed && <script is:inline async src="https://platform.twitter.com/widgets.js" />}
 	</Fragment>
 
-	<div class="container mx-auto py-8">
+	<div class="container mx-auto py-3">
 		<div class="flex gap-20">
 			<!-- match prose max-w, otherwise image etc. may be wider (at least on Firefox) -->
 			<main class="max-w-prose text-lg">
