@@ -15,7 +15,7 @@ const blog = defineCollection({
 			seoTitle: z.string().optional(),
 			seoDescription: z.string().optional(),
 			ogImage: z.string().url().optional(),
-			tags: z.string().transform((val) => val.split(',')),
+			tags: z.array(z.string()).default([]),
 		}),
 });
 
