@@ -22,7 +22,7 @@ const { items, class: classes } = Astro.props;
 				<li class="flex items-center">
 					{index > 0 && <span class="mx-1 text-slate-400">›</span>}
 					{item.current ? (
-						<span aria-current="page" class="max-w-xs truncate font-medium text-indigo-700" title={item.label}>
+						<span aria-current="page" class="max-w-[200px] truncate font-medium text-indigo-700" title={item.label}>
 							{item.label}
 						</span>
 					) : (
