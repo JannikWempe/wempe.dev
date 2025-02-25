@@ -3,7 +3,6 @@ import BaseLayout from './BaseLayout.astro';
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from '~/components/TableOfContents.astro';
 import type { CollectionEntry } from 'astro:content';
-import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
 import ShareButtons from '~/components/ShareButtons.astro';
 import { getCollection } from 'astro:content';
@@ -51,7 +50,6 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 
 <BaseLayout {metadata} {breadcrumbItems}>
 	<Fragment slot="header">
-		<BlogPostJsonLd {post} {breadcrumbItems} />
 		<!-- Transforms basic Tweet embeds into interactive widgets -->
 		<!-- see https://astro-embed.netlify.app/components/twitter/  -->
 		{hasTweetEmbed && <script is:inline async src="https://platform.twitter.com/widgets.js" />}
