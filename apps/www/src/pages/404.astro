@@ -1,0 +1,30 @@
+---
+import DefaultLayout from '~/layouts/DefaultLayout.astro';
+
+const metadata = {
+	title: '404 - Page Not Found',
+	description: 'The page you are looking for does not exist or has been moved.',
+};
+---
+
+<DefaultLayout {metadata}>
+	<main class="container mx-auto flex min-h-[70vh] flex-col items-center justify-center px-4 py-16">
+		<div class="mx-auto max-w-2xl text-center">
+			<div class="mb-8">
+				<div class="mb-4 text-9xl font-bold text-blue-600">404</div>
+				<h1 class="mb-4 text-4xl font-semibold">Page Not Found</h1>
+				<p class="mb-8 text-lg text-gray-600">The page you are looking for doesn't exist or has been moved.</p>
+			</div>
+
+			<div class="mb-12">
+				<a href="/" class="rounded-md bg-blue-600 px-8 py-3 font-medium text-white transition-colors hover:bg-blue-700">
+					Go back home
+				</a>
+			</div>
+
+			<div class="text-sm text-gray-500">
+				<p>If you believe this is an error, please contact me.</p>
+			</div>
+		</div>
+	</main>
+</DefaultLayout>
