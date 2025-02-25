@@ -22,32 +22,43 @@ const { remarkPluginFrontmatter } = await render(post);
 
 <article class={twMerge('relative', classes)} {...rest}>
 	<div class="relative aspect-[1600/840] w-full">
-		<!-- Dimensions based two columns in a container -->
-		<Image
-			transition:name={`cover-${slug}`}
-			src={getCoverImageSrc(cover)}
-			alt={title}
-			width={650}
-			height={303}
-			format="webp"
-			class="rounded-xl object-cover"
-			{...imageProps}
-		/>
+		<a href={`/blog/${slug}`} class="block">
+			<!-- Dimensions based two columns in a container -->
+			<Image
+				transition:name={`cover-${slug}`}
+				src={getCoverImageSrc(cover)}
+				alt={title}
+				width={650}
+				height={303}
+				format="webp"
+				class="rounded-xl object-cover"
+				{...imageProps}
+			/>
+		</a>
 	</div>
 	<div class="mt-4">
-		<!-- Don't show tags as long as they are not very useful -->
-		<!-- {
+		{
 			tags && tags.length > 0 && (
 				<div class="mb-2 flex flex-wrap gap-2">
 					{tags.map((tag: string) => (
-						<span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700 hover:bg-slate-200">
+						<a
+							href={`/blog/tag/${tag}`}
+							class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-200 hover:text-indigo-700"
+						>
 							{tag}
-						</span>
+						</a>
 					))}
 				</div>
 			)
-		} -->
-		<h2 transition:name={`title-${slug}`} class="text-2xl font-bold text-slate-900">{title}</h2>
+		}
+		<a href={`/blog/${slug}`} class="block">
+			<h2
+				transition:name={`title-${slug}`}
+				class="text-2xl font-bold text-slate-900 transition-colors hover:text-indigo-700"
+			>
+				{title}
+			</h2>
+		</a>
 		<div class="mt-1 flex items-center gap-3">
 			<div class="flex items-center gap-1 text-slate-600">
 				<Icon name="lucide:calendar" class="h-4 w-4" />
@@ -64,7 +75,4 @@ const { remarkPluginFrontmatter } = await render(post);
 		</div>
 		<p class="mt-2 line-clamp-2 text-slate-700">{excerpt}</p>
 	</div>
-	<a href={`/blog/${slug}`} class="absolute inset-0">
-		<span class="sr-only">Read more about {title}</span>
-	</a>
 </article>
