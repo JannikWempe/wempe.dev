@@ -9,10 +9,18 @@ const { class: classes, ...rest } = Astro.props;
 
 <div
 	class={twMerge(
-		'prose prose-lg prose-headings:text-indigo-900 prose-a:text-blue-600 prose-img:rounded-xl break-words',
+		'relative prose prose-lg prose-headings:text-indigo-900 prose-a:text-blue-600 prose-img:rounded-xl break-words prose-code:max-w-screen',
 		classes,
 	)}
 	{...rest}
 >
 	<slot />
 </div>
+
+<style is:global>
+	.expressive-code {
+		max-width: calc(100vw - 2rem);
+		overflow-x: auto;
+		display: block;
+	}
+</style>
