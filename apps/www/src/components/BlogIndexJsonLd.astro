@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { Schema } from 'astro-seo-schema';
 import { SITE_BASE_URL } from '~/constants/site';
+import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
 
 interface Props {
 	posts: CollectionEntry<'blog'>[];
@@ -20,10 +21,9 @@ const blogPosts = await Promise.all(
 			datePublished: post.data.datePublished.toISOString(),
 			url: postUrl,
 			'inLanguage ': 'en-US',
-			image: new URL(
-				typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src,
-				Astro.site,
-			).toString(),
+			image: isExternalCoverImage(post.data.cover)
+				? post.data.cover
+				: new URL(getCoverImageSrc(post.data.cover), Astro.site).toString(),
 			author: {
 				'@type': 'Person' as const,
 				name: 'Jannik Wempe',

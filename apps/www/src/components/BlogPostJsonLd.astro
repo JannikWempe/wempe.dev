@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { Schema } from 'astro-seo-schema';
 import { SITE_BASE_URL } from '~/constants/site';
 import { render } from 'astro:content';
+import { isExternalCoverImage } from '~/utils/image';
 
 interface Props {
 	post: CollectionEntry<'blog'>;
@@ -25,7 +26,9 @@ const postUrl = new URL(`/blog/${post.id}`, Astro.site).toString();
 			name: 'Jannik Wempe',
 			url: SITE_BASE_URL,
 		},
-		image: new URL(typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src, Astro.site).toString(),
+		image: isExternalCoverImage(post.data.cover)
+			? post.data.cover
+			: new URL(post.data.cover.src, Astro.site).toString(),
 		datePublished: post.data.datePublished.toISOString(),
 		dateCreated: post.data.datePublished.toISOString(),
 		description: post.data.excerpt,

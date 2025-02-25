@@ -6,6 +6,7 @@ import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
+import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
 
 export const prerender = true;
 
@@ -27,11 +28,12 @@ const formattedDatePublished = formatDate(post.data.datePublished);
 	<Fragment slot="header">
 		<Image
 			transition:name={`cover-${post.data.slug}`}
-			src={typeof post.data.cover === 'string' ? post.data.cover : post.data.cover.src}
+			src={getCoverImageSrc(post.data.cover)}
 			alt={post.data.title}
-			width={800}
-			height={420}
+			width={isExternalCoverImage(post.data.cover) ? 1200 : post.data.cover.width}
+			height={isExternalCoverImage(post.data.cover) ? 630 : post.data.cover.height}
 			loading="eager"
+			format="webp"
 			class="mb-4 rounded-lg"
 		/>
 

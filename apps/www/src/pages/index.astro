@@ -110,7 +110,14 @@ const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0,
 						<div
 							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full ring-4 shadow-lg ring-slate-100"
 						>
-							<Image src={jannikWempeImg} alt="Portrait of Jannik Wempe" width={380} height={380} loading={'eager'} />
+							<Image
+								src={jannikWempeImg}
+								alt="Portrait of Jannik Wempe"
+								width={380}
+								height={380}
+								format="webp"
+								loading={'eager'}
+							/>
 						</div>
 						<h1 aria-label="Jannik Wempe" class="absolute right-[-25px] bottom-[-35px]">
 							<svg
