@@ -26,9 +26,9 @@ const breadcrumbItems = [
 	<Fragment slot="header">
 		<BlogIndexJsonLd posts={posts.slice(0, 10)} {breadcrumbItems} />
 	</Fragment>
-	<div class="container mx-auto pt-8">
+	<div class="container mx-auto">
 		<h1 class="text-3xl font-bold text-indigo-900">My {posts.length} Blog Posts</h1>
-		<div class="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
+		<div class="mt-5 grid grid-cols-1 gap-12 md:grid-cols-2">
 			{posts.map((post, index) => <BlogPostCard post={post} imageProps={{ loading: index <= 3 ? 'eager' : 'lazy' }} />)}
 		</div>
 	</div>
