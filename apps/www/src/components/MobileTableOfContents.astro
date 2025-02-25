@@ -42,8 +42,7 @@ const { headings } = Astro.props;
 	</div>
 	<button
 		type="button"
-		id="toc-toggle"
-		class="mt-2 flex w-full cursor-pointer items-center justify-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900"
+		class="toc-toggle mt-2 flex w-full cursor-pointer items-center justify-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900"
 	>
 		<span class="button-text">Show more</span>
 		<Icon name="lucide:chevron-down" class="h-4 w-4 transition-transform duration-200" />
@@ -54,7 +53,7 @@ const { headings } = Astro.props;
 	function setupMobileTOC() {
 		const tocWrapper = document.querySelector('.toc-wrapper');
 		const tocContent = tocWrapper?.querySelector('.toc-content');
-		const tocToggle = document.getElementById('toc-toggle');
+		const tocToggle = document.querySelector('.toc-toggle');
 		const buttonText = tocToggle?.querySelector('.button-text');
 		const fadeOverlay = tocWrapper?.querySelector('div:last-child');
 		const chevron = tocToggle?.querySelector('svg');
@@ -68,7 +67,7 @@ const { headings } = Astro.props;
 			}
 		}
 
-		tocToggle?.addEventListener('click', () => {
+		const handleToggleClick = () => {
 			const isExpanded = tocContent?.classList.contains('!max-h-none');
 
 			// Toggle max-height
@@ -89,7 +88,9 @@ const { headings } = Astro.props;
 			if (buttonText) {
 				buttonText.textContent = isExpanded ? 'Show more' : 'Show less';
 			}
-		});
+		};
+
+		tocToggle?.addEventListener('click', handleToggleClick);
 	}
 
 	document.addEventListener('astro:page-load', setupMobileTOC);
