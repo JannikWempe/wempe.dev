@@ -19,5 +19,6 @@
 		"[astro]": {
 			"editor.formatOnSave": true,
 		},
+		"astro.content-intellisense": true,
 	},
 }

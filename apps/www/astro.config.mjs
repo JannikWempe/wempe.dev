@@ -18,6 +18,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+	experimental: {
+		responsiveImages: true,
+		clientPrerender: true,
+		contentIntellisense: true,
+	},
+	prefetch: {
+		prefetchAll: true,
+		defaultStrategy: 'hover',
+	},
 	site: SITE_BASE_URL,
 	base: SITE_BASE_PATH,
 	trailingSlash: 'never',
