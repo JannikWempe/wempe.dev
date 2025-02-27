@@ -24,7 +24,7 @@ import Callout from '../../components/Callout.astro';
 By using class decorators, we have **access to the constructor and also its prototype** (for explanation about constructors and prototype see [this MDN explanation of inheritance](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance)). Therefore, we can modify the whole class. We could add methods using its prototype, set defaults for parameters passed to the constructor, add attributes and also remove or wrap these.
 
 # Class decorator with generic constraint
-In the [TypeScript decorators basic post](https://blog.jannikwempe.com/typescript-decorators-basics#overview-over-signatures) I already described the signature of the different types of decorators including the class decorator. We can use TypeScripts `extends` keyword to ensure the target is a constructor. That enables us to treat `target` as a constructor (that is why I renamed it to `constructor` in the following example) and use features like extending `constructor`.
+In the [TypeScript decorators basic post](https://wempe.dev/blog/typescript-decorators-basics#overview-over-signatures) I already described the signature of the different types of decorators including the class decorator. We can use TypeScripts `extends` keyword to ensure the target is a constructor. That enables us to treat `target` as a constructor (that is why I renamed it to `constructor` in the following example) and use features like extending `constructor`.
 
 ```typescript
 type Constructor = {
@@ -100,7 +100,7 @@ jannik.print() // without workaround: Property 'print' does not exist on type 'U
 Finally, some examples to get an idea of what you can do. There are very few limitations of what you can do since you essentially could just replace the whole class.
 
 ## Add properties
-The following example shows how to add additional attributes to the class and modifying them by passing a function to the decorator factory (see [TypeScript decorators basics post](https://blog.jannikwempe.com/typescript-decorators-basics#overview-over-signatures#decorator-factories) for the concept of decorator factories).
+The following example shows how to add additional attributes to the class and modifying them by passing a function to the decorator factory (see [TypeScript decorators basics post](https://wempe.dev/blog/typescript-decorators-basics#overview-over-signatures#decorator-factories) for the concept of decorator factories).
 
 ```typescript
 interface Entity {
