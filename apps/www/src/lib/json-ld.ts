@@ -2,7 +2,6 @@ import type { CollectionEntry } from 'astro:content';
 import type { ReadTimeResults } from 'reading-time';
 import type { Person, WebPage, BlogPosting, ListItem, BreadcrumbList, Blog } from 'schema-dts';
 import { SITE_BASE_URL } from '~/constants/site';
-import { isExternalCoverImage } from '~/utils/image';
 import { LINKEDIN_URL, X_URL, GITHUB_URL, BLUESKY_URL } from '~/constants/socials';
 
 export function person(): Person {
@@ -66,9 +65,7 @@ export function blogPosting(args: { post: CollectionEntry<'blog'>; readingTime: 
 		'@type': 'BlogPosting',
 		headline: post.data.title,
 		author: person(),
-		image: isExternalCoverImage(post.data.cover)
-			? post.data.cover
-			: new URL(post.data.cover.src, SITE_BASE_URL).toString(),
+		image: new URL(post.data.cover.src, SITE_BASE_URL).toString(),
 		datePublished: post.data.datePublished.toISOString(),
 		dateCreated: post.data.datePublished.toISOString(),
 		description: post.data.excerpt,

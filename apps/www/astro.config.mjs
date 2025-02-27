@@ -27,9 +27,6 @@ export default defineConfig({
 		responseMode: 'buffer',
 	}),
 	output: 'server',
-	image: {
-		domains: ['cdn.hashnode.com'],
-	},
 	redirects: {
 		'/cal': {
 			destination: 'https://cal.com/jannikwempe',

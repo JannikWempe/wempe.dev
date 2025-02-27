@@ -8,7 +8,6 @@ import ShareButtons from '~/components/ShareButtons.astro';
 import { getCollection } from 'astro:content';
 import { newestFirst } from '~/lib/blog';
 import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
-import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
 import type { BreadcrumbItem } from '~/components/Breadcrumb.astro';
 
 export interface Props {
@@ -29,10 +28,9 @@ const metadata = {
 	title: post.data.seoTitle ?? post.data.title,
 	description: post.data.seoDescription ?? post.data.excerpt,
 	image: {
-		url: getCoverImageSrc(post.data.cover),
-		// we don't know the width and height of the remote image, so we use 1200x630 as a default
-		width: isExternalCoverImage(post.data.cover) ? 1200 : post.data.cover.width,
-		height: isExternalCoverImage(post.data.cover) ? 630 : post.data.cover.height,
+		url: post.data.cover.src,
+		width: post.data.cover.width,
+		height: post.data.cover.height,
 	},
 	og: {
 		type: 'article' as const,

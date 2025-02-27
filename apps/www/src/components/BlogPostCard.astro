@@ -5,7 +5,6 @@ import { Image, type ImgAttributes } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
 import { formatDate } from '~/utils/time';
-import { getCoverImageSrc } from '~/utils/image';
 import { render } from 'astro:content';
 
 interface Props extends HTMLAttributes<'article'> {
@@ -26,7 +25,7 @@ const { remarkPluginFrontmatter } = await render(post);
 			<!-- Dimensions based two columns in a container -->
 			<Image
 				transition:name={`cover-${slug}`}
-				src={getCoverImageSrc(cover)}
+				src={cover}
 				alt={title}
 				width={650}
 				height={303}

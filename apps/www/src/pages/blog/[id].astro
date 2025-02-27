@@ -6,7 +6,6 @@ import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
-import { getCoverImageSrc, isExternalCoverImage } from '~/utils/image';
 import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 
 export const prerender = true;
@@ -36,10 +35,10 @@ const breadcrumbItems = [
 		<BlogPostJsonLd {post} {breadcrumbItems} />
 		<Image
 			transition:name={`cover-${post.data.slug}`}
-			src={getCoverImageSrc(post.data.cover)}
+			src={post.data.cover}
 			alt={post.data.title}
-			width={isExternalCoverImage(post.data.cover) ? 1200 : post.data.cover.width}
-			height={isExternalCoverImage(post.data.cover) ? 630 : post.data.cover.height}
+			width={post.data.cover.width / 2}
+			height={post.data.cover.height / 2}
 			loading="eager"
 			format="webp"
 			class="mb-4 rounded-lg"
