@@ -20,8 +20,6 @@
 		"@iconify-json/logos": "1.2.4",
 		"@iconify-json/lucide": "1.2.26",
 		"@tailwindcss/vite": "4.0.9",
-		"@unpic/astro": "1.0.0",
-		"@unpic/placeholder": "0.1.2",
 		"astro": "5.3.1",
 		"astro-embed": "0.9.0",
 		"astro-expressive-code": "0.40.2",
