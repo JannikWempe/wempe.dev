@@ -29,7 +29,7 @@ const { remarkPluginFrontmatter } = await render(post);
 				alt={title}
 				width={650}
 				height={303}
-				format="webp"
+				format={cover.format !== 'gif' ? 'avif' : 'gif'}
 				class="rounded-xl object-cover"
 				{...imageProps}
 			/>
