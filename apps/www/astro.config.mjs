@@ -45,7 +45,7 @@ export default defineConfig({
 			status: 302,
 		},
 		'/blog/series/state-machines': {
-			destination: '/blog/tag/state-machine',
+			destination: '/blog/tag/state-machines',
 			status: 302,
 		},
 	},
