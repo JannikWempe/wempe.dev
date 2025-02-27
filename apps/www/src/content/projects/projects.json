@@ -1,0 +1,102 @@
+[
+	{
+		"type": "website",
+		"id": "wempe-dev",
+		"title": "wempe.dev",
+		"description": "My personal website that you are looking at right now.",
+		"url": "https://wempe.dev/",
+		"logo": "./images/jannik-wempe.png",
+		"status": "ongoing",
+		"tech": ["TypeScript", "Astro", "TailwindCSS", "SST", "AWS"]
+	},
+	{
+		"type": "Shopify app",
+		"id": "fraudfalcon",
+		"title": "FraudFalcon",
+		"description": "Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud and block orders automatically.",
+		"url": "https://fraudfalcon.app/",
+		"logo": "./images/fraudfalcon.webp",
+		"status": "ongoing",
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Supabase"]
+	},
+	{
+		"type": "SaaS",
+		"id": "octolense",
+		"title": "Octolense",
+		"description": "Analytics solution for GitHub actions. Understand which actions and repositories are most expensive. Exited because lack of time to maintain it.",
+		"url": "https://octolense.com/",
+		"logo": "./images/octolense.webp",
+		"status": "sold",
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS CDK", "AWS", "Supabase"]
+	},
+	{
+		"type": "Shopify app",
+		"id": "shoptain",
+		"title": "Shoptain",
+		"description": "Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying desired keyword.",
+		"url": "https://shoptain.com/",
+		"logo": "./images/shoptain.png",
+		"status": "done",
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS CDK", "AWS", "Supabase"]
+	},
+	{
+		"type": "SaaS",
+		"id": "kitlytics",
+		"title": "Kitlytics",
+		"description": "Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and grow your business.",
+		"url": "https://kitlytics.com/",
+		"logo": "./images/kitlytics.webp",
+		"status": "paused",
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS CDK", "AWS", "Turso"]
+	},
+	{
+		"type": "eCommerce",
+		"id": "gluckweiser",
+		"title": "Glückweiser",
+		"description": "Headless Shopify shop using Shopify Hydrogen for a store selling handmade products.",
+		"url": "https://www.glückweiser.de/",
+		"logo": "./images/glueckweiser.png",
+		"status": "done",
+		"tech": ["TypeScript", "Shopify Hydrogen", "Remix", "React", "TailwindCSS"]
+	},
+	{
+		"type": "website",
+		"id": "easy-data-solution-homepage",
+		"title": "easy data solution Homepage",
+		"description": "Consulting, design and development of a webapp that represents the company and allows to book courses.",
+		"url": "https://www.easydatasolution.de/",
+		"logo": "./images/easy-data-solution.png",
+		"status": "ongoing",
+		"tech": ["TypeScript", "Gatsby", "React", "ChakraUI", "Framer", "Netlify", "Decap CMS"]
+	},
+	{
+		"type": "website",
+		"id": "easy-working-landing-page",
+		"title": "easy working landing page",
+		"description": "Development of a landing page with focus on performance and SEO.",
+		"url": "https://www.easy-working.app/",
+		"logo": "./images/easy-data-solution.png",
+		"status": "done",
+		"tech": ["TypeScript", "Astro", "SolidJS", "TailwindCSS", "Netlify", "Decap CMS"]
+	},
+	{
+		"type": "PWA",
+		"id": "kiezapp-rixdorf",
+		"title": "Kiezapp Rixdorf",
+		"description": "Development of a PWA that allows newcomers to Rixdorf to get to know the neighborhood using a gamified approach.",
+		"url": "https://www.kiezapp-rixdorf.de/",
+		"logo": "./images/kiezapp-rixdorf.png",
+		"status": "done",
+		"tech": ["TypeScript", "NextJS", "React", "PWA", "TailwindCSS", "Vercel", "Strapi", "PostgreSQL"]
+	},
+	{
+		"type": "eCommerce",
+		"id": "klebeki",
+		"title": "klebeki",
+		"description": "Design and development of a WooCommerce shop selling clothes for kids and babies with special needs.",
+		"url": "https://klebeki.de/",
+		"logo": "./images/klebeki.avif",
+		"status": "done",
+		"tech": ["PHP", "Wordpress", "WooCommerce", "MySQL"]
+	}
+]

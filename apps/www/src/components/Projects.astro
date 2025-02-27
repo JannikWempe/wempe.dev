@@ -2,125 +2,22 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
-
-import jannikWempeImg from '~/assets/images/projects/jannik-wempe.png';
-import fraudfalconImg from '~/assets/images/projects/fraudfalcon.webp';
-import octolenseImg from '~/assets/images/projects/octolense.webp';
-import shoptainImg from '~/assets/images/projects/shoptain.png';
-import kitlyticsImg from '~/assets/images/projects/kitlytics.webp';
-import glueckweiserImg from '~/assets/images/projects/glueckweiser.png';
-import easyDataSolutionImg from '~/assets/images/projects/easy-data-solution.png';
-import kiezappRixdorfImg from '~/assets/images/projects/kiezapp-rixdorf.png';
-import klebekiImg from '~/assets/images/projects/klebeki.avif';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	limit?: number;
 	class?: string;
 }
 
-const { class: classes } = Astro.props;
+type Project = CollectionEntry<'projects'>['data']
 
-const projects = [
-	{
-		type: 'website',
-		title: 'wempe.dev',
-		description: 'My personal website that you are looking at right now.',
-		url: 'https://wempe.dev/',
-		logoUrl: jannikWempeImg,
-		status: 'ongoing',
-		tech: ['TypeScript', 'Astro', 'TailwindCSS', 'SST', 'AWS'],
-	},
-	{
-		type: 'Shopify app',
-		title: 'FraudFalcon',
-		description:
-			'Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud and block orders automatically.',
-		url: 'https://fraudfalcon.app/',
-		logoUrl: fraudfalconImg,
-		status: 'ongoing',
-		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS', 'Supabase'],
-	},
-	{
-		type: 'SaaS',
-		title: 'Octolense',
-		description:
-			'Analytics solution for GitHub actions. Understand which actions and repositories are most expensive. Exited because lack of time to maintain it.',
-		url: 'https://octolense.com/',
-		logoUrl: octolenseImg,
-		status: 'sold',
-		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
-	},
-	{
-		type: 'Shopify app',
-		title: 'Shoptain',
-		description:
-			'Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying desired keyword.',
-		url: 'https://shoptain.com/',
-		logoUrl: shoptainImg,
-		status: 'done',
-		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Supabase'],
-	},
-	{
-		type: 'SaaS',
-		title: 'Kitlytics',
-		description:
-			'Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and grow your business.',
-		url: 'https://kitlytics.com/',
-		logoUrl: kitlyticsImg,
-		status: 'paused',
-		tech: ['TypeScript', 'Remix', 'React', 'SST', 'AWS CDK', 'AWS', 'Turso'],
-	},
-	{
-		type: 'eCommerce',
-		title: 'Glückweiser',
-		description: 'Headless Shopify shop using Shopify Hydrogen for a store selling handmade products.',
-		url: 'https://www.glückweiser.de/',
-		logoUrl: glueckweiserImg,
-		status: 'done',
-		tech: ['TypeScript', 'Shopify Hydrogen', 'Remix', 'React', 'TailwindCSS'],
-	},
-	{
-		type: 'website',
-		title: 'easy data solution Homepage',
-		description:
-			'Consulting, design and development of a webapp that represents the company and allows to book courses.',
-		url: 'https://www.easydatasolution.de/',
-		logoUrl: easyDataSolutionImg,
-		status: 'ongoing',
-		tech: ['TypeScript', 'Gatsby', 'React', 'ChakraUI', 'Framer', 'Netlify', 'Decap CMS'],
-	},
-	{
-		type: 'website',
-		title: 'easy working landing page',
-		description: 'Development of a landing page with focus on performance and SEO.',
-		url: 'https://www.easy-working.app/',
-		logoUrl: easyDataSolutionImg,
-		status: 'done',
-		tech: ['TypeScript', 'Astro', 'SolidJS', 'TailwindCSS', 'Netlify', 'Decap CMS'],
-	},
-	{
-		type: 'PWA',
-		title: 'Kiezapp Rixdorf',
-		description:
-			'Development of a PWA that allows newcomers to Rixdorf to get to know the neighborhood using a gamified approach.',
-		url: 'https://www.kiezapp-rixdorf.de/',
-		logoUrl: kiezappRixdorfImg,
-		status: 'done',
-		tech: ['TypeScript', 'NextJS', 'React', 'PWA', 'TailwindCSS', 'Vercel', 'Strapi', 'PostgreSQL'],
-	},
-	{
-		type: 'eCommerce',
-		title: 'klebeki',
-		description:
-			'Design and development of a WooCommerce shop selling clothes for kids and babies with special needs. ',
-		url: 'https://klebeki.de/',
-		logoUrl: klebekiImg,
-		status: 'done',
-		tech: ['PHP', 'Wordpress', 'WooCommerce', 'MySQL'],
-	},
-] as const;
+const { class: classes, limit } = Astro.props;
 
-const techIcons = {
+const allProjects = await getCollection('projects');
+const projects = limit ? allProjects.slice(0, limit) : allProjects;
+
+const techIcons: Record<Project['tech'][number], string> = {
 	TypeScript: 'logos:typescript-icon',
 	Gatsby: 'logos:gatsby',
 	React: 'logos:react',
@@ -147,9 +44,9 @@ const techIcons = {
 	Strapi: 'logos:strapi-icon',
 	'Shopify Hydrogen': 'hydrogen',
 	Turso: 'turso',
-} satisfies Record<(typeof projects)[number]['tech'][number], string>;
+};
 
-const typeToColorMap = {
+const typeToColorMap: Record<Project['type'], { bg: string; text: string }> = {
 	website: {
 		bg: 'bg-purple-100',
 		text: 'text-purple-700',
@@ -170,9 +67,9 @@ const typeToColorMap = {
 		bg: 'bg-pink-100',
 		text: 'text-pink-700',
 	},
-} satisfies Record<(typeof projects)[number]['type'], { bg: string; text: string }>;
+};
 
-const statusToColorMap = {
+const statusToColorMap: Record<Project['status'], { bg: string; text: string }> = {
 	ongoing: {
 		bg: 'bg-blue-100',
 		text: 'text-blue-700',
@@ -189,77 +86,79 @@ const statusToColorMap = {
 		bg: 'bg-yellow-100',
 		text: 'text-yellow-700',
 	},
-} satisfies Record<(typeof projects)[number]['status'], { bg: string; text: string }>;
+};
 ---
 
 <ul class={twMerge('grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3', classes)}>
 	{
-		projects.map((project, projectIndex) => (
-			<li
-				class="relative flex flex-col gap-5 overflow-hidden rounded-lg bg-white p-4 shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200"
-				style={{ transform: 'translateZ(0)' }}
-			>
-				<div class="relative grow">
-					<Image
-						src={project.logoUrl}
-						alt={`${project.title} logo`}
-						height={50}
-						format="webp"
-						class="h-[50px] w-auto! self-start object-contain"
-					/>
-					<h3 class="mt-3 text-xl font-bold text-pretty text-indigo-900">{project.title}</h3>
-					<p class="mt-3 text-slate-700">{project.description}</p>
-				</div>
-
-				<a href={project.url} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
-					<span class="sr-only">Visit {project.title}</span>
-				</a>
-
-				<div class="mt-auto">
-					<div class="flex shrink-0 gap-2">
-						<div
-							class:list={[
-								'flex items-center gap-1 rounded-full px-3 py-1',
-								typeToColorMap[project.type].bg,
-								typeToColorMap[project.type].text,
-							]}
-						>
-							<Icon name="lucide:tag" class="h-3 w-auto" />
-							<span class="text-xs font-medium tracking-wide">{project.type}</span>
-						</div>
-
-						<div
-							class:list={[
-								'flex items-center gap-1 rounded-full px-3 py-1',
-								statusToColorMap[project.status].bg,
-								statusToColorMap[project.status].text,
-							]}
-						>
-							<Icon name="lucide:waypoints" class="h-3 w-auto" />
-							<span class="text-xs font-medium tracking-wide">{project.status}</span>
-						</div>
+		projects.map((project, projectIndex) => {
+			return (
+				<li
+					class="relative flex flex-col gap-5 overflow-hidden rounded-lg bg-white p-4 shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200"
+					style={{ transform: 'translateZ(0)' }}
+				>
+					<div class="relative grow">
+						<Image
+							src={project.data.logo}}
+							alt={`${project.data.title} logo`}
+							height={50}
+							format="webp"
+							class="h-[50px] w-auto! self-start object-contain"
+						/>
+						<h3 class="mt-3 text-xl font-bold text-pretty text-indigo-900">{project.data.title}</h3>
+						<p class="mt-3 text-slate-700">{project.data.description}</p>
 					</div>
 
-					<div class="z-20 flex items-center gap-4 pt-4 pr-4">
-						{project.tech.map((tech, techIndex) => (
-							<div class="relative">
-								<Icon
-									name={techIcons[tech]}
-									class="peer h-5 w-auto"
-									aria-describedby={`tooltip-${projectIndex}-${techIndex}`}
-								/>
-								<span
-									role="tooltip"
-									id={`tooltip-${projectIndex}-${techIndex}`}
-									class="absolute bottom-5 left-0 z-10 hidden w-auto rounded-sm bg-slate-100 p-1 text-slate-600 shadow-lg peer-[:hover]:block"
-								>
-									{tech}
-								</span>
+					<a href={project.data.url} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
+						<span class="sr-only">Visit {project.data.title}</span>
+					</a>
+
+					<div class="mt-auto">
+						<div class="flex shrink-0 gap-2">
+							<div
+								class:list={[
+									'flex items-center gap-1 rounded-full px-3 py-1',
+									typeToColorMap[project.data.type].bg,
+									typeToColorMap[project.data.type].text,
+								]}
+							>
+								<Icon name="lucide:tag" class="h-3 w-auto" />
+								<span class="text-xs font-medium tracking-wide">{project.data.type}</span>
 							</div>
-						))}
+
+							<div
+								class:list={[
+									'flex items-center gap-1 rounded-full px-3 py-1',
+									statusToColorMap[project.data.status].bg,
+									statusToColorMap[project.data.status].text,
+								]}
+							>
+								<Icon name="lucide:waypoints" class="h-3 w-auto" />
+								<span class="text-xs font-medium tracking-wide">{project.data.status}</span>
+							</div>
+						</div>
+
+						<div class="z-20 flex items-center gap-4 pt-4 pr-4">
+							{project.data.tech.map((tech, techIndex) => (
+								<div class="relative">
+									<Icon
+										name={techIcons[tech]}
+										class="peer h-5 w-auto"
+										aria-describedby={`tooltip-${projectIndex}-${techIndex}`}
+									/>
+									<span
+										role="tooltip"
+										id={`tooltip-${projectIndex}-${techIndex}`}
+										class="absolute bottom-5 left-0 z-10 hidden w-auto rounded-sm bg-slate-100 p-1 text-slate-600 shadow-lg peer-[:hover]:block"
+									>
+										{tech}
+									</span>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
-			</li>
-		))
+				</li>
+			);
+		})
 	}
 </ul>
