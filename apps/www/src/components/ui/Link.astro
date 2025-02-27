@@ -1,18 +1,17 @@
 ---
-interface Props {
-	href: string;
-	class?: string;
-	target?: string;
-	'class:list'?: string[];
-}
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
 
-const { href, class: className, target, 'class:list': classList } = Astro.props;
+interface Props extends HTMLAttributes<'a'> {}
+
+const { href, class: className, target, ...rest } = Astro.props;
 ---
 
 <a
 	{href}
 	{target}
-	class:list={['text-blue-700 transition-colors hover:text-blue-600 hover:underline', className, classList]}
+	class={twMerge('text-blue-700 transition-colors hover:text-blue-600 hover:underline', className)}
+	{...rest}
 >
 	<slot />
 </a>
