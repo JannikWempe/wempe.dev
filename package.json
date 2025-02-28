@@ -1,7 +1,7 @@
 {
 	"name": "wempe-dev",
 	"version": "0.0.0",
-	"packageManager": "pnpm@9.14.4",
+	"packageManager": "pnpm@10.5.2",
 	"engines": {
 		"node": "^22"
 	},
@@ -14,5 +14,8 @@
 	},
 	"dependencies": {
 		"sst": "3.9.19"
+	},
+	"pnpm": {
+		"neverBuiltDependencies": []
 	}
 }
