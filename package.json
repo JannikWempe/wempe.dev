@@ -13,7 +13,7 @@
 		"typescript": "5.7.3"
 	},
 	"dependencies": {
-		"sst": "3.9.19"
+		"sst": "3.9.22"
 	},
 	"pnpm": {
 		"neverBuiltDependencies": []
