@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       sst:
-        specifier: 3.9.22
-        version: 3.9.22
+        specifier: 3.9.26
+        version: 3.9.26
     devDependencies:
       '@tsconfig/node22':
         specifier: 22.0.0
@@ -23,10 +23,10 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: 4.1.0
-        version: 4.1.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+        version: 4.1.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       '@astrojs/partytown':
-        specifier: 2.1.3
-        version: 2.1.3
+        specifier: 2.1.4
+        version: 2.1.4
       '@astrojs/rss':
         specifier: 4.0.11
         version: 4.0.11
@@ -49,23 +49,23 @@ importers:
         specifier: 4.0.9
         version: 4.0.9(vite@6.2.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(yaml@2.7.0))
       astro:
-        specifier: 5.4.1
-        version: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+        specifier: 5.4.2
+        version: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       astro-embed:
         specifier: 0.9.0
-        version: 0.9.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+        version: 0.9.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       astro-expressive-code:
         specifier: 0.40.2
-        version: 0.40.2(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+        version: 0.40.2(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       astro-icon:
         specifier: 1.1.5
         version: 1.1.5
       astro-seo-schema:
         specifier: 5.0.0
-        version: 5.0.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.5)
+        version: 5.0.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.5)
       astro-sst:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.0.4
+        version: 3.0.4
       dayjs:
         specifier: 1.11.13
         version: 1.11.13
@@ -193,8 +193,8 @@ packages:
     peerDependencies:
       astro: ^5.0.0
 
-  '@astrojs/partytown@2.1.3':
-    resolution: {integrity: sha512-pkGsV6/GUTph4oLgvrpbrGnu4+9JuG8fOCzBCI2dQKtpBYQ6XAZKHrPA3evQoB5vDbfUZGVCoWe95MnSoPbVtQ==}
+  '@astrojs/partytown@2.1.4':
+    resolution: {integrity: sha512-loUrAu0cGYFDC6dHVRiomdsBJ41VjDYXPA+B3Br51V5hENFgDSOLju86OIj1TvBACcsB22UQV7BlppODDG5gig==}
 
   '@astrojs/prism@3.2.0':
     resolution: {integrity: sha512-GilTHKGCW6HMq7y3BUv9Ac7GMe/MO9gi9GW62GzKtth0SwukCu/qp2wLiGpEujhY+VVhaG9v7kv/5vFzvf4NYw==}
@@ -904,6 +904,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.14.1:
+    resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
@@ -975,11 +980,11 @@ packages:
       astro: ^5.0.0
       schema-dts: ^1.1.0
 
-  astro-sst@3.0.2:
-    resolution: {integrity: sha512-jnCNcIGvHEUwmpddb8Hhb8WX0E2d/IGF/DlS06rpraPW7ykieRgB4wLPTdF2v4JLI3BuOBacHzP5cpGpcnvN+A==}
+  astro-sst@3.0.4:
+    resolution: {integrity: sha512-RbAmrdX4GqqfU1mh/dGAekczv2+1a41Uk9zSW27ty0EEGHWDRFLEmCehxU9tareL//GT3/zp+Hc6bEolWXZXQA==}
 
-  astro@5.4.1:
-    resolution: {integrity: sha512-z9BiBz8pV7pZVn1evZv/9bJil3A9UZNyEjDFH3IjD87ioz95HHGLgbjRbbqF1EwSy8JOLKlMNyuQPqjrX8xqWw==}
+  astro@5.4.2:
+    resolution: {integrity: sha512-9Z3fAniIRJaK/o43OroZA1wHUIU+qHiOR9ovlVT/2XQaN25QRXScIsKWlFp0G/zrx5OuuoJ+QnaoHHW061u26A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1922,10 +1927,6 @@ packages:
   mlly@1.7.3:
     resolution: {integrity: sha512-xUsx5n/mN0uQf4V548PKQ+YShA4/IW0KI1dZhrNrPCLG+xizETbHTkOa1f8/xut9JRPp8kQuMnz0oqwkTiLo/A==}
 
-  mrmime@2.0.0:
-    resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
-    engines: {node: '>=10'}
-
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
     engines: {node: '>=10'}
@@ -2340,33 +2341,33 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
-  sst-darwin-arm64@3.9.22:
-    resolution: {integrity: sha512-wSzPvqdBelQndJ/NgQfE/nSfFWMEkN1jxRHM/sLCUV35mqTL5+dNF52T8sMil5M+MxWgu6ZdEMrTw4s1XkM95g==}
+  sst-darwin-arm64@3.9.26:
+    resolution: {integrity: sha512-78GSe3obviQV3PycSo4zUfF7k8IxjS4LmHJwunFlVc4z9AzCU7F2au12+9O5jxWraVK/EnYCN/MhRMi54qMqfA==}
     cpu: [arm64]
     os: [darwin]
 
-  sst-darwin-x64@3.9.22:
-    resolution: {integrity: sha512-r1yaY4rKbejZ324hNc3aNQC+FQVrrrQJFk94SFL3gai7osMwnhVlFUsBFBgznLEXqTIPdsq0ypiauRj4loKzbw==}
+  sst-darwin-x64@3.9.26:
+    resolution: {integrity: sha512-sOQUZCz/CcCBm5wRyRdaCe7LnO+imrgxHSgq8x4zCWBD5snElDamRtbUe7kw+3zd2ckU/fp34bDP4KfzTKARGw==}
     cpu: [x64]
     os: [darwin]
 
-  sst-linux-arm64@3.9.22:
-    resolution: {integrity: sha512-rftae2HNx62oDQWJMtC2wfKvALtldxcRn8waQl2jXmX3iHRkmsRSHUWoknABth8IxNOn2Ye9/hLJD4jt+/0Lxg==}
+  sst-linux-arm64@3.9.26:
+    resolution: {integrity: sha512-IpUA7eLjSwAvKMx92P+CJEuIZPKsDo9t/khSCoAWwkKq1EN80hV9etPhm1/jQCdB0PERoggGXT2oL/IJTLtb2g==}
     cpu: [arm64]
     os: [linux]
 
-  sst-linux-x64@3.9.22:
-    resolution: {integrity: sha512-lG8M4SoRwAAleGhTrLYKnmv+B4YDmFjqsz/xDT6+uUaCHV2U5E5aozcngyRurylP0hRAzvrzyY2FOk+bmjZT3w==}
+  sst-linux-x64@3.9.26:
+    resolution: {integrity: sha512-tMNDQBSFGAFcX9Zc/9W8hsd8n9cp2vx6rMjko2sV3wbF/K0dledKGjT5EhzDAlccP6bFS3XGiIzsUfhsgZW4Ag==}
     cpu: [x64]
     os: [linux]
 
-  sst-linux-x86@3.9.22:
-    resolution: {integrity: sha512-r3gIgpwqEz5vqElEx+IZv1LUUropzz2Rr5ynWIqt/KphwO7vGapL2ufytyNDZLkiWQZ97xRQEHhekF1UJfjjNA==}
+  sst-linux-x86@3.9.26:
+    resolution: {integrity: sha512-ll1koUZ4D6peMxR8Th5DSY5UZvLXaAWmCA7vC9la0KnQZz/odJBeY2CZRwUXyntpyoGRvFJXWKhecbOoaVyzhA==}
     cpu: [x86]
     os: [linux]
 
-  sst@3.9.22:
-    resolution: {integrity: sha512-tNHSVelWgkPNVnq776nGSuxL8JujKURvb5ZeiYR37w8p6FbBZ3i3/HfubOyTDP0BEng2dvdlH/jd3vPYrDLo5g==}
+  sst@3.9.26:
+    resolution: {integrity: sha512-LWDRA+sYcc4cD+1sXp4RW5asVDCzrWVyqE0L1FdWxQ8vV/BN9/5TpEFulShTkom1s/CmuLh5H6+qOGO5Di7XqQ==}
     hasBin: true
 
   stream-replace-string@2.0.0:
@@ -2470,8 +2471,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  type-fest@4.36.0:
-    resolution: {integrity: sha512-3T/PUdKTCnkUmhQU6FFJEHsLwadsRegktX3TNHk+2JJB9HlA8gp1/VXblXVDI93kSnXF2rdPx0GMbHtJIV2LPg==}
+  type-fest@4.37.0:
+    resolution: {integrity: sha512-S/5/0kFftkq27FPNye0XM1e2NsnoD/3FS+pBmbjmmtLT6I+i344KoOf7pvXreaFsDamWeaJX55nczA1m5PsBDg==}
     engines: {node: '>=16'}
 
   typesafe-path@0.2.2:
@@ -2888,50 +2889,50 @@ snapshots:
 
   '@antfu/utils@0.7.10': {}
 
-  '@astro-community/astro-embed-baseline-status@0.1.2(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-baseline-status@0.1.2(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
       '@astro-community/astro-embed-utils': 0.1.3
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
 
-  '@astro-community/astro-embed-bluesky@0.1.3(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-bluesky@0.1.3(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
       '@atproto/api': 0.13.35
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       ts-pattern: 5.6.2
 
-  '@astro-community/astro-embed-integration@0.8.1(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-integration@0.8.1(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
-      '@astro-community/astro-embed-bluesky': 0.1.3(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-bluesky': 0.1.3(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       '@astro-community/astro-embed-link-preview': 0.2.2
-      '@astro-community/astro-embed-twitter': 0.5.8(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-vimeo': 0.3.10(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-youtube': 0.5.6(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-twitter': 0.5.8(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-vimeo': 0.3.10(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-youtube': 0.5.6(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       '@types/unist': 2.0.11
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
-      astro-auto-import: 0.4.4(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro-auto-import: 0.4.4(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       unist-util-select: 4.0.3
 
   '@astro-community/astro-embed-link-preview@0.2.2':
     dependencies:
       '@astro-community/astro-embed-utils': 0.1.3
 
-  '@astro-community/astro-embed-twitter@0.5.8(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-twitter@0.5.8(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
       '@astro-community/astro-embed-utils': 0.1.3
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
 
   '@astro-community/astro-embed-utils@0.1.3':
     dependencies:
       linkedom: 0.14.26
 
-  '@astro-community/astro-embed-vimeo@0.3.10(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-vimeo@0.3.10(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
       '@astro-community/astro-embed-utils': 0.1.3
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
 
-  '@astro-community/astro-embed-youtube@0.5.6(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astro-community/astro-embed-youtube@0.5.6(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       lite-youtube-embed: 0.3.3
 
   '@astrojs/check@0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.7.3)':
@@ -3003,12 +3004,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.1.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
+  '@astrojs/mdx@4.1.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))':
     dependencies:
       '@astrojs/markdown-remark': 6.2.0
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3022,10 +3023,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/partytown@2.1.3':
+  '@astrojs/partytown@2.1.4':
     dependencies:
       '@qwik.dev/partytown': 0.11.0
-      mrmime: 2.0.0
+      mrmime: 2.0.1
 
   '@astrojs/prism@3.2.0':
     dependencies:
@@ -3707,6 +3708,8 @@ snapshots:
 
   acorn@8.14.0: {}
 
+  acorn@8.14.1: {}
+
   ajv@8.17.1:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -3747,26 +3750,26 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-auto-import@0.4.4(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
+  astro-auto-import@0.4.4(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
     dependencies:
       '@types/node': 18.19.76
       acorn: 8.14.0
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
 
-  astro-embed@0.9.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
+  astro-embed@0.9.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
     dependencies:
-      '@astro-community/astro-embed-baseline-status': 0.1.2(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-bluesky': 0.1.3(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-integration': 0.8.1(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-baseline-status': 0.1.2(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-bluesky': 0.1.3(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-integration': 0.8.1(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
       '@astro-community/astro-embed-link-preview': 0.2.2
-      '@astro-community/astro-embed-twitter': 0.5.8(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-vimeo': 0.3.10(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      '@astro-community/astro-embed-youtube': 0.5.6(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      '@astro-community/astro-embed-twitter': 0.5.8(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-vimeo': 0.3.10(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      '@astro-community/astro-embed-youtube': 0.5.6(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
 
-  astro-expressive-code@0.40.2(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
+  astro-expressive-code@0.40.2(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)):
     dependencies:
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       rehype-expressive-code: 0.40.2
 
   astro-icon@1.1.5:
@@ -3778,16 +3781,16 @@ snapshots:
       - debug
       - supports-color
 
-  astro-seo-schema@5.0.0(astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.5):
+  astro-seo-schema@5.0.0(astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0))(schema-dts@1.1.5):
     dependencies:
-      astro: 5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
+      astro: 5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0)
       schema-dts: 1.1.5
 
-  astro-sst@3.0.2:
+  astro-sst@3.0.4:
     dependencies:
       set-cookie-parser: 2.7.1
 
-  astro@5.4.1(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0):
+  astro@5.4.2(@types/node@22.13.4)(aws4fetch@1.0.20)(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.34.9)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
       '@astrojs/compiler': 2.10.4
       '@astrojs/internal-helpers': 0.6.0
@@ -3796,7 +3799,7 @@ snapshots:
       '@oslojs/encoding': 1.1.0
       '@rollup/pluginutils': 5.1.4(rollup@4.34.9)
       '@types/cookie': 0.6.0
-      acorn: 8.14.0
+      acorn: 8.14.1
       aria-query: 5.3.2
       axobject-query: 4.1.0
       boxen: 8.0.1
@@ -3915,7 +3918,7 @@ snapshots:
       chalk: 5.4.1
       cli-boxes: 3.0.0
       string-width: 7.2.0
-      type-fest: 4.36.0
+      type-fest: 4.37.0
       widest-line: 5.0.0
       wrap-ansi: 9.0.0
 
@@ -5167,8 +5170,6 @@ snapshots:
       pkg-types: 1.3.0
       ufo: 1.5.4
 
-  mrmime@2.0.0: {}
-
   mrmime@2.0.1: {}
 
   ms@2.1.3: {}
@@ -5639,32 +5640,32 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  sst-darwin-arm64@3.9.22:
+  sst-darwin-arm64@3.9.26:
     optional: true
 
-  sst-darwin-x64@3.9.22:
+  sst-darwin-x64@3.9.26:
     optional: true
 
-  sst-linux-arm64@3.9.22:
+  sst-linux-arm64@3.9.26:
     optional: true
 
-  sst-linux-x64@3.9.22:
+  sst-linux-x64@3.9.26:
     optional: true
 
-  sst-linux-x86@3.9.22:
+  sst-linux-x86@3.9.26:
     optional: true
 
-  sst@3.9.22:
+  sst@3.9.26:
     dependencies:
       aws4fetch: 1.0.20
       jose: 5.2.3
       openid-client: 5.6.4
     optionalDependencies:
-      sst-darwin-arm64: 3.9.22
-      sst-darwin-x64: 3.9.22
-      sst-linux-arm64: 3.9.22
-      sst-linux-x64: 3.9.22
-      sst-linux-x86: 3.9.22
+      sst-darwin-arm64: 3.9.26
+      sst-darwin-x64: 3.9.26
+      sst-linux-arm64: 3.9.26
+      sst-linux-x64: 3.9.26
+      sst-linux-x86: 3.9.26
 
   stream-replace-string@2.0.0: {}
 
@@ -5760,7 +5761,7 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
-  type-fest@4.36.0: {}
+  type-fest@4.37.0: {}
 
   typesafe-path@0.2.2: {}
 
