@@ -41,18 +41,22 @@ export default defineConfig({
 			destination: 'https://cal.com/jannikwempe',
 			status: 302,
 		},
+		'/sitemap.xml': {
+			destination: '/sitemap-index.xml',
+			status: 302,
+		},
 		// on Hashnode, I have used some series, now I use tags instead
 		'/blog/series/domain-driven-design': {
 			destination: '/blog/tag/ddd',
-			status: 302,
+			status: 301,
 		},
 		'/blog/series/podcast-notes': {
 			destination: '/blog/tag/podcast',
-			status: 302,
+			status: 301,
 		},
 		'/blog/series/state-machines': {
 			destination: '/blog/tag/state-machines',
-			status: 302,
+			status: 301,
 		},
 	},
 	integrations: [
