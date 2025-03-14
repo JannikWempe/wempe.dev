@@ -22,6 +22,7 @@ export default defineConfig({
 		responsiveImages: true,
 		clientPrerender: true,
 		contentIntellisense: true,
+		preserveScriptOrder: true,
 	},
 	prefetch: {
 		prefetchAll: true,
