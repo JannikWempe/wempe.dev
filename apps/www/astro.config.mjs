@@ -33,7 +33,6 @@ export default defineConfig({
 	trailingSlash: 'never',
 	server: { host: true },
 	adapter: sst({
-		deploymentStrategy: 'regional',
 		responseMode: 'buffer',
 	}),
 	output: 'server',
