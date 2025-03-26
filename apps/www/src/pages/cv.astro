@@ -44,628 +44,632 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 		</Button>
 	</div>
 
-	<div class="mx-5">
-		<div class="mx-auto mt-10 w-4xl bg-white shadow-xl">
-			<div class="p-8">
-				<!-- Header -->
-				<div class="flex items-center justify-between pb-4">
-					<div>
-						<h1 class="text-4xl font-bold">Jannik Wempe</h1>
-						<p class="text-lg text-slate-600">Full-stack Software Engineer & AWS Certified Developer</p>
-					</div>
-					<Image
-						src={jannikWempeImg}
-						alt="Portrait of Jannik Wempe"
-						width={150}
-						height={150}
-						format="avif"
-						loading={'eager'}
-						class="rounded-full"
-					/>
+	<div class="mx-auto mt-10 w-4xl bg-white shadow-xl print:-mt-20">
+		<div class="p-8">
+			<!-- Header -->
+			<div class="flex items-center justify-between pb-4">
+				<div>
+					<h1 class="text-4xl font-bold">Jannik Wempe</h1>
+					<p class="text-lg text-slate-600">Full-stack Software Engineer & AWS Certified Developer</p>
 				</div>
+				<Image
+					src={jannikWempeImg}
+					alt="Portrait of Jannik Wempe"
+					width={150}
+					height={150}
+					format="webp"
+					loading={'eager'}
+					class="rounded-full"
+				/>
+			</div>
 
-				<section>
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Web Presence</h2>
-					<div class="grid grid-cols-3 gap-4">
-						<a
-							href={X_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="twitter-x" class="h-5 w-5" />
-							<span class="sr-only">Twitter/X Profile</span>
-							<span class="text-sm">{X_HANDLE}</span>
-						</a>
-
-						<a
-							href={BLUESKY_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="plausible-event-name=contact plausible-event-type=bluesky flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="bluesky" class="h-5 w-5" />
-							<span class="sr-only">Bluesky Profile</span>
-							<span class="text-sm">{BLUESKY_HANDLE}</span>
-						</a>
-
-						<a
-							href={LINKEDIN_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="plausible-event-name=contact plausible-event-type=linkedin flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="lucide:linkedin" class="h-5 w-5" />
-							<span class="sr-only">LinkedIn Profile</span>
-							<span class="text-sm">{LINKEDIN_HANDLE}</span>
-						</a>
-
-						<a
-							href={GITHUB_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="lucide:github" class="h-5 w-5" />
-							<span class="sr-only">GitHub Profile</span>
-							<span class="text-sm">{GITHUB_HANDLE}</span>
-						</a>
-
-						<a
-							href={`mailto:${EMAIL}`}
-							class="plausible-event-name=contact plausible-event-type=email flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="lucide:mail" class="h-5 w-5" />
-							<span class="sr-only">Email Contact</span>
-							<span class="text-sm">{EMAIL}</span>
-						</a>
-
-						<a
-							href={SITE_BASE_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-						>
-							<Icon name="lucide:globe" class="h-5 w-5" />
-							<span class="sr-only">Website</span>
-							<span class="text-sm">{new URL(SITE_BASE_URL).hostname}</span>
-						</a>
-					</div>
-				</section>
-				<!-- Summary Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Summary</h2>
-					<p class="text-sm text-slate-700">
-						Drawing from experience across modern web technologies, cloud platforms, and system architecture, I build
-						end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to
-						stay at the forefront of technological innovation.
-					</p>
-					<ul class="mt-4 list-disc space-y-1 pl-5 text-sm">
-						<li>Full-stack TypeScript developer specializing in serverless architectures</li>
-						<li>AWS Certified Developer & AWS Community Builder (serverless)</li>
-						<li>8+ years of experience in programming and consulting</li>
-						<li>Building micro-SaaS products and custom Shopify applications</li>
-					</ul>
-				</section>
-
-				<!-- Skills Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Core Skills</h2>
-					<p class="mb-4 text-sm text-slate-600">
-						These represent my current primary technical focus areas and expertise, not an exhaustive list. As a
-						continuous learner, my skill set is constantly evolving.
-					</p>
-
-					<div class="grid grid-cols-2 gap-8">
-						<div>
-							<h3 class="mb-4 font-semibold">Full Stack Development (8+ years)</h3>
-							<div class="grid grid-cols-2">
-								<ul class="space-y-2 text-sm text-slate-700">
-									<li>TypeScript</li>
-									<li>Node.js</li>
-									<li>React.js</li>
-									<li>Next.js</li>
-									<li>Remix / React Router</li>
-								</ul>
-								<ul class="space-y-2 text-sm text-slate-700">
-									<li>TailwindCSS</li>
-									<li>Vitest, Cypress</li>
-									<li>REST APIs</li>
-									<li>GraphQL</li>
-									<li>…</li>
-								</ul>
-							</div>
-						</div>
-						<div>
-							<h3 class="mb-4 font-semibold">AWS (4+ years)</h3>
-							<div class="grid grid-cols-2">
-								<ul class="space-y-2 text-sm text-slate-700">
-									<li>Event-driven Architecture</li>
-									<li>Serverless Architecture</li>
-									<li>Infrastructure as Code</li>
-									<li>SST</li>
-									<li>AWS CDK</li>
-								</ul>
-								<ul class="space-y-2 text-sm text-slate-700">
-									<li>API Gateway</li>
-									<li>Step Functions</li>
-									<li>Event Bridge</li>
-									<li>SQS/SNS</li>
-									<li>…</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- Work Experience Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Work Experience</h2>
-
-					<!-- Hashnode -->
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">Platform Engineering Lead</p>
-							<p class="text-sm text-slate-600 tabular-nums">05/2022 - 02/2025</p>
-						</div>
-						<p class="text-md font-semibold">Hashnode</p>
-						<p class="mb-2 text-sm text-slate-600">Fully Remote</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>Led Platform Engineering team for a platform serving 160,000+ MAU</li>
-							<li>Lead a team of developers and did some internal coachings and mentoring</li>
-							<li>Responsibility for third-party integrations and backend services (mostly on AWS)</li>
-							<li>
-								Built scalable web analytics solution using AWS serverless stack (API Gateway, Kinesis Firehose, Lambda,
-								Timestream)
-								<ul class="mt-1 ml-4 list-disc">
-									<li>Reduced costs by 70% while improving data quality</li>
-								</ul>
-							</li>
-							<li>Developed public GraphQL API (SST & Apollo on AWS Lambda)</li>
-							<li>Created and managed email infrastructure handling 100,000+ weekly emails (Amazon SES)</li>
-							<li>Scaled core platform features: webhook integrations, recommendation system, billing system</li>
-							<li>Implemented AI-powered spam protection using Step Functions and LLMs</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> AWS, AWS CDK, SST, TypeScript, Node.js, Vercel, React, Next.js, TailwindCSS,
-							Event Bridge, API Gateway, Lambda, Step Functions, SQS, SNS, SES, S3, Timestream, MongoDB, Redis, GraphQL,
-							REST, Stripe, Paddle
-						</p>
-					</div>
-
-					<!-- iteratec GmbH -->
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">Lead Software Engineer & Softwarearchitekt</p>
-							<p class="text-sm text-slate-600 tabular-nums">02/2022 - 05/2022</p>
-						</div>
-						<p class="text-md font-semibold">iteratec GmbH</p>
-						<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>Led replacement of legacy systems with modern information platform</li>
-							<li>Designed system architecture and developed full-stack solution</li>
-							<li>Built Angular frontend (TypeScript) and Spring Boot backend (Java)</li>
-							<li>Implemented microservices deployment on OpenShift using Helm</li>
-							<li>Integrated diverse service protocols (REST, GraphQL, AMQP)</li>
-							<li>Facilitated Domain-Driven Design workshops with clients</li>
-							<li>Mentoring for colleagues</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> OpenShift, Kubernetes, Docker, Helm, Java, Spring Boot, TypeScript,
-							Angular, TailwindCSS, REST, GraphQL, AMQP, PostgresDB, Elasticsearch, Grafana, Kibana
-						</p>
-					</div>
-
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">Software Engineer</p>
-							<p class="text-sm text-slate-600 tabular-nums">04/2020 - 01/2022</p>
-						</div>
-						<p class="text-md font-semibold">iteratec GmbH</p>
-						<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>
-								Developed information system for digital freight document processing for international logistics company
-							</li>
-							<li>Built responsive UI with Vue.js</li>
-							<li>Implemented backend services in Scala</li>
-							<li>Deployed solution using AWS Serverless Application Model (SAM)</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> Scala, TypeScript, Vue.js, Quasar, AWS SAM, SQS, API Gateway, Step
-							Functions, Lambda, DynamoDB, S3, PostgresDB
-						</p>
-					</div>
-
-					<!-- Forschungsgruppe g/d/p -->
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">Full-Stack Web Developer</p>
-							<p class="text-sm text-slate-600 tabular-nums">07/2019 - 04/2020</p>
-						</div>
-						<p class="text-md font-semibold">Forschungsgruppe g/d/p</p>
-						<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>Built web applications using Python (Django, Flask), JavaScript, and PHP</li>
-							<li>Containerized applications with Docker</li>
-							<li>Integrated APIs (REST) and implemented web scraping</li>
-							<li>Analyzed and visualized data</li>
-							<li>Managed MySQL and Redis databases</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> Python, Django, Flask, Docker, Node.js, TypeScript, Angular, MySQL,
-							Redis
-						</p>
-					</div>
-
-					<!-- PPI AG -->
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">IT Consultant</p>
-							<p class="text-sm text-slate-600 tabular-nums">06/2017 - 06/2019</p>
-						</div>
-						<p class="text-md font-semibold">PPI AG</p>
-						<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>Developed software solutions using MS Access with VBA and SQL</li>
-							<li>Served as business analyst between business units and IT for enterprise projects</li>
-							<li>Received training in Python and Robotic Process Automation (RPA)</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> Python, MS Access, VBA, SQL, RPA
-						</p>
-					</div>
-
-					<!-- Technical University of Braunschweig -->
-					<div class="mb-6">
-						<div class="flex justify-between">
-							<p class="text-lg font-bold">Research Assistant</p>
-							<p class="text-sm text-slate-600 tabular-nums">08/2015 - 04/2017</p>
-						</div>
-						<p class="text-md font-semibold">Technical University of Braunschweig</p>
-						<p class="mb-2 text-sm text-slate-600">Braunschweig, Germany</p>
-						<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
-							<li>Designed and developed custom WordPress solutions</li>
-						</ul>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> PHP, WordPress, JavaScript
-						</p>
-					</div>
-				</section>
-
-				<!-- Client Projects Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Client Projects</h2>
-					<div class="space-y-6">
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer | Production Control System</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">01/2025 - Present</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">Anonymous company</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Individual software for internal production control for a medium-sized company.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> AWS, SST, React, React Router, TailwindCSS
-							</p>
-						</div>
-
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Companys Online Presence</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">03/2020 - Present</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">
-								<a
-									href="https://easydatasolution.de"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center gap-2"
-								>
-									easy data solution GmbH
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-							</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Consulting, design and development of a webapp that represents the company and allows to book courses.
-								Focus on SEO and performance.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> TypeScript, React, Gatsby, Framer Motion, Astro, SolidJS, TailwindCSS,
-								Chakra UI, Netlify, DatoCMS
-							</p>
-						</div>
-
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">03/2021 - 09/2021</p>
-									<p class="tabular-nums">11/2023 - 02/2024</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">
-								<a
-									href="https://gluckweiser.de"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center gap-2"
-								>
-									Glückweiser
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-							</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Designed, developed and deployed a Shopify store that sells handmade furniture.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> TypeScript, React, Shopify Hydrogen, TailwindCSS, Shopify, GraphQL
-							</p>
-						</div>
-
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Companys Online Presence</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">11/2022 - 05/2023</p>
-									<p class="tabular-nums">02/2025 - 03/2025</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">
-								<a href="https://esp-se.eu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-									ESP SE
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-							</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Designed, developed and deployed a multi-language company website for a physiotherapist education
-								platform with a focus on SEO.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, TailwindCSS, Sanity, Vercel
-							</p>
-						</div>
-
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer | Progressive Web App (PWA)</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">01/2022 - 03/2022</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">
-								<a
-									href="https://kiezapp-rixdorf.de"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center gap-2"
-								>
-									KiezApp Rixdorf
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-							</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Developed a PWA that helps people to get to know the kiez Rixdorf in Berlin through some gamification.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, Chakra UI, PWA, Render, PostgresDB
-							</p>
-						</div>
-
-						<div>
-							<div class="relative">
-								<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
-								<div class="absolute top-0 right-0 text-sm text-slate-600">
-									<p class="tabular-nums">2018</p>
-								</div>
-							</div>
-							<p class="text-md font-semibold">
-								<a href="https://klebeki.de" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-									Klebeki
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-							</p>
-							<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-								Design and development of a WooCommerce shop selling clothes for kids and babies with special needs.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> PHP, WordPress, WooCommerce, JavaScript, MySQL
-							</p>
-						</div>
-					</div>
-				</section>
-				<!-- Personal Projects Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Personal Projects</h2>
-					<p class="mb-4 text-sm text-slate-600">
-						<span class="font-semibold">Note:</span> These are selected commercial projects – not an exhaustive list of my
-						personal projects.
-					</p>
-					<div class="space-y-6">
-						<div>
-							<a
-								href="https://fraudfalcon.app"
-								class="flex items-center gap-2 text-lg font-bold"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<span>FraudFalcon</span>
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-							<p class="mt-1 text-sm text-slate-700">
-								Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud
-								and block orders automatically.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Supabase, Shopify App
-							</p>
-						</div>
-
-						<div>
-							<a
-								href="https://octolense.com"
-								class="flex items-center gap-2 text-lg font-bold"
-								target="_blank"
-								rel="noopener noreferrer nofollow"
-							>
-								<span>Octolense <em>(sold)</em></span>
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-							<p class="mt-1 text-sm text-slate-700">
-								Analytics solution for GitHub actions. Understand which actions and repositories are most expensive.
-								Exited because lack of time to maintain it.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, TailwindCSS, Supabase
-							</p>
-						</div>
-
-						<div>
-							<a
-								href="https://shoptain.com"
-								class="flex items-center gap-2 text-lg font-bold"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<span>Shoptain</span>
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-							<p class="mt-1 text-sm text-slate-700">
-								Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by
-								specifying desired keyword.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Supabase, Shopify App, LangChain.js
-							</p>
-						</div>
-
-						<div>
-							<a
-								href="https://kitlytics.com"
-								class="flex items-center gap-2 text-lg font-bold"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<span>Kitlytics</span>
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-							<p class="mt-1 text-sm text-slate-700">
-								Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and
-								grow your business.
-							</p>
-							<p class="mt-2 text-sm text-slate-600">
-								<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Turso
-							</p>
-						</div>
-					</div>
-				</section>
-
-				<!-- Education Section -->
-				<section class="mt-8">
-					<h2 class="border-b pb-2 text-2xl font-semibold">Education</h2>
-					<div class="mt-4">
-						<p class="text-lg font-bold">Master of Science - Business Informatics</p>
-						<p class="text-sm text-slate-600 tabular-nums">Technical University of Braunschweig, 08/2015 - 04/2017</p>
-						<p class="text-sm text-slate-600">Final Grade: 1.6</p>
-					</div>
-					<div class="mt-6">
-						<p class="text-lg font-bold">Bachelor of Science - Business Informatics</p>
-						<p class="text-sm text-slate-600 tabular-nums">University of Applied Sciences Leipzig, 10/2011 - 09/2014</p>
-						<p class="text-sm text-slate-600">Final Grade: 1.4</p>
-					</div>
-				</section>
-
-				<!-- Speaking & Appearances Section -->
-				<section class="mt-8">
-					<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Speaking & Appearances</h2>
-					<div class="space-y-6">
-						<div>
-							<div class="flex justify-between">
-								<a
-									href="https://www.youtube.com/watch?v=5nL-C0JNKwE"
-									class="flex items-center gap-2 text-lg font-bold"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<span>Building Hashnode's Public APIs with Sandro, Jannik, and Sandeep</span>
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-								<p class="text-sm text-slate-600 tabular-nums">11/2023</p>
-							</div>
-							<p class="text-md font-semibold">The Commit Podcast – Hashnode</p>
-							<p class="mt-1 text-sm text-slate-700">
-								Discussed the development and architecture of Hashnode's public GraphQL APIs.
-							</p>
-						</div>
-
-						<div>
-							<div class="flex justify-between">
-								<a
-									href="https://open.spotify.com/episode/2X6hD02EE8UmjksJpoemTb?si=b28b4c0e65ea4480"
-									class="flex items-center gap-2 text-lg font-bold"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<span>Hashnode and MongoDB with Jannik Wempe</span>
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-								<p class="text-sm text-slate-600 tabular-nums">11/2022</p>
-							</div>
-							<p class="text-md font-semibold">The MongoDB Podcast</p>
-							<p class="mt-1 text-sm text-slate-700">
-								Shared insights about using MongoDB at Hashnode and building scalable applications.
-							</p>
-						</div>
-
-						<div>
-							<div class="flex justify-between">
-								<a
-									href="https://www.youtube.com/live/s8tO-ymVQPg?si=7GuZlOGtZw9OT8g5&t=7749"
-									class="flex items-center gap-2 text-lg font-bold"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<span>Testing in Serverless Architectures Using the CDK Provider Framework</span>
-									<Icon name="lucide:external-link" class="h-4 w-4" />
-								</a>
-								<p class="text-sm text-slate-600 tabular-nums">05/2022</p>
-							</div>
-							<p class="text-md font-semibold">CDK Day Conference</p>
-							<p class="mt-1 text-sm text-slate-700">
-								Presented best practices for testing serverless applications using the AWS CDK Provider Framework.
-							</p>
-						</div>
-					</div>
-				</section>
-
-				<!-- Certifications Section -->
-				<section class="mt-8">
-					<h2 class="border-b pb-2 text-2xl font-semibold">Certifications</h2>
+			<section>
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Web Presence</h2>
+				<div class="grid grid-cols-3 gap-4">
 					<a
-						href="https://www.credly.com/badges/23e30c2d-75f3-4697-b483-415572fa04bb"
+						href={X_URL}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="mt-4 inline-block"
+						class="flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
 					>
-						<Image src={awsCertificateImg} alt="AWS Certified Developer - Associate" width={120} height={120} />
-						<span class="sr-only">AWS Certified Developer - Associate</span>
+						<Icon name="twitter-x" class="h-5 w-5" />
+						<span class="sr-only">Twitter/X Profile</span>
+						<span class="text-sm">{X_HANDLE}</span>
 					</a>
-				</section>
-			</div>
-			<div class="flex items-center gap-2 bg-indigo-500 px-8 py-3 text-sm font-semibold text-white">
-				<Icon name="lucide:info" class="h-4 w-4" />
-				<span>
-					The up-to-date version of this CV is available online at
-					<code class="font-mono"
-						><a href="https://wempe.dev/cv" target="_blank" rel="noopener noreferrer">wempe.dev/cv</a></code
-					>.
-				</span>
-			</div>
+
+					<a
+						href={BLUESKY_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="plausible-event-name=contact plausible-event-type=bluesky flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
+					>
+						<Icon name="bluesky" class="h-5 w-5" />
+						<span class="sr-only">Bluesky Profile</span>
+						<span class="text-sm">{BLUESKY_HANDLE}</span>
+					</a>
+
+					<a
+						href={LINKEDIN_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="plausible-event-name=contact plausible-event-type=linkedin flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
+					>
+						<Icon name="lucide:linkedin" class="h-5 w-5" />
+						<span class="sr-only">LinkedIn Profile</span>
+						<span class="text-sm">{LINKEDIN_HANDLE}</span>
+					</a>
+
+					<a
+						href={GITHUB_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
+					>
+						<Icon name="lucide:github" class="h-5 w-5" />
+						<span class="sr-only">GitHub Profile</span>
+						<span class="text-sm">{GITHUB_HANDLE}</span>
+					</a>
+
+					<a
+						href={`mailto:${EMAIL}`}
+						class="plausible-event-name=contact plausible-event-type=email flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
+					>
+						<Icon name="lucide:mail" class="h-5 w-5" />
+						<span class="sr-only">Email Contact</span>
+						<span class="text-sm">{EMAIL}</span>
+					</a>
+
+					<a
+						href={SITE_BASE_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
+					>
+						<Icon name="lucide:globe" class="h-5 w-5" />
+						<span class="sr-only">Website</span>
+						<span class="text-sm">{new URL(SITE_BASE_URL).hostname}</span>
+					</a>
+				</div>
+			</section>
+			<!-- Summary Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Summary</h2>
+				<p class="text-sm text-slate-700">
+					Drawing from experience across modern web technologies, cloud platforms, and system architecture, I build
+					end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to stay
+					at the forefront of technological innovation.
+				</p>
+				<ul class="mt-4 list-disc space-y-1 pl-5 text-sm">
+					<li>Full-stack TypeScript developer specializing in serverless architectures</li>
+					<li>AWS Certified Developer & AWS Community Builder (serverless)</li>
+					<li>8+ years of experience in programming and consulting</li>
+					<li>Building micro-SaaS products and custom Shopify applications</li>
+				</ul>
+			</section>
+
+			<!-- Skills Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Core Skills</h2>
+				<p class="mb-4 text-sm text-slate-600">
+					These represent my current primary technical focus areas and expertise, not an exhaustive list. As a
+					continuous learner, my skill set is constantly evolving.
+				</p>
+
+				<div class="grid grid-cols-2 gap-8">
+					<div>
+						<h3 class="mb-4 font-semibold">Full Stack Development (8+ years)</h3>
+						<div class="grid grid-cols-2">
+							<ul class="space-y-2 text-sm text-slate-700">
+								<li>TypeScript</li>
+								<li>Node.js</li>
+								<li>React.js</li>
+								<li>Next.js</li>
+								<li>Remix / React Router</li>
+							</ul>
+							<ul class="space-y-2 text-sm text-slate-700">
+								<li>TailwindCSS</li>
+								<li>Vitest, Cypress</li>
+								<li>REST APIs</li>
+								<li>GraphQL</li>
+								<li>…</li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<h3 class="mb-4 font-semibold">AWS (4+ years)</h3>
+						<div class="grid grid-cols-2">
+							<ul class="space-y-2 text-sm text-slate-700">
+								<li>Event-driven Architecture</li>
+								<li>Serverless Architecture</li>
+								<li>Infrastructure as Code</li>
+								<li>SST</li>
+								<li>AWS CDK</li>
+							</ul>
+							<ul class="space-y-2 text-sm text-slate-700">
+								<li>API Gateway</li>
+								<li>Step Functions</li>
+								<li>Event Bridge</li>
+								<li>SQS/SNS</li>
+								<li>…</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Work Experience Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Work Experience</h2>
+
+				<!-- Hashnode -->
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">Platform Engineering Lead</p>
+						<p class="text-sm text-slate-600 tabular-nums">05/2022 - 02/2025</p>
+					</div>
+					<p class="text-md font-semibold">Hashnode</p>
+					<p class="mb-2 text-sm text-slate-600">Fully Remote</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>Led Platform Engineering team for a platform serving 160,000+ MAU</li>
+						<li>Lead a team of developers and did some internal coachings and mentoring</li>
+						<li>Responsibility for third-party integrations and backend services (mostly on AWS)</li>
+						<li>
+							Built scalable web analytics solution using AWS serverless stack (API Gateway, Kinesis Firehose, Lambda,
+							Timestream)
+							<ul class="mt-1 ml-4 list-disc">
+								<li>Reduced costs by 70% while improving data quality</li>
+							</ul>
+						</li>
+						<li>Developed public GraphQL API (SST & Apollo on AWS Lambda)</li>
+						<li>Created and managed email infrastructure handling 100,000+ weekly emails (Amazon SES)</li>
+						<li>Scaled core platform features: webhook integrations, recommendation system, billing system</li>
+						<li>Implemented AI-powered spam protection using Step Functions and LLMs</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> AWS, AWS CDK, SST, TypeScript, Node.js, Vercel, React, Next.js, TailwindCSS,
+						Event Bridge, API Gateway, Lambda, Step Functions, SQS, SNS, SES, S3, Timestream, MongoDB, Redis, GraphQL, REST,
+						Stripe, Paddle
+					</p>
+				</div>
+
+				<!-- iteratec GmbH -->
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">Lead Software Engineer & Softwarearchitekt</p>
+						<p class="text-sm text-slate-600 tabular-nums">02/2022 - 05/2022</p>
+					</div>
+					<p class="text-md font-semibold">iteratec GmbH</p>
+					<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>Led replacement of legacy systems with modern information platform</li>
+						<li>Designed system architecture and developed full-stack solution</li>
+						<li>Built Angular frontend (TypeScript) and Spring Boot backend (Java)</li>
+						<li>Implemented microservices deployment on OpenShift using Helm</li>
+						<li>Integrated diverse service protocols (REST, GraphQL, AMQP)</li>
+						<li>Facilitated Domain-Driven Design workshops with clients</li>
+						<li>Mentoring for colleagues</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> OpenShift, Kubernetes, Docker, Helm, Java, Spring Boot, TypeScript,
+						Angular, TailwindCSS, REST, GraphQL, AMQP, PostgresDB, Elasticsearch, Grafana, Kibana
+					</p>
+				</div>
+
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">Software Engineer</p>
+						<p class="text-sm text-slate-600 tabular-nums">04/2020 - 01/2022</p>
+					</div>
+					<p class="text-md font-semibold">iteratec GmbH</p>
+					<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>
+							Developed information system for digital freight document processing for international logistics company
+						</li>
+						<li>Built responsive UI with Vue.js</li>
+						<li>Implemented backend services in Scala</li>
+						<li>Deployed solution using AWS Serverless Application Model (SAM)</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> Scala, TypeScript, Vue.js, Quasar, AWS SAM, SQS, API Gateway, Step Functions,
+						Lambda, DynamoDB, S3, PostgresDB
+					</p>
+				</div>
+
+				<!-- Forschungsgruppe g/d/p -->
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">Full-Stack Web Developer</p>
+						<p class="text-sm text-slate-600 tabular-nums">07/2019 - 04/2020</p>
+					</div>
+					<p class="text-md font-semibold">Forschungsgruppe g/d/p</p>
+					<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>Built web applications using Python (Django, Flask), JavaScript, and PHP</li>
+						<li>Containerized applications with Docker</li>
+						<li>Integrated APIs (REST) and implemented web scraping</li>
+						<li>Analyzed and visualized data</li>
+						<li>Managed MySQL and Redis databases</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> Python, Django, Flask, Docker, Node.js, TypeScript, Angular, MySQL,
+						Redis
+					</p>
+				</div>
+
+				<!-- PPI AG -->
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">IT Consultant</p>
+						<p class="text-sm text-slate-600 tabular-nums">06/2017 - 06/2019</p>
+					</div>
+					<p class="text-md font-semibold">PPI AG</p>
+					<p class="mb-2 text-sm text-slate-600">Hamburg, Germany</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>Developed software solutions using MS Access with VBA and SQL</li>
+						<li>Served as business analyst between business units and IT for enterprise projects</li>
+						<li>Received training in Python and Robotic Process Automation (RPA)</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> Python, MS Access, VBA, SQL, RPA
+					</p>
+				</div>
+
+				<!-- Technical University of Braunschweig -->
+				<div class="mb-6">
+					<div class="flex justify-between">
+						<p class="text-lg font-bold">Research Assistant</p>
+						<p class="text-sm text-slate-600 tabular-nums">08/2015 - 04/2017</p>
+					</div>
+					<p class="text-md font-semibold">Technical University of Braunschweig</p>
+					<p class="mb-2 text-sm text-slate-600">Braunschweig, Germany</p>
+					<ul class="list-disc space-y-1 pl-5 text-sm text-slate-700">
+						<li>Designed and developed custom WordPress solutions</li>
+					</ul>
+					<p class="mt-2 text-sm text-slate-600">
+						<span class="font-semibold">Tech:</span> PHP, WordPress, JavaScript
+					</p>
+				</div>
+			</section>
+
+			<!-- Client Projects Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Client Projects</h2>
+				<div class="space-y-6">
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer | Production Control System</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">01/2025 - Present</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">Anonymous company</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Individual software for internal production control for a medium-sized company.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> AWS, SST, React, React Router, TailwindCSS
+						</p>
+					</div>
+
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Companys Online Presence</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">03/2020 - Present</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">
+							<a
+								href="https://easydatasolution.de"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="flex items-center gap-2"
+							>
+								easy data solution GmbH
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+						</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Consulting, design and development of a webapp that represents the company and allows to book courses.
+							Focus on SEO and performance.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> TypeScript, React, Gatsby, Framer Motion, Astro, SolidJS, TailwindCSS,
+							Chakra UI, Netlify, DatoCMS
+						</p>
+					</div>
+
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">03/2021 - 09/2021</p>
+								<p class="tabular-nums">11/2023 - 02/2024</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">
+							<a
+								href="https://gluckweiser.de"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="flex items-center gap-2"
+							>
+								Glückweiser
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+						</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Designed, developed and deployed a Shopify store that sells handmade furniture.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> TypeScript, React, Shopify Hydrogen, TailwindCSS, Shopify, GraphQL
+						</p>
+					</div>
+
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Companys Online Presence</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">11/2022 - 05/2023</p>
+								<p class="tabular-nums">02/2025 - 03/2025</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">
+							<a href="https://esp-se.eu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
+								ESP SE
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+						</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Designed, developed and deployed a multi-language company website for a physiotherapist education platform
+							with a focus on SEO.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, TailwindCSS, Sanity, Vercel
+						</p>
+					</div>
+
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer | Progressive Web App (PWA)</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">01/2022 - 03/2022</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">
+							<a
+								href="https://kiezapp-rixdorf.de"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="flex items-center gap-2"
+							>
+								KiezApp Rixdorf
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+						</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Developed a PWA that helps people to get to know the kiez Rixdorf in Berlin through some gamification.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, Chakra UI, PWA, Render, PostgresDB
+						</p>
+					</div>
+
+					<div>
+						<div class="relative">
+							<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
+							<div class="absolute top-0 right-0 text-sm text-slate-600">
+								<p class="tabular-nums">2018</p>
+							</div>
+						</div>
+						<p class="text-md font-semibold">
+							<a href="https://klebeki.de" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
+								Klebeki
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+						</p>
+						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
+							Design and development of a WooCommerce shop selling clothes for kids and babies with special needs.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> PHP, WordPress, WooCommerce, JavaScript, MySQL
+						</p>
+					</div>
+				</div>
+			</section>
+			<!-- Personal Projects Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Personal Projects</h2>
+				<p class="mb-4 text-sm text-slate-600">
+					<span class="font-semibold">Note:</span> These are selected commercial projects – not an exhaustive list of my
+					personal projects.
+				</p>
+				<div class="space-y-6">
+					<div>
+						<a
+							href="https://fraudfalcon.app"
+							class="flex items-center gap-2 text-lg font-bold"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span>FraudFalcon</span>
+							<Icon name="lucide:external-link" class="h-4 w-4" />
+						</a>
+						<p class="mt-1 text-sm text-slate-700">
+							Shopify app to help merchants fight fraud and chargebacks. You can create custom rules to detect fraud and
+							block orders automatically.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Supabase, Shopify App
+						</p>
+					</div>
+
+					<div>
+						<a
+							href="https://octolense.com"
+							class="flex items-center gap-2 text-lg font-bold"
+							target="_blank"
+							rel="noopener noreferrer nofollow"
+						>
+							<span>Octolense <em>(sold)</em></span>
+							<Icon name="lucide:external-link" class="h-4 w-4" />
+						</a>
+						<p class="mt-1 text-sm text-slate-700">
+							Analytics solution for GitHub actions. Understand which actions and repositories are most expensive.
+							Exited because lack of time to maintain it.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, TailwindCSS, Supabase
+						</p>
+					</div>
+
+					<div>
+						<a
+							href="https://shoptain.com"
+							class="flex items-center gap-2 text-lg font-bold"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span>Shoptain</span>
+							<Icon name="lucide:external-link" class="h-4 w-4" />
+						</a>
+						<p class="mt-1 text-sm text-slate-700">
+							Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying
+							desired keyword.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Supabase, Shopify App, LangChain.js
+						</p>
+					</div>
+
+					<div>
+						<a
+							href="https://kitlytics.com"
+							class="flex items-center gap-2 text-lg font-bold"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span>Kitlytics</span>
+							<Icon name="lucide:external-link" class="h-4 w-4" />
+						</a>
+						<p class="mt-1 text-sm text-slate-700">
+							Subscriber analytics for the newsletter platform Kit (former ConvertKit). Understand your audience and
+							grow your business.
+						</p>
+						<p class="mt-2 text-sm text-slate-600">
+							<span class="font-semibold">Tech:</span> AWS, SST, TypeScript, React, Remix, Turso
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Education Section -->
+			<section class="mt-8">
+				<h2 class="border-b pb-2 text-2xl font-semibold">Education</h2>
+				<div class="mt-4">
+					<p class="text-lg font-bold">Master of Science - Business Informatics</p>
+					<p class="text-sm text-slate-600 tabular-nums">Technical University of Braunschweig, 08/2015 - 04/2017</p>
+					<p class="text-sm text-slate-600">Final Grade: 1.6</p>
+				</div>
+				<div class="mt-6">
+					<p class="text-lg font-bold">Bachelor of Science - Business Informatics</p>
+					<p class="text-sm text-slate-600 tabular-nums">University of Applied Sciences Leipzig, 10/2011 - 09/2014</p>
+					<p class="text-sm text-slate-600">Final Grade: 1.4</p>
+				</div>
+			</section>
+
+			<!-- Speaking & Appearances Section -->
+			<section class="mt-8">
+				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Speaking & Appearances</h2>
+				<div class="space-y-6">
+					<div>
+						<div class="flex justify-between">
+							<a
+								href="https://www.youtube.com/watch?v=5nL-C0JNKwE"
+								class="flex items-center gap-2 text-lg font-bold"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<span>Building Hashnode's Public APIs with Sandro, Jannik, and Sandeep</span>
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+							<p class="text-sm text-slate-600 tabular-nums">11/2023</p>
+						</div>
+						<p class="text-md font-semibold">The Commit Podcast – Hashnode</p>
+						<p class="mt-1 text-sm text-slate-700">
+							Discussed the development and architecture of Hashnode's public GraphQL APIs.
+						</p>
+					</div>
+
+					<div>
+						<div class="flex justify-between">
+							<a
+								href="https://open.spotify.com/episode/2X6hD02EE8UmjksJpoemTb?si=b28b4c0e65ea4480"
+								class="flex items-center gap-2 text-lg font-bold"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<span>Hashnode and MongoDB with Jannik Wempe</span>
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+							<p class="text-sm text-slate-600 tabular-nums">11/2022</p>
+						</div>
+						<p class="text-md font-semibold">The MongoDB Podcast</p>
+						<p class="mt-1 text-sm text-slate-700">
+							Shared insights about using MongoDB at Hashnode and building scalable applications.
+						</p>
+					</div>
+
+					<div>
+						<div class="flex justify-between">
+							<a
+								href="https://www.youtube.com/live/s8tO-ymVQPg?si=7GuZlOGtZw9OT8g5&t=7749"
+								class="flex items-center gap-2 text-lg font-bold"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<span>Testing in Serverless Architectures Using the CDK Provider Framework</span>
+								<Icon name="lucide:external-link" class="h-4 w-4" />
+							</a>
+							<p class="text-sm text-slate-600 tabular-nums">05/2022</p>
+						</div>
+						<p class="text-md font-semibold">CDK Day Conference</p>
+						<p class="mt-1 text-sm text-slate-700">
+							Presented best practices for testing serverless applications using the AWS CDK Provider Framework.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Certifications Section -->
+			<section class="mt-8">
+				<h2 class="border-b pb-2 text-2xl font-semibold">Certifications</h2>
+				<a
+					href="https://www.credly.com/badges/23e30c2d-75f3-4697-b483-415572fa04bb"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-4 inline-block"
+				>
+					<Image
+						src={awsCertificateImg}
+						alt="AWS Certified Developer - Associate"
+						width={120}
+						height={120}
+						loading={'eager'}
+					/>
+					<span class="sr-only">AWS Certified Developer - Associate</span>
+				</a>
+			</section>
+		</div>
+		<div class="flex items-center justify-center gap-2 bg-indigo-500 px-8 py-3 text-sm font-semibold text-white">
+			<Icon name="lucide:info" class="h-4 w-4" />
+			<span>
+				The up-to-date version of this CV is available online at
+				<code class="font-mono"
+					><a href="https://wempe.dev/cv" target="_blank" rel="noopener noreferrer">wempe.dev/cv</a></code
+				>.
+			</span>
 		</div>
 	</div>
 </DefaultLayout>
