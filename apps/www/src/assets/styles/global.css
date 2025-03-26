@@ -22,3 +22,9 @@
 		padding-inline: 6rem;
 	}
 }
+
+@utility print-hidden {
+	@media print {
+		display: none;
+	}
+}

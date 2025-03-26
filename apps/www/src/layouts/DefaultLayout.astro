@@ -1,8 +1,8 @@
 ---
 import type { ComponentProps } from 'astro/types';
-import BaseLayout from './BaseLayout.astro';
-import type Metadata from '~/components/Metadata.astro';
 import type { BreadcrumbItem } from '~/components/Breadcrumb.astro';
+import type Metadata from '~/components/Metadata.astro';
+import BaseLayout from './BaseLayout.astro';
 
 export interface Props {
 	metadata: Omit<ComponentProps<typeof Metadata>, 'og'>;

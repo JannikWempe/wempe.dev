@@ -1,5 +1,5 @@
 ---
-import { TWITTER_HANDLE } from '~/constants/socials';
+import { X_HANDLE } from '~/constants/socials';
 interface Props {
 	title: string;
 	description: string;
@@ -65,6 +65,6 @@ const { title, description, image = { url: '/og.png', width: 1200, height: 630 }
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.url, Astro.url)} />
-<meta property="twitter:creator" content={TWITTER_HANDLE} />
-<meta property="twitter:site" content={TWITTER_HANDLE} />
+<meta property="twitter:creator" content={X_HANDLE} />
+<meta property="twitter:site" content={X_HANDLE} />
 <meta property="twitter:site_name" content="Jannik Wempe" />

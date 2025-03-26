@@ -1,21 +1,20 @@
 ---
-import DefaultLayout from '~/layouts/DefaultLayout.astro';
-import Button from '~/components/ui/Button.astro';
-import Link from '~/components/ui/Link.astro';
-import { Image } from 'astro:assets';
-import Endorsements from '~/components/Endorsements.astro';
-import Appearences from '~/components/Appearences.astro';
-import Projects from '~/components/Projects.astro';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import Appearences from '~/components/Appearences.astro';
+import Endorsements from '~/components/Endorsements.astro';
+import Projects from '~/components/Projects.astro';
+import Button from '~/components/ui/Button.astro';
+import DefaultLayout from '~/layouts/DefaultLayout.astro';
 
-import jannikWempeImg from '~/assets/images/jannik-wempe.png';
-import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
-import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
 import { getCollection } from 'astro:content';
-import { newestFirst } from '~/lib/blog';
+import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
+import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
+import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import BlogPostCard from '~/components/BlogPostCard.astro';
-import { EMAIL, LINKEDIN_URL } from '~/constants/socials';
 import WebPageJsonLd from '~/components/WebPageJsonLd.astro';
+import { EMAIL } from '~/constants/socials';
+import { newestFirst } from '~/lib/blog';
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
 
@@ -156,23 +155,6 @@ const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 				day job and with the intent of doing earning money – not for fun or to learn something new.
 			</p>
 			<Projects class="mt-8" />
-		</section>
-
-		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">CV</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">Work Experience</h2>
-			<div class="mx-auto mt-8 rounded-lg bg-indigo-50 px-10 py-6 shadow-lg shadow-indigo-100">
-				<p class="mx-auto max-w-[80ch] text-center text-4xl leading-relaxed font-black text-pretty text-slate-700">
-					DRY
-				</p>
-				<p class="mx-auto mt-1 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
-					"Don't repeat yourself" – go and look it up on my <Link
-						href={LINKEDIN_URL}
-						target="_blank"
-						class="plausible-event-name=contact plausible-event-type=linkedin">LinkedIn profile</Link
-					> or <Link href={`mailto:${EMAIL}`} target="_blank">reach out to me</Link>.
-				</p>
-			</div>
 		</section>
 
 		<section class="container mx-auto flex flex-col items-center py-16">

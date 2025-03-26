@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+import { BLUESKY_URL, EMAIL, GITHUB_URL, LINKEDIN_URL, X_URL } from '~/constants/socials';
+
+interface Props {
+	class?: string;
+}
+
+const { class: classes } = Astro.props;
+---
+
+<div class={twMerge('flex items-center gap-5', classes)}>
+	<a
+		href={X_URL}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="plausible-event-name=contact plausible-event-type=x text-slate-600 transition-colors hover:text-slate-800"
+	>
+		<Icon name="twitter-x" class="h-5 w-5" />
+		<span class="sr-only">Twitter/X Profile</span>
+	</a>
+
+	<a
+		href={BLUESKY_URL}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="plausible-event-name=contact plausible-event-type=bluesky text-slate-600 transition-colors hover:text-slate-800"
+	>
+		<Icon name="bluesky" class="h-5 w-5" />
+		<span class="sr-only">Bluesky Profile</span>
+	</a>
+
+	<a
+		href={LINKEDIN_URL}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="plausible-event-name=contact plausible-event-type=linkedin text-slate-600 transition-colors hover:text-slate-800"
+	>
+		<Icon name="lucide:linkedin" class="h-5 w-5" />
+		<span class="sr-only">LinkedIn Profile</span>
+	</a>
+
+	<a
+		href={GITHUB_URL}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="plausible-event-name=contact plausible-event-type=github text-slate-600 transition-colors hover:text-slate-800"
+	>
+		<Icon name="lucide:github" class="h-5 w-5" />
+		<span class="sr-only">GitHub Profile</span>
+	</a>
+
+	<a
+		href={`mailto:${EMAIL}`}
+		class="plausible-event-name=contact plausible-event-type=email text-slate-600 transition-colors hover:text-slate-800"
+	>
+		<Icon name="lucide:mail" class="h-5 w-5" />
+		<span class="sr-only">Email Contact</span>
+	</a>
+</div>

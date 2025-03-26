@@ -27,7 +27,7 @@
 		"url": "https://octolense.com/",
 		"logo": "./images/octolense.webp",
 		"status": "sold",
-		"tech": ["TypeScript", "Remix", "React", "SST", "AWS CDK", "AWS", "Supabase"]
+		"tech": ["TypeScript", "Remix", "React", "TailwindCSS", "SST", "AWS CDK", "AWS", "Supabase"]
 	},
 	{
 		"type": "Shopify app",
