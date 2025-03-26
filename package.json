@@ -9,11 +9,11 @@
 		"sst": "sst"
 	},
 	"devDependencies": {
-		"@tsconfig/node22": "22.0.0",
+		"@tsconfig/node22": "22.0.1",
 		"typescript": "5.8.2"
 	},
 	"dependencies": {
-		"sst": "3.9.37"
+		"sst": "3.10.13"
 	},
 	"pnpm": {
 		"neverBuiltDependencies": []
