@@ -11,15 +11,15 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "4.2.1",
+		"@astrojs/mdx": "4.2.2",
 		"@astrojs/rss": "4.0.11",
 		"@astrojs/sitemap": "3.3.0",
 		"@expressive-code/plugin-line-numbers": "0.40.2",
 		"@fontsource/geist-sans": "5.2.5",
 		"@iconify-json/logos": "1.2.4",
-		"@iconify-json/lucide": "1.2.32",
-		"@tailwindcss/vite": "4.0.16",
-		"astro": "5.5.4",
+		"@iconify-json/lucide": "1.2.34",
+		"@tailwindcss/vite": "4.0.17",
+		"astro": "5.5.5",
 		"astro-embed": "0.9.0",
 		"astro-expressive-code": "0.40.2",
 		"astro-icon": "1.1.5",
@@ -31,7 +31,7 @@
 		"reading-time": "1.5.0",
 		"schema-dts": "1.1.5",
 		"tailwind-merge": "3.0.2",
-		"tailwindcss": "4.0.16",
+		"tailwindcss": "4.0.17",
 		"vite-tsconfig-paths": "5.1.4"
 	},
 	"devDependencies": {
