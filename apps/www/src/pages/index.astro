@@ -13,7 +13,7 @@ import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
 import haraldBantImg from '~/assets/images/endorsements/harald-bant.png';
 import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import BlogPostCard from '~/components/BlogPostCard.astro';
-import WebPageJsonLd from '~/components/WebPageJsonLd.astro';
+import WebSiteJsonLd from '~/components/WebSiteJsonLd.astro';
 import { EMAIL } from '~/constants/socials';
 import { newestFirst } from '~/lib/blog';
 // prerender the page and have dynamic content as server islands
@@ -78,7 +78,7 @@ const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 	{breadcrumbItems}
 >
 	<Fragment slot="header">
-		<WebPageJsonLd {breadcrumbItems} />
+		<WebSiteJsonLd {breadcrumbItems} />
 	</Fragment>
 	<main>
 		<section class="relative flex justify-between">

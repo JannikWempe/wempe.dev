@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import type { ReadTimeResults } from 'reading-time';
-import type { Person, WebPage, BlogPosting, ListItem, BreadcrumbList, Blog } from 'schema-dts';
+import type { Person, WebPage, BlogPosting, ListItem, BreadcrumbList, Blog, WebSite } from 'schema-dts';
 import { SITE_BASE_URL } from '~/constants/site';
 import { LINKEDIN_URL, X_URL, GITHUB_URL, BLUESKY_URL } from '~/constants/socials';
 
@@ -34,6 +34,16 @@ export function breadcrumbItem(args: { position: number; name: string; url: stri
 	};
 }
 
+export function webSite(): WebSite {
+	return {
+		'@type': 'WebSite',
+		name: 'Jannik Wempe',
+		description: 'Jannik Wempe is a software engineer and entrepreneur.',
+		author: person(),
+		url: new URL('/', SITE_BASE_URL).toString(),
+	};
+}
+
 export function webPage(): WebPage {
 	return {
 		'@type': 'WebPage',
@@ -41,6 +51,10 @@ export function webPage(): WebPage {
 		description: 'Jannik Wempe is a software engineer and entrepreneur.',
 		author: person(),
 		url: new URL('/', SITE_BASE_URL).toString(),
+		isPartOf: {
+			'@type': 'WebSite',
+			'@id': new URL('/', SITE_BASE_URL).toString(),
+		},
 	};
 }
 
@@ -79,5 +93,9 @@ export function blogPosting(args: { post: CollectionEntry<'blog'>; readingTime: 
 		},
 		keywords: post.data.tags?.join(', '),
 		publisher: person(),
+		isPartOf: {
+			'@type': 'WebSite',
+			'@id': new URL('/', SITE_BASE_URL).toString(),
+		},
 	};
 }
