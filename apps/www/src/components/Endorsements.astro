@@ -28,10 +28,10 @@ interface Props {
 const { endorsements, class: classes } = Astro.props;
 ---
 
-<div class={twMerge('columns-1 gap-8 lg:columns-2', classes)}>
+<div class={twMerge('grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3', classes)}>
 	{
-		endorsements.map((endorsement, index) => (
-			<div class:list={['rounded-lg bg-white p-8 shadow-md shadow-indigo-200', index > 0 && 'mt-8']}>
+		endorsements.map((endorsement) => (
+			<div class:list={['self-start rounded-lg bg-white p-8 shadow-md shadow-indigo-200']}>
 				<p class="text-sm font-semibold tracking-wide text-indigo-800 uppercase">{endorsement.relation}</p>
 				<blockquote>
 					<p class="text-lg leading-relaxed text-slate-700">"{endorsement.text}"</p>

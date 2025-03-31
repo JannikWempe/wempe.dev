@@ -10,6 +10,7 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 import { getCollection } from 'astro:content';
 import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
 import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
+import haraldBantImg from '~/assets/images/endorsements/harald-bant.png';
 import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import BlogPostCard from '~/components/BlogPostCard.astro';
 import WebPageJsonLd from '~/components/WebPageJsonLd.astro';
@@ -46,6 +47,20 @@ const endorsements = [
 		},
 		relation: 'boss at Hashnode',
 		imageUrl: sandeepPandaImg,
+	},
+	{
+		text: "We have been working with Jannik for several years. He developed our website and maintains and updates it as needed. In addition to his expertise, he is a good listener, can put himself in the customer's shoes and therefore comes up with quick and adequate solutions or adjustments. A man's a man's a word, a word, that sums up Jannik Wempe perfectly. You are in professional and trusted hands.",
+		author: {
+			name: 'Harald Bant',
+			social: 'https://www.linkedin.com/in/harald-bant-6416943/',
+		},
+		role: {
+			text: 'Co-founder',
+			companyName: 'ESP Science & Education OG',
+			companyUrl: 'https://espse.eu',
+		},
+		relation: 'client',
+		imageUrl: haraldBantImg,
 	},
 ] as const;
 
