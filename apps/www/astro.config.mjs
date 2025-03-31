@@ -6,7 +6,6 @@ import { defineConfig } from 'astro/config';
 import sst from 'astro-sst';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
-import partytown from '@astrojs/partytown';
 import tailwindcss from '@tailwindcss/vite';
 import expressiveCode from 'astro-expressive-code';
 import mdx from '@astrojs/mdx';
@@ -82,7 +81,6 @@ export default defineConfig({
 				],
 			},
 		}),
-		partytown(),
 		expressiveCode({ themes: ['night-owl'] }),
 		mdx({
 			remarkPlugins: [remarkReadingTime],

@@ -36,12 +36,7 @@ const showBreadcrumb = breadcrumbItems.length > 1;
 		<Favicons />
 		<ClientRouter fallback="none" />
 
-		<script
-			type="text/partytown"
-			async
-			data-domain="wempe.dev"
-			is:inline
-			src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
+		<script defer data-domain="wempe.dev" src="/js/script" is:inline></script>
 		<script>
 			window.plausible =
 				window.plausible ||
