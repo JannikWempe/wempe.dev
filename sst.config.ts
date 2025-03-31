@@ -1,10 +1,9 @@
 /// <reference path="./.sst/platform/config.d.ts" />
-import { PRODUCTION_STAGE } from './infra/stage';
 export default $config({
 	app(input) {
 		return {
 			name: 'wempe-dev',
-			removal: input?.stage === PRODUCTION_STAGE ? 'retain' : 'remove',
+			removal: input?.stage === 'prod' ? 'retain' : 'remove',
 			home: 'aws',
 			providers: {
 				aws: {
