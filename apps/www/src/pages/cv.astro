@@ -17,6 +17,9 @@ import {
 	X_URL,
 } from '~/constants/socials';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
+
+const fullStackExperienceYears = new Date().getFullYear() - 2015;
+const awsExperienceYears = new Date().getFullYear() - 2020;
 ---
 
 <DefaultLayout
@@ -142,7 +145,7 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 				<ul class="mt-4 list-disc space-y-1 pl-5 text-sm">
 					<li>Full-stack TypeScript developer specializing in serverless architectures</li>
 					<li>AWS Certified Developer & AWS Community Builder (serverless)</li>
-					<li>8+ years of experience in programming and consulting</li>
+					<li>{fullStackExperienceYears}+ years of experience in programming and consulting</li>
 					<li>Building micro-SaaS products and custom Shopify applications</li>
 				</ul>
 			</section>
@@ -155,9 +158,9 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 					continuous learner, my skill set is constantly evolving.
 				</p>
 
-				<div class="grid grid-cols-2 gap-8">
+				<div class="grid grid-cols-2 gap-6">
 					<div>
-						<h3 class="mb-4 font-semibold">Full Stack Development (8+ years)</h3>
+						<h3 class="mb-4 font-semibold">Full Stack Development ({fullStackExperienceYears}+ years)</h3>
 						<div class="grid grid-cols-2">
 							<ul class="space-y-2 text-sm text-slate-700">
 								<li>TypeScript</li>
@@ -169,27 +172,27 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 							<ul class="space-y-2 text-sm text-slate-700">
 								<li>TailwindCSS</li>
 								<li>Vitest, Cypress</li>
-								<li>REST APIs</li>
-								<li>GraphQL</li>
+								<li>REST APIs, GraphQL</li>
+								<li>PostgreSQL, MySQL, MongoDB</li>
 								<li>…</li>
 							</ul>
 						</div>
 					</div>
 					<div>
-						<h3 class="mb-4 font-semibold">AWS (4+ years)</h3>
+						<h3 class="mb-4 font-semibold">AWS ({awsExperienceYears}+ years)</h3>
 						<div class="grid grid-cols-2">
 							<ul class="space-y-2 text-sm text-slate-700">
-								<li>Event-driven Architecture</li>
 								<li>Serverless Architecture</li>
+								<li>Event-driven Architecture</li>
 								<li>Infrastructure as Code</li>
-								<li>SST</li>
-								<li>AWS CDK</li>
+								<li>SST/AWS CDK</li>
+								<li>IAM</li>
 							</ul>
 							<ul class="space-y-2 text-sm text-slate-700">
 								<li>API Gateway</li>
 								<li>Step Functions</li>
 								<li>Event Bridge</li>
-								<li>SQS/SNS</li>
+								<li>Lambda, SQS, SNS</li>
 								<li>…</li>
 							</ul>
 						</div>
