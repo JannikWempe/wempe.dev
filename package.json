@@ -10,10 +10,10 @@
 	},
 	"devDependencies": {
 		"@tsconfig/node22": "22.0.1",
-		"typescript": "5.8.2"
+		"typescript": "catalog:"
 	},
 	"dependencies": {
-		"sst": "3.11.11"
+		"sst": "3.13.10"
 	},
 	"pnpm": {
 		"neverBuiltDependencies": []
