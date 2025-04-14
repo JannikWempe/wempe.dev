@@ -35,11 +35,10 @@ const eventApiBehavior = {
 	targetOriginId: plausibleOrigin.originId,
 	viewerProtocolPolicy: 'https-only',
 	originRequestPolicyId: 'acba4595-bd28-49b8-b9fe-13317c0390fa',
-	// Use Managed-CachingDisabled policy ID: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
 	// See https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
 	cachePolicyId: '4135ea2d-6df8-44a3-9df3-4b5a84be39ad',
 	allowedMethods: ['GET', 'HEAD', 'OPTIONS', 'PUT', 'POST', 'PATCH', 'DELETE'],
-	cachedMethods: ['GET', 'HEAD'], // Note: cachedMethods is ignored when using Cache Policies
+	cachedMethods: ['GET', 'HEAD'],
 } satisfies $util.UnwrappedArray<
 	$util.Input<aws.types.input.cloudfront.DistributionOrderedCacheBehavior>
 >[number];
