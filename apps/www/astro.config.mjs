@@ -22,7 +22,7 @@ export default defineConfig({
 		clientPrerender: true,
 		contentIntellisense: true,
 		preserveScriptOrder: true,
-		csp: true,
+		csp: false,
 	},
 	prefetch: {
 		prefetchAll: true,
