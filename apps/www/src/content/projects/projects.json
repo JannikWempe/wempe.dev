@@ -1,5 +1,15 @@
 [
 	{
+		"type": "Shopify app",
+		"id": "mergeit",
+		"title": "MergeIt",
+		"description": "Shopify app to help merchants combining multiple orders into a single one to save on shipping costs.",
+		"url": "https://mergeit.app/",
+		"logo": "./images/mergeit.webp",
+		"status": "ongoing",
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Supabase"]
+	},
+	{
 		"type": "website",
 		"id": "wempe-dev",
 		"title": "wempe.dev",
