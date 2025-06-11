@@ -24,6 +24,9 @@ export default defineConfig({
 		preserveScriptOrder: true,
 		csp: false,
 	},
+	image: {
+		experimentalLayout: 'constrained',
+	},
 	prefetch: {
 		prefetchAll: true,
 		defaultStrategy: 'hover',
