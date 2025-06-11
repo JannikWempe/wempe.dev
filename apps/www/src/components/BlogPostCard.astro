@@ -20,15 +20,15 @@ const { remarkPluginFrontmatter } = await render(post);
 ---
 
 <article class={twMerge('relative', classes)} {...rest}>
-	<div class="relative aspect-[1600/840] w-full">
+	<div class="relative w-full">
 		<a href={`/blog/${slug}`} class="block">
-			<!-- Dimensions based two columns in a container -->
+			<!-- Dimensions are based on the 1600x840px original image -->
 			<Image
 				transition:name={`cover-${slug}`}
 				src={cover}
 				alt={title}
 				width={650}
-				height={303}
+				height={341}
 				format={cover.format !== 'gif' ? 'avif' : 'gif'}
 				class="rounded-xl object-cover"
 				{...imageProps}
