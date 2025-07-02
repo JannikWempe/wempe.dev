@@ -10,7 +10,7 @@ interface Props {
 	class?: string;
 }
 
-type Project = CollectionEntry<'projects'>['data']
+type Project = CollectionEntry<'projects'>['data'];
 
 const { class: classes, limit } = Astro.props;
 
@@ -99,7 +99,7 @@ const statusToColorMap: Record<Project['status'], { bg: string; text: string }> 
 				>
 					<div class="relative grow">
 						<Image
-							src={project.data.logo}}
+							src={project.data.logo}
 							alt={`${project.data.title} logo`}
 							height={50}
 							format="avif"
