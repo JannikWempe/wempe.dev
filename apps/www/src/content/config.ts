@@ -26,9 +26,9 @@ const projects = defineCollection({
 			type: z.enum(['website', 'Shopify app', 'SaaS', 'eCommerce', 'PWA']),
 			title: z.string(),
 			description: z.string(),
-			url: z.string().url(),
+			url: z.string().url().optional(),
 			logo: image(),
-			status: z.enum(['ongoing', 'done', 'paused', 'sold']),
+			status: z.enum(['ongoing', 'done', 'paused', 'sold', 'sunset']),
 			tech: z.array(z.string()),
 		}),
 });
