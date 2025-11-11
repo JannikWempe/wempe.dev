@@ -6,7 +6,8 @@
     "node": "^22"
   },
   "scripts": {
-    "sst": "sst"
+    "sst": "sst",
+    "sst:deploy:prod": "sst deploy --stage prod"
   },
   "dependencies": {
     "sst": "3.17.23"
