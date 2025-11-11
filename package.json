@@ -1,21 +1,21 @@
 {
-	"name": "wempe-dev",
-	"version": "0.0.0",
-	"packageManager": "pnpm@10.5.2",
-	"engines": {
-		"node": "^22"
-	},
-	"scripts": {
-		"sst": "sst"
-	},
-	"devDependencies": {
-		"@tsconfig/node22": "22.0.2",
-		"typescript": "catalog:"
-	},
-	"dependencies": {
-		"sst": "3.17.8"
-	},
-	"pnpm": {
-		"neverBuiltDependencies": []
-	}
+  "name": "wempe-dev",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.5.2",
+  "engines": {
+    "node": "^22"
+  },
+  "scripts": {
+    "sst": "sst"
+  },
+  "dependencies": {
+    "sst": "3.17.23"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "22.0.2",
+    "typescript": "catalog:"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": []
+  }
 }

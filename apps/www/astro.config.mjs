@@ -1,3 +1,5 @@
+// @ts-check
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -18,14 +20,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
 	experimental: {
-		responsiveImages: true,
 		clientPrerender: true,
 		contentIntellisense: true,
 		preserveScriptOrder: true,
 		csp: false,
-	},
-	image: {
-		experimentalLayout: 'constrained',
 	},
 	prefetch: {
 		prefetchAll: true,
