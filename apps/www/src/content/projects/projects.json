@@ -44,9 +44,8 @@
 		"id": "shoptain",
 		"title": "Shoptain",
 		"description": "Shopify app that allows merchants to easily generate SEO metadata using an LLM for products by specifying desired keyword.",
-		"url": "https://shoptain.com/",
 		"logo": "./images/shoptain.png",
-		"status": "done",
+		"status": "sunset",
 		"tech": ["TypeScript", "Remix", "React", "SST", "AWS CDK", "AWS", "Supabase"]
 	},
 	{
