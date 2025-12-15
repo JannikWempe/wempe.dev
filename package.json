@@ -10,7 +10,7 @@
     "sst:deploy:prod": "sst deploy --stage prod"
   },
   "dependencies": {
-    "sst": "3.17.23"
+    "sst": "3.17.25"
   },
   "devDependencies": {
     "@tsconfig/node22": "22.0.2",
