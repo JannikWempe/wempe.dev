@@ -43,38 +43,73 @@ const { headings, class: classes } = Astro.props;
 
 <script>
 	function updateActiveHeading() {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					const id = entry.target.getAttribute('id');
-					const tocLink = document.querySelector(`[data-heading-id="${id}"]`);
+		const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+		const visibleHeadings = new Set<string>();
 
-					if (entry.isIntersecting) {
-						document.querySelectorAll('.toc-link').forEach((link) => {
-							link.classList.remove('text-blue-600');
-						});
-						tocLink?.classList.add('text-blue-600');
-					}
-				});
-			},
-			{
-				rootMargin: '-100px 0px -66% 0px',
-				threshold: 1.0,
-			},
-		);
-
-		document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').forEach((heading) => {
-			observer.observe(heading);
-			// Add scroll margin to match sticky top offset
+		headings.forEach((heading) => {
 			(heading as HTMLElement).style.scrollMarginTop = '96px';
 		});
 
+		function setActiveLink(id: string | null) {
+			document.querySelectorAll('.toc-link').forEach((link) => {
+				link.classList.remove('text-blue-600');
+			});
+			if (id) {
+				document.querySelector(`[data-heading-id="${id}"]`)?.classList.add('text-blue-600');
+			}
+		}
+
+		let initialized = false;
+
+		function updateActive() {
+			// Pick topmost visible heading (first in DOM order)
+			for (const heading of headings) {
+				if (visibleHeadings.has(heading.id)) {
+					setActiveLink(heading.id);
+					initialized = true;
+					return;
+				}
+			}
+			// Nothing visible yet on init - set first heading
+			if (!initialized && headings.length > 0) {
+				setActiveLink(headings[0].id);
+				initialized = true;
+			}
+			// Otherwise keep last active (don't change)
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const id = entry.target.id;
+					if (entry.isIntersecting) {
+						visibleHeadings.add(id);
+					} else {
+						visibleHeadings.delete(id);
+					}
+				});
+				updateActive();
+			},
+			{
+				rootMargin: '-80px 0px -66% 0px',
+				threshold: 0,
+			},
+		);
+
+		headings.forEach((heading) => observer.observe(heading));
+
+		// Edge case: scrolled to very bottom - activate last heading
+		function checkBottom() {
+			if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+				setActiveLink(headings[headings.length - 1]?.id || null);
+			}
+		}
+		window.addEventListener('scroll', checkBottom, { passive: true });
+
 		document.querySelectorAll('.toc-link').forEach((link) => {
 			link.addEventListener('click', () => {
-				document.querySelectorAll('.toc-link').forEach((l) => {
-					l.classList.remove('text-blue-600');
-				});
-				link.classList.add('text-blue-600');
+				const id = (link as HTMLElement).dataset.headingId;
+				if (id) setActiveLink(id);
 			});
 		});
 	}
