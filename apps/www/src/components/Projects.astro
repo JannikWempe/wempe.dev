@@ -47,21 +47,21 @@ const techIcons: Record<Project['tech'][number], string> = {
 	Turso: 'turso',
 };
 
-const typeToVariant: Record<Project['type'], string> = {
-	website: 'purple',
-	'Shopify app': 'green',
-	SaaS: 'blue',
-	eCommerce: 'yellow',
-	PWA: 'pink',
-};
+const typeToVariant = {
+	website: 'purple' as const,
+	'Shopify app': 'green' as const,
+	SaaS: 'blue' as const,
+	eCommerce: 'yellow' as const,
+	PWA: 'pink' as const,
+} satisfies Record<Project['type'], string>;
 
-const statusToVariant: Record<Project['status'], string> = {
-	ongoing: 'blue',
-	done: 'green',
-	paused: 'slate',
-	sold: 'yellow',
-	sunset: 'orange',
-};
+const statusToVariant = {
+	ongoing: 'blue' as const,
+	done: 'green' as const,
+	paused: 'slate' as const,
+	sold: 'yellow' as const,
+	sunset: 'orange' as const,
+} satisfies Record<Project['status'], string>;
 ---
 
 <ul class={twMerge('grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3', classes)}>
@@ -69,11 +69,11 @@ const statusToVariant: Record<Project['status'], string> = {
 		projects.map((project, projectIndex) => {
 			return (
 				<li
-					class="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-100/50 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2"
+					class="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-100/50"
 					style={{ transform: 'translateZ(0)' }}
 				>
 					{/* Hover gradient overlay */}
-					<div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50/0 via-transparent to-blue-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+					<div class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-br from-indigo-50/0 via-transparent to-blue-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
 					<div class="relative grow">
 						<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-slate-50 p-2 ring-1 ring-slate-100 transition-all group-hover:bg-white group-hover:shadow-md">
@@ -85,7 +85,9 @@ const statusToVariant: Record<Project['status'], string> = {
 								class="h-10 w-auto object-contain"
 							/>
 						</div>
-						<h3 class="mt-4 text-lg font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">{project.data.title}</h3>
+						<h3 class="mt-4 text-lg font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
+							{project.data.title}
+						</h3>
 						<p class="mt-2 text-sm leading-relaxed text-slate-600">{project.data.description}</p>
 					</div>
 
@@ -117,7 +119,7 @@ const statusToVariant: Record<Project['status'], string> = {
 									<span
 										role="tooltip"
 										id={`tooltip-${projectIndex}-${techIndex}`}
-										class="absolute bottom-7 left-1/2 z-20 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs text-white shadow-lg peer-[:hover]:block"
+										class="absolute bottom-7 left-1/2 z-20 hidden -translate-x-1/2 rounded-md bg-slate-900 px-2 py-1 text-xs whitespace-nowrap text-white shadow-lg peer-[:hover]:block"
 									>
 										{tech}
 									</span>
