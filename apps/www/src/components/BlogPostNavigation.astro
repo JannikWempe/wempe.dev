@@ -12,32 +12,36 @@ export interface Props {
 const { previousPost, nextPost, class: classes } = Astro.props;
 ---
 
-<nav class={twMerge('flex flex-col md:flex-row justify-between gap-4', classes)}>
+<nav class={twMerge('grid grid-cols-1 md:grid-cols-2 gap-4', classes)}>
 	{
-		previousPost && (
+		previousPost ? (
 			<a
 				href={`/blog/${previousPost.id}`}
-				class="group flex items-start gap-2 text-left transition-colors hover:text-indigo-800 md:max-w-[45%]"
+				class="group flex items-center gap-3 rounded-xl border border-slate-200/60 bg-white p-4 shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-100/50"
 			>
-				<Icon name="lucide:arrow-left" class="mt-1 shrink-0" />
-				<div>
-					<span class="block text-sm text-slate-500">Previous Post</span>
-					<span class="line-clamp-3 font-semibold">{previousPost.data.title}</span>
+				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
+					<Icon name="lucide:arrow-left" class="h-5 w-5" />
+				</div>
+				<div class="min-w-0">
+					<span class="block text-xs font-medium uppercase tracking-wide text-slate-500">Previous</span>
+					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">{previousPost.data.title}</span>
 				</div>
 			</a>
-		)
+		) : <div />
 	}
 	{
 		nextPost && (
 			<a
 				href={`/blog/${nextPost.id}`}
-				class="group ml-auto flex items-start gap-2 text-right transition-colors hover:text-indigo-800 md:max-w-[45%]"
+				class="group flex items-center gap-3 rounded-xl border border-slate-200/60 bg-white p-4 shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-100/50 md:flex-row-reverse md:text-right"
 			>
-				<div>
-					<span class="block text-sm text-slate-500">Next Post</span>
-					<span class="line-clamp-3 font-semibold">{nextPost.data.title}</span>
+				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
+					<Icon name="lucide:arrow-right" class="h-5 w-5" />
 				</div>
-				<Icon name="lucide:arrow-right" class="mt-1 shrink-0" />
+				<div class="min-w-0">
+					<span class="block text-xs font-medium uppercase tracking-wide text-slate-500">Next</span>
+					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">{nextPost.data.title}</span>
+				</div>
 			</a>
 		)
 	}

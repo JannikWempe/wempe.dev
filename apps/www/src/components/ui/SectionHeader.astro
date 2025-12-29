@@ -1,0 +1,25 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+interface Props {
+	label: string;
+	title: string;
+	description?: string;
+	class?: string;
+	align?: 'left' | 'center';
+}
+
+const { label, title, description, class: classes, align = 'center' } = Astro.props;
+
+const alignmentClasses = {
+	left: '',
+	center: 'mx-auto max-w-2xl text-center',
+};
+---
+
+<div class={twMerge(alignmentClasses[align], classes)}>
+	<p class="text-sm font-semibold tracking-widest text-indigo-600 uppercase">{label}</p>
+	<h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+	{description && <p class="mt-4 text-lg text-slate-600">{description}</p>}
+	<slot />
+</div>

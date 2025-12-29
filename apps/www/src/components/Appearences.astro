@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
 import { Image } from 'astro:assets';
 import { formatDate } from '~/utils/time';
+import Badge from './ui/Badge.astro';
 
 import hashnodeCommitImg from '~/assets/images/talks/hashnode-podcast.jpg';
 import mongodbPodcastImg from '~/assets/images/talks/mongodb-podcast.png';
@@ -44,36 +45,40 @@ const appearances = [
 
 <ul class={twMerge('columns-1 gap-8 lg:columns-2 xl:columns-3', classes)}>
 	{
-		appearances.map((a, index) => (
-			<li
-				class:list={[
-					'relative overflow-hidden rounded-lg bg-white shadow-md shadow-indigo-200 transition-shadow duration-300 focus-within:ring-4 focus-within:ring-indigo-500 focus-within:ring-offset-4 hover:shadow-lg hover:shadow-indigo-200',
-					index > 0 && 'mt-8',
-				]}
-			>
-				<Image src={a.coverImageUrl} alt={''} format="avif" class="rounded-lg" />
-				<div class="p-4">
-					<h3 class="text-xl font-bold text-pretty text-indigo-900">{a.title}</h3>
-					<div class="mt-2 flex items-center justify-between">
-						<div class="flex items-center gap-2 text-sm font-semibold text-slate-600">
+		appearances.map((a) => (
+			<li class="group relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-100/50">
+				<div class="overflow-hidden">
+					<Image
+						src={a.coverImageUrl}
+						alt={''}
+						format="avif"
+						class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+					/>
+				</div>
+				<div class="p-5">
+					<h3 class="line-clamp-2 text-lg font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
+						{a.title}
+					</h3>
+					<div class="mt-4 flex items-center justify-between">
+						<div class="flex items-center gap-2 text-sm text-slate-500">
 							<Icon name="lucide:calendar" class="h-4 w-4" />
 							<time>{formatDate(a.date)}</time>
 						</div>
 
 						{a.type === 'podcast' ? (
-							<div class="flex items-center gap-2 rounded-full bg-purple-100 px-3 py-1 text-purple-700">
-								<Icon name="lucide:mic" />
-								<span class="text-sm font-medium">Podcast</span>
-							</div>
+							<Badge variant="purple">
+								<Icon name="lucide:mic" slot="icon-left" class="h-3 w-3" />
+								Podcast
+							</Badge>
 						) : (
-							<div class="flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-blue-700">
-								<Icon name="lucide:book-open" />
-								<span class="text-sm font-medium">Conference</span>
-							</div>
+							<Badge variant="blue">
+								<Icon name="lucide:presentation" slot="icon-left" class="h-3 w-3" />
+								Conference
+							</Badge>
 						)}
 					</div>
 				</div>
-				<a href={a.link} class="absolute inset-0 active:ring-2 active:ring-indigo-500">
+				<a href={a.link} class="absolute inset-0 focus:outline-none">
 					<span class="sr-only">Watch or listen to {a.title}</span>
 				</a>
 			</li>

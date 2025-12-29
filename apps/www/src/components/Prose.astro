@@ -9,7 +9,7 @@ const { class: classes, ...rest } = Astro.props;
 
 <div
 	class={twMerge(
-		'relative prose prose-lg prose-headings:text-indigo-900 prose-a:text-blue-600 prose-img:rounded-xl break-words prose-code:max-w-screen',
+		'relative prose prose-lg prose-headings:text-slate-900 prose-a:text-indigo-600 prose-a:decoration-indigo-300 hover:prose-a:text-indigo-800 hover:prose-a:decoration-indigo-500 prose-img:rounded-xl wrap-break-word prose-code:max-w-screen',
 		classes,
 	)}
 	{...rest}

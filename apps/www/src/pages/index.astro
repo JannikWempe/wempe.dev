@@ -5,6 +5,7 @@ import Appearences from '~/components/Appearences.astro';
 import Endorsements from '~/components/Endorsements.astro';
 import Projects from '~/components/Projects.astro';
 import Button from '~/components/ui/Button.astro';
+import SectionHeader from '~/components/ui/SectionHeader.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
 
 import { getCollection } from 'astro:content';
@@ -81,120 +82,180 @@ const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 		<WebSiteJsonLd {breadcrumbItems} />
 	</Fragment>
 	<main>
-		<section class="relative flex justify-between">
-			{/* Background with gradient and pattern */}
-			<div class="absolute inset-0 -z-10 bg-linear-to-br from-blue-100 via-white to-indigo-100">
+		<section class="relative flex justify-between overflow-hidden">
+			{/* Enhanced background with mesh gradient effect */}
+			<div class="absolute inset-0 -z-10 bg-gradient-to-br from-slate-50 via-blue-50/80 to-indigo-100">
+				{/* Animated gradient orbs - more visible */}
+				<div class="absolute -top-20 -left-20 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-blue-200/70 to-indigo-300/50 blur-3xl"></div>
+				<div class="absolute top-20 -right-20 h-[500px] w-[500px] rounded-full bg-gradient-to-bl from-indigo-200/60 to-purple-300/40 blur-3xl"></div>
+				<div class="absolute -bottom-40 left-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-t from-blue-200/50 to-cyan-200/30 blur-3xl"></div>
+				{/* Subtle dot pattern */}
 				<div
-					class="absolute inset-0"
+					class="absolute inset-0 opacity-50"
 					style={{
-						backgroundImage: `radial-gradient(circle at 1px 1px, rgb(203 213 225 / 0.5) 1px, transparent 0)`,
-						backgroundSize: '24px 24px',
+						backgroundImage: `radial-gradient(circle at 1px 1px, rgb(99 102 241 / 0.2) 1px, transparent 0)`,
+						backgroundSize: '32px 32px',
 					}}
 				>
 				</div>
 			</div>
 
-			<div class="relative container mx-auto overflow-hidden pt-16 pb-28">
-				<div class="flex flex-col justify-between gap-12 lg:flex-row">
-					<div class="mt-8">
-						<p class="text-md font-bold tracking-wide text-blue-600 uppercase">Engineering Value Beyond Code</p>
-						<h2 class="mt-1 max-w-lg text-5xl font-bold text-indigo-900">Crafting Full-Stack Solutions That Matter</h2>
-						<p class="mt-4 max-w-xl text-lg leading-relaxed font-semibold text-slate-700">
+			<div class="relative container mx-auto overflow-hidden pt-20 pb-32">
+				<div class="flex flex-col items-center justify-between gap-16 lg:flex-row lg:items-start">
+					<div class="mt-4 max-w-2xl">
+						<div class="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-white/80 px-4 py-1.5 text-sm font-semibold text-indigo-700 shadow-sm backdrop-blur-sm">
+							<span class="relative flex h-2 w-2">
+								<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75"></span>
+								<span class="relative inline-flex h-2 w-2 rounded-full bg-indigo-500"></span>
+							</span>
+							Available for projects
+						</div>
+						<h2 class="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+							Crafting Full-Stack<br />
+							<span class="bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">Solutions That Matter</span>
+						</h2>
+						<p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
 							Drawing from experience across modern web technologies, cloud platforms, and system architecture, I build
 							end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to
 							stay at the forefront of technological innovation.
 						</p>
-						<Button
-							as="a"
-							href={`mailto:${EMAIL}`}
-							color="primary"
-							variant="solid"
-							size="lg"
-							class="plausible-event-name=contact plausible-event-type=email group mt-8"
-						>
-							Reach out
-							<Icon
-								name="lucide:mail"
-								slot="icon-right"
-								class="transition-transform group-hover:scale-125 group-hover:rotate-12"
-							/>
-						</Button>
-					</div>
-
-					<div
-						class="relative mt-8 aspect-square w-[392px] max-w-full before:absolute before:inset-0 before:top-0 before:left-0 before:-z-10 before:block before:aspect-square before:w-full before:rounded-full before:bg-indigo-900 before:content-['']"
-					>
-						<div
-							class="aspect-square w-[380px] max-w-[98%] overflow-hidden rounded-full shadow-lg ring-4 ring-slate-100"
-						>
-							<Image
-								src={jannikWempeImg}
-								alt="Portrait of Jannik Wempe"
-								width={380}
-								height={380}
-								format="avif"
-								loading={'eager'}
-							/>
-						</div>
-						<h1 aria-label="Jannik Wempe" class="absolute right-[-25px] bottom-[-35px]">
-							<svg
-								viewBox="0 0 320 320"
-								xmlns="http://www.w3.org/2000/svg"
-								class="aspect-square w-[438px] max-w-[calc(100vw+25px)] text-xl font-bold text-indigo-800 sm:text-2xl"
+						<div class="mt-8 flex flex-wrap items-center gap-4">
+							<Button
+								as="a"
+								href={`mailto:${EMAIL}`}
+								color="primary"
+								variant="solid"
+								size="lg"
+								class="plausible-event-name=contact plausible-event-type=email group shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:shadow-indigo-500/30"
 							>
-								<path id="bottom-curve" d="M 0 160 C 0 373, 320 373, 320 160" stroke="transparent" fill="transparent"
-								></path>
-
-								<text aria-hidden="true" textLength="320" fill="currentColor" text-anchor="middle">
-									<textPath xlink:href="#bottom-curve" text-anchor="middle" startOffset="50%">Me, Jannik Wempe</textPath
-									>
-								</text>
-							</svg>
-						</h1>
+								Get in touch
+								<Icon
+									name="lucide:mail"
+									slot="icon-right"
+									class="transition-transform group-hover:translate-x-0.5"
+								/>
+							</Button>
+							<Button
+								as="a"
+								href="/cv"
+								color="secondary"
+								variant="outline"
+								size="lg"
+								class="group"
+							>
+								View my CV
+								<Icon
+									name="lucide:arrow-right"
+									slot="icon-right"
+									class="transition-transform group-hover:translate-x-1"
+								/>
+							</Button>
+						</div>
 					</div>
+
+					<div class="relative">
+						{/* Decorative elements behind image */}
+						<div class="absolute -inset-8 -z-10 rounded-3xl bg-gradient-to-br from-indigo-500/30 to-blue-500/20 blur-2xl"></div>
+						<div class="absolute -top-4 -right-4 h-20 w-20 rounded-full border-[3px] border-indigo-300/70 bg-indigo-50/30"></div>
+						<div class="absolute -bottom-3 -left-3 h-14 w-14 rounded-full border-[3px] border-blue-300/70 bg-blue-50/30"></div>
+						<div class="absolute top-1/2 -right-8 h-8 w-8 rounded-full bg-gradient-to-br from-indigo-400/40 to-indigo-500/30"></div>
+
+						<div class="relative">
+							<div
+								class="aspect-square w-[340px] max-w-[80vw] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-900/5 sm:w-[380px]"
+							>
+								<Image
+									src={jannikWempeImg}
+									alt="Portrait of Jannik Wempe"
+									width={380}
+									height={380}
+									format="avif"
+									loading={'eager'}
+									class="h-full w-full object-cover"
+								/>
+							</div>
+							<h1 aria-label="Jannik Wempe" class="absolute -bottom-4 -right-4 rounded-2xl bg-white px-5 py-2.5 shadow-xl shadow-indigo-200/50 ring-1 ring-slate-900/5">
+								<span class="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-lg font-bold text-transparent">Jannik Wempe</span>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* Bottom wave divider */}
+			<div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+				<svg class="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="white">
+					<path d="M0,60 C300,100 600,20 900,60 C1050,80 1150,70 1200,60 L1200,120 L0,120 Z"></path>
+				</svg>
+			</div>
+		</section>
+
+		<section class="relative py-24">
+			{/* Subtle background */}
+			<div class="absolute inset-0 -z-10 bg-gradient-to-b from-white via-slate-50/50 to-white"></div>
+			<div class="container mx-auto">
+				<SectionHeader
+					label="Testimonials"
+					title="What Others Say About Me"
+					description="Don't just take my word for it — hear from colleagues and clients I've worked with."
+				/>
+				<Endorsements {endorsements} class="mt-12" />
+			</div>
+		</section>
+
+		<section class="relative py-24 overflow-hidden">
+			{/* Background decoration */}
+			<div class="absolute inset-0 -z-10">
+				<div class="absolute top-0 left-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-indigo-50 to-blue-50 blur-3xl"></div>
+				<div class="absolute right-0 bottom-0 h-[400px] w-[400px] translate-x-1/3 translate-y-1/3 rounded-full bg-gradient-to-tl from-indigo-50 to-purple-50 blur-3xl"></div>
+			</div>
+			<div class="container mx-auto">
+				<SectionHeader
+					label="Portfolio"
+					title="Public Projects"
+				>
+					<p class="mt-4 text-lg text-slate-600">
+						A selection of projects I've built outside my day job with commercial intent.
+						<a href="/cv" class="font-medium text-indigo-600 hover:text-indigo-500">View my CV</a> for client work.
+					</p>
+				</SectionHeader>
+				<Projects class="mt-12" />
+			</div>
+		</section>
+
+		<section class="relative py-24">
+			<div class="absolute inset-0 -z-10 bg-gradient-to-b from-white via-slate-50/30 to-white"></div>
+			<div class="container mx-auto">
+				<SectionHeader
+					label="Blog"
+					title="Latest Blog Posts"
+					description="Thoughts on software engineering, cloud architecture, and building products."
+				/>
+
+				<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+					{latestBlogPosts.map((post) => <BlogPostCard post={post} />)}
+				</div>
+				<div class="mt-12 text-center">
+					<Button as="a" color="primary" variant="solid" size="lg" href="/blog" class="group shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:shadow-indigo-500/30">
+						See all posts
+						<Icon name="lucide:arrow-right" slot="icon-right" class="transition-transform group-hover:translate-x-1" />
+					</Button>
 				</div>
 			</div>
 		</section>
 
-		<section class="container mx-auto py-16">
-			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">Don't take my word for it</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">What Others Say About Me</h2>
-			<Endorsements {endorsements} class="mt-8" />
-		</section>
-
-		<section class="container mx-auto py-16">
-			<p class="text-center text-sm font-bold tracking-wide text-blue-600 uppercase">What I've built</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">Public Projects</h2>
-			<p class="mx-auto mt-2 max-w-[80ch] text-center text-sm leading-relaxed text-pretty text-slate-500">
-				Non-public client projects are not included here but you can find them on my <a
-					href="/cv"
-					class="text-indigo-700 transition-colors hover:text-indigo-900">CV</a
-				>.
-			</p>
-			<p class="mx-auto mt-2 max-w-[80ch] text-center text-lg leading-relaxed text-pretty text-slate-700">
-				Below are some of the projects that I've worked on. They only include projects that I've done in addition to my
-				day job and with the intent of doing earning money – not for fun or to learn something new.
-			</p>
-			<Projects class="mt-8" />
-		</section>
-
-		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-sm font-bold tracking-wide text-blue-600 uppercase">Things I write about</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">Latest Blog Posts</h2>
-
-			<div class="mt-8 grid grid-cols-1 gap-16 md:grid-cols-2">
-				{latestBlogPosts.map((post) => <BlogPostCard post={post} />)}
+		<section class="relative py-24 overflow-hidden">
+			{/* Background */}
+			<div class="absolute inset-0 -z-10">
+				<div class="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-t from-indigo-50/60 to-transparent blur-3xl"></div>
 			</div>
-			<!-- TODO: add signup to blog newsletter here? -->
-			<Button as="a" color="primary" variant="solid" size="lg" href="/blog" class="group mx-auto mt-8">
-				See all posts
-			</Button>
-		</section>
-
-		<section class="container mx-auto flex flex-col items-center py-16">
-			<p class="text-sm font-bold tracking-wide text-blue-600 uppercase">Speaking & Appearances</p>
-			<h2 class="text-center text-3xl font-bold text-indigo-900">Tech Talks and Podcast Conversations</h2>
-			<Appearences class="mt-8" />
+			<div class="container mx-auto">
+				<SectionHeader
+					label="Speaking"
+					title="Tech Talks & Podcasts"
+					description="Sharing knowledge through conferences and podcast appearances."
+				/>
+				<Appearences class="mt-12" />
+			</div>
 		</section>
 	</main>
 </DefaultLayout>
