@@ -13,7 +13,7 @@
     "sst": "3.17.25"
   },
   "devDependencies": {
-    "@tsconfig/node22": "22.0.2",
+    "@tsconfig/node22": "22.0.5",
     "typescript": "catalog:"
   },
   "pnpm": {
