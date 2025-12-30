@@ -6,6 +6,8 @@
     "node": "^22"
   },
   "scripts": {
+    "clean": "pnpm -r run clean && rm -rf ./{node_modules,.sst}",
+    "check": "tsc --noEmit & pnpm --no-bail -r run check; wait",
     "sst": "sst",
     "sst:deploy:prod": "sst deploy --stage prod"
   },

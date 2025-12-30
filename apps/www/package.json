@@ -3,6 +3,7 @@
 	"type": "module",
 	"version": "0.0.0",
 	"scripts": {
+		"clean": "rm -rf ./node_modules ./.astro ./.cache ./dist",
 		"dev": "astro dev",
 		"build": "astro check && astro build",
 		"check": "astro check",
