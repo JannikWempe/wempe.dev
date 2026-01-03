@@ -11,6 +11,7 @@ export const GET: APIRoute = async (context) => {
 	const items = blog.map((post) => ({
 		title: post.data.title,
 		pubDate: post.data.datePublished,
+		categories: post.data.tags,
 		description: post.data.excerpt,
 		link: `/blog/${post.id}`,
 		author: 'Jannik Wempe',
