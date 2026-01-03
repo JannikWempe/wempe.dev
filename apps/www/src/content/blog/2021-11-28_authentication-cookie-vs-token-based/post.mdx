@@ -1,40 +1,163 @@
 ---
-title: 'Authentication: Cookie- vs. Token-based'
+title: "Web Authentication: Three Decisions You're Conflating"
 datePublished: 'Sun Nov 28 2021 18:23:54 GMT+0000 (Coordinated Universal Time)'
+dateLastModified: 'Fri Jan 02 2026 00:00:00 GMT+0000 (Coordinated Universal Time)'
 slug: authentication-cookie-vs-token-based
 cover: './images/f4dRWdSd4.png'
 tags: ['auth']
 excerpt: >-
-  Authentication is about confirming that users are who they say they are.
-  Whereas authorization is about permissions of a given user (e.g. admin vs.
-  user). Authentication is an integral part of most apps.
-
-  The two main methods for authentication are co...
+  "Cookie-based vs. token-based" conflates three independent decisions: where
+  state lives, where credentials are stored, and how they're transmitted. This
+  article untangles them and covers the security tradeoffs of each.
 subtitle: >-
-  Authentication is an integral part of most applications. This article briefly
-  describes the differences between authentication with cookies and tokens
+  Untangling state location, client storage, and transmission in web auth
 ---
 import Callout from '../../../components/Callout.astro';
+import Mermaid from '../../../components/Mermaid.astro';
 
+<Callout>
+**Update (January 2026):** This article was originally framed as "cookie-based vs. token-based" authentication. That framing conflates separate concerns. This revised version untangles them.
+</Callout>
 
-Authentication is about confirming that users are who they say they are. Whereas authorization is about permissions of a given user (e.g. admin vs. user). Authentication is an integral part of most apps.
+Authentication confirms that users are who they say they are. (Authorization, by contrast, determines what a user can do.) When implementing auth for a web app, you face three independent decisions:
 
-The two main methods for authentication are cookies and tokens. But what are the differences between the cookie- and the token-based approaches?
+1. **Where is session state stored?** Server (stateful) vs. token (stateless)
+2. **Where is the credential stored client-side?** Cookies vs. localStorage
+3. **How is the credential transmitted?** Cookie header vs. Authorization header
 
-## Cookie-based Authentication
+The common "cookie-based vs. token-based" framing conflates all three. This article examines each decision separately, then covers the security tradeoffs and common patterns that emerge from combining them.
 
-The cookie-based approach is also often referred to as **session authentication**. When using session authentication, a cookie with the session id is created on the server and is sent to the client. The browser automatically stores the cookie and sends it alongside every subsequent request to the server. The server then looks up the session id and verifies its validity. The client doesn't have to deal with storing session-related information at all.
+## 1. Where Is Session State Stored?
 
-**Sidenote:** Dealing with sessions by using a cookie is not the same as a **session cookie**. A session cookie is a cookie without the `Max-Age` or `Expires` attribute being set. Therefore a session cookie gets deleted when a user closes the browser window or tab (= a user is ending the session). The term session cookie provides no information about what content a cookie stores.
+This is the fundamental architectural choice.
 
-## Token-based Authentication
+### Stateful (Session-based)
 
-Tokens use a different approach. The token containing the session information is created on the server. It is encoded and signed by the server and sent to the client. The client can use the session information in that token. In this case, the client has to store the token (usually in `localStorage` or `sessionStorage`) and has to actively send the token along with every request (usually in the `Authorization` header). The server doesn't have to keep track of the sessions. The token contains all information the server needs to verify the session. (**EDIT:** Except the secret key, which is used for signing.) The signing of the token prevents the client from manipulating it.
+The server maintains session state:
 
-The most popular way of using tokens for authentication is JSON web tokens (JWTs). You can learn more about JWTs specifically at [jwt.io](https://jwt.io/introduction).
+1. User logs in → server creates a session (in memory, database, or Redis)
+2. Server sends a session ID to the client
+3. Client sends the session ID with every request
+4. Server looks up the session ID to verify the user
+
+The session ID is just a reference—it contains no user information. Every request requires a server-side lookup.
+
+<Mermaid chart={`sequenceDiagram
+    participant Client
+    participant Server
+    participant SessionStore as Session Store
+    Client->>Server: Login (username, password)
+    Server->>SessionStore: Create session
+    SessionStore-->>Server: Session ID
+    Server-->>Client: Set-Cookie with session_id
+    Client->>Server: Request with session cookie
+    Server->>SessionStore: Lookup session
+    SessionStore-->>Server: User data
+    Server-->>Client: Response`} />
+
+<Callout>
+**Sidenote:** "Session cookie" refers to a cookie without `Max-Age`/`Expires` (deleted when browser closes). This is unrelated to session-based auth—any cookie can store a session ID.
+</Callout>
+
+### Stateless (Token-based)
+
+The token itself contains the session:
+
+1. User logs in → server creates a signed token with user data (claims)
+2. Server sends the token to the client
+3. Client sends the token with every request
+4. Server verifies the signature and reads claims directly—no lookup needed
+
+The most common format is JSON Web Tokens (JWTs). Learn more at [jwt.io](https://jwt.io/introduction).
+
+<Mermaid chart={`sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: Login (username, password)
+    Server->>Server: Create and sign JWT
+    Server-->>Client: JWT (contains user claims)
+    Client->>Server: Request with Authorization header
+    Server->>Server: Verify signature and read claims
+    Server-->>Client: Response`} />
+
+<Callout>
+**Important:** JWTs are signed, not encrypted. The payload is base64-encoded and visible to anyone. Never store sensitive data in a JWT unless you use encrypted tokens (JWE).
+</Callout>
+
+## 2. Where Is the Credential Stored Client-Side?
+
+This decision is independent of stateful vs. stateless. Both session IDs and JWTs can be stored in either location:
+
+| | Cookies | localStorage/sessionStorage |
+|--|---------|----------------------------|
+| Sent automatically | Yes (to matching domain) | No (must add manually) |
+| JS accessible | Only without `HttpOnly` | Always |
+| Size limit | ~4KB | ~5-10MB |
+
+## 3. How Is the Credential Transmitted?
+
+Also independent:
+
+- **Cookie header**: Browser automatically includes cookies for the matching domain
+- **Authorization header**: Client explicitly adds `Authorization: Bearer <token>`
+
+## Security Tradeoffs
+
+Each decision has security implications. Here's how they interact:
+
+### XSS (Cross-Site Scripting)
+
+Affected by: **client-side storage** (decision #2)
+
+- **HttpOnly cookies**: Token theft prevented—JavaScript cannot access them. However, XSS can still make authenticated requests while the user is on the page (session riding).
+- **localStorage**: Fully vulnerable. Malicious scripts can steal and exfiltrate tokens.
+
+### CSRF (Cross-Site Request Forgery)
+
+Affected by: **transmission method** (decision #3)
+
+- **Cookie header**: Vulnerable by default. Browsers auto-send cookies, so attackers can trigger authenticated requests from other sites.
+- **Authorization header**: Protected. Attackers can't read your localStorage (same-origin policy), so they can't include the token.
+
+### Mitigation
+
+- **CSRF**: `SameSite=Lax` (browser default) blocks cross-site POST—sufficient for most apps. `SameSite=Strict` is stronger but breaks legitimate flows. CSRF tokens add defense-in-depth.
+- **XSS**: No storage mechanism fully protects you. Sanitize input, use CSP headers, avoid `dangerouslySetInnerHTML`.
+
+### Token Revocation
+
+Affected by: **state location** (decision #1)
+
+- **Stateful**: Easy—delete the session server-side.
+- **Stateless**: Hard—token valid until expiration. Workarounds: short expiry, blacklists (reintroduces state), refresh token rotation.
+
+### Performance
+
+Affected by: **state location** (decision #1)
+
+- **Stateful**: Database/cache lookup per request. Adds latency, but session data can be large.
+- **Stateless**: Signature verification per request (fast, CPU-bound). Token sent with every request—JWTs can grow large.
+
+## Common Patterns
+
+Real-world implementations combine these decisions strategically:
+
+**Stateful + HttpOnly cookies** (decisions: server state, cookies, cookie header)
+The classic approach. Simple, easy revocation, works for most apps. Requires shared session store for multiple servers (Redis, database).
+
+**JWTs in HttpOnly cookies** (decisions: token state, cookies, cookie header)
+Stateless auth with token-theft protection. Add `SameSite=Lax` for CSRF protection. Scales horizontally without shared state, but revocation is harder.
+
+**Access + refresh tokens** (decisions: hybrid state, cookies, cookie header)
+Short-lived access tokens (5-15 min) verified statelessly. Long-lived refresh tokens in HttpOnly cookies, validated server-side. Stateless performance with stateful revocation.
+
+**localStorage + Authorization header** (decisions: token state, localStorage, auth header)
+Common in SPAs. No CSRF risk, but fully vulnerable to XSS token theft. Only use if you have strong XSS protections and accept the risk.
 
 ## Summary
 
-The main difference between the cookie and token-based approach is where the session information is stored. In the cookie-based approach, the burden of storing the session is on the server-side in contrast to the token-based approach where the client is responsible for storing the session information.
+Choose based on your constraints:
 
-![authentication.png](./images/8wg6Rz35A.png)
+- **Need easy revocation?** → Stateful (or hybrid with refresh tokens)
+- **Need horizontal scaling without shared state?** → Stateless JWTs
+- **Default for most web apps**: HttpOnly cookies + `SameSite=Lax` with either approach. Protects against token theft and CSRF with minimal complexity.

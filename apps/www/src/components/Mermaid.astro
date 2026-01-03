@@ -1,0 +1,21 @@
+---
+interface Props {
+	chart: string;
+}
+
+const { chart } = Astro.props;
+const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="mermaid-container my-6">
+	<pre {id} class="mermaid" set:html={chart} />
+</div>
+
+<script>
+	import mermaid from 'mermaid';
+
+	mermaid.initialize({
+		startOnLoad: true,
+		theme: 'dark',
+	});
+</script>

@@ -82,6 +82,7 @@ export function blogPosting(args: { post: CollectionEntry<'blog'>; readingTime: 
 		image: new URL(post.data.cover.src, SITE_BASE_URL).toString(),
 		datePublished: post.data.datePublished.toISOString(),
 		dateCreated: post.data.datePublished.toISOString(),
+		...(post.data.dateLastModified && { dateModified: post.data.dateLastModified.toISOString() }),
 		description: post.data.excerpt,
 		wordCount: readingTime.words,
 		timeRequired: `PT${Math.ceil(readingTime.minutes)}M`,
