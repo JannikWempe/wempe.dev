@@ -2,10 +2,11 @@
 title: 'Domain-Driven Design: Entities, Value Objects, and How To Distinguish Them'
 seoTitle: 'Domain-Driven Design: Distinguish Entities, Value Objects'
 seoDescription: >-
-  Examine Domain-Driven Design: Entities, Value Objects, their distinctions, and effective modeling.
+  Learn how to distinguish Entities from Value Objects in Domain-Driven Design. Includes definitions, equality semantics, and TypeScript code examples.
 datePublished: 'Sun Jul 11 2021 14:08:00 GMT+0000 (Coordinated Universal Time)'
+dateLastModified: '2026-01-03T20:00:00.000Z'
 slug: domain-driven-design-entities-value-objects
-cover: './images/o7xRDYZVe.png'
+cover: './images/domain-driven-design-entities-value-objects-cover.png'
 tags: ['ddd']
 excerpt: >-
   In my last post about Domain-Driven Design (DDD) I explained why DDD is (still) relevant and what it actually is. I
@@ -34,12 +35,12 @@ Services and Domain Events).
 Besides just looking at the definitions of Entity and VO, I will also provide you with some guidance on how to
 distinguish them.
 
-# Building Blocks of DDD
+## Building Blocks of DDD
 
 In this chapter, I will be explaining the concepts of an Entity and a VO. There are more building blocks in DDD, like
 Services and Domain Events (see the image above), but they will be out of scope for this post.
 
-## Entities
+### Entities
 
 This is how Entities are introduced in the DDD book by Eric Evans:
 
@@ -82,7 +83,7 @@ Entities are also called **"Reference Objects"**. I like this term because I hav
 
 (In JPA the annotation `@Entity` is used for Entities.)
 
-## Value Objects (VOs)
+### Value Objects (VOs)
 
 > Many objects have **no conceptual identity**. These objects describe some **characteristics of a thing**.
 
@@ -109,21 +110,18 @@ in modifying the existing one.
 Again, back to the student example. Think of two students living at the same address. They can share the same instance
 of the `Address` VO, but if one of the students moves somewhere else we don't want to mutate that instance because that
 would affect the other student as well. Instead, we end up creating a new `Address` instance (or reusing an existing
-instance of that address if it exists). Sharing a VO instance is shown in the next image. It also showcases the VO being
-like a complex attribute because it ends up in the same row in the database in this case.
+instance of that address if it exists). Sharing a VO instance is shown in the next image. It also showcases how the VO acts like a complex attribute of the Entity.
 
 ![reference_vo.png](./images/PAH9IWM9K.png)
 
-Do not attach artificial IDs to a VO. VOs are also not represented in their own table in a database. If you do so you
-would not only end up losing the benefits of performance and lower complexity of VOs, but you would also muddle the
-model making forcing all objects into the same mold.
+Do not attach artificial IDs to a VO. VOs are typically embedded rather than stored in their own table, though practical concerns like querying may justify separate tables. The key is that VOs should have no _conceptual_ identity—adding one would muddle the model by forcing all objects into the same mold.
 
 Because of the aforementioned benefits of VOs, you should go with a VO as a default and only ever assign an identity to
 something (and therefore make it an Entity) if it is required to do so.
 
 (In JPA the annotation `@Embeddable` (1:1) and `@ElementCollection` (1:n) are used for VOs).
 
-# Distinguish Entities and Value Objects
+## Distinguish Entities and Value Objects
 
 This post focuses on Entities and VOs because they are similar but different. One question I asked myself frequently
 was: "Is this an Entity or a Value Object?". Both are modeling actual data and are most often persisted in a database.
@@ -132,6 +130,62 @@ But as we already learned, there are differences in Entities and VOs.
 The following table showcases the main differences between Entities and Value Objects:
 
 ![Entities-Page-5.png](./images/bWvqwCDak.png)
+
+### Equality Semantics
+
+One of the most practical differences between Entities and VOs is how you compare them for equality:
+
+- **Entities**: Two instances are equal if they have the same identity (ID), regardless of their attributes.
+- **Value Objects**: Two instances are equal if all their attributes are equal.
+
+This distinction reflects their nature: an Entity _is_ something (identified), while a VO _describes_ something (by its attributes).
+
+### Code Example
+
+Using the student example from above, here's how you might implement an Entity and a VO in TypeScript:
+
+```typescript
+// Value Object: Immutable, equality by attributes
+class Address {
+  constructor(
+    readonly street: string,
+    readonly streetNumber: string,
+    readonly postcode: string,
+    readonly city: string
+  ) {}
+
+  equals(other: Address): boolean {
+    return (
+      this.street === other.street &&
+      this.streetNumber === other.streetNumber &&
+      this.postcode === other.postcode &&
+      this.city === other.city
+    );
+  }
+
+  // VOs are immutable - changing returns a new instance
+  withCity(city: string): Address {
+    return new Address(this.street, this.streetNumber, this.postcode, city);
+  }
+}
+
+// Entity: Identity-based equality, mutable attributes
+class Student {
+  constructor(
+    readonly matriculationNumber: string, // identity
+    public name: string,
+    public email: string,
+    public address: Address
+  ) {}
+
+  equals(other: Student): boolean {
+    // Only compare by identity, not attributes
+    return this.matriculationNumber === other.matriculationNumber;
+  }
+}
+```
+
+Notice how `Address.equals()` compares all attributes while `Student.equals()` only compares the identity. The `Address` is immutable (all fields `readonly`, changes create new instances), while `Student` allows attribute mutations because we track the same student over time.
 
 The following questions can help to identify an Entity or a VO:
 
@@ -142,7 +196,7 @@ think of primitive data type as an integer as a VO. So, is your object somehow l
 
 **_Do I have to keep track of something over time?_**
 
-**If the answer is, it is an Entity.** Entities allowing to keep track of information over time. Whereas VOs are like a
+**If the answer is yes, it is an Entity.** Entities allowing to keep track of information over time. Whereas VOs are like a
 snapshot of a point in time.
 
 ⚠️ \*\*If something is an Entity or a VO depends on your domain. \*\*It could be an Entity within one domain and a VO in
@@ -151,7 +205,7 @@ eCommerce, application money will be like a VO, because it only represents the a
 But when dealing with bank robberies you may care about the specific banknotes and their serial number uniquely
 identifying it. _(I think you get the idea 🤪)_
 
-# Conclusion
+## Conclusion
 
 Entities and Value Objects are two of several building blocks of DDD that belong to the Tactical Design part of DDD.
 They both have the purpose of storing information and most often they end up in a database but there are differences,
@@ -161,7 +215,7 @@ Go with Entities if you need the concept of identity.
 There is way more about DDD and even several other building blocks. What would you like to have been covered next in
 this DDD series?
 
-# Resources
+## Resources
 
 [Eric Evans DDD book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/)
 
