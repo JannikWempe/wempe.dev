@@ -41,6 +41,7 @@ const breadcrumbItems = [
 			width={post.data.cover.width / 2}
 			height={post.data.cover.height / 2}
 			loading="eager"
+			fetchpriority="high"
 			format={post.data.cover.format !== 'gif' ? 'avif' : 'gif'}
 			class="mb-6 rounded-2xl shadow-lg"
 		/>
