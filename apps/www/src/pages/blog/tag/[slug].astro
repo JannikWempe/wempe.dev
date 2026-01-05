@@ -25,6 +25,19 @@ export const getStaticPaths = (async () => {
 const { tag } = Astro.props;
 const posts = (await getCollection('blog', ({ data }) => data.tags.includes(tag))).sort(newestFirst);
 
+const tagDescriptions: Record<string, string> = {
+	nextjs: 'Explore Next.js tutorials, server components, app router patterns, and performance optimization tips. Learn modern React development with real-world examples.',
+	auth: 'Discover authentication and authorization patterns, OAuth flows, JWT handling, and security best practices. Implement secure user login in your web applications.',
+	ai: 'Read about artificial intelligence, machine learning integration, LLMs, and AI-powered development. Practical guides for building intelligent applications.',
+	ddd: 'Learn Domain-Driven Design concepts including entities, value objects, aggregates, and bounded contexts. Apply tactical DDD patterns in TypeScript projects.',
+	shopify: 'Shopify app development guides covering billing, webhooks, API integration, and best practices. Build and scale successful Shopify apps.',
+};
+
+const getDescription = (tag: string, count: number) => {
+	if (tagDescriptions[tag]) return tagDescriptions[tag];
+	return `Explore ${count} articles about ${tag} covering tutorials, best practices, and real-world implementation patterns for modern software development.`;
+};
+
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Blog', href: '/blog' },
@@ -35,7 +48,7 @@ const breadcrumbItems = [
 <DefaultLayout
 	metadata={{
 		title: `${tag} Posts | Jannik Wempe`,
-		description: `Browse all articles about ${tag} - insights, tutorials, and best practices on ${tag} development.`,
+		description: getDescription(tag, posts.length),
 	}}
 	{breadcrumbItems}
 >
