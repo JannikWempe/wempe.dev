@@ -3,20 +3,22 @@ title: Different Node.js Versions and Package Managers Per Project – A Solved 
 seoTitle: Different Node.js Versions & Package Managers Per Project
 datePublished: 'Wed Jan 17 2024 19:23:41 GMT+0000 (Coordinated Universal Time)'
 slug: nodejs-and-package-managers-versions
+dateLastModified: '2026-01-05'
 cover: './images/6efceea6-04fe-4e65-b0a9-886d3215dfde.png'
 tags: ['nodejs', 'pnpm']
 excerpt: >-
   You work on different projects, maybe in different teams, or just on older and
   newer personal projects. Chances are you are using different Node.js versions
   and different package managers or package manager versions.
-
-  You should be able to switch betw...
 subtitle: >-
   I explain my setup to make it easy dealing with different Node.js version and
   package managers per project.
 ---
 import Callout from '../../../components/Callout.astro';
 
+<Callout>
+**Update (January 2026):** Corepack was removed from Node.js 25+ (TSC voted March 2025). It's still maintained but must now be installed separately via `npm install -g corepack`. The `FNM_COREPACK_ENABLED` flag is therefore less useful. fnm itself is now listed as an [official installation option on nodejs.org](https://nodejs.org/en/download).
+</Callout>
 
 You work on different projects, maybe in different teams, or just on older and newer personal projects. Chances are you are using different Node.js versions and different package managers or package manager versions.
 
@@ -38,7 +40,7 @@ I have set up an alias for `fnm` to `nvm`. With that, I can execute all of the m
 
 I have still installed `node` via Homebrew because some other formulas or casks may depend on this. If I try to uninstall it via `brew uninstall node` I get the error `Error: Refusing to uninstall /opt/homebrew/Cellar/node/21.5.0 because it is required by [...]` . That is fine, I just leave it there but otherwise don't use it.
 
-The system-level Node.js version is also listed in `nvm ls` as `system`, but that is not my default version, so it never gets for commands I run in the terminal.
+The system-level Node.js version is also listed in `nvm ls` as `system`, but that is not my default version, so it never gets used for commands I run in the terminal.
 
 ## Dealing With Different Package Managers
 
@@ -68,6 +70,5 @@ Dealing with different Node.js versions and different package managers and its v
 * set `FNM_COREPACK_ENABLED=1` globally to automatically activate corepack for each new Node.js version
 
 * always specify `packageManager` in `package.json`
-
 
 With that in place, you never have to explicitly install Node.js or package manager versions. They are configurations in your projects and get installed automatically.
