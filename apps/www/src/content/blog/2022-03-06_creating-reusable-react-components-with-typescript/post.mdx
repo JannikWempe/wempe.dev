@@ -19,7 +19,7 @@ import Callout from '../../../components/Callout.astro';
 Often we write React components that get bigger and bigger and at some point, we extract parts of it into separate
 components. Either because the component is getting too big or because we need parts of it somewhere else.
 
-This is generally a good approach but after a while, we can up with several components that are similar (e.g. some kind
+This is generally a good approach but after a while, we can end up with several components that are similar (e.g. some kind
 of list, card, or whatever). Often they have some similarities. Wouldn't it be nice to have some basic building blocks
 that can be reused in order to encapsulate such similarities?
 
@@ -102,7 +102,7 @@ export function List<Item>({ items, renderItem }: Props<Item>) {
 Note that the component now has no reference to Pokemon anymore. It could render anything, no matter if Pokemon,
 trainers, or something else.
 
-It not only is a generic component not, but it also uses a TypeScript generic for the component props. We use the
+It is not only a generic component now, but it also uses a TypeScript generic for the component props. We use the
 generic `Item` type for the list of `items`and for the single `item`. When we pass one of the props to this component,
 if we use it somewhere, React (or rather TypeScript) knows that the other prop has the same type.
 

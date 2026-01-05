@@ -21,7 +21,7 @@ However, there's a common issue: many adblockers and browser privacy features tr
 
 So, how can we improve data accuracy? The Plausible team themselves recommend proxying the analytics requests through your own domain infrastructure if you want more accurate data.
 
-In this post, we'll briefly cover why this proxy approach is effective and then dive straight into the how. We'll set up a the proxy using AWS CloudFront, defined and deployed easily using SST (Serverless Stack) as our Infrastructure as Code tool. Let's configure our setup for more accurate analytics!
+In this post, we'll briefly cover why this proxy approach is effective and then dive straight into the how. We'll set up the proxy using AWS CloudFront, defined and deployed easily using SST (Serverless Stack) as our Infrastructure as Code tool. Let's configure our setup for more accurate analytics!
 
 ## Why Proxy Plausible Analytics?
 You've set up Plausible Analytics, hoping to get clear insights into your website's traffic. But there's that common hurdle: adblockers and browser privacy features. These tools often maintain blocklists containing domains associated with tracking and analytics – and `plausible.io` is frequently on those lists.

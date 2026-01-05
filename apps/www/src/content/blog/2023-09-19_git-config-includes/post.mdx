@@ -5,7 +5,7 @@ slug: git-config-includes
 cover: './images/51063ecb-2e70-4e0f-b467-ef9f76470c6a.png'
 tags: ['git']
 excerpt: >-
-  A lot of us are coding for an employee and privately or as a freelancer for
+  A lot of us are coding for an employer and privately or as a freelancer for
   multiple companies. You might want to associate commits for the different
   projects with a different user (e.g. email) or sign them differently (I think
   you should).
@@ -18,7 +18,7 @@ subtitle: >-
 import Callout from '../../../components/Callout.astro';
 
 
-A lot of us are coding for an employee and privately or as a freelancer for multiple companies. You might want to associate commits for the different projects with a different user (e.g. email) or sign them differently (I think you should).
+A lot of us are coding for an employer and privately or as a freelancer for multiple companies. You might want to associate commits for the different projects with a different user (e.g. email) or sign them differently (I think you should).
 
 While you could [configure Git per repository](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git#setting-your-git-username-for-a-single-repository) it becomes pretty cumbersome. Instead, configuring Git for a subset of all of your local repositories is much more handy. This is what I will be going to show you in this post.
 
@@ -32,7 +32,7 @@ First of all, we create our default, global `.gitconfig` by typing `git config -
 	email = jannik@wempe.dev
 ```
 
-<Callout icon="⚠️">The default path of the global <code>.gitconfig</code> on MacOS <code>~/.gitconfig</code> (in you home folder).</Callout>
+<Callout icon="⚠️">The default path of the global <code>.gitconfig</code> on MacOS <code>~/.gitconfig</code> (in your home folder).</Callout>
 
 With that config, every one of your commits will be associated with the shown `name` and `email` – no matter where your repository is located on your machine.
 
@@ -66,7 +66,7 @@ By changing your `~/.gitconfig` to this:
 	path = ~/.gitconfig-work
 ```
 
-`gitdir/i` is a condition telling Git to include the file at the given `path` if the Git repository is located in any sub-directory of `~/code/work/` (ending the path with `/` automatically adds `/**` and thus matching all sub-directories). The `/i` part is configures the matching to be case-insensitive.
+`gitdir/i` is a condition telling Git to include the file at the given `path` if the Git repository is located in any sub-directory of `~/code/work/` (ending the path with `/` automatically adds `/**` and thus matching all sub-directories). The `/i` part configures the matching to be case-insensitive.
 
 > The `include` and `includeIf` sections allow you to include config directives from another source. These sections behave identically to each other with the exception that `includeIf` sections may be ignored if their condition does not evaluate to true; see "Conditional includes" below.
 > — [Git - git-config Documentation](https://git-scm.com/docs/git-config#_includes)

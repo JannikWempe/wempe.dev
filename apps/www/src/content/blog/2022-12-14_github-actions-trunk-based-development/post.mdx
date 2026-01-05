@@ -48,7 +48,7 @@ This is the basic CI/CD pipeline I'd like to create:
 ![](./images/566b2DSb1.png)
 
 At first, we will run some basic checks, then we build the artifact(s) and after that, we deploy it to a staging and a
-production environment. Yes, we can do a lot more like integration and E2E tests, more environment etc. but this should
+production environment. Yes, we can do a lot more like integration and E2E tests, more environments etc. but this should
 be sufficient to showcase the main points.
 
 I will be using an AWS CDK deployment as an example but the pipelines will be applicable for everything that creates
@@ -67,7 +67,7 @@ on:
     branches:
       - main # your "trunk" branch
 jobs:
-  build-and-delopy:
+  build-and-deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
     # Required for GH OIDC
@@ -107,7 +107,7 @@ jobs:
 We trigger the pipeline on pushes to `main` (our "trunk"). Remember, we don't have different branches per environment.
 We deploy to all our environments from this branch.
 
-We have one single job `build-and-delopy` that includes all our steps of the pipeline. The steps are implementing the
+We have one single job `build-and-deploy` that includes all our steps of the pipeline. The steps are implementing the
 flow that is shown in the introduction of this chapter. We build the artifacts that should be deployed once and then
 deploy them to the different environments. We store our secrets in the GitHub secrets of the repository
 (`AWS_DEPLOY_ROLE_ARN` in this case).
@@ -188,7 +188,7 @@ jobs:
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: [build, staging] # build - if you want to deploy in parallel with Staging
+    needs: [build, deploy-staging] # build - if you want to deploy in parallel with Staging
     environment: production
     # required to interact with GitHub's OIDC Token endpoint
     permissions:
@@ -216,7 +216,7 @@ per environment-specific job.
 By uploading and downloading the initially created artifacts we only have to actually build the artifacts once and can
 be sure that they are stable (and not differ due to different builds).
 
-After running this pipeline for the first to you'll the the "Environments" sections in the sidebar in your GitHub
+After running this pipeline for the first time you'll see the "Environments" section in the sidebar in your GitHub
 repository:
 
 ![A red arrow indicating the position where the environments are shown on the GitHub UI.](./images/375BNlM7L.png)
@@ -284,7 +284,7 @@ jobs:
         with:
           name: cdk-out
           path: cdk.out
-      # we can't attack a folder to a release
+      # we can't attach a folder to a release
       - name: Zip Artifact
         run: |
           zip -r cdk.out.zip cdk.out

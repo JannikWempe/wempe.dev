@@ -46,7 +46,7 @@ In the [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/decora
 To put it in a more general way: **you can change the behaviour of certain parts of the code by annotating them with a decorator.** The parts of the code, which can be annotated with decorators are described in the [Types of decorators](#types-of-decorators) section.
 
 **BONUS:** There is even a **decorator pattern** described in the [Design Patterns book by the Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns). Its intent is described as:
-> to add responsibilities to individual objects **dynamically and transparently**, that is, without effecting other objects.
+> to add responsibilities to individual objects **dynamically and transparently**, that is, without affecting other objects.
 
 # Enable decorators
 Since decorators are an experimental feature, they are **disabled by default**. You must enable them by either enabling it in the `tsconfig.json` or passing it to the TypeScript compiler (`tsc`). You should also at least use ES5 as a target (default is ES3).
@@ -97,7 +97,7 @@ class Polygon {
   }
 
   @methodDecorator
-  calcuateArea(): number {
+  calculateArea(): number {
     // ...
   }
 }
@@ -185,7 +185,7 @@ class Polygon {
   }
 
   @methodDecorator
-  calcuateArea(@parameterDecorator bar: string): number {
+  calculateArea(@parameterDecorator bar: string): number {
     return this.x * 2;
   }
 }
@@ -196,8 +196,8 @@ new Polygon(3, 2)
 // Output:
 //   [LOG]: "propertyDecorator",  "edges"
 //   [LOG]: "accessorDecorator",  "x"
-//   [LOG]: "parameterDecorator",  "calcuateArea",  0
-//   [LOG]: "methodDecorator",  "calcuateArea"
+//   [LOG]: "parameterDecorator",  "calculateArea",  0
+//   [LOG]: "methodDecorator",  "calculateArea"
 //   [LOG]: "propertyDecorator",  "_PI"
 //   [LOG]: "parameterDecorator",  "print",  0
 //   [LOG]: "methodDecorator",  "print"

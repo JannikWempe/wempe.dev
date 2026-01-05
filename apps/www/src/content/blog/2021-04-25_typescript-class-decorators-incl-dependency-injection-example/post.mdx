@@ -31,7 +31,7 @@ type Constructor = {
 }
 function classDecorator <T extends Constructor>(constructor: T): T | void {
   console.log(constructor)
-  return class extends constructor {} // exentds works
+  return class extends constructor {} // extends works
 }
 
 // original signature as in typescript/lib/lib.es5.d.ts
@@ -187,7 +187,7 @@ interface Injection {
   key: string;
 }
 
-// add to class which has constructor paramteters marked with @inject()
+// add to class which has constructor parameters marked with @inject()
 function injectionTarget() {
   return function injectionTarget <T extends { new (...args: any[]): {} }>(constructor: T): T | void {
     // replacing the original constructor with a new one that provides the injections from the Container
@@ -237,7 +237,7 @@ class UserRepository {
 class UserService {
   userRepository: UserRepository;
 
-  // an instance of the UserRepository class, identified by key 'UserRepositroy' should be injected
+  // an instance of the UserRepository class, identified by key 'UserRepository' should be injected
   constructor(@inject("UserRepository") userRepository?: UserRepository) {
     // ensures userRepository exists and no checks for undefined are required throughout the class
     if (!userRepository) throw Error("No UserRepository provided or injected.")

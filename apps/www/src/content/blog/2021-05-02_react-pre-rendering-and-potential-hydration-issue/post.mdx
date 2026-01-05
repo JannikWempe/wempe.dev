@@ -28,7 +28,7 @@ Warning: Expected server HTML to contain a matching <div> in <a>.
 react-dom.development.js?61bb:67
 ```
 
-I scratched my had and did what a developer does: ask Google.
+I scratched my head and did what a developer does: ask Google.
 
 This is why I write this article about React, SSR and Hydration. It should help others understanding (and my future
 self) the issue.
@@ -65,7 +65,7 @@ export const CartNavigationIcon = (): ReactElement => {
 
 Can you spot the issue? Great! I couldn't...
 
-Google told me it is related to pre-rendering and `ReactDOM`s hydration (also reffered to as rehydration). I digged
+Google told me it is related to pre-rendering and `ReactDOM`s hydration (also referred to as rehydration). I digged
 deeper and tried to understand what was happening...
 
 # Understanding Pre-rendering and Hydration
@@ -76,7 +76,7 @@ especially the hydration? I certainly didn't...
 ## Pre-rendering
 
 Next.js supports [two forms of Pre-rendering](https://nextjs.org/docs/basic-features/pages#two-forms-of-pre-rendering):
-**Static generation** _(the SG in SSG, which stands for Static Side Generator)_ and **Server-Side Rendering** (SSR).
+**Static generation** _(the SG in SSG, which stands for Static Site Generator)_ and **Server-Side Rendering** (SSR).
 
 The **main difference between** these two: point in time when the HTML markup is generated:
 
@@ -188,16 +188,16 @@ return { hasMounted };
 
 `useMounted()` is a simple hook providing us the information about the component being rendered. That way we can set the
 actual amount of items in cart after the first render and end up with the server content initially being the same than
-the client conent.
+the client content.
 
-Please note that this solution will make the `CartNavigationIcon` render twice. Do not overuse this for to many and / or
+Please note that this solution will make the `CartNavigationIcon` render twice. Do not overuse this for too many and / or
 complex components and apply it as close to the root cause as possible. Otherwise child components will unnecessarily
 also be rerendered.
 
 # Conclusion
 
 I hope this article helps to clarify the concept of pre-rendering and hydration. I think the `ReactDOM` error message
-isn't to helpful to point the developer into the right direction. But maybe this article helps to not only resolve the
+isn't too helpful to point the developer into the right direction. But maybe this article helps to not only resolve the
 problem but also understanding the root cause of it.
 
 # Additional sources

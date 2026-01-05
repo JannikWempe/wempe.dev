@@ -40,7 +40,7 @@ But the APIs are quite nice and you could easily add a database yourself.
 
 I won't go into details on configuration here. The
 [Readme.md](https://github.com/mckaywrigley/chatbot-ui/blob/main/README.md) is the single source of truth and will have
-the up to date instructions.
+the up-to-date instructions.
 
 You could leave the `OPENAI_API_KEY` environment variable blank and have the user specify the key but I don't want
 anybody else to use my UI at all. That is why we are now looking into how to protect your ChatBot UI website.
@@ -54,7 +54,7 @@ Basic auth is a simple HTTP authentication scheme used to protect web resources 
 works by sending the combination of a username and password, encoded in base64 format, as plain text over the network
 (you should use HTTPS). It is good enough for this use case.
 
-I am deploying my version of the ChatBot you to Vercel.
+I am deploying my version of the ChatBot UI to Vercel.
 [There is an example from Vercel on GitHub on how to add Basic Auth](https://github.com/vercel/examples/tree/main/edge-middleware/basic-auth-password).
 It all comes down to using an edge middleware and an API route. This is my slightly modified version of the middleware
 using environment variables to provide values for `user` and `pwd`:
@@ -95,7 +95,7 @@ export default function handler(_: NextApiRequest, res: NextApiResponse) {
 }
 ```
 
-This is just setting a header and a `401` (Unauthorized) status code.The `WWW-authenticate` field is used to initiate
+This is just setting a header and a `401` (Unauthorized) status code. The `WWW-authenticate` field is used to initiate
 the authentication process and the value `Basic realm="Secure Area"` instructs the client to send encoded username and
 password credentials to access the "Secure Area" of the website.
 

@@ -121,7 +121,7 @@ This will add three tags to all taggable resources that are within your `app`.
 
 ### Example 2: Enabling S3 Bucket Versioning
 
-This example will show you how to alter constructs within the scope. Use this power responsively as you will end up in a
+This example will show you how to alter constructs within the scope. Use this power responsibly as you will end up in a
 mess if you overuse this.
 
 You want to enable bucket versioning for all of your buckets? You could create your own `VersionedBucket` by extending
@@ -198,7 +198,7 @@ class EnforceMinimumLambdaNodeRuntimeVersion implements IAspect {
 
 This one is slightly more complex but it follows the same principles as the previous example. The main difference is the
 `Annotations.of(node).addError()` part. We don't throw an error that would abort the synthesis and show an ugly,
-unhelpful stack tract, but we are adding an error annotation to the construct itself. This is what error annotations
+unhelpful stack trace, but we are adding an error annotation to the construct itself. This is what error annotations
 would look like:
 
 ```plaintext
@@ -300,7 +300,7 @@ to give you an example for one of them: One of them is [cdk-nag](https://github.
 
 `cdk-nag` contains several Aspects to check your applications for best practices. It is especially useful if you need to
 be HIPAA-compliant or have other compliance requirements. It is inspired by
-[cfn_nag](https://github.com/stelligent/cfn_nag) which is a a tool checking for patterns in your CloudFormation
+[cfn_nag](https://github.com/stelligent/cfn_nag) which is a tool checking for patterns in your CloudFormation
 templates.
 
 After installing `cdk-nag` with your favorite package manager (e.g. `npm install cdk-nag`) you can use one of the

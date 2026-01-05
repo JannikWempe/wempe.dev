@@ -107,7 +107,7 @@ It is always painful if a development environment is very different from the pro
 doors for bugs in production that you were not able to catch during development.
 
 Unfortunately, this is exactly my experience: In production, I started seeing errors that my client components could not
-be found. That crashed the whole app. I was able to fix this be adding `{ optimizeBoundaries: false }` to the `hydrogen`
+be found. That crashed the whole app. I was able to fix this by adding `{ optimizeBoundaries: false }` to the `hydrogen`
 Vite plugin – but I have honestly no idea what this is doing and what other implications it might have.
 
 Another issue: I created an API route for sending emails. I was using `nodemailer` for that. Everything works fine in

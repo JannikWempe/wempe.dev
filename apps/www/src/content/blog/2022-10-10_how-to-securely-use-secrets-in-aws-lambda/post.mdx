@@ -28,7 +28,7 @@ I will also provide you with an example implementation showing you how to do bet
 ## Why Environment Variables Are Not the Best Solution for Accessing Secrets
 
 I am sure I don't have to tell you why it is a bad idea to put secrets in plain text into your code base. But why aren't
-environment variables very secure either? AWS suggests to better not using environment variables for your secrets:
+environment variables very secure either? AWS suggests not using environment variables for your secrets:
 
 > To increase database security, we recommend that you use AWS Secrets Manager **instead of environment variables** to
 > store database credentials.
@@ -68,7 +68,7 @@ Malicious packages could theoretically still get access to your secrets somehow 
 sending `process.env` somewhere. So this is not an 100% protection, but it is safer and as part of
 [Defense in Depth](<https://en.wikipedia.org/wiki/Defense_in_depth_(computing)>) a good practice.
 
-It would be even safer to place the Lambda in a VPC and prevent in from connecting to the internet altogether. But that
+It would be even safer to place the Lambda in a VPC and prevent it from connecting to the internet altogether. But that
 comes with other downsides and isn't always applicable.
 
 Back to SSM: You have different options on how to retrieve and use secrets from SSM – as always, all of them have
