@@ -22,12 +22,16 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
 					<Icon name="lucide:arrow-left" class="h-5 w-5" />
 				</div>
-				<div class="min-w-0">
-					<span class="block text-xs font-medium uppercase tracking-wide text-slate-500">Previous</span>
-					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">{previousPost.data.title}</span>
+				<div>
+					<span class="block text-xs font-medium tracking-wide text-slate-500 uppercase">Previous</span>
+					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
+						{previousPost.data.title}
+					</span>
 				</div>
 			</a>
-		) : <div />
+		) : (
+			<div />
+		)
 	}
 	{
 		nextPost && (
@@ -38,9 +42,11 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
 					<Icon name="lucide:arrow-right" class="h-5 w-5" />
 				</div>
-				<div class="min-w-0">
-					<span class="block text-xs font-medium uppercase tracking-wide text-slate-500">Next</span>
-					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">{nextPost.data.title}</span>
+				<div>
+					<span class="block text-xs font-medium tracking-wide text-slate-500 uppercase">Next</span>
+					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
+						{nextPost.data.title}
+					</span>
 				</div>
 			</a>
 		)
