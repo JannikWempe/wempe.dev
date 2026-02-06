@@ -19,6 +19,18 @@
 		"[astro]": {
 			"editor.formatOnSave": true,
 		},
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.oxc": "always",
+		},
+		"oxc.fmt.configPath": ".oxfmtrc.jsonc",
+		"editor.defaultFormatter": "oxc.oxc-vscode",
 		"astro.content-intellisense": true,
+	},
+	"extensions": {
+		"recommendations": [
+			"astro-build.astro-vscode",
+			"oxc.oxc-vscode",
+		],
 	},
 }

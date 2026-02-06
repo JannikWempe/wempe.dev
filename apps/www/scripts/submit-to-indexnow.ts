@@ -1,8 +1,8 @@
 #!/usr/bin/env npx tsx
 
-const SITEMAP_INDEX_URL = "https://wempe.dev/sitemap-index.xml";
-const INDEXNOW_KEY = "0e7f324c13ef4fc8b499316ad33afb98";
-const HOST = "wempe.dev";
+const SITEMAP_INDEX_URL = 'https://wempe.dev/sitemap-index.xml';
+const INDEXNOW_KEY = '0e7f324c13ef4fc8b499316ad33afb98';
+const HOST = 'wempe.dev';
 
 async function fetchXml(url: string): Promise<string> {
   const res = await fetch(url);
@@ -11,7 +11,7 @@ async function fetchXml(url: string): Promise<string> {
 }
 
 function extractUrls(xml: string, tag: string): string[] {
-  const regex = new RegExp(`<${tag}>\\s*<loc>([^<]+)</loc>`, "g");
+  const regex = new RegExp(`<${tag}>\\s*<loc>([^<]+)</loc>`, 'g');
   const urls: string[] = [];
   let match: RegExpExecArray | null;
   while ((match = regex.exec(xml)) !== null) {
@@ -28,9 +28,9 @@ async function submitToIndexNow(urls: string[]): Promise<void> {
     urlList: urls,
   };
 
-  const res = await fetch("https://api.indexnow.org/indexnow", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch('https://api.indexnow.org/indexnow', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 
@@ -43,29 +43,29 @@ async function submitToIndexNow(urls: string[]): Promise<void> {
 }
 
 async function main() {
-  console.log("Fetching sitemap index...");
+  console.log('Fetching sitemap index...');
   const indexXml = await fetchXml(SITEMAP_INDEX_URL);
-  const sitemapUrls = extractUrls(indexXml, "sitemap");
+  const sitemapUrls = extractUrls(indexXml, 'sitemap');
   console.log(`Found ${sitemapUrls.length} sitemap(s)`);
 
   const allUrls: string[] = [];
   for (const sitemapUrl of sitemapUrls) {
     console.log(`Fetching ${sitemapUrl}...`);
     const sitemapXml = await fetchXml(sitemapUrl);
-    const urls = extractUrls(sitemapXml, "url");
+    const urls = extractUrls(sitemapXml, 'url');
     allUrls.push(...urls);
   }
 
   console.log(`Total URLs: ${allUrls.length}`);
 
   if (allUrls.length === 0) {
-    console.log("No URLs to submit");
+    console.log('No URLs to submit');
     return;
   }
 
-  console.log("Submitting to IndexNow...");
+  console.log('Submitting to IndexNow...');
   await submitToIndexNow(allUrls);
-  console.log("Done!");
+  console.log('Done!');
 }
 
 main().catch((err) => {

@@ -1,13 +1,14 @@
 {
 	"name": "@wempe-dev/www",
-	"type": "module",
 	"version": "0.0.0",
+	"type": "module",
 	"scripts": {
 		"clean": "rm -rf ./node_modules ./.astro ./.cache ./dist",
 		"dev": "astro dev",
 		"build": "astro check && astro build",
 		"check": "astro check",
-		"format": "prettier . --write",
+		"format": "oxfmt --write .",
+		"lint": "oxlint",
 		"preview": "astro preview",
 		"astro": "astro",
 		"indexnow": "npx tsx scripts/submit-to-indexnow.ts"
@@ -41,9 +42,8 @@
 		"@astrojs/check": "0.9.6",
 		"@tailwindcss/typography": "0.5.19",
 		"@types/lodash.merge": "4.6.9",
-		"prettier": "3.7.4",
-		"prettier-plugin-astro": "0.14.1",
-		"prettier-plugin-tailwindcss": "0.7.2",
+		"oxfmt": "0.28.0",
+		"oxlint": "1.43.0",
 		"sharp": "0.34.5",
 		"typescript": "catalog:"
 	}
