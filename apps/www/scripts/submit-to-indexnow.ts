@@ -51,6 +51,7 @@ async function main() {
   const allUrls: string[] = [];
   for (const sitemapUrl of sitemapUrls) {
     console.log(`Fetching ${sitemapUrl}...`);
+    // oxlint-disable-next-line no-await-in-loop
     const sitemapXml = await fetchXml(sitemapUrl);
     const urls = extractUrls(sitemapXml, 'url');
     allUrls.push(...urls);

@@ -19,7 +19,7 @@ export interface Props {
 const { post, headings, breadcrumbItems } = Astro.props;
 
 // Get previous and next posts
-const posts = (await getCollection('blog')).sort(newestFirst);
+const posts = (await getCollection('blog')).toSorted(newestFirst);
 const currentIndex = posts.findIndex((p) => p.id === post.id);
 const previousPost = posts[currentIndex + 1];
 const nextPost = posts[currentIndex - 1];

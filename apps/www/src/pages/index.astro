@@ -65,7 +65,7 @@ const endorsements = [
 	},
 ] as const;
 
-const latestBlogPosts = (await getCollection('blog')).sort(newestFirst).slice(0, 4);
+const latestBlogPosts = (await getCollection('blog')).toSorted(newestFirst).slice(0, 4);
 
 const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 ---

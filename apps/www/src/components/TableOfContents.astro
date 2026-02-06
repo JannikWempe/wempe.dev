@@ -42,6 +42,15 @@ const { headings, class: classes } = Astro.props;
 </nav>
 
 <script>
+	function setActiveLink(id: string | null) {
+		document.querySelectorAll('.toc-link').forEach((link) => {
+			link.classList.remove('text-indigo-600', 'font-medium');
+		});
+		if (id) {
+			document.querySelector(`[data-heading-id="${id}"]`)?.classList.add('text-indigo-600', 'font-medium');
+		}
+	}
+
 	function updateActiveHeading() {
 		const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 		const visibleHeadings = new Set<string>();
@@ -49,15 +58,6 @@ const { headings, class: classes } = Astro.props;
 		headings.forEach((heading) => {
 			(heading as HTMLElement).style.scrollMarginTop = '96px';
 		});
-
-		function setActiveLink(id: string | null) {
-			document.querySelectorAll('.toc-link').forEach((link) => {
-				link.classList.remove('text-indigo-600', 'font-medium');
-			});
-			if (id) {
-				document.querySelector(`[data-heading-id="${id}"]`)?.classList.add('text-indigo-600', 'font-medium');
-			}
-		}
 
 		let initialized = false;
 

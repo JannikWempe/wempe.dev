@@ -23,7 +23,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.props;
-const posts = (await getCollection('blog', ({ data }) => data.tags.includes(tag))).sort(newestFirst);
+const posts = (await getCollection('blog', ({ data }) => data.tags.includes(tag))).toSorted(newestFirst);
 
 const tagDescriptions: Record<string, string> = {
 	nextjs: 'Explore Next.js tutorials, server components, app router patterns, and performance optimization tips. Learn modern React development with real-world examples.',
