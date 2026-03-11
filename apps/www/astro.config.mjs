@@ -47,7 +47,7 @@ export default defineConfig({
 		},
 		'/sitemap.xml': {
 			destination: '/sitemap-index.xml',
-			status: 302,
+			status: 301,
 		},
 		// on Hashnode, I have used some series, now I use tags instead
 		'/blog/series/domain-driven-design': {
