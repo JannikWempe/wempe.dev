@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "packageManager": "pnpm@10.5.2",
   "engines": {
-    "node": "^22"
+    "node": "^24"
   },
   "scripts": {
     "clean": "pnpm -r run clean && rm -rf ./{node_modules,.sst}",
@@ -17,7 +17,7 @@
     "sst": "4.2.7"
   },
   "devDependencies": {
-    "@tsconfig/node22": "22.0.5",
+    "@tsconfig/node24": "24.0.4",
     "typescript": "catalog:"
   },
   "pnpm": {

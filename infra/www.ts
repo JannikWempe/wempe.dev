@@ -51,7 +51,7 @@ export const astro = new sst.aws.Astro("Astro", {
   },
   server: {
     architecture: "arm64",
-    runtime: "nodejs22.x",
+    runtime: "nodejs24.x",
   },
   domain: {
     name: hostname,

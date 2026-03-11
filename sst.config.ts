@@ -17,7 +17,7 @@ export default $config({
   async run() {
     $transform(sst.aws.Function, (args, _opts) => {
       args.architecture ??= "arm64";
-      args.runtime ??= "nodejs22.x";
+      args.runtime ??= "nodejs24.x";
     });
     await import("./infra/dns");
     const wwww = await import("./infra/www");
