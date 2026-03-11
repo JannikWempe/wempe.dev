@@ -15,7 +15,14 @@ const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
 	import mermaid from 'mermaid';
 
 	mermaid.initialize({
-		startOnLoad: true,
+		startOnLoad: false,
 		theme: 'dark',
+	});
+
+	document.addEventListener('astro:page-load', () => {
+		const nodes = document.querySelectorAll<HTMLElement>('pre.mermaid:not([data-processed])');
+		if (nodes.length > 0) {
+			mermaid.run({ nodes });
+		}
 	});
 </script>
