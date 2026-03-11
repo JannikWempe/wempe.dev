@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import sst from 'astro-sst';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
@@ -22,11 +22,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+	fonts: [
+		{
+			name: 'Geist Sans',
+			cssVariable: '--font-geist-sans',
+			provider: fontProviders.fontsource(),
+		},
+	],
 	experimental: {
 		clientPrerender: true,
-		contentIntellisense: true,
-		preserveScriptOrder: true,
-		csp: false,
 	},
 	prefetch: {
 		prefetchAll: true,

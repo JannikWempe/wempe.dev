@@ -10,7 +10,7 @@ export default $config({
           region: "eu-central-1",
           profile: "private",
         },
-        cloudflare: "6.11.0",
+        cloudflare: "6.13.0",
       },
     };
   },

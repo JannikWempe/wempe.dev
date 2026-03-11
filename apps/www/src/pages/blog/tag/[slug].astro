@@ -33,9 +33,9 @@ const tagDescriptions: Record<string, string> = {
 	shopify: 'Shopify app development guides covering billing, webhooks, API integration, and best practices. Build and scale successful Shopify apps.',
 };
 
-const getDescription = (tag: string, count: number) => {
-	if (tagDescriptions[tag]) return tagDescriptions[tag];
-	return `Explore ${count} articles about ${tag} covering tutorials, best practices, and real-world implementation patterns for modern software development.`;
+const getDescription = (tagg: string, count: number) => {
+	if (tagDescriptions[tagg]) return tagDescriptions[tagg];
+	return `Explore ${count} articles about ${tagg} covering tutorials, best practices, and real-world implementation patterns for modern software development.`;
 };
 
 const breadcrumbItems = [

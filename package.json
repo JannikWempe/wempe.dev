@@ -14,13 +14,16 @@
     "sst:deploy:prod": "sst deploy --stage prod"
   },
   "dependencies": {
-    "sst": "3.17.25"
+    "sst": "4.2.7"
   },
   "devDependencies": {
     "@tsconfig/node22": "22.0.5",
     "typescript": "catalog:"
   },
   "pnpm": {
-    "neverBuiltDependencies": []
+    "neverBuiltDependencies": [],
+    "patchedDependencies": {
+      "astro-sst@3.1.4": "patches/astro-sst@3.1.4.patch"
+    }
   }
 }

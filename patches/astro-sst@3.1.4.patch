@@ -1,0 +1,14 @@
+diff --git a/dist/entrypoint.js b/dist/entrypoint.js
+index dedb206e4f16572da83ecc736912c51f685d0d76..a90d3a861b4bca09f49bfd3881ee82fe7e549b3f 100644
+--- a/dist/entrypoint.js
++++ b/dist/entrypoint.js
+@@ -1,8 +1,7 @@
+ import fs from "fs/promises";
+-import { NodeApp, applyPolyfills } from "astro/app/node";
++import { NodeApp } from "astro/app/node";
+ import { convertFrom, convertTo } from "./lib/event-mapper.js";
+ import { debug } from "./lib/logger.js";
+-applyPolyfills();
+ function createRequest(internalEvent) {
+     const requestUrl = internalEvent.url;
+     const requestProps = {
