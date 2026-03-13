@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+interface Props extends HTMLAttributes<'a'> {
+	icon: string;
+	label: string;
+	text?: string;
+	analyticsType?: string;
+	iconClass?: string;
+}
+
+const {
+	icon,
+	label,
+	text,
+	analyticsType,
+	iconClass,
+	class: classes,
+	...rest
+} = Astro.props;
+
+const analyticsClasses = analyticsType
+	? `plausible-event-name=contact plausible-event-type=${analyticsType}`
+	: '';
+---
+
+<a
+	aria-label={text ? undefined : label}
+	class={twMerge(
+		text
+			? 'inline-flex items-center gap-2 text-link-muted transition-colors hover:text-link-muted-hover'
+			: 'text-link-muted transition-colors hover:text-link-muted-hover',
+		analyticsClasses,
+		classes
+	)}
+	{...rest}
+>
+	<Icon name={icon} class={twMerge('h-5 w-5 shrink-0', iconClass)} />
+	{text ? <span class="text-sm">{text}</span> : <span class="sr-only">{label}</span>}
+</a>

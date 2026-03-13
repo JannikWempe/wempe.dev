@@ -1,0 +1,42 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props<T extends HTMLTag = 'h2'> = Polymorphic<{ as: T }> & {
+	divider?: boolean;
+	spacing?: 'none' | 'content';
+	size?: 'md' | 'lg';
+};
+
+const {
+	as: Tag = 'h2' as any,
+	divider = true,
+	spacing = 'content',
+	size = 'lg',
+	class: classes = '',
+	...rest
+} = Astro.props;
+
+const sizeStyles = {
+	md: 'text-xl',
+	lg: 'text-2xl',
+};
+
+const spacingStyles = {
+	none: '',
+	content: 'mb-4',
+};
+---
+
+<Tag
+	class={twMerge(
+		'font-semibold text-slate-900',
+		sizeStyles[size],
+		spacingStyles[spacing],
+		divider && 'border-b border-border-subtle pb-2',
+		classes
+	)}
+	{...rest}
+>
+	<slot />
+</Tag>

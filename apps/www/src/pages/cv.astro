@@ -4,6 +4,8 @@ import { Image } from 'astro:assets';
 import awsCertificateImg from '~/assets/images/aws-certified-developer-associate.png';
 import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import Button from '~/components/ui/Button.astro';
+import SectionTitle from '~/components/ui/SectionTitle.astro';
+import SocialLink from '~/components/ui/SocialLink.astro';
 import { SITE_BASE_URL } from '~/constants/site';
 import {
 	BLUESKY_HANDLE,
@@ -70,76 +72,19 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 			</div>
 
 			<section>
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Web Presence</h2>
+				<SectionTitle>Web Presence</SectionTitle>
 				<div class="grid grid-cols-3 gap-4">
-					<a
-						href={X_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="twitter-x" class="h-5 w-5" />
-						<span class="sr-only">Twitter/X Profile</span>
-						<span class="text-sm">{X_HANDLE}</span>
-					</a>
-
-					<a
-						href={BLUESKY_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="plausible-event-name=contact plausible-event-type=bluesky flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="bluesky" class="h-5 w-5" />
-						<span class="sr-only">Bluesky Profile</span>
-						<span class="text-sm">{BLUESKY_HANDLE}</span>
-					</a>
-
-					<a
-						href={LINKEDIN_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="plausible-event-name=contact plausible-event-type=linkedin flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="lucide:linkedin" class="h-5 w-5" />
-						<span class="sr-only">LinkedIn Profile</span>
-						<span class="text-sm">{LINKEDIN_HANDLE}</span>
-					</a>
-
-					<a
-						href={GITHUB_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="lucide:github" class="h-5 w-5" />
-						<span class="sr-only">GitHub Profile</span>
-						<span class="text-sm">{GITHUB_HANDLE}</span>
-					</a>
-
-					<a
-						href={`mailto:${EMAIL}`}
-						class="plausible-event-name=contact plausible-event-type=email flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="lucide:mail" class="h-5 w-5" />
-						<span class="sr-only">Email Contact</span>
-						<span class="text-sm">{EMAIL}</span>
-					</a>
-
-					<a
-						href={SITE_BASE_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="plausible-event-name=contact plausible-event-type=github flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-800"
-					>
-						<Icon name="lucide:globe" class="h-5 w-5" />
-						<span class="sr-only">Website</span>
-						<span class="text-sm">{new URL(SITE_BASE_URL).hostname}</span>
-					</a>
+					<SocialLink href={X_URL} target="_blank" rel="noopener noreferrer" icon="twitter-x" label="Twitter/X Profile" text={X_HANDLE} analyticsType="x" />
+					<SocialLink href={BLUESKY_URL} target="_blank" rel="noopener noreferrer" icon="bluesky" label="Bluesky Profile" text={BLUESKY_HANDLE} analyticsType="bluesky" />
+					<SocialLink href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" icon="lucide:linkedin" label="LinkedIn Profile" text={LINKEDIN_HANDLE} analyticsType="linkedin" />
+					<SocialLink href={GITHUB_URL} target="_blank" rel="noopener noreferrer" icon="lucide:github" label="GitHub Profile" text={GITHUB_HANDLE} analyticsType="github" />
+					<SocialLink href={`mailto:${EMAIL}`} icon="lucide:mail" label="Email Contact" text={EMAIL} analyticsType="email" />
+					<SocialLink href={SITE_BASE_URL} target="_blank" rel="noopener noreferrer" icon="lucide:globe" label="Website" text={new URL(SITE_BASE_URL).hostname} analyticsType="website" />
 				</div>
 			</section>
 			<!-- Summary Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Summary</h2>
+				<SectionTitle>Summary</SectionTitle>
 				<p class="text-sm text-slate-700">
 					Drawing from experience across modern web technologies, cloud platforms, and system architecture, I build
 					end-to-end solutions that create lasting value. My passion for learning and natural curiosity drive me to stay
@@ -155,7 +100,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Skills Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Core Skills</h2>
+				<SectionTitle>Core Skills</SectionTitle>
 				<p class="mb-4 text-sm text-slate-600">
 					These represent my current primary technical focus areas and expertise, not an exhaustive list. As a
 					continuous learner, my skill set is constantly evolving.
@@ -205,7 +150,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Work Experience Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Work Experience</h2>
+				<SectionTitle>Work Experience</SectionTitle>
 
 				<!-- Hashnode -->
 				<div class="mb-6">
@@ -340,7 +285,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Client Projects Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Client Projects</h2>
+				<SectionTitle>Client Projects</SectionTitle>
 				<div class="space-y-6">
 					<div>
 						<div class="relative">
@@ -504,7 +449,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 			</section>
 			<!-- Personal Projects Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Personal Projects</h2>
+				<SectionTitle>Personal Projects</SectionTitle>
 				<p class="mb-4 text-sm text-slate-600">
 					<span class="font-semibold">Note:</span> These are selected commercial projects – not an exhaustive list of my
 					personal projects.
@@ -584,7 +529,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Education Section -->
 			<section class="mt-8">
-				<h2 class="border-b pb-2 text-2xl font-semibold">Education</h2>
+				<SectionTitle spacing="none">Education</SectionTitle>
 				<div class="mt-4">
 					<p class="text-lg font-bold">Master of Science - Business Informatics</p>
 					<p class="text-sm text-slate-600 tabular-nums">Technical University of Braunschweig, 08/2015 - 04/2017</p>
@@ -599,7 +544,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Speaking & Appearances Section -->
 			<section class="mt-8">
-				<h2 class="mb-4 border-b pb-2 text-2xl font-semibold">Speaking & Appearances</h2>
+				<SectionTitle>Speaking & Appearances</SectionTitle>
 				<div class="space-y-6">
 					<div>
 						<div class="flex justify-between">
@@ -662,7 +607,7 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 
 			<!-- Certifications Section -->
 			<section class="mt-8">
-				<h2 class="border-b pb-2 text-2xl font-semibold">Certifications</h2>
+				<SectionTitle spacing="none">Certifications</SectionTitle>
 				<a
 					href="https://www.credly.com/badges/23e30c2d-75f3-4697-b483-415572fa04bb"
 					target="_blank"

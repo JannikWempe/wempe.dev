@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Image } from 'astro:assets';
 import { formatDate } from '~/utils/time';
 import Badge from './ui/Badge.astro';
+import Card from './ui/Card.astro';
 
 import hashnodeCommitImg from '~/assets/images/talks/hashnode-podcast.jpg';
 import mongodbPodcastImg from '~/assets/images/talks/mongodb-podcast.png';
@@ -46,7 +47,7 @@ const appearances = [
 <ul class={twMerge('columns-1 gap-8 lg:columns-2 xl:columns-3', classes)}>
 	{
 		appearances.map((a) => (
-			<li class="group relative overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-100/50">
+			<Card as="li" interactive focusRing="within" class="group overflow-hidden">
 				<div class="overflow-hidden">
 					<Image
 						src={a.coverImageUrl}
@@ -81,7 +82,7 @@ const appearances = [
 				<a href={a.link} class="absolute inset-0 focus:outline-none">
 					<span class="sr-only">Watch or listen to {a.title}</span>
 				</a>
-			</li>
+			</Card>
 		))
 	}
 </ul>

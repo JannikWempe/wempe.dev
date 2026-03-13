@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import { formatDate } from '~/utils/time';
 import { render } from 'astro:content';
 import Badge from '~/components/ui/Badge.astro';
+import Card from '~/components/ui/Card.astro';
 
 interface Props extends HTMLAttributes<'article'> {
 	post: CollectionEntry<'blog'>;
@@ -20,9 +21,12 @@ const formattedDate = formatDate(datePublished);
 const { remarkPluginFrontmatter } = await render(post);
 ---
 
-<article
+<Card
+	as="article"
+	interactive
+	focusRing="within"
 	class={twMerge(
-		'group relative rounded-2xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-lg hover:shadow-indigo-100/50 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2',
+		'group overflow-hidden',
 		classes
 	)}
 	{...rest}
@@ -81,4 +85,4 @@ const { remarkPluginFrontmatter } = await render(post);
 		</div>
 		<p class="mt-3 line-clamp-3 text-slate-600 leading-relaxed">{excerpt}</p>
 	</div>
-</article>
+</Card>

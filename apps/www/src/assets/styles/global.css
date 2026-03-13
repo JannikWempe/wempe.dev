@@ -3,6 +3,24 @@
 
 @theme {
 	--font-sans: var(--font-geist-sans), sans-serif;
+	--color-brand-primary: var(--color-indigo-600);
+	--color-brand-primary-hover: var(--color-indigo-700);
+	--color-brand-primary-active: var(--color-indigo-800);
+	--color-brand-primary-soft: var(--color-indigo-50);
+	--color-brand-secondary: var(--color-blue-600);
+	--color-brand-secondary-hover: var(--color-blue-700);
+	--color-brand-secondary-active: var(--color-blue-800);
+	--color-brand-secondary-soft: var(--color-blue-50);
+	--color-link-accent: var(--color-indigo-600);
+	--color-link-accent-hover: var(--color-indigo-500);
+	--color-link-muted: var(--color-slate-600);
+	--color-link-muted-hover: var(--color-slate-800);
+	--color-card-border: rgb(226 232 240 / 0.6);
+	--color-card-border-hover: rgb(199 210 254);
+	--color-border-subtle: var(--color-slate-200);
+	--color-focus-ring: var(--color-indigo-500);
+	--shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.06);
+	--shadow-card-hover: 0 20px 40px -24px rgb(79 70 229 / 0.38), 0 12px 24px -18px rgb(59 130 246 / 0.18);
 }
 
 @layer base {

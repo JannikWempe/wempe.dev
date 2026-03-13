@@ -1,0 +1,56 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props<T extends HTMLTag = 'div'> = Polymorphic<{ as: T }> & {
+	padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+	radius?: 'lg' | 'xl';
+	interactive?: boolean;
+	focusRing?: 'none' | 'within' | 'visible';
+};
+
+const {
+	as: Tag = 'div' as any,
+	padding = 'none',
+	radius = 'xl',
+	interactive = false,
+	focusRing = interactive ? 'within' : 'none',
+	class: classes = '',
+	...rest
+} = Astro.props;
+
+const baseStyles = 'relative border border-card-border bg-white shadow-card';
+
+const paddingStyles = {
+	none: '',
+	sm: 'p-4',
+	md: 'p-5',
+	lg: 'p-6',
+	xl: 'p-8',
+};
+
+const radiusStyles = {
+	lg: 'rounded-xl',
+	xl: 'rounded-2xl',
+};
+
+const focusRingStyles = {
+	none: '',
+	within: 'focus-within:ring-2 focus-within:ring-focus-ring focus-within:ring-offset-2',
+	visible: 'focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2',
+};
+---
+
+<Tag
+	class={twMerge(
+		baseStyles,
+		radiusStyles[radius],
+		paddingStyles[padding],
+		interactive && 'transition-all duration-300 hover:border-card-border-hover hover:shadow-card-hover',
+		focusRingStyles[focusRing],
+		classes
+	)}
+	{...rest}
+>
+	<slot />
+</Tag>
