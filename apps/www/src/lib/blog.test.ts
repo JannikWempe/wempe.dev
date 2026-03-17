@@ -87,3 +87,41 @@ test('list all returns full newest-first catalog with enriched teasers', async (
 		[462, 462, 420],
 	);
 });
+
+test('list by tag returns matching posts newest-first', async () => {
+	const readModel = createFixtureReadModel();
+
+	const astroPosts = await readModel.list({ kind: 'tag', tag: 'astro' });
+
+	assert.equal(astroPosts.total, 2);
+	assert.deepEqual(
+		astroPosts.items.map((item) => item.slug),
+		['newest-post', 'older-post'],
+	);
+});
+
+test('list by tag returns empty for unknown tag', async () => {
+	const readModel = createFixtureReadModel();
+
+	const result = await readModel.list({ kind: 'tag', tag: 'nonexistent' });
+
+	assert.equal(result.total, 0);
+	assert.deepEqual(result.items, []);
+});
+
+test('catalog returns post params, tag params, and tag set', async () => {
+	const readModel = createFixtureReadModel();
+
+	const catalog = await readModel.catalog();
+
+	assert.deepEqual(catalog.postParams, [
+		{ slug: 'newest-post' },
+		{ slug: 'middle-post' },
+		{ slug: 'older-post' },
+	]);
+	assert.deepEqual(
+		catalog.tagParams.toSorted((a, b) => a.slug.localeCompare(b.slug)),
+		[{ slug: 'astro' }, { slug: 'typescript' }],
+	);
+	assert.deepEqual(catalog.tags, new Set(['typescript', 'astro']));
+});

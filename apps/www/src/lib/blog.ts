@@ -44,14 +44,24 @@ export type BlogReadModelDependencies<TCover = ImageMetadata> = {
 	renderEntry?: (entry: BlogSourceEntry<TCover>) => Promise<BlogRenderResult>;
 };
 
+export type BlogCatalog = {
+	postParams: { slug: string }[];
+	tagParams: { slug: string }[];
+	tags: Set<string>;
+};
+
 export type BlogReadModel<TCover = ImageMetadata> = {
 	list(query: BlogListQuery): Promise<{
 		items: BlogTeaser<TCover>[];
 		total: number;
 	}>;
+	catalog(): Promise<BlogCatalog>;
 };
 
-export type BlogListQuery = { kind: 'latest'; limit: number } | { kind: 'all' };
+export type BlogListQuery =
+	| { kind: 'latest'; limit: number }
+	| { kind: 'all' }
+	| { kind: 'tag'; tag: string };
 
 type SortableByDate = {
 	data: {
@@ -92,20 +102,33 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	return {
 		async list(query) {
 			const items = await getAllTeasers();
+
+			if (query.kind === 'tag') {
+				const filtered = items.filter((t) => t.tags.includes(query.tag));
+				return { items: filtered, total: filtered.length };
+			}
+
 			const total = items.length;
 
 			if (query.kind === 'all') {
-				return {
-					items: items.slice(),
-					total,
-				};
+				return { items: items.slice(), total };
 			}
 
-			const limit = Math.max(0, query.limit);
+			return { items: items.slice(0, Math.max(0, query.limit)), total };
+		},
+
+		async catalog() {
+			const items = await getAllTeasers();
+			const tags = new Set<string>();
+
+			for (const item of items) {
+				for (const tag of item.tags) tags.add(tag);
+			}
 
 			return {
-				items: items.slice(0, limit),
-				total,
+				postParams: items.map((item) => ({ slug: item.slug })),
+				tagParams: Array.from(tags).map((tag) => ({ slug: tag })),
+				tags,
 			};
 		},
 	};
