@@ -8,17 +8,24 @@ import { formatDate } from '~/utils/time';
 import { render } from 'astro:content';
 import Badge from '~/components/ui/Badge.astro';
 import Card from '~/components/ui/Card.astro';
+import type { BlogTeaser } from '~/lib/blog';
 
 interface Props extends HTMLAttributes<'article'> {
-	post: CollectionEntry<'blog'>;
+	post: CollectionEntry<'blog'> | BlogTeaser;
 	imageProps?: Omit<ImgAttributes, 'src' | 'alt' | 'width' | 'height' | 'class'>;
 }
 
 const { post, class: classes, imageProps, ...rest } = Astro.props;
-const { title, excerpt, datePublished, cover, slug, tags } = post.data;
-const formattedDate = formatDate(datePublished);
-
-const { remarkPluginFrontmatter } = await render(post);
+const isTeaser = 'url' in post;
+const title = isTeaser ? post.title : post.data.title;
+const excerpt = isTeaser ? post.excerpt : post.data.excerpt;
+const publishedAt = isTeaser ? post.publishedAt : post.data.datePublished;
+const cover = isTeaser ? post.cover : post.data.cover;
+const slug = isTeaser ? post.slug : post.data.slug;
+const tags = isTeaser ? post.tags : post.data.tags;
+const url = isTeaser ? post.url : `/blog/${slug}`;
+const formattedDate = formatDate(publishedAt);
+const readingTimeText = isTeaser ? post.readingTime.text : (await render(post)).remarkPluginFrontmatter.readingTime.text;
 ---
 
 <Card
@@ -31,7 +38,7 @@ const { remarkPluginFrontmatter } = await render(post);
 	)}
 	{...rest}
 >
-	<a href={`/blog/${slug}`} class="block overflow-hidden rounded-t-2xl">
+	<a href={url} class="block overflow-hidden rounded-t-2xl">
 		<Image
 			transition:name={`cover-${slug}`}
 			src={cover}
@@ -61,7 +68,7 @@ const { remarkPluginFrontmatter } = await render(post);
 				</div>
 			)
 		}
-		<a href={`/blog/${slug}`} class="block">
+		<a href={url} class="block">
 			<h2
 				transition:name={`title-${slug}`}
 				class="text-xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-indigo-600"
@@ -79,7 +86,7 @@ const { remarkPluginFrontmatter } = await render(post);
 			<div class="flex items-center gap-1.5">
 				<Icon name="lucide:clock" class="h-4 w-4" />
 				<span>
-					{remarkPluginFrontmatter.readingTime.text}
+					{readingTimeText}
 				</span>
 			</div>
 		</div>

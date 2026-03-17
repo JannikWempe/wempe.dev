@@ -8,7 +8,6 @@ import Button from '~/components/ui/Button.astro';
 import SectionHeader from '~/components/ui/SectionHeader.astro';
 import DefaultLayout from '~/layouts/DefaultLayout.astro';
 
-import { getCollection } from 'astro:content';
 import sandeepPandaImg from '~/assets/images/endorsements/sandeep-panda.jpg';
 import volkerKlattImg from '~/assets/images/endorsements/volker-klatt.png';
 import haraldBantImg from '~/assets/images/endorsements/harald-bant.png';
@@ -16,7 +15,7 @@ import jannikWempeImg from '~/assets/images/jannik-wempe.png';
 import BlogPostCard from '~/components/BlogPostCard.astro';
 import WebSiteJsonLd from '~/components/WebSiteJsonLd.astro';
 import { EMAIL } from '~/constants/socials';
-import { newestFirst } from '~/lib/blog';
+import { createBlogReadModel, type BlogTeaser } from '~/lib/blog';
 // prerender the page and have dynamic content as server islands
 export const prerender = true;
 
@@ -65,7 +64,7 @@ const endorsements = [
 	},
 ] as const;
 
-const latestBlogPosts = (await getCollection('blog')).toSorted(newestFirst).slice(0, 4);
+const latestBlogPosts: BlogTeaser[] = (await createBlogReadModel().list({ kind: 'latest', limit: 4 })).items;
 
 const breadcrumbItems = [{ label: 'Home', href: '/', current: true }];
 ---
