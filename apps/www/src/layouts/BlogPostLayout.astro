@@ -1,49 +1,40 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import type { MarkdownHeading } from 'astro';
+import type { ImageMetadata } from 'astro';
 import TableOfContents from '~/components/TableOfContents.astro';
-import type { CollectionEntry } from 'astro:content';
 import BlogPostNavigation from '~/components/BlogPostNavigation.astro';
 import ShareButtons from '~/components/ShareButtons.astro';
-import { getCollection } from 'astro:content';
-import { newestFirst } from '~/lib/blog';
 import MobileTableOfContents from '~/components/MobileTableOfContents.astro';
 import type { BreadcrumbItem } from '~/components/Breadcrumb.astro';
+import type { BlogPostPage } from '~/lib/blog';
 
 export interface Props {
-	post: CollectionEntry<'blog'>;
-	headings: MarkdownHeading[];
+	postPage: BlogPostPage;
 	breadcrumbItems: BreadcrumbItem[];
 }
 
-const { post, headings, breadcrumbItems } = Astro.props;
-
-// Get previous and next posts
-const posts = (await getCollection('blog')).toSorted(newestFirst);
-const currentIndex = posts.findIndex((p) => p.id === post.id);
-const previousPost = posts[currentIndex + 1];
-const nextPost = posts[currentIndex - 1];
+const { postPage, breadcrumbItems } = Astro.props;
 
 const metadata = {
-	title: post.data.seoTitle ?? post.data.title,
-	description: post.data.seoDescription ?? post.data.excerpt,
+	title: postPage.seoTitle,
+	description: postPage.seoDescription,
 	image: {
-		url: post.data.cover.src,
-		width: post.data.cover.width,
-		height: post.data.cover.height,
+		url: (postPage.cover as ImageMetadata).src,
+		width: (postPage.cover as ImageMetadata).width,
+		height: (postPage.cover as ImageMetadata).height,
 	},
 	og: {
 		type: 'article' as const,
 		article: {
-			publishedTime: post.data.datePublished.toISOString(),
-			modifiedTime: post.data.datePublished.toISOString(),
+			publishedTime: postPage.publishedAt.toISOString(),
+			modifiedTime: postPage.publishedAt.toISOString(),
 			author: 'Jannik Wempe',
 			section: 'Web Development',
 		},
 	},
 };
 
-const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
+const hasTweetEmbed = Boolean(postPage.body?.includes('<Tweet'));
 ---
 
 <BaseLayout {metadata} {breadcrumbItems}>
@@ -60,21 +51,21 @@ const hasTweetEmbed = Boolean(post.body?.includes('<Tweet'));
 				<slot name="header" />
 				<!-- Mobile TOC -->
 				<div class="mt-8 xl:hidden">
-					<MobileTableOfContents {headings} />
+					<MobileTableOfContents headings={postPage.headings} />
 				</div>
 				<slot />
 				<div class="mt-16 flex flex-col gap-8">
 					<hr class="border-slate-200 xl:hidden" />
-					<ShareButtons url={Astro.url.toString()} title={post.data.title} class="self-center text-center xl:hidden" />
+					<ShareButtons url={Astro.url.toString()} title={postPage.title} class="self-center text-center xl:hidden" />
 					<hr class="border-slate-200" />
-					<BlogPostNavigation {previousPost} {nextPost} />
+					<BlogPostNavigation previousPost={postPage.navigation.previous} nextPost={postPage.navigation.next} />
 				</div>
 			</main>
 			<div class="relative hidden xl:block">
 				<aside class="sticky top-24 flex max-h-[calc(100vh-8rem)] flex-col gap-8">
-					<TableOfContents {headings} class="w-80" />
+					<TableOfContents headings={postPage.headings} class="w-80" />
 					<hr class="border-slate-200" />
-					<ShareButtons url={Astro.url.toString()} title={post.data.title} class="hidden xl:block" />
+					<ShareButtons url={Astro.url.toString()} title={postPage.title} class="hidden xl:block" />
 				</aside>
 			</div>
 		</div>

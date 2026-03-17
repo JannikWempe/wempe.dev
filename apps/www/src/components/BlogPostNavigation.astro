@@ -1,12 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import type { CollectionEntry } from 'astro:content';
+import type { BlogTeaser } from '~/lib/blog';
 import { twMerge } from 'tailwind-merge';
 import Card from './ui/Card.astro';
 
 export interface Props {
-	previousPost?: CollectionEntry<'blog'>;
-	nextPost?: CollectionEntry<'blog'>;
+	previousPost?: BlogTeaser | null;
+	nextPost?: BlogTeaser | null;
 	class?: string;
 }
 
@@ -22,7 +22,7 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				focusRing="visible"
 				padding="sm"
 				radius="lg"
-				href={`/blog/${previousPost.id}`}
+				href={previousPost.url}
 				class="group flex items-center gap-3"
 			>
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
@@ -31,7 +31,7 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				<div>
 					<span class="block text-xs font-medium tracking-wide text-slate-500 uppercase">Previous</span>
 					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
-						{previousPost.data.title}
+						{previousPost.title}
 					</span>
 				</div>
 			</Card>
@@ -47,7 +47,7 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				focusRing="visible"
 				padding="sm"
 				radius="lg"
-				href={`/blog/${nextPost.id}`}
+				href={nextPost.url}
 				class="group flex items-center gap-3 md:flex-row-reverse md:text-right"
 			>
 				<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors group-hover:bg-indigo-100 group-hover:text-indigo-600">
@@ -56,7 +56,7 @@ const { previousPost, nextPost, class: classes } = Astro.props;
 				<div>
 					<span class="block text-xs font-medium tracking-wide text-slate-500 uppercase">Next</span>
 					<span class="line-clamp-2 font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
-						{nextPost.data.title}
+						{nextPost.title}
 					</span>
 				</div>
 			</Card>

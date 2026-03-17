@@ -1,58 +1,65 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
-import { getCollection, render } from 'astro:content';
+import type { ImageMetadata } from 'astro';
 import Prose from '~/components/Prose.astro';
 import BlogPostLayout from '~/layouts/BlogPostLayout.astro';
 import { formatDate } from '~/utils/time';
 import type { GetStaticPaths } from 'astro';
 import BlogPostJsonLd from '~/components/BlogPostJsonLd.astro';
 import Badge from '~/components/ui/Badge.astro';
+import { createBlogReadModel } from '~/lib/blog';
 
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { id: post.id },
-		props: { post },
+	const blog = createBlogReadModel();
+	const catalog = await blog.catalog();
+	return catalog.postParams.map((p) => ({
+		params: { id: p.slug },
 	}));
 }) satisfies GetStaticPaths;
 
-const { post } = Astro.props;
-const { Content, headings, remarkPluginFrontmatter } = await render(post);
+const blog = createBlogReadModel();
+const postPage = await blog.post({ slug: Astro.params.id! });
 
-const formattedDatePublished = formatDate(post.data.datePublished);
+if (!postPage) {
+	return Astro.redirect('/blog');
+}
+
+const formattedDatePublished = formatDate(postPage.publishedAt);
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Blog', href: '/blog' },
-	{ label: post.data.title, href: `/blog/${post.id}`, current: true },
+	{ label: postPage.title, href: postPage.url, current: true },
 ];
+
+const Content = postPage.content as any;
 ---
 
-<BlogPostLayout {post} {headings} {breadcrumbItems}>
+<BlogPostLayout postPage={postPage} {breadcrumbItems}>
 	<Fragment slot="header">
-		<BlogPostJsonLd {post} {breadcrumbItems} />
+		<BlogPostJsonLd {postPage} {breadcrumbItems} />
 		<Image
-			transition:name={`cover-${post.data.slug}`}
-			src={post.data.cover}
-			alt={post.data.title}
-			width={post.data.cover.width / 2}
-			height={post.data.cover.height / 2}
+			transition:name={`cover-${postPage.slug}`}
+			src={postPage.cover as ImageMetadata}
+			alt={postPage.title}
+			width={(postPage.cover as ImageMetadata).width / 2}
+			height={(postPage.cover as ImageMetadata).height / 2}
 			loading="eager"
 			fetchpriority="high"
-			format={post.data.cover.format !== 'gif' ? 'avif' : 'gif'}
+			format={(postPage.cover as ImageMetadata).format !== 'gif' ? 'avif' : 'gif'}
 			class="mb-6 rounded-2xl shadow-lg"
 		/>
 
-		<h1 transition:name={`title-${post.data.slug}`} class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{post.data.title}</h1>
-		{post.data.subtitle && <h2 class="mt-3 text-lg text-slate-600 leading-relaxed">{post.data.subtitle}</h2>}
+		<h1 transition:name={`title-${postPage.slug}`} class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{postPage.title}</h1>
+		{postPage.subtitle && <h2 class="mt-3 text-lg text-slate-600 leading-relaxed">{postPage.subtitle}</h2>}
 
 		{
-			post.data.tags && post.data.tags.length > 0 && (
+			postPage.tags.length > 0 && (
 				<div class="mt-3 flex flex-wrap gap-2">
-					{post.data.tags.map((tag: string) => (
+					{postPage.tags.map((tag: string) => (
 						<Badge
 							as="a"
 							href={`/blog/tag/${tag}`}
@@ -73,14 +80,10 @@ const breadcrumbItems = [
 					{formattedDatePublished}
 				</time>
 			</div>
-			{
-				remarkPluginFrontmatter.readingTime && (
-					<div class="flex items-center gap-1">
-						<Icon name="lucide:clock" class="text-slate-500" />
-						<span class="text-sm font-semibold text-slate-500">{remarkPluginFrontmatter.readingTime.text}</span>
-					</div>
-				)
-			}
+			<div class="flex items-center gap-1">
+				<Icon name="lucide:clock" class="text-slate-500" />
+				<span class="text-sm font-semibold text-slate-500">{postPage.readingTime.text}</span>
+			</div>
 		</div>
 	</Fragment>
 

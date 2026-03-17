@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 
 export type BlogReadingTime = {
@@ -9,6 +10,7 @@ export type BlogReadingTime = {
 
 export type BlogSourceEntry<TCover = ImageMetadata> = {
 	id: string;
+	body?: string;
 	data: {
 		slug: string;
 		title: string;
@@ -17,10 +19,14 @@ export type BlogSourceEntry<TCover = ImageMetadata> = {
 		cover: TCover;
 		datePublished: Date;
 		tags?: readonly string[];
+		seoTitle?: string;
+		seoDescription?: string;
 	};
 };
 
 type BlogRenderResult = {
+	Content?: unknown;
+	headings?: MarkdownHeading[];
 	remarkPluginFrontmatter?: {
 		readingTime?: BlogReadingTime;
 	};
@@ -44,6 +50,20 @@ export type BlogReadModelDependencies<TCover = ImageMetadata> = {
 	renderEntry?: (entry: BlogSourceEntry<TCover>) => Promise<BlogRenderResult>;
 };
 
+export type BlogPostPage<TCover = ImageMetadata> = BlogTeaser<TCover> & {
+	seoTitle: string;
+	seoDescription: string;
+	body: string;
+	content: unknown;
+	headings: MarkdownHeading[];
+	navigation: {
+		previous: BlogTeaser<TCover> | null;
+		next: BlogTeaser<TCover> | null;
+	};
+};
+
+export type BlogPostRef = { id: string } | { slug: string };
+
 export type BlogCatalog = {
 	postParams: { slug: string }[];
 	tagParams: { slug: string }[];
@@ -55,6 +75,7 @@ export type BlogReadModel<TCover = ImageMetadata> = {
 		items: BlogTeaser<TCover>[];
 		total: number;
 	}>;
+	post(ref: BlogPostRef): Promise<BlogPostPage<TCover> | null>;
 	catalog(): Promise<BlogCatalog>;
 };
 
@@ -80,6 +101,13 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	const renderCache = new Map<string, Promise<BlogRenderResult>>();
 	let teaserCache: Promise<BlogTeaser<TCover>[]> | undefined;
 
+	let sortedEntriesCache: Promise<BlogSourceEntry<TCover>[]> | undefined;
+
+	const getSortedEntries = () => {
+		sortedEntriesCache ??= listEntries().then((entries) => entries.toSorted(newestFirst));
+		return sortedEntriesCache;
+	};
+
 	const getRenderResult = (entry: BlogSourceEntry<TCover>) => {
 		let cached = renderCache.get(entry.id);
 
@@ -92,8 +120,8 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	};
 
 	const getAllTeasers = async () => {
-		teaserCache ??= listEntries().then((entries) =>
-			Promise.all(entries.toSorted(newestFirst).map(async (entry) => toBlogTeaser(entry, await getRenderResult(entry)))),
+		teaserCache ??= getSortedEntries().then((entries) =>
+			Promise.all(entries.map(async (entry) => toBlogTeaser(entry, await getRenderResult(entry)))),
 		);
 
 		return teaserCache;
@@ -115,6 +143,34 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 			}
 
 			return { items: items.slice(0, Math.max(0, query.limit)), total };
+		},
+
+		async post(ref) {
+			const entries = await getSortedEntries();
+			const teasers = await getAllTeasers();
+
+			const index = 'id' in ref
+				? entries.findIndex((e) => e.id === ref.id)
+				: entries.findIndex((e) => e.data.slug === ref.slug);
+
+			if (index === -1) return null;
+
+			const entry = entries[index]!;
+			const teaser = teasers[index]!;
+			const renderResult = await getRenderResult(entry);
+
+			return {
+				...teaser,
+				seoTitle: entry.data.seoTitle ?? entry.data.title,
+				seoDescription: entry.data.seoDescription ?? entry.data.excerpt,
+				body: entry.body ?? '',
+				content: renderResult.Content,
+				headings: renderResult.headings ?? [],
+				navigation: {
+					previous: teasers[index + 1] ?? null,
+					next: teasers[index - 1] ?? null,
+				},
+			};
 		},
 
 		async catalog() {
@@ -164,5 +220,11 @@ async function defaultListEntries<TCover>(): Promise<readonly BlogSourceEntry<TC
 async function defaultRenderEntry<TCover>(entry: BlogSourceEntry<TCover>): Promise<BlogRenderResult> {
 	const { render } = await import('astro:content');
 
-	return (await render(entry as unknown as CollectionEntry<'blog'>)) as BlogRenderResult;
+	const result = await render(entry as unknown as CollectionEntry<'blog'>);
+
+	return {
+		Content: result.Content,
+		headings: result.headings,
+		remarkPluginFrontmatter: result.remarkPluginFrontmatter,
+	} as BlogRenderResult;
 }

@@ -2,10 +2,11 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createBlogReadModel, type BlogSourceEntry } from './blog.ts';
 
-function createFixtureReadModel() {
-	const entries: BlogSourceEntry<string>[] = [
+function createFixtureEntries(): BlogSourceEntry<string>[] {
+	return [
 		{
 			id: 'older-post',
+			body: 'Older body content',
 			data: {
 				slug: 'older-post',
 				title: 'Older Post',
@@ -17,17 +18,22 @@ function createFixtureReadModel() {
 		},
 		{
 			id: 'newest-post',
+			body: 'Newest body content',
 			data: {
 				slug: 'newest-post',
 				title: 'Newest Post',
+				subtitle: 'A subtitle',
 				excerpt: 'Newest excerpt',
 				cover: 'newest-cover',
 				datePublished: new Date('2025-03-01T00:00:00.000Z'),
 				tags: ['typescript', 'astro'],
+				seoTitle: 'Custom SEO Title',
+				seoDescription: 'Custom SEO Description',
 			},
 		},
 		{
 			id: 'middle-post',
+			body: 'Middle body content',
 			data: {
 				slug: 'middle-post',
 				title: 'Middle Post',
@@ -37,18 +43,26 @@ function createFixtureReadModel() {
 			},
 		},
 	];
+}
 
-	return createBlogReadModel<string>({
-		listEntries: async () => entries,
-		renderEntry: async (entry) => ({
-			remarkPluginFrontmatter: {
-				readingTime: {
-					text: `${entry.data.title} read`,
-					minutes: entry.data.title.length / 2,
-					words: entry.data.title.length * 42,
-				},
+function createFixtureRenderEntry() {
+	return async (entry: BlogSourceEntry<string>) => ({
+		Content: `Content:${entry.id}`,
+		headings: [{ depth: 2, slug: `heading-${entry.id}`, text: `Heading ${entry.data.title}` }],
+		remarkPluginFrontmatter: {
+			readingTime: {
+				text: `${entry.data.title} read`,
+				minutes: entry.data.title.length / 2,
+				words: entry.data.title.length * 42,
 			},
-		}),
+		},
+	});
+}
+
+function createFixtureReadModel() {
+	return createBlogReadModel<string>({
+		listEntries: async () => createFixtureEntries(),
+		renderEntry: createFixtureRenderEntry(),
 	});
 }
 
@@ -107,6 +121,64 @@ test('list by tag returns empty for unknown tag', async () => {
 
 	assert.equal(result.total, 0);
 	assert.deepEqual(result.items, []);
+});
+
+test('post by id returns rendered content, headings, seo fields, and navigation', async () => {
+	const readModel = createFixtureReadModel();
+
+	const post = await readModel.post({ id: 'middle-post' });
+
+	assert.ok(post);
+	assert.equal(post.slug, 'middle-post');
+	assert.equal(post.content, 'Content:middle-post');
+	assert.deepEqual(post.headings, [{ depth: 2, slug: 'heading-middle-post', text: 'Heading Middle Post' }]);
+	assert.equal(post.seoTitle, 'Middle Post');
+	assert.equal(post.seoDescription, 'Middle excerpt');
+	assert.equal(post.body, 'Middle body content');
+	// newest(idx 0) -> middle(idx 1) -> older(idx 2)
+	assert.equal(post.navigation.previous?.slug, 'older-post');
+	assert.equal(post.navigation.next?.slug, 'newest-post');
+});
+
+test('post by slug returns the same post as by id', async () => {
+	const readModel = createFixtureReadModel();
+
+	const post = await readModel.post({ slug: 'middle-post' });
+
+	assert.ok(post);
+	assert.equal(post.id, 'middle-post');
+	assert.equal(post.slug, 'middle-post');
+});
+
+test('post uses custom seo fields when present', async () => {
+	const readModel = createFixtureReadModel();
+
+	const post = await readModel.post({ id: 'newest-post' });
+
+	assert.ok(post);
+	assert.equal(post.seoTitle, 'Custom SEO Title');
+	assert.equal(post.seoDescription, 'Custom SEO Description');
+});
+
+test('post returns null for navigation at boundaries', async () => {
+	const readModel = createFixtureReadModel();
+
+	const newest = await readModel.post({ id: 'newest-post' });
+	assert.ok(newest);
+	assert.equal(newest.navigation.next, null);
+	assert.equal(newest.navigation.previous?.slug, 'middle-post');
+
+	const oldest = await readModel.post({ id: 'older-post' });
+	assert.ok(oldest);
+	assert.equal(oldest.navigation.previous, null);
+	assert.equal(oldest.navigation.next?.slug, 'middle-post');
+});
+
+test('post returns null for unknown ref', async () => {
+	const readModel = createFixtureReadModel();
+
+	assert.equal(await readModel.post({ id: 'nonexistent' }), null);
+	assert.equal(await readModel.post({ slug: 'nonexistent' }), null);
 });
 
 test('catalog returns post params, tag params, and tag set', async () => {

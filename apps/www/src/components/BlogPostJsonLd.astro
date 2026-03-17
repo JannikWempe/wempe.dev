@@ -1,18 +1,15 @@
 ---
 import { Schema } from 'astro-seo-schema';
-import type { CollectionEntry } from 'astro:content';
-import { render } from 'astro:content';
 import { blogPosting, breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
+import type { BlogPostPage } from '~/lib/blog';
 
 interface Props {
-	post: CollectionEntry<'blog'>;
+	postPage: BlogPostPage;
 	breadcrumbItems: BreadcrumbItem[];
 }
 
-const { post, breadcrumbItems } = Astro.props;
-
-const { remarkPluginFrontmatter } = await render(post);
+const { postPage, breadcrumbItems } = Astro.props;
 
 const breadcrumbItemsLd = breadcrumbItems.map((item, index) => {
 	const url = new URL(item.href, Astro.site).toString();
@@ -30,8 +27,8 @@ const breadcrumbItemsLd = breadcrumbItems.map((item, index) => {
 		'@context': 'https://schema.org',
 		'@graph': [
 			blogPosting({
-				post,
-				readingTime: remarkPluginFrontmatter.readingTime,
+				post: postPage,
+				readingTime: postPage.readingTime,
 			}),
 			breadcrumbList({
 				items: breadcrumbItemsLd,
