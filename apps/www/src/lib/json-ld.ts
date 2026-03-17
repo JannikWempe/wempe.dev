@@ -3,6 +3,7 @@ import type { ReadTimeResults } from 'reading-time';
 import type { Person, WebPage, BlogPosting, ListItem, BreadcrumbList, Blog, WebSite } from 'schema-dts';
 import { SITE_BASE_URL } from '~/constants/site';
 import { LINKEDIN_URL, X_URL, GITHUB_URL, BLUESKY_URL } from '~/constants/socials';
+import type { BlogReadingTime, BlogTeaser } from './blog';
 
 export function person(): Person {
 	return {
@@ -71,19 +72,28 @@ export function blog(args: { url: string; blogPosts: BlogPosting[] }): Blog {
 	};
 }
 
-export function blogPosting(args: { post: CollectionEntry<'blog'>; readingTime: ReadTimeResults }): BlogPosting {
+export function blogPosting(args: {
+	post: CollectionEntry<'blog'> | BlogTeaser;
+	readingTime: ReadTimeResults | BlogReadingTime;
+}): BlogPosting {
 	const { post, readingTime } = args;
-	const postUrl = new URL(`/blog/${post.id}`, SITE_BASE_URL).toString();
+	const isTeaser = 'url' in post;
+	const postUrl = new URL(isTeaser ? post.url : `/blog/${post.data.slug}`, SITE_BASE_URL).toString();
+	const title = isTeaser ? post.title : post.data.title;
+	const cover = isTeaser ? post.cover : post.data.cover;
+	const publishedAt = isTeaser ? post.publishedAt : post.data.datePublished;
+	const excerpt = isTeaser ? post.excerpt : post.data.excerpt;
+	const tags = isTeaser ? post.tags : post.data.tags;
 
 	return {
 		'@type': 'BlogPosting',
-		headline: post.data.title,
+		headline: title,
 		author: person(),
-		image: new URL(post.data.cover.src, SITE_BASE_URL).toString(),
-		datePublished: post.data.datePublished.toISOString(),
-		dateCreated: post.data.datePublished.toISOString(),
-		...(post.data.dateLastModified && { dateModified: post.data.dateLastModified.toISOString() }),
-		description: post.data.excerpt,
+		image: new URL(cover.src, SITE_BASE_URL).toString(),
+		datePublished: publishedAt.toISOString(),
+		dateCreated: publishedAt.toISOString(),
+		...(!isTeaser && post.data.dateLastModified && { dateModified: post.data.dateLastModified.toISOString() }),
+		description: excerpt,
 		wordCount: readingTime.words,
 		timeRequired: `PT${Math.ceil(readingTime.minutes)}M`,
 		url: postUrl,
@@ -92,7 +102,7 @@ export function blogPosting(args: { post: CollectionEntry<'blog'>; readingTime: 
 			'@type': 'WebPage',
 			'@id': postUrl,
 		},
-		keywords: post.data.tags?.join(', '),
+		keywords: tags?.join(', '),
 		publisher: person(),
 		isPartOf: {
 			'@type': 'WebSite',

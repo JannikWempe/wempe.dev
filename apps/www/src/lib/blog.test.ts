@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createBlogReadModel, type BlogSourceEntry } from './blog.ts';
 
-test('list latest returns newest teasers with canonical urls and reading time', async () => {
+function createFixtureReadModel() {
 	const entries: BlogSourceEntry<string>[] = [
 		{
 			id: 'older-post',
@@ -38,7 +38,7 @@ test('list latest returns newest teasers with canonical urls and reading time', 
 		},
 	];
 
-	const readModel = createBlogReadModel<string>({
+	return createBlogReadModel<string>({
 		listEntries: async () => entries,
 		renderEntry: async (entry) => ({
 			remarkPluginFrontmatter: {
@@ -50,6 +50,10 @@ test('list latest returns newest teasers with canonical urls and reading time', 
 			},
 		}),
 	});
+}
+
+test('list latest returns newest teasers with canonical urls and reading time', async () => {
+	const readModel = createFixtureReadModel();
 
 	const latest = await readModel.list({ kind: 'latest', limit: 2 });
 
@@ -65,5 +69,21 @@ test('list latest returns newest teasers with canonical urls and reading time', 
 	assert.deepEqual(
 		latest.items.map((item) => item.readingTime.text),
 		['Newest Post read', 'Middle Post read'],
+	);
+});
+
+test('list all returns full newest-first catalog with enriched teasers', async () => {
+	const readModel = createFixtureReadModel();
+
+	const allPosts = await readModel.list({ kind: 'all' });
+
+	assert.equal(allPosts.total, 3);
+	assert.deepEqual(
+		allPosts.items.map((item) => item.slug),
+		['newest-post', 'middle-post', 'older-post'],
+	);
+	assert.deepEqual(
+		allPosts.items.map((item) => item.readingTime.words),
+		[462, 462, 420],
 	);
 });

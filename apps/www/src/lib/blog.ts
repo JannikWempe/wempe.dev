@@ -45,11 +45,13 @@ export type BlogReadModelDependencies<TCover = ImageMetadata> = {
 };
 
 export type BlogReadModel<TCover = ImageMetadata> = {
-	list(query: { kind: 'latest'; limit: number }): Promise<{
+	list(query: BlogListQuery): Promise<{
 		items: BlogTeaser<TCover>[];
 		total: number;
 	}>;
 };
+
+export type BlogListQuery = { kind: 'latest'; limit: number } | { kind: 'all' };
 
 type SortableByDate = {
 	data: {
@@ -90,11 +92,20 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	return {
 		async list(query) {
 			const items = await getAllTeasers();
+			const total = items.length;
+
+			if (query.kind === 'all') {
+				return {
+					items: items.slice(),
+					total,
+				};
+			}
+
 			const limit = Math.max(0, query.limit);
 
 			return {
 				items: items.slice(0, limit),
-				total: items.length,
+				total,
 			};
 		},
 	};

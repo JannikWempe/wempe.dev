@@ -3,10 +3,11 @@ import { Schema } from 'astro-seo-schema';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import { blog, blogPosting, breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
+import type { BlogTeaser } from '~/lib/blog';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
 
 interface Props {
-	posts: CollectionEntry<'blog'>[];
+	posts: Array<CollectionEntry<'blog'> | BlogTeaser>;
 	breadcrumbItems: BreadcrumbItem[];
 }
 
@@ -14,11 +15,11 @@ const { posts, breadcrumbItems } = Astro.props;
 
 const blogPosts = await Promise.all(
 	posts.map(async (post) => {
-		const { remarkPluginFrontmatter } = await render(post);
+		const readingTime = 'readingTime' in post ? post.readingTime : (await render(post)).remarkPluginFrontmatter.readingTime;
 
 		return blogPosting({
 			post,
-			readingTime: remarkPluginFrontmatter.readingTime,
+			readingTime,
 		});
 	}),
 );
