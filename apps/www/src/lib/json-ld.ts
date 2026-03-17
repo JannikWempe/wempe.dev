@@ -1,9 +1,7 @@
-import type { CollectionEntry } from 'astro:content';
-import type { ReadTimeResults } from 'reading-time';
 import type { Person, WebPage, BlogPosting, ListItem, BreadcrumbList, Blog, WebSite } from 'schema-dts';
 import { SITE_BASE_URL } from '~/constants/site';
 import { LINKEDIN_URL, X_URL, GITHUB_URL, BLUESKY_URL } from '~/constants/socials';
-import type { BlogReadingTime, BlogTeaser } from './blog';
+import type { BlogTeaser } from './blog';
 
 export function person(): Person {
 	return {
@@ -72,37 +70,30 @@ export function blog(args: { url: string; blogPosts: BlogPosting[] }): Blog {
 	};
 }
 
-export function blogPosting(args: {
-	post: CollectionEntry<'blog'> | BlogTeaser;
-	readingTime: ReadTimeResults | BlogReadingTime;
-}): BlogPosting {
-	const { post, readingTime } = args;
-	const isTeaser = 'url' in post;
-	const postUrl = new URL(isTeaser ? post.url : `/blog/${post.data.slug}`, SITE_BASE_URL).toString();
-	const title = isTeaser ? post.title : post.data.title;
-	const cover = isTeaser ? post.cover : post.data.cover;
-	const publishedAt = isTeaser ? post.publishedAt : post.data.datePublished;
-	const excerpt = isTeaser ? post.excerpt : post.data.excerpt;
-	const tags = isTeaser ? post.tags : post.data.tags;
+export function blogPosting(args: { post: BlogTeaser<unknown> }): BlogPosting {
+	const { post } = args;
+	const postUrl = new URL(post.url, SITE_BASE_URL).toString();
+	const coverSrc = typeof post.cover === 'object' && post.cover !== null && 'src' in post.cover
+		? String((post.cover as { src: string }).src)
+		: String(post.cover);
 
 	return {
 		'@type': 'BlogPosting',
-		headline: title,
+		headline: post.title,
 		author: person(),
-		image: new URL(cover.src, SITE_BASE_URL).toString(),
-		datePublished: publishedAt.toISOString(),
-		dateCreated: publishedAt.toISOString(),
-		...(!isTeaser && post.data.dateLastModified && { dateModified: post.data.dateLastModified.toISOString() }),
-		description: excerpt,
-		wordCount: readingTime.words,
-		timeRequired: `PT${Math.ceil(readingTime.minutes)}M`,
+		image: new URL(coverSrc, SITE_BASE_URL).toString(),
+		datePublished: post.publishedAt.toISOString(),
+		dateCreated: post.publishedAt.toISOString(),
+		description: post.excerpt,
+		wordCount: post.readingTime.words,
+		timeRequired: `PT${Math.ceil(post.readingTime.minutes)}M`,
 		url: postUrl,
 		inLanguage: 'en-US',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
 			'@id': postUrl,
 		},
-		keywords: tags?.join(', '),
+		keywords: post.tags.join(', '),
 		publisher: person(),
 		isPartOf: {
 			'@type': 'WebSite',

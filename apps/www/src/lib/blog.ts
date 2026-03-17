@@ -1,6 +1,8 @@
+import type { RSSFeedItem } from '@astrojs/rss';
 import type { ImageMetadata } from 'astro';
 import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
+import type { BlogPosting } from 'schema-dts';
 
 export type BlogReadingTime = {
 	text: string;
@@ -43,11 +45,14 @@ export type BlogTeaser<TCover = ImageMetadata> = {
 	publishedAt: Date;
 	tags: readonly string[];
 	readingTime: BlogReadingTime;
+	toRssItem(): RSSFeedItem;
+	toJsonLd(): BlogPosting;
 };
 
 export type BlogReadModelDependencies<TCover = ImageMetadata> = {
 	listEntries?: () => Promise<readonly BlogSourceEntry<TCover>[]>;
 	renderEntry?: (entry: BlogSourceEntry<TCover>) => Promise<BlogRenderResult>;
+	toJsonLd?: (teaser: BlogTeaser<TCover>) => BlogPosting;
 };
 
 export type BlogPostPage<TCover = ImageMetadata> = BlogTeaser<TCover> & {
@@ -98,6 +103,7 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 ): BlogReadModel<TCover> {
 	const listEntries = deps.listEntries ?? defaultListEntries<TCover>;
 	const renderEntry = deps.renderEntry ?? defaultRenderEntry<TCover>;
+	const toJsonLd = deps.toJsonLd ?? defaultToJsonLd<TCover>;
 	const renderCache = new Map<string, Promise<BlogRenderResult>>();
 	let teaserCache: Promise<BlogTeaser<TCover>[]> | undefined;
 
@@ -120,8 +126,10 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	};
 
 	const getAllTeasers = async () => {
-		teaserCache ??= getSortedEntries().then((entries) =>
-			Promise.all(entries.map(async (entry) => toBlogTeaser(entry, await getRenderResult(entry)))),
+		teaserCache ??= (deps.toJsonLd ? Promise.resolve() : ensureJsonLdLoaded()).then(() =>
+			getSortedEntries().then((entries) =>
+				Promise.all(entries.map(async (entry) => toBlogTeaser(entry, await getRenderResult(entry), toJsonLd))),
+			),
 		);
 
 		return teaserCache;
@@ -190,14 +198,18 @@ export function createBlogReadModel<TCover = ImageMetadata>(
 	};
 }
 
-function toBlogTeaser<TCover>(entry: BlogSourceEntry<TCover>, renderResult: BlogRenderResult): BlogTeaser<TCover> {
+function toBlogTeaser<TCover>(
+	entry: BlogSourceEntry<TCover>,
+	renderResult: BlogRenderResult,
+	toJsonLd: (teaser: BlogTeaser<TCover>) => BlogPosting,
+): BlogTeaser<TCover> {
 	const readingTime = renderResult.remarkPluginFrontmatter?.readingTime;
 
 	if (!readingTime) {
 		throw new Error(`Missing reading time for blog entry "${entry.id}"`);
 	}
 
-	return {
+	const teaser: BlogTeaser<TCover> = {
 		id: entry.id,
 		slug: entry.data.slug,
 		url: `/blog/${entry.data.slug}`,
@@ -208,7 +220,36 @@ function toBlogTeaser<TCover>(entry: BlogSourceEntry<TCover>, renderResult: Blog
 		publishedAt: entry.data.datePublished,
 		tags: [...(entry.data.tags ?? [])],
 		readingTime,
+		toRssItem() {
+			return {
+				title: teaser.title,
+				pubDate: teaser.publishedAt,
+				categories: [...teaser.tags],
+				description: teaser.excerpt,
+				link: teaser.url,
+				author: 'Jannik Wempe',
+			};
+		},
+		toJsonLd() {
+			return toJsonLd(teaser);
+		},
 	};
+
+	return teaser;
+}
+
+let _jsonLdModule: typeof import('./json-ld') | undefined;
+
+async function ensureJsonLdLoaded() {
+	_jsonLdModule ??= await import('./json-ld');
+	return _jsonLdModule;
+}
+
+function defaultToJsonLd<TCover>(teaser: BlogTeaser<TCover>): BlogPosting {
+	if (!_jsonLdModule) {
+		throw new Error('json-ld not loaded — ensureJsonLdLoaded() must be awaited before calling toJsonLd()');
+	}
+	return _jsonLdModule.blogPosting({ post: teaser });
 }
 
 async function defaultListEntries<TCover>(): Promise<readonly BlogSourceEntry<TCover>[]> {

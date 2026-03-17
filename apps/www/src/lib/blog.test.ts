@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { createBlogReadModel, type BlogSourceEntry } from './blog.ts';
+import { createBlogReadModel, type BlogSourceEntry, type BlogTeaser } from './blog.ts';
 
 function createFixtureEntries(): BlogSourceEntry<string>[] {
 	return [
@@ -59,10 +59,25 @@ function createFixtureRenderEntry() {
 	});
 }
 
+function createFixtureToJsonLd() {
+	return (teaser: BlogTeaser<string>) => ({
+		'@type': 'BlogPosting' as const,
+		headline: teaser.title,
+		description: teaser.excerpt,
+		datePublished: teaser.publishedAt.toISOString(),
+		wordCount: teaser.readingTime.words,
+		timeRequired: `PT${Math.ceil(teaser.readingTime.minutes)}M`,
+		url: `https://wempe.dev${teaser.url}`,
+		keywords: teaser.tags.join(', '),
+		inLanguage: 'en-US',
+	});
+}
+
 function createFixtureReadModel() {
 	return createBlogReadModel<string>({
 		listEntries: async () => createFixtureEntries(),
 		renderEntry: createFixtureRenderEntry(),
+		toJsonLd: createFixtureToJsonLd(),
 	});
 }
 
@@ -179,6 +194,37 @@ test('post returns null for unknown ref', async () => {
 
 	assert.equal(await readModel.post({ id: 'nonexistent' }), null);
 	assert.equal(await readModel.post({ slug: 'nonexistent' }), null);
+});
+
+test('toRssItem returns correct RSS feed item', async () => {
+	const readModel = createFixtureReadModel();
+
+	const { items } = await readModel.list({ kind: 'latest', limit: 1 });
+	const rssItem = items[0]!.toRssItem();
+
+	assert.equal(rssItem.title, 'Newest Post');
+	assert.equal(rssItem.link, '/blog/newest-post');
+	assert.equal(rssItem.description, 'Newest excerpt');
+	assert.equal(rssItem.author, 'Jannik Wempe');
+	assert.deepEqual(rssItem.categories, ['typescript', 'astro']);
+	assert.deepEqual(rssItem.pubDate, new Date('2025-03-01T00:00:00.000Z'));
+});
+
+test('toJsonLd returns correct BlogPosting schema', async () => {
+	const readModel = createFixtureReadModel();
+
+	const { items } = await readModel.list({ kind: 'latest', limit: 1 });
+	const jsonLd = items[0]!.toJsonLd();
+
+	assert.equal(jsonLd['@type'], 'BlogPosting');
+	assert.equal(jsonLd.headline, 'Newest Post');
+	assert.equal(jsonLd.description, 'Newest excerpt');
+	assert.equal(jsonLd.datePublished, '2025-03-01T00:00:00.000Z');
+	assert.equal(jsonLd.wordCount, 462);
+	assert.equal(jsonLd.timeRequired, 'PT6M');
+	assert.equal(jsonLd.keywords, 'typescript, astro');
+	assert.equal(jsonLd.inLanguage, 'en-US');
+	assert.ok(String(jsonLd.url).includes('/blog/newest-post'));
 });
 
 test('catalog returns post params, tag params, and tag set', async () => {

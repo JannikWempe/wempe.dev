@@ -1,6 +1,6 @@
 ---
 import { Schema } from 'astro-seo-schema';
-import { blogPosting, breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
+import { breadcrumbItem, breadcrumbList } from '~/lib/json-ld';
 import type { BreadcrumbItem } from './Breadcrumb.astro';
 import type { BlogPostPage } from '~/lib/blog';
 
@@ -26,10 +26,7 @@ const breadcrumbItemsLd = breadcrumbItems.map((item, index) => {
 	item={{
 		'@context': 'https://schema.org',
 		'@graph': [
-			blogPosting({
-				post: postPage,
-				readingTime: postPage.readingTime,
-			}),
+			postPage.toJsonLd(),
 			breadcrumbList({
 				items: breadcrumbItemsLd,
 			}),
