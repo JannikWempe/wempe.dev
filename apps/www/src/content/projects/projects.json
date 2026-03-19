@@ -74,7 +74,7 @@
 		"url": "https://www.glückweiser.de/",
 		"logo": "./images/glueckweiser.png",
 		"status": "done",
-		"tech": ["TypeScript", "Shopify Hydrogen", "Remix", "React", "TailwindCSS"]
+		"tech": ["TypeScript", "Shopify Hydrogen", "React", "Remix", "TailwindCSS"]
 	},
 	{
 		"type": "website",
