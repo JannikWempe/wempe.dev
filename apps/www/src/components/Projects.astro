@@ -16,13 +16,23 @@ type Project = CollectionEntry<'projects'>['data'];
 
 const { class: classes, limit } = Astro.props;
 
-const allProjects = await getCollection('projects');
+const featuredFirstProjectId = 'editorial-ai-platform';
+
+const allProjects = (await getCollection('projects')).toSorted((a, b) => {
+	if (a.id === featuredFirstProjectId) return -1;
+	if (b.id === featuredFirstProjectId) return 1;
+	return 0;
+});
 const projects = limit ? allProjects.slice(0, limit) : allProjects;
 
 const techIcons: Record<Project['tech'][number], string> = {
 	TypeScript: 'logos:typescript-icon',
 	Gatsby: 'logos:gatsby',
 	React: 'logos:react',
+	'Next.js': 'logos:nextjs-icon',
+	'Node.js': 'logos:nodejs-icon',
+	Python: 'logos:python',
+	Docker: 'logos:docker-icon',
 	ChakraUI: 'chakra-ui',
 	Framer: 'logos:framer',
 	Netlify: 'logos:netlify-icon',
@@ -46,6 +56,7 @@ const techIcons: Record<Project['tech'][number], string> = {
 	Strapi: 'logos:strapi-icon',
 	'Shopify Hydrogen': 'hydrogen',
 	Turso: 'turso',
+	'AI SDK': 'logos:vercel-icon',
 };
 
 const typeToVariant = {
@@ -54,6 +65,7 @@ const typeToVariant = {
 	SaaS: 'blue' as const,
 	eCommerce: 'yellow' as const,
 	PWA: 'pink' as const,
+	'Client project': 'indigo' as const,
 } satisfies Record<Project['type'], string>;
 
 const statusToVariant = {
@@ -71,9 +83,9 @@ const statusToVariant = {
 			return (
 				<Card
 					as="li"
-					interactive
+					interactive={Boolean(project.data.url)}
 					padding="lg"
-					focusRing="within"
+					focusRing={project.data.url ? 'within' : 'none'}
 					class="group flex flex-col gap-5 overflow-hidden"
 					style={{ transform: 'translateZ(0)' }}
 				>
@@ -82,13 +94,17 @@ const statusToVariant = {
 
 					<div class="relative grow">
 						<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-slate-50 p-2 ring-1 ring-slate-100 transition-all group-hover:bg-white group-hover:shadow-md">
-							<Image
-								src={project.data.logo}
-								alt={`${project.data.title} logo`}
-								height={40}
-								format="avif"
-								class="h-10 w-auto object-contain"
-							/>
+							{project.data.logo ? (
+								<Image
+									src={project.data.logo}
+									alt={`${project.data.title} logo`}
+									height={40}
+									format="avif"
+									class="h-10 w-auto object-contain"
+								/>
+							) : (
+								<Icon name="lucide:briefcase-business" class="h-6 w-6 text-slate-500" aria-hidden="true" />
+							)}
 						</div>
 						<h3 class="mt-4 text-lg font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
 							{project.data.title}
@@ -96,9 +112,11 @@ const statusToVariant = {
 						<p class="mt-2 text-sm leading-relaxed text-slate-600">{project.data.description}</p>
 					</div>
 
-					<a href={project.data.url} class="absolute inset-0 focus:outline-none">
-						<span class="sr-only">Visit {project.data.title}</span>
-					</a>
+					{project.data.url && (
+						<a href={project.data.url} class="absolute inset-0 focus:outline-none">
+							<span class="sr-only">Visit {project.data.title}</span>
+						</a>
+					)}
 
 					<div class="mt-auto space-y-4">
 						<div class="flex flex-wrap gap-2">

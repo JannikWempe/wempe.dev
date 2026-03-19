@@ -1,5 +1,13 @@
 [
 	{
+		"type": "Client project",
+		"id": "editorial-ai-platform",
+		"title": "Editorial AI Platform",
+		"description": "Platform with various AI tools to support editors in their day-to-day work for an anonymous media client.",
+		"status": "ongoing",
+		"tech": ["TypeScript", "React", "Next.js", "AI SDK", "TailwindCSS", "Python", "Docker", "PostgreSQL", "Node.js"]
+	},
+	{
 		"type": "Shopify app",
 		"id": "mergeit",
 		"title": "MergeIt",
@@ -7,7 +15,7 @@
 		"url": "https://mergeit.app/",
 		"logo": "./images/mergeit.webp",
 		"status": "ongoing",
-		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Supabase"]
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Docker", "Supabase"]
 	},
 	{
 		"type": "website",
@@ -27,7 +35,7 @@
 		"url": "https://fraudfalcon.app/",
 		"logo": "./images/fraudfalcon.webp",
 		"status": "ongoing",
-		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Supabase"]
+		"tech": ["TypeScript", "Remix", "React", "SST", "AWS", "Docker", "Supabase"]
 	},
 	{
 		"type": "SaaS",

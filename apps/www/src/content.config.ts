@@ -25,11 +25,11 @@ const projects = defineCollection({
 	loader: file('./src/content/projects/projects.json'),
 	schema: ({ image }) =>
 		z.object({
-			type: z.enum(['website', 'Shopify app', 'SaaS', 'eCommerce', 'PWA']),
+			type: z.enum(['website', 'Shopify app', 'SaaS', 'eCommerce', 'PWA', 'Client project']),
 			title: z.string(),
 			description: z.string(),
 			url: z.url().optional(),
-			logo: image(),
+			logo: image().optional(),
 			status: z.enum(['ongoing', 'done', 'paused', 'sold', 'sunset']),
 			tech: z.array(z.string()),
 		}),
