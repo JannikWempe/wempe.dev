@@ -35,7 +35,29 @@ const projects = defineCollection({
 		}),
 });
 
+const clientProjects = defineCollection({
+	loader: file('./src/content/client-projects/client-projects.json'),
+	schema: () =>
+		z.object({
+			role: z.string(),
+			title: z.string(),
+			clientName: z.string(),
+			clientUrl: z.url().optional(),
+			summary: z.string(),
+			tech: z.array(z.string()),
+			timeframes: z
+				.array(
+					z.object({
+						start: z.coerce.date(),
+						end: z.coerce.date().optional(),
+					}),
+				)
+				.min(1),
+		}),
+});
+
 export const collections = {
 	blog,
+	clientProjects,
 	projects,
 };

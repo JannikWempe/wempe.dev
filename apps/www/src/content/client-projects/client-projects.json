@@ -1,0 +1,79 @@
+[
+	{
+		"id": "editorial-ai-platform",
+		"role": "AI Full-Stack Engineer",
+		"title": "Editorial AI Platform",
+		"clientName": "Anonymous media company",
+		"summary": "Built an AI-powered content creation platform for journalists and editors with real-time chat, structured workflows, and custom tools for research, rewriting, and editing. Designed and shipped the product end to end, using the AI SDK to power streaming AI experiences and domain-specific actions across the app.",
+		"tech": ["TypeScript", "React", "Next.js", "AI SDK", "TailwindCSS", "Python", "Docker", "PostgreSQL", "Node.js"],
+		"timeframes": [{ "start": "2025-07-01", "end": "2026-03-01" }]
+	},
+	{
+		"id": "controlling-system",
+		"role": "Full-Stack Developer",
+		"title": "Controlling System",
+		"clientName": "Anonymous company",
+		"summary": "Built the initial design, architecture, and implementation of a company-wide controlling platform. Replaced fragmented spreadsheets with a structured internal tool that unified financial and operational data across projects, departments, years, and other reporting levels.",
+		"tech": ["TypeScript", "AWS (Lambda, RDS, S3, CloudFront, SES & more)", "SST", "React", "Tanstack Start", "TailwindCSS", "Node.js", "PostgreSQL"],
+		"timeframes": [{ "start": "2025-04-01" }]
+	},
+	{
+		"id": "production-control-system",
+		"role": "Full-Stack Developer",
+		"title": "Production Control System",
+		"clientName": "Anonymous company",
+		"summary": "Built and shipped a custom internal production control platform for a medium-sized manufacturing company. Unified production workflows, task tracking, project data, and operational processes in one system, improving structure, traceability, and day-to-day execution.",
+		"tech": ["TypeScript", "AWS (Lambda, EventBridge, RDS, S3, CloudFront, VPC, SES & more)", "SST", "React", "React Router", "TailwindCSS", "Node.js", "PostgreSQL"],
+		"timeframes": [{ "start": "2025-01-01" }]
+	},
+	{
+		"id": "easy-data-solution-homepage",
+		"role": "Full-Stack Developer & IT Consultant",
+		"title": "Company's Online Presence",
+		"clientName": "easy data solution GmbH",
+		"clientUrl": "https://easydatasolution.de",
+		"summary": "Consulting, design and development of a webapp that represents the company and allows to book courses. Focus on SEO and performance.",
+		"tech": ["TypeScript", "React", "Gatsby", "Framer Motion", "Astro", "SolidJS", "TailwindCSS", "Chakra UI", "Netlify", "Decap CMS"],
+		"timeframes": [{ "start": "2020-03-01" }]
+	},
+	{
+		"id": "gluckweiser",
+		"role": "Full-Stack Developer",
+		"title": "E-Commerce Shop",
+		"clientName": "Gluckweiser",
+		"clientUrl": "https://gluckweiser.de",
+		"summary": "Designed, developed and deployed a Shopify store that sells handmade furniture.",
+		"tech": ["TypeScript", "React", "Shopify Hydrogen", "TailwindCSS", "Shopify", "GraphQL"],
+		"timeframes": [{ "start": "2021-03-01", "end": "2021-09-01" }, { "start": "2023-11-01", "end": "2024-02-01" }]
+	},
+	{
+		"id": "esp-se",
+		"role": "Full-Stack Developer & IT Consultant",
+		"title": "Company's Online Presence",
+		"clientName": "ESP SE",
+		"clientUrl": "https://esp-se.eu",
+		"summary": "Designed, developed and deployed a multi-language company website for a physiotherapist education platform with a focus on SEO.",
+		"tech": ["TypeScript", "React", "Next.js", "TailwindCSS", "Sanity", "Vercel"],
+		"timeframes": [{ "start": "2022-11-01", "end": "2023-05-01" }, { "start": "2025-02-01", "end": "2025-03-01" }]
+	},
+	{
+		"id": "kiezapp-rixdorf",
+		"role": "Full-Stack Developer",
+		"title": "Progressive Web App (PWA)",
+		"clientName": "KiezApp Rixdorf",
+		"clientUrl": "https://kiezapp-rixdorf.de",
+		"summary": "Developed a PWA that helps people to get to know the kiez Rixdorf in Berlin through some gamification.",
+		"tech": ["TypeScript", "React", "Next.js", "Chakra UI", "PWA", "Render", "PostgresDB"],
+		"timeframes": [{ "start": "2022-01-01", "end": "2022-03-01" }]
+	},
+	{
+		"id": "klebeki",
+		"role": "Full-Stack Developer",
+		"title": "E-Commerce Shop",
+		"clientName": "Klebeki",
+		"clientUrl": "https://klebeki.de",
+		"summary": "Design and development of a WooCommerce shop selling clothes for kids and babies with special needs.",
+		"tech": ["PHP", "WordPress", "WooCommerce", "JavaScript", "MySQL"],
+		"timeframes": [{ "start": "2018-01-01", "end": "2018-08-01" }]
+	}
+]

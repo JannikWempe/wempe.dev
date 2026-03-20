@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import awsCertificateImg from '~/assets/images/aws-certified-developer-associate.png';
@@ -23,6 +24,37 @@ import DefaultLayout from '~/layouts/DefaultLayout.astro';
 const programmingAndConsultingYears = new Date().getFullYear() - 2015;
 const fullStackExperienceYears = new Date().getFullYear() - 2018;
 const awsExperienceYears = new Date().getFullYear() - 2020;
+
+type Timeframe = {
+	start: Date;
+	end?: Date;
+};
+
+const now = new Date();
+
+function getInclusiveMonthCount({ start, end }: Timeframe) {
+	const effectiveEnd = end ?? now;
+
+	return (effectiveEnd.getUTCFullYear() - start.getUTCFullYear()) * 12 + effectiveEnd.getUTCMonth() - start.getUTCMonth() + 1;
+}
+
+function getLatestStartDate(timeframes: Timeframe[]) {
+	return new Date(Math.max(...timeframes.map((timeframe) => timeframe.start.getTime())));
+}
+
+function formatClientProjectDate(timeframes: Timeframe[]) {
+	const totalMonths = timeframes.reduce((sum, timeframe) => sum + getInclusiveMonthCount(timeframe), 0);
+	const startYear = Math.min(...timeframes.map((timeframe) => timeframe.start.getUTCFullYear()));
+
+	return `${startYear} - ${totalMonths} ${totalMonths === 1 ? 'month' : 'months'}`;
+}
+
+const clientProjects = (await getCollection('clientProjects'))
+	.toSorted((a, b) => getLatestStartDate(b.data.timeframes).getTime() - getLatestStartDate(a.data.timeframes).getTime())
+	.map((project) => ({
+		...project,
+		dateLabel: formatClientProjectDate(project.data.timeframes),
+	}));
 ---
 
 <DefaultLayout
@@ -153,190 +185,37 @@ const awsExperienceYears = new Date().getFullYear() - 2020;
 			<section class="mt-8">
 				<SectionTitle>Client Projects</SectionTitle>
 				<div class="space-y-6">
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">AI Full-Stack Engineer | Editorial AI Platform</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">07/2025 - 03/2026</p>
+					{
+						clientProjects.map((project) => (
+							<div>
+								<div class="relative">
+									<p class="text-lg font-bold">{project.data.role} | {project.data.title}</p>
+									<div class="absolute top-0 right-0 text-sm text-slate-600">
+										<p class="tabular-nums">{project.dateLabel}</p>
+									</div>
+								</div>
+								<p class="text-md font-semibold">
+									{project.data.clientUrl ? (
+										<a
+											href={project.data.clientUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="flex items-center gap-2"
+										>
+											{project.data.clientName}
+											<Icon name="lucide:external-link" class="h-4 w-4" />
+										</a>
+									) : (
+										project.data.clientName
+									)}
+								</p>
+								<p class="mt-1 max-w-[60ch] text-sm text-slate-700">{project.data.summary}</p>
+								<p class="mt-2 text-sm text-slate-600">
+									<span class="font-semibold">Tech:</span> {project.data.tech.join(', ')}
+								</p>
 							</div>
-						</div>
-						<p class="text-md font-semibold">Anonymous media company</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Built an AI-powered content creation platform for journalists and editors with real-time
-							chat, structured workflows, and custom tools for research, rewriting, and editing.
-							Designed and shipped the product end to end, using the AI SDK to power streaming AI
-							experiences and domain-specific actions across the app.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, AI SDK, TailwindCSS,
-							Python, Docker, PostgreSQL, Node.js
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer | Controlling System</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">04/2025 - Present</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">Anonymous company</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Built the initial design, architecture, and implementation of a company-wide controlling
-							platform. Replaced fragmented spreadsheets with a structured internal tool that unified
-							financial and operational data across projects, departments, years, and other reporting
-							levels.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, AWS (Lambda, RDS, S3, CloudFront, SES & more), SST,
-							React, Tanstack Start, TailwindCSS, Node.js, PostgreSQL
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer | Production Control System</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">01/2025 - Present</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">Anonymous company</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Built and shipped a custom internal production control platform for a medium-sized
-							manufacturing company. Unified production workflows, task tracking, project data, and
-							operational processes in one system, improving structure, traceability, and day-to-day
-							execution.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, AWS (Lambda, EventBridge, RDS, S3, CloudFront, VPC,
-							SES & more), SST, React, React Router, TailwindCSS, Node.js, PostgreSQL
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Company's Online Presence</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">03/2020 - Present</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">
-							<a
-								href="https://easydatasolution.de"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center gap-2"
-							>
-								easy data solution GmbH
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-						</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Consulting, design and development of a webapp that represents the company and allows to book courses.
-							Focus on SEO and performance.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, React, Gatsby, Framer Motion, Astro, SolidJS, TailwindCSS,
-							Chakra UI, Netlify, Decap CMS
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">03/2021 - 09/2021</p>
-								<p class="tabular-nums">11/2023 - 02/2024</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">
-							<a
-								href="https://gluckweiser.de"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center gap-2"
-							>
-								Glückweiser
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-						</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Designed, developed and deployed a Shopify store that sells handmade furniture.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, React, Shopify Hydrogen, TailwindCSS, Shopify, GraphQL
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer & IT Consultant | Company's Online Presence</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">11/2022 - 05/2023</p>
-								<p class="tabular-nums">02/2025 - 03/2025</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">
-							<a href="https://esp-se.eu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-								ESP SE
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-						</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Designed, developed and deployed a multi-language company website for a physiotherapist education platform
-							with a focus on SEO.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, TailwindCSS, Sanity, Vercel
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer | Progressive Web App (PWA)</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">01/2022 - 03/2022</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">
-							<a
-								href="https://kiezapp-rixdorf.de"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center gap-2"
-							>
-								KiezApp Rixdorf
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-						</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Developed a PWA that helps people to get to know the kiez Rixdorf in Berlin through some gamification.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> TypeScript, React, Next.js, Chakra UI, PWA, Render, PostgresDB
-						</p>
-					</div>
-
-					<div>
-						<div class="relative">
-							<p class="text-lg font-bold">Full-Stack Developer | E-Commerce Shop</p>
-							<div class="absolute top-0 right-0 text-sm text-slate-600">
-								<p class="tabular-nums">2018</p>
-							</div>
-						</div>
-						<p class="text-md font-semibold">
-							<a href="https://klebeki.de" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-								Klebeki
-								<Icon name="lucide:external-link" class="h-4 w-4" />
-							</a>
-						</p>
-						<p class="mt-1 max-w-[60ch] text-sm text-slate-700">
-							Design and development of a WooCommerce shop selling clothes for kids and babies with special needs.
-						</p>
-						<p class="mt-2 text-sm text-slate-600">
-							<span class="font-semibold">Tech:</span> PHP, WordPress, WooCommerce, JavaScript, MySQL
-						</p>
-					</div>
+						))
+					}
 				</div>
 			</section>
 			<!-- Personal Projects Section -->
